@@ -3801,6 +3801,792 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .model_id = "",
         .cache_info = &legacy_intel_cpuid2_cache_info,
     },
+    /*
+     * ---------------------------------------------------------------
+     * Intel Pentium 4 family (NetBurst microarchitecture)
+     * Family 15 (0Fh), Vendor: GenuineIntel
+     *
+     * Covering every stepping/model variant:
+     *   Willamette:  model 0 (B0 stepping 2, B2 stepping 7)
+     *   Northwood:   model 1 (B0 step 1), model 2 (B0 step 4, C1 step 7, D1 step 9)
+     *   Prescott:    model 3 (C0 step 3), model 4 (D0/E0/G1/N0 steps)
+     *   Gallatin:    model 3 Xeon MP, model 4 EE (single-core Xeon/EE)
+     *   Cedar Mill:  model 6 (single-core 65 nm)
+     *   Smithfield:  model 4 (Pentium D 8xx, dual-core 90 nm)
+     *   Presler:     model 6 (Pentium D 9xx, dual-core 65 nm)
+     *   Pentium 4 HT: various Northwood/Prescott with HT
+     * ---------------------------------------------------------------
+     *
+     * Base P4 feature set (FEAT_1_EDX):
+     *   FP87, VME, DE, PSE, TSC, MSR, PAE, MCE, CX8, APIC, SEP, MTRR,
+     *   PGE, MCA, CMOV, PAT, PSE36, CLFLUSH, DTS, ACPI, MMX, FXSR,
+     *   SSE, SSE2, SS, HT, TM, PBE
+     *
+     * Note: CPUID_DTS = bit 21 "ds", CPUID_ACPI = bit 22, CPUID_SS = bit 27,
+     *       CPUID_HT = bit 28, CPUID_TM = bit 29, CPUID_PBE = bit 31
+     */
+
+    /* ---- Willamette B0 (model 0, stepping 2) - first P4 release ---- */
+    {
+        .name = "pentium4-willamette",
+        .level = 2,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 0,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_TM | CPUID_PBE,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Willamette B0, model 0 step 2, SSE2, 400MHz FSB, 256K L2" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 1500MHz",
+    },
+    /* ---- Willamette B2 (model 0, stepping 7) ---- */
+    {
+        .name = "pentium4-willamette-b2",
+        .level = 2,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 0,
+        .stepping = 7,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_TM | CPUID_PBE,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Willamette B2, model 0 step 7, SSE2, 400MHz FSB, 256K L2" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 2000MHz",
+    },
+    /* ---- Northwood B0 (model 1, stepping 1) ---- */
+    {
+        .name = "pentium4-northwood-b0",
+        .level = 2,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 1,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_TM | CPUID_PBE,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Northwood B0, model 1 step 1, SSE2, 400MHz FSB, 512K L2" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 2.20GHz",
+    },
+    /* ---- Northwood B0 512K (model 2, stepping 4) ---- */
+    {
+        .name = "pentium4-northwood",
+        .level = 2,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 2,
+        .stepping = 4,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_HT | CPUID_TM | CPUID_PBE,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Northwood B0, model 2 step 4, HT, SSE2, 400MHz FSB, 512K L2" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 2.40GHz",
+    },
+    /* ---- Northwood C1 / HT (model 2, stepping 7) - 512K L2 ---- */
+    {
+        .name = "pentium4-northwood-ht",
+        .level = 2,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 2,
+        .stepping = 7,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_HT | CPUID_TM | CPUID_PBE,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Northwood C1, model 2 step 7, HT, SSE2, 533MHz FSB, 512K L2" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 3.06GHz",
+    },
+    /* ---- Northwood D1 (model 2, stepping 9) - 512K L2, 3.2 GHz ---- */
+    {
+        .name = "pentium4-northwood-d1",
+        .level = 2,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 2,
+        .stepping = 9,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_HT | CPUID_TM | CPUID_PBE,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Northwood D1, model 2 step 9, HT, SSE2, 800MHz FSB, 512K L2" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 3.20GHz",
+    },
+    /* ---- Prescott C0 (model 3, stepping 3) - 1M L2, 90nm, SSE3 ---- */
+    {
+        .name = "pentium4-prescott-c0",
+        .level = 5,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 3,
+        .stepping = 3,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_HT | CPUID_TM | CPUID_PBE,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Prescott C0, model 3 step 3, SSE3, 90nm, 1MB L2" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 2.80GHz",
+    },
+    /* ---- Prescott D0 (model 4, stepping 1) - 1M L2, HT, EM64T ---- */
+    {
+        .name = "pentium4-prescott",
+        .level = 5,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 4,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_HT | CPUID_TM | CPUID_PBE,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_DTES64 | CPUID_EXT_MONITOR |
+            CPUID_EXT_DSCPL | CPUID_EXT_CID,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Prescott D0, model 4 step 1, HT, SSE3, EM64T, 90nm, 1MB L2" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 3.00GHz",
+    },
+    /* ---- Prescott E0 (model 4, stepping 3) - EM64T + XD (NX) ---- */
+    {
+        .name = "pentium4-prescott-e0",
+        .level = 5,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 4,
+        .stepping = 3,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_HT | CPUID_TM | CPUID_PBE,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_DTES64 | CPUID_EXT_MONITOR |
+            CPUID_EXT_DSCPL | CPUID_EXT_CID,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Prescott E0, model 4 step 3, HT, SSE3, EM64T, NX, 90nm" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 3.40GHz",
+    },
+    /* ---- Prescott G1 (model 4, stepping 7) - highest clocked P4 ---- */
+    {
+        .name = "pentium4-prescott-g1",
+        .level = 5,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 4,
+        .stepping = 7,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_HT | CPUID_TM | CPUID_PBE,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_DTES64 | CPUID_EXT_MONITOR |
+            CPUID_EXT_DSCPL | CPUID_EXT_TM2 | CPUID_EXT_CID,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Prescott G1, model 4 step 7, HT, SSE3, EM64T, NX, TM2, 3.6GHz" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 3.60GHz",
+    },
+    /* ---- Prescott N0 (model 4, stepping 9) - mobile/value EM64T ---- */
+    {
+        .name = "pentium4-prescott-n0",
+        .level = 5,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 4,
+        .stepping = 9,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_HT | CPUID_TM | CPUID_PBE,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_DTES64 | CPUID_EXT_MONITOR |
+            CPUID_EXT_DSCPL | CPUID_EXT_TM2,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Prescott N0, model 4 step 9, HT, SSE3, EM64T, NX, mobile/value" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 3.20GHz",
+    },
+    /*
+     * ---- Gallatin (Xeon MP / Pentium 4 EE) model 3, stepping 4 ----
+     * P4 Extreme Edition (Gallatin): 2MB L3, single-core
+     */
+    {
+        .name = "pentium4-ee-gallatin",
+        .level = 5,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 3,
+        .stepping = 4,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_HT | CPUID_TM | CPUID_PBE,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Gallatin EE, model 3 step 4, HT, SSE3, 2MB L3, P4 Extreme Edition" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 3.40GHz",
+    },
+    /*
+     * ---- Xeon MP (Gallatin) model 3 stepping 5 ----
+     * Multi-processor Xeon with 2MB L3 cache
+     */
+    {
+        .name = "pentium4-xeon-mp",
+        .level = 5,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 3,
+        .stepping = 5,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_HT | CPUID_TM | CPUID_PBE,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Gallatin Xeon MP, model 3 step 5, HT, SSE3, 2MB L3, multi-socket" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(TM) MP CPU 2.80GHz",
+    },
+    /*
+     * ---- Smithfield (Pentium D 8xx) model 4 stepping 4 ----
+     * First dual-core P4: two Prescott dies, 90 nm
+     */
+    {
+        .name = "pentiumd-smithfield",
+        .level = 5,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 4,
+        .stepping = 4,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_HT | CPUID_TM | CPUID_PBE,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_DTES64 | CPUID_EXT_MONITOR |
+            CPUID_EXT_DSCPL | CPUID_EXT_CID,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Smithfield, model 4 step 4, dual-core, SSE3, EM64T, NX, 90nm" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Pentium(R) D CPU 2.80GHz",
+    },
+    /*
+     * ---- Cedar Mill (Pentium 4 6x1) model 6 stepping 2 ----
+     * Single-core 65 nm shrink of Prescott; supports EM64T + VT
+     */
+    {
+        .name = "pentium4-cedarmill",
+        .level = 5,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 6,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_TM | CPUID_PBE,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_DTES64 | CPUID_EXT_MONITOR |
+            CPUID_EXT_DSCPL | CPUID_EXT_VMX | CPUID_EXT_TM2 | CPUID_EXT_CID,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cedar Mill, model 6 step 2, SSE3, EM64T, NX, VT, 65nm, 1MB L2" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 3.20GHz",
+    },
+    /*
+     * ---- Presler (Pentium D 9xx) model 6 stepping 5 ----
+     * Dual-core Cedar Mill: two 65 nm Cedar Mill dies; supports VT
+     */
+    {
+        .name = "pentiumd-presler",
+        .level = 5,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 6,
+        .stepping = 5,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_HT | CPUID_TM | CPUID_PBE,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_DTES64 | CPUID_EXT_MONITOR |
+            CPUID_EXT_DSCPL | CPUID_EXT_VMX | CPUID_EXT_TM2,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Presler, model 6 step 5, dual-core, SSE3, EM64T, NX, VT, 65nm" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Pentium(R) D CPU 3.40GHz",
+    },
+    /*
+     * ---- Pentium 4 EE "Prescott" (model 4 stepping 1, EE variant) ----
+     * Extreme Edition based on Prescott core with 2MB L3 (Gallatin die)
+     */
+    {
+        .name = "pentium4-ee",
+        .level = 5,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 4,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 |
+            CPUID_SS | CPUID_HT | CPUID_TM | CPUID_PBE,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_DTES64 | CPUID_EXT_MONITOR |
+            CPUID_EXT_DSCPL,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Prescott EE, model 4 step 1, HT, SSE3, EM64T, NX, 3.46GHz" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Pentium(R) 4 CPU 3.46GHz",
+    },
+
+    /*
+     * ---------------------------------------------------------------
+     * AMD Athlon 64 family (K8 / Hammer microarchitecture)
+     * Family 15 (0Fh), Vendor: AuthenticAMD
+     *
+     * Covering all major Athlon 64 steppings:
+     *   SledgeHammer (CG):    model 5  - first Opteron/A64 (socket 940)
+     *   ClawHammer (CG):      model 8  - socket 754 A64 2800+..3400+
+     *   NewCastle (CG/DH):    model 12 - socket 754/939 A64
+     *   Winchester (DH-E3):   model 28 - 90nm shrink, socket 939
+     *   Venice (SH-E5):       model 44 - 90nm, SSE3, socket 939/754
+     *   San Diego (SH-E4):    model 35 - 90nm, SSE3, socket 939
+     *   Manchester (DH-E6):   model 33 - 90nm dual-core (Athlon 64 X2)
+     *   Toledo (DH-E6):       model 33 - 90nm dual-core (X2 4800+)
+     *   Orleans (F2):         model 65 - 65nm shrink, socket AM2
+     *   Brisbane (G1):        model 107 - 65nm, revised TLB
+     * ---------------------------------------------------------------
+     */
+
+    /* ---- SledgeHammer CG (model 5, stepping 10 = 0xA) ---- */
+    /* First Athlon 64 / Opteron: socket 940 */
+    {
+        .name = "athlon64-sledgehammer",
+        .level = 1,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 15,
+        .model = 5,
+        .stepping = 10,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT |
+            CPUID_EXT2_3DNOW,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "SledgeHammer CG, model 5 step A, K8, socket 940, LM, 3DNow!" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "AMD Athlon(tm) 64 Processor 3200+",
+    },
+    /* ---- ClawHammer CG (model 8, stepping 2) - socket 754 ---- */
+    {
+        .name = "athlon64-clawhammer",
+        .level = 1,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 15,
+        .model = 8,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT |
+            CPUID_EXT2_3DNOW,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "ClawHammer CG, model 8 step 2, K8, socket 754, LM, 3DNow!" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "AMD Athlon(tm) 64 Processor 3000+",
+    },
+    /* ---- NewCastle CG (model 12, stepping 0) - socket 754/939 ---- */
+    {
+        .name = "athlon64-newcastle",
+        .level = 1,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 15,
+        .model = 12,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT |
+            CPUID_EXT2_3DNOW,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "NewCastle CG, model 12 step 0, K8, socket 754/939, LM, 3DNow!" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "AMD Athlon(tm) 64 Processor 3400+",
+    },
+    /* ---- Winchester DH-E3 (model 28, stepping 0) - 90nm, socket 939 ---- */
+    {
+        .name = "athlon64-winchester",
+        .level = 1,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 15,
+        .model = 28,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT |
+            CPUID_EXT2_3DNOW,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Winchester DH-E3, model 28 step 0, K8, 90nm, socket 939, LM" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "AMD Athlon(tm) 64 Processor 3200+",
+    },
+    /* ---- Venice SH-E5 (model 44, stepping 1) - 90nm, SSE3, socket 939/754 ---- */
+    {
+        .name = "athlon64-venice",
+        .level = 1,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 15,
+        .model = 44,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Venice SH-E5, model 44 step 1, K8, 90nm, socket 939/754, SSE3, LM" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "AMD Athlon(tm) 64 Processor 3500+",
+    },
+    /* ---- San Diego SH-E4 (model 35, stepping 2) - 90nm, SSE3, socket 939 ---- */
+    {
+        .name = "athlon64-sandiego",
+        .level = 1,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 15,
+        .model = 35,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "San Diego SH-E4, model 35 step 2, K8, 90nm, socket 939, SSE3, LM" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "AMD Athlon(tm) 64 Processor 4000+",
+    },
+    /* ---- Manchester DH-E6 (model 33, stepping 2) - dual-core Athlon 64 X2 ---- */
+    {
+        .name = "athlon64x2-manchester",
+        .level = 1,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 15,
+        .model = 33,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2 | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_CMP_LEG,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Manchester DH-E6, model 33 step 2, dual-core K8, 90nm, SSE3, LM" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "AMD Athlon(tm) 64 X2 Dual Core Processor 3800+",
+    },
+    /* ---- Toledo DH-E6 (model 33, stepping 2) - Athlon 64 X2 4800+ ---- */
+    {
+        .name = "athlon64x2-toledo",
+        .level = 1,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 15,
+        .model = 33,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2 | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_CMP_LEG,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Toledo DH-E6, model 33 step 2, dual-core K8, 90nm, SSE3, LM, 1MB L2" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "AMD Athlon(tm) 64 X2 Dual Core Processor 4800+",
+    },
+    /* ---- Orleans F2 (model 65, stepping 2) - 65nm, socket AM2 ---- */
+    {
+        .name = "athlon64-orleans",
+        .level = 1,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 15,
+        .model = 65,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Orleans F2, model 65 step 2, K8, 65nm, socket AM2, SSE3, LM" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "AMD Athlon(tm) 64 Processor 3500+",
+    },
+    /* ---- Brisbane G1 (model 107, stepping 1) - 65nm, socket AM2 revised TLB ---- */
+    {
+        .name = "athlon64-brisbane",
+        .level = 1,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 15,
+        .model = 107,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+                .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Brisbane G1, model 107 step 1, K8, 65nm, socket AM2, SSE3, revised TLB" },
+            { /* end */ }
+        },
+        .xlevel = 0x80000008,
+        .model_id = "AMD Athlon(tm) 64 Processor 4000+",
+    },
+
     {
         .name = "athlon",
         .level = 2,
@@ -7922,7 +8708,12 @@ static void x86_cpu_list_entry(gpointer data, gpointer user_data)
 
     if (!desc && alias_of) {
         if (cc->model && cc->model->version == CPU_VERSION_AUTO) {
-            desc = g_strdup("(alias configured by machine type)");
+            if (model_id && model_id[0]) {
+                desc = g_strdup_printf("%s (alias configured by machine type)",
+                                       model_id);
+            } else {
+                desc = g_strdup("(alias configured by machine type)");
+            }
         } else {
             desc = g_strdup_printf("(alias of %s)", alias_of);
         }

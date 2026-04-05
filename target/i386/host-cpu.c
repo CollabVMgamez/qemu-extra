@@ -135,17 +135,21 @@ void host_cpu_instance_init(X86CPU *cpu)
     char model_id[CPUID_MODEL_ID_SZ + 1] = { 0 };
     int family, model, stepping;
 
-    /*
-     * setting vendor applies to both max/host and builtin_x86_defs CPU.
-     * FIXME: this probably should warn or should be skipped if vendors do
-     * not match, because family numbers are incompatible between Intel and AMD.
-     */
     host_cpu_vendor_fms(vendor, &family, &model, &stepping);
-    object_property_set_str(OBJECT(cpu), "vendor", vendor, &error_abort);
 
+    /*
+     * Only override the vendor string for -cpu host / -cpu max.
+     * Named model definitions (e.g. pentium4-prescott, athlon64-venice)
+     * carry their own authoritative vendor field and must not be silently
+     * overwritten by the host's vendor — that would cause an Intel model
+     * to report "AuthenticAMD" (or vice-versa) when running on a
+     * cross-vendor host.
+     */
     if (!xcc->max_features) {
         return;
     }
+
+    object_property_set_str(OBJECT(cpu), "vendor", vendor, &error_abort);
 
     host_cpu_fill_model_id(model_id);
 
