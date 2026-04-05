@@ -28,7 +28,11 @@ It is commonly invoked indirectly via the libvirt library when using
 open source applications such as oVirt, OpenStack and virt-manager.
 
 QEMU as a whole is released under the GNU General Public License,
-version 2. For full licensing details, consult the LICENSE file.
+
+About this fork
+=========
+
+This is a Pentium 4/Athlon64 fork of QEMU
 
 
 Documentation
