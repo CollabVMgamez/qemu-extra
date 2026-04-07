@@ -56,6 +56,10 @@ typedef struct PCMachineState {
     /* ACPI Memory hotplug IO base address */
     hwaddr memhp_io_base;
 
+    /* RAM type shown in CPU-Z Memory tab (via SPD EEPROM on SMBus).
+     * Valid values: "ddr", "ddr2", "ddr3", "ddr4"  (default: "ddr2") */
+    char *ram_type;
+
     SGXEPCState sgx_epc;
     CXLState cxl_devices_state;
 } PCMachineState;

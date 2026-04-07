@@ -195,6 +195,15 @@ void helper_wrmsr(CPUX86State *env)
     case MSR_PAT:
         env->pat = val;
         break;
+    case 0x199: /* MSR_IA32_PERF_CTL - Core 2 Extreme unlocked multiplier */
+        {
+            X86CPU *cpu = env_archcpu(env);
+            if (cpu->unlocked_multiplier) {
+                cpu->perf_ctl_msr = val;
+            }
+            /* silently ignore on locked CPUs (matches real HW behavior) */
+        }
+        break;
     case MSR_IA32_PKRS:
         if (val & 0xFFFFFFFF00000000ull) {
             goto error;
@@ -364,8 +373,24 @@ void helper_rdmsr(CPUX86State *env)
     case MSR_IA32_PERF_STATUS:
         /* tsc_increment_by_tick */
         val = 1000ULL;
-        /* CPU multiplier */
-        val |= (((uint64_t)4ULL) << 40);
+        {
+            X86CPU *cpu = env_archcpu(env);
+            if (cpu->unlocked_multiplier && cpu->perf_ctl_msr) {
+                /* Reflect the multiplier the guest wrote via PERF_CTL */
+                uint64_t ratio = (cpu->perf_ctl_msr >> 8) & 0x7f;
+                val |= (ratio << 40);
+            } else {
+                /* Use the per-model default multiplier (set from def->default_multiplier) */
+                uint64_t ratio = env->cpuid_default_multiplier ? env->cpuid_default_multiplier : 15;
+                val |= (ratio << 40);
+            }
+        }
+        break;
+    case 0x199: /* MSR_IA32_PERF_CTL */
+        {
+            X86CPU *cpu = env_archcpu(env);
+            val = cpu->perf_ctl_msr;
+        }
         break;
 #ifdef TARGET_X86_64
     case MSR_LSTAR:

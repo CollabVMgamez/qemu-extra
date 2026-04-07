@@ -2227,6 +2227,8 @@ typedef struct CPUArchState {
     uint32_t cpuid_vendor2;
     uint32_t cpuid_vendor3;
     uint32_t cpuid_version;
+    uint8_t cpuid_brand_id;  /* CPUID[1].EBX[7:0] processor brand index */
+    uint8_t cpuid_default_multiplier; /* default ratio for PERF_STATUS */
     FeatureWordArray features;
     /* AVX10 version */
     uint8_t avx10_version;
@@ -2392,6 +2394,10 @@ struct ArchCPU {
      * capabilities) directly to the guest.
      */
     bool enable_pmu;
+
+    /* Core 2 Extreme: unlocked multiplier via MSR_IA32_PERF_CTL (0x199) */
+    bool unlocked_multiplier;
+    uint64_t perf_ctl_msr;  /* stored value of PERF_CTL written by guest */
 
     /*
      * Enable LBR_FMT bits of IA32_PERF_CAPABILITIES MSR.

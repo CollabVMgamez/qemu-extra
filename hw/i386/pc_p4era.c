@@ -52,6 +52,34 @@
 #include "migration/global_state.h"
 #include "system/numa.h"
 
+
+/* ---------------------------------------------------------------------------
+ * Parse the ram_type property and generate matching SPD EEPROM data.
+ * CPU-Z reads SPD byte 2 (the DRAM type code) to show DDR1/DDR2/DDR3/DDR4.
+ * ---------------------------------------------------------------------------
+ */
+static void pc_init_spd(PCMachineState *pcms)
+{
+    enum sdram_type stype = DDR2; /* default */
+    if (pcms->ram_type) {
+        if (!g_ascii_strcasecmp(pcms->ram_type, "ddr") ||
+            !g_ascii_strcasecmp(pcms->ram_type, "ddr1")) {
+            stype = DDR;
+        } else if (!g_ascii_strcasecmp(pcms->ram_type, "ddr2")) {
+            stype = DDR2;
+        } else if (!g_ascii_strcasecmp(pcms->ram_type, "ddr3")) {
+            stype = DDR3;
+        } else if (!g_ascii_strcasecmp(pcms->ram_type, "ddr4")) {
+            stype = DDR4;
+        }
+    }
+    uint8_t *spd = spd_data_generate(stype,
+                       MACHINE(pcms)->ram_size > 0 ?
+                       MACHINE(pcms)->ram_size : (1 * GiB));
+    smbus_eeprom_init(pcms->smbus, 8, spd, 256);
+    g_free(spd);
+}
+
 /* ---------------------------------------------------------------------------
  * Shared P4-era platform init (identical wiring to pc_piix init path, using
  * the i440FX host bridge + PIIX4 south bridge as the structural backbone).
@@ -187,7 +215,7 @@ static void pc_p4era_init(MachineState *machine)
         smi_irq = qemu_allocate_irq(pc_acpi_smi_interrupt, first_cpu, 0);
         qdev_connect_gpio_out_named(DEVICE(piix4_pm), "smi-irq", 0, smi_irq);
         pcms->smbus = I2C_BUS(qdev_get_child_bus(DEVICE(piix4_pm), "i2c"));
-        smbus_eeprom_init(pcms->smbus, 8, NULL, 0);
+        pc_init_spd(pcms);
 
         object_property_add_link(OBJECT(machine), PC_MACHINE_ACPI_DEVICE_PROP,
                                  TYPE_HOTPLUG_HANDLER,

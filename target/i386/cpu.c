@@ -264,7 +264,9 @@ static void encode_cache_cpuid2(X86CPU *cpu,
     l1d = cpuid2_cache_descriptor(caches->l1d_cache, &unmatched);
     l1i = cpuid2_cache_descriptor(caches->l1i_cache, &unmatched);
     l2 = cpuid2_cache_descriptor(caches->l2_cache, &unmatched);
-    l3 = cpuid2_cache_descriptor(caches->l3_cache, &unmatched);
+    /* 0x40 = "No 2nd-level cache, or if processor contains a valid
+     * 2nd-level cache, no 3rd-level cache" (Intel SDM Vol.2 Table 3-12) */
+    l3 = caches->l3_cache ? cpuid2_cache_descriptor(caches->l3_cache, &unmatched) : 0x40;
 
     if (!cpu->consistent_cache ||
         (env->cpuid_min_level < 0x4 && !unmatched)) {
@@ -2310,6 +2312,8 @@ typedef struct X86CPUDefinition {
     int family;
     int model;
     int stepping;
+    uint8_t brand_id;  /* CPUID[1].EBX[7:0] processor brand index */
+    uint8_t default_multiplier; /* default CPU ratio for MSR_IA32_PERF_STATUS */
     uint8_t avx10_version;
     /*
      * Whether to present CPUID 0x1f by default.
@@ -2395,6 +2399,258 @@ static const AVX10VersionDefinition builtin_avx10_defs[] = {
             { /* end of list */ }
         }
     },
+};
+
+
+/* ===========================================================
+ * Cache topology for Intel Core 2 family
+ * =========================================================== */
+
+/* Conroe/Merom: 32K L1I, 32K L1D, per-core 2-4MB L2, no L3 */
+static const CPUCaches core2_conroe_2m_cache_info = {
+    .l1d_cache = &(CPUCacheInfo) {
+        .type = DATA_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l1i_cache = &(CPUCacheInfo) {
+        .type = INSTRUCTION_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l2_cache = &(CPUCacheInfo) {
+        .type = UNIFIED_CACHE, .level = 2, .size = 2 * MiB,
+        .line_size = 64, .associativity = 8, .sets = 4096,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        /* Conroe/Merom: L2 is shared between the 2 cores on one die */
+        .share_level = CPU_TOPOLOGY_LEVEL_DIE,
+    },
+    .l3_cache = NULL,
+};
+
+static const CPUCaches core2_conroe_4m_cache_info = {
+    .l1d_cache = &(CPUCacheInfo) {
+        .type = DATA_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l1i_cache = &(CPUCacheInfo) {
+        .type = INSTRUCTION_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l2_cache = &(CPUCacheInfo) {
+        .type = UNIFIED_CACHE, .level = 2, .size = 4 * MiB,
+        .line_size = 64, .associativity = 16, .sets = 4096,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_DIE,
+    },
+    .l3_cache = NULL,
+};
+
+/*
+ * Wolfdale/Penryn: 32K L1, 3MB or 6MB per-die L2, no L3.
+ * SSE4.1 capable.
+ */
+static const CPUCaches core2_wolfdale_3m_cache_info = {
+    .l1d_cache = &(CPUCacheInfo) {
+        .type = DATA_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l1i_cache = &(CPUCacheInfo) {
+        .type = INSTRUCTION_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l2_cache = &(CPUCacheInfo) {
+        .type = UNIFIED_CACHE, .level = 2, .size = 3 * MiB,
+        .line_size = 64, .associativity = 12, .sets = 4096,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_DIE,
+    },
+    .l3_cache = NULL,
+};
+
+static const CPUCaches core2_wolfdale_6m_cache_info = {
+    .l1d_cache = &(CPUCacheInfo) {
+        .type = DATA_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l1i_cache = &(CPUCacheInfo) {
+        .type = INSTRUCTION_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l2_cache = &(CPUCacheInfo) {
+        .type = UNIFIED_CACHE, .level = 2, .size = 6 * MiB,
+        .line_size = 64, .associativity = 24, .sets = 4096,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_DIE,
+    },
+    .l3_cache = NULL,
+};
+
+/*
+ * Kentsfield (Q6600/QX6700): two separate Conroe dies on one package.
+ * Each die has its own 4MB L2. Cores 0+1 share one L2; cores 2+3 share
+ * another. There is NO cross-die L3. We expose one 4MB L2 shared at
+ * the DIE level — the guest OS will see two separate cache domains.
+ */
+static const CPUCaches core2_kentsfield_cache_info = {
+    .l1d_cache = &(CPUCacheInfo) {
+        .type = DATA_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l1i_cache = &(CPUCacheInfo) {
+        .type = INSTRUCTION_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    /*
+     * 4MB L2 shared by the two cores on each Conroe die.
+     * share_level=DIE means only cores on the same die share this L2,
+     * which is correct: each physical Conroe die is one QEMU die.
+     */
+    .l2_cache = &(CPUCacheInfo) {
+        .type = UNIFIED_CACHE, .level = 2, .size = 4 * MiB,
+        .line_size = 64, .associativity = 16, .sets = 4096,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_DIE,
+    },
+    .l3_cache = NULL,
+};
+
+/*
+ * Yorkfield (Q9300/Q9550/QX9770): two Wolfdale dies, each with 3MB or
+ * 6MB L2. Same dual-die topology as Kentsfield but 45nm + SSE4.1.
+ */
+static const CPUCaches core2_yorkfield_3m_cache_info = {
+    .l1d_cache = &(CPUCacheInfo) {
+        .type = DATA_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l1i_cache = &(CPUCacheInfo) {
+        .type = INSTRUCTION_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l2_cache = &(CPUCacheInfo) {
+        .type = UNIFIED_CACHE, .level = 2, .size = 3 * MiB,
+        .line_size = 64, .associativity = 12, .sets = 4096,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_DIE,
+    },
+    .l3_cache = NULL,
+};
+
+static const CPUCaches core2_yorkfield_6m_cache_info = {
+    .l1d_cache = &(CPUCacheInfo) {
+        .type = DATA_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l1i_cache = &(CPUCacheInfo) {
+        .type = INSTRUCTION_CACHE, .level = 1, .size = 32 * KiB,
+        .line_size = 64, .associativity = 8, .sets = 64,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l2_cache = &(CPUCacheInfo) {
+        .type = UNIFIED_CACHE, .level = 2, .size = 6 * MiB,
+        .line_size = 64, .associativity = 24, .sets = 4096,
+        .partitions = 1, .self_init = 1, .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_DIE,
+    },
+    .l3_cache = NULL,
+};
+
+/* ===========================================================
+ * Cache topology for AMD Phenom II / Athlon II (K10 / Stars)
+ * =========================================================== */
+
+/*
+ * Phenom II (Deneb X4, Heka X3, Callisto X2, Thuban X6):
+ * 64K L1I + 64K L1D per core, 512K L2 per core, 6MB unified L3
+ * shared across all cores on the die.
+ */
+static const CPUCaches phenom2_6mb_l3_cache_info = {
+    .l1d_cache = &(CPUCacheInfo) {
+        .type = DATA_CACHE, .level = 1, .size = 64 * KiB,
+        .line_size = 64, .associativity = 2, .sets = 512,
+        .partitions = 1, .self_init = 1, .lines_per_tag = 1,
+        .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l1i_cache = &(CPUCacheInfo) {
+        .type = INSTRUCTION_CACHE, .level = 1, .size = 64 * KiB,
+        .line_size = 64, .associativity = 2, .sets = 512,
+        .partitions = 1, .self_init = 1, .lines_per_tag = 1,
+        .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l2_cache = &(CPUCacheInfo) {
+        .type = UNIFIED_CACHE, .level = 2, .size = 512 * KiB,
+        .line_size = 64, .associativity = 16, .sets = 512,
+        .partitions = 1, .lines_per_tag = 1,
+        /* Private per-core L2 */
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l3_cache = &(CPUCacheInfo) {
+        .type = UNIFIED_CACHE, .level = 3, .size = 6 * MiB,
+        .line_size = 64, .associativity = 48, .sets = 2048,
+        .partitions = 1, .lines_per_tag = 1,
+        .self_init = true, .inclusive = true,
+        /* Shared across all cores on the package */
+        .share_level = CPU_TOPOLOGY_LEVEL_DIE,
+    },
+};
+
+/*
+ * Athlon II X2 250 (Regor): native dual-core, NO L3 silicon at all.
+ * Compensates with doubled L2: 1MB per core instead of 512K.
+ * CPUID 0x80000006 must report L3 size = 0.
+ */
+static const CPUCaches athlon2_regor_cache_info = {
+    .l1d_cache = &(CPUCacheInfo) {
+        .type = DATA_CACHE, .level = 1, .size = 64 * KiB,
+        .line_size = 64, .associativity = 2, .sets = 512,
+        .partitions = 1, .self_init = 1, .lines_per_tag = 1,
+        .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    .l1i_cache = &(CPUCacheInfo) {
+        .type = INSTRUCTION_CACHE, .level = 1, .size = 64 * KiB,
+        .line_size = 64, .associativity = 2, .sets = 512,
+        .partitions = 1, .self_init = 1, .lines_per_tag = 1,
+        .no_invd_sharing = true,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    /* 1MB per core — doubled vs Phenom II, compensating for no L3 */
+    .l2_cache = &(CPUCacheInfo) {
+        .type = UNIFIED_CACHE, .level = 2, .size = 1 * MiB,
+        .line_size = 64, .associativity = 16, .sets = 1024,
+        .partitions = 1, .lines_per_tag = 1,
+        .share_level = CPU_TOPOLOGY_LEVEL_CORE,
+    },
+    /* Explicitly no L3 — Regor has no L3 silicon */
+    .l3_cache = NULL,
 };
 
 static const CPUCaches epyc_cache_info = {
@@ -3589,6 +3845,714 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .xlevel = 0x8000001A,
         .model_id = "AMD Phenom(tm) 9550 Quad-Core Processor"
     },
+    /*
+     * ---------------------------------------------------------------
+     * Intel Core 2 family (Conroe/Merom/Wolfdale/Yorkfield/Kentsfield)
+     * Family 6, Vendor: GenuineIntel
+     *
+     * Core 2 Solo:
+     *   U2100/U2200 (Merom-L, model 22 = 0x16, single-core ultra-low)
+     * Core 2 Duo:
+     *   E4xxx/E6xxx (Conroe,  model 15 = 0x0F, 65nm)
+     *   E7xxx/E8xxx (Wolfdale, model 23 = 0x17, 45nm)
+     *   T5xxx/T7xxx (Merom,   model 15 = 0x0F, mobile 65nm)
+     *   P7xxx/P8xxx (Penryn,  model 23 = 0x17, mobile 45nm)
+     * Core 2 Quad:
+     *   Q6xxx       (Kentsfield, model 15 = 0x0F, 65nm, 2x Conroe die)
+     *   Q8xxx/Q9xxx (Yorkfield,  model 23 = 0x17, 45nm, 2x Wolfdale die)
+     * Core 2 Extreme:
+     *   QX6xxx      (Kentsfield XE, model 15)
+     *   QX9xxx      (Yorkfield XE,  model 23)
+     * ---------------------------------------------------------------
+     */
+
+    /* ---- Core 2 Solo U2100 (Merom-L, model 22 step 1, 65nm, 1 core) ---- */
+    {
+        .name = "core2-solo-u2100",
+        .level = 10,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 22,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_SS,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Solo CPU U2100 @ 1.06GHz",
+                .cache_info = &core2_conroe_2m_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Merom-L, model 22 step 1, single-core, 65nm, 1MB L2" },
+            { /* end */ }
+        },
+    },
+    /* ---- Core 2 Solo U3500 (Penryn-L, model 23 step 6, 45nm, 1 core) ---- */
+    {
+        .name = "core2-solo-u3500",
+        .level = 10,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 23,
+        .stepping = 6,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_SS,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_SSE41,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Solo CPU U3500 @ 1.40GHz",
+                .cache_info = &core2_wolfdale_3m_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Penryn-L, model 23 step 6, single-core, 45nm, 3MB L2" },
+            { /* end */ }
+        },
+    },
+    /* ---- Core 2 Duo E6300 (Conroe, model 15 step 6, 65nm, 2MB L2) ---- */
+    {
+        .name = "core2-duo-e6300",
+        .level = 10,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 15,
+        .stepping = 6,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_ACPI | CPUID_SS | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_CX16,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Duo CPU E6300 @ 1.86GHz",
+                .cache_info = &core2_conroe_2m_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Conroe B2, model 15 step 6, 65nm, 2MB L2, 1066MHz FSB" },
+            { /* end */ }
+        },
+    },
+    /* ---- Core 2 Duo E6600 (Conroe, model 15 step 6, 65nm, 4MB L2) ---- */
+    {
+        .name = "core2-duo-e6600",
+        .level = 10,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 15,
+        .stepping = 6,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_ACPI | CPUID_SS | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_CX16 | CPUID_EXT_VMX,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Duo CPU E6600 @ 2.40GHz",
+                .cache_info = &core2_conroe_4m_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Conroe B2, model 15 step 6, 65nm, 4MB L2, 1066MHz FSB, VT" },
+            { /* end */ }
+        },
+    },
+    /* ---- Core 2 Duo E8400 (Wolfdale, model 23 step 6, 45nm, 6MB L2) ---- */
+    {
+        .name = "core2-duo-e8400",
+        .level = 10,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 23,
+        .stepping = 6,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_ACPI | CPUID_SS | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_CX16 | CPUID_EXT_VMX | CPUID_EXT_SSE41,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Duo CPU E8400 @ 3.00GHz",
+                .cache_info = &core2_wolfdale_6m_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Wolfdale E0, model 23 step 6, 45nm, 6MB L2, 1333MHz FSB, VT, SSE4.1" },
+            { /* end */ }
+        },
+    },
+    /* ---- Core 2 Duo E8500 (Wolfdale, model 23 step 6, 45nm, 6MB L2) ---- */
+    {
+        .name = "core2-duo-e8500",
+        .level = 10,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 23,
+        .stepping = 6,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_ACPI | CPUID_SS | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_CX16 | CPUID_EXT_VMX | CPUID_EXT_SSE41,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Duo CPU E8500 @ 3.16GHz",
+                .cache_info = &core2_wolfdale_6m_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Wolfdale E0, model 23 step 6, 45nm, 6MB L2, 1333MHz FSB, VT, SSE4.1" },
+            { /* end */ }
+        },
+    },
+    /* ---- Core 2 Duo T7600 (Merom, model 15 step 6, mobile 65nm, 4MB L2) ---- */
+    {
+        .name = "core2-duo-t7600",
+        .level = 10,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 15,
+        .stepping = 6,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_ACPI | CPUID_SS,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_CX16 | CPUID_EXT_VMX,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Duo CPU T7600 @ 2.33GHz",
+                .cache_info = &core2_conroe_4m_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Merom B2, model 15 step 6, mobile 65nm, 4MB L2, VT" },
+            { /* end */ }
+        },
+    },
+    /* ---- Core 2 Duo P8600 (Penryn, model 23 step 6, mobile 45nm, 3MB L2) ---- */
+    {
+        .name = "core2-duo-p8600",
+        .level = 10,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 23,
+        .stepping = 6,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_ACPI | CPUID_SS,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_CX16 | CPUID_EXT_VMX | CPUID_EXT_SSE41,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Duo CPU P8600 @ 2.40GHz",
+                .cache_info = &core2_wolfdale_3m_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Penryn M, model 23 step 6, mobile 45nm, 3MB L2, VT, SSE4.1" },
+            { /* end */ }
+        },
+    },
+    /* ---- Core 2 Quad Q6600 (Kentsfield, model 15 step 11, 65nm, 2x4MB L2) ---- */
+    {
+        .name = "core2-quad-q6600",
+        .level = 10,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 15,
+        .stepping = 11,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_ACPI | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_CX16,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Quad CPU Q6600 @ 2.40GHz",
+                .cache_info = &core2_kentsfield_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Kentsfield G0, model 15 step 11, 65nm, quad-core, 2x4MB L2, VT" },
+            { /* end */ }
+        },
+    },
+    /* ---- Core 2 Quad Q9300 (Yorkfield, model 23 step 6, 45nm, 2x3MB L2) ---- */
+    {
+        .name = "core2-quad-q9300",
+        .level = 10,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 23,
+        .stepping = 6,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_ACPI | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_CX16 | CPUID_EXT_SSE41,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Quad CPU Q9300 @ 2.50GHz",
+                .cache_info = &core2_yorkfield_3m_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Yorkfield M1, model 23 step 6, 45nm, quad-core, 2x3MB L2, VT, SSE4.1" },
+            { /* end */ }
+        },
+    },
+    /* ---- Core 2 Quad Q9550 (Yorkfield, model 23 step 10, 45nm, 2x6MB L2) ---- */
+    {
+        .name = "core2-quad-q9550",
+        .level = 10,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 23,
+        .stepping = 10,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_ACPI | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_CX16 | CPUID_EXT_SSE41,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Quad CPU Q9550 @ 2.83GHz",
+                .cache_info = &core2_yorkfield_6m_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Yorkfield R0, model 23 step 10, 45nm, quad-core, 2x6MB L2, VT, SSE4.1" },
+            { /* end */ }
+        },
+    },
+    /* ---- Core 2 Extreme QX6700 (Kentsfield XE, model 15 step 11, 65nm) ---- */
+    {
+        .name = "core2-extreme-qx6700",
+        .level = 10,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 15,
+        .stepping = 11,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_ACPI | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_CX16,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Extreme CPU QX6700 @ 2.66GHz",
+                .cache_info = &core2_kentsfield_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+            .props = (PropValue[]) {
+                { "x-unlocked-multiplier", "on" },
+                { /* end */ }
+            }, .note = "Kentsfield XE G0, model 15 step 11, 65nm, quad-core extreme, unlocked multi" },
+            { /* end */ }
+        },
+    },
+    /* ---- Core 2 Extreme QX9770 (Yorkfield XE, model 23 step 6, 45nm) ---- */
+    {
+        .name = "core2-extreme-qx9770",
+        .level = 10,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 23,
+        .stepping = 6,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_ACPI | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_CX16 | CPUID_EXT_SSE41,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Extreme CPU QX9770 @ 3.20GHz",
+                .cache_info = &core2_yorkfield_6m_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+            .props = (PropValue[]) {
+                { "x-unlocked-multiplier", "on" },
+                { /* end */ }
+            }, .note = "Yorkfield XE M1, model 23 step 6, 45nm, quad-core extreme, SSE4.1" },
+            { /* end */ }
+        },
+    },
+
+    /*
+     * ---------------------------------------------------------------
+     * AMD Phenom II family (K10 / Stars microarchitecture)
+     * Family 16 (0x10), Vendor: AuthenticAMD
+     *
+     * Phenom II X2: dual-core   (Callisto, model 5)
+     * Phenom II X3: triple-core (Heka,     model 4)
+     * Phenom II X4: quad-core   (Deneb,    model 4)
+     * Phenom II X6: hex-core    (Thuban,   model 10)
+     * Athlon II X2: budget dual (Regor,    model 6 = family 16)
+     * ---------------------------------------------------------------
+     */
+
+    /* ---- Phenom II X2 550 (Callisto, fam16 model 5 step 2, 45nm, 2x512K L2+6MB L3) ---- */
+    {
+        .name = "phenom2-x2-550",
+        .level = 5,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 16,
+        .model = 5,
+        .stepping = 2,
+        .brand_id = 0x10e,
+        .default_multiplier = 14,
+        .default_multiplier = 12,
+        .default_multiplier = 10,
+        .default_multiplier = 10,
+        .default_multiplier = 9,
+        .default_multiplier = 9,
+        .default_multiplier = 9,
+        .default_multiplier = 9,
+        .default_multiplier = 9,
+        .default_multiplier = 9,
+        .default_multiplier = 9,
+        .default_multiplier = 7,
+        .default_multiplier = 5,
+        .default_multiplier = 4,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_CX16 |
+            CPUID_EXT_POPCNT,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .features[FEAT_SVM] =
+            CPUID_SVM_NPT | CPUID_SVM_LBRV,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Phenom(tm) II X2 550 Processor",
+                .cache_info = &phenom2_6mb_l3_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Callisto, fam16 model 5 step 2, dual-core, 45nm, 6MB L3, AM3" },
+            { /* end */ }
+        },
+    },
+    /* ---- Phenom II X2 560 (Callisto, fam16 model 5 step 3, 45nm) ---- */
+    {
+        .name = "phenom2-x2-560",
+        .level = 5,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 16,
+        .model = 5,
+        .stepping = 3,
+        .brand_id = 0x10e,
+        .default_multiplier = 15,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_CX16 |
+            CPUID_EXT_POPCNT,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .features[FEAT_SVM] =
+            CPUID_SVM_NPT | CPUID_SVM_LBRV,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Phenom(tm) II X2 560 Processor",
+                .cache_info = &phenom2_6mb_l3_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Callisto, fam16 model 5 step 3, dual-core, 45nm, 6MB L3, AM3" },
+            { /* end */ }
+        },
+    },
+    /* ---- Phenom II X3 720 (Heka, fam16 model 4 step 2, 45nm, triple-core) ---- */
+    {
+        .name = "phenom2-x3-720",
+        .level = 5,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 16,
+        .model = 4,
+        .stepping = 2,
+        .brand_id = 0x10c,
+        .default_multiplier = 14,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_CX16 |
+            CPUID_EXT_POPCNT,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .features[FEAT_SVM] =
+            CPUID_SVM_NPT | CPUID_SVM_LBRV,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Phenom(tm) II X3 720 Processor",
+                .cache_info = &phenom2_6mb_l3_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Heka DR-B2, fam16 model 4 step 2, triple-core, 45nm, 6MB L3, AM3" },
+            { /* end */ }
+        },
+    },
+    /* ---- Phenom II X4 920 (Deneb, fam16 model 4 step 2, 45nm, AM2+) ---- */
+    {
+        .name = "phenom2-x4-920",
+        .level = 5,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 16,
+        .model = 4,
+        .stepping = 2,
+        .brand_id = 0xa,
+        .default_multiplier = 14,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_CX16 |
+            CPUID_EXT_POPCNT,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .features[FEAT_SVM] =
+            CPUID_SVM_NPT | CPUID_SVM_LBRV,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Phenom(tm) II X4 920 Processor",
+                .cache_info = &phenom2_6mb_l3_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Deneb DR-B2, fam16 model 4 step 2, quad-core, 45nm, 6MB L3, AM2+" },
+            { /* end */ }
+        },
+    },
+    /* ---- Phenom II X4 955 (Deneb, fam16 model 4 step 3, 45nm, AM3, Black Ed.) ---- */
+    {
+        .name = "phenom2-x4-955",
+        .level = 5,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 16,
+        .model = 4,
+        .stepping = 3,
+        .brand_id = 0x10a,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_CX16 |
+            CPUID_EXT_POPCNT,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .features[FEAT_SVM] =
+            CPUID_SVM_NPT | CPUID_SVM_LBRV,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Phenom(tm) II X4 955 Processor",
+                .cache_info = &phenom2_6mb_l3_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Deneb DR-C2, fam16 model 4 step 3, quad-core, 45nm, 6MB L3, AM3, Black Edition" },
+            { /* end */ }
+        },
+    },
+    /* ---- Phenom II X4 965 (Deneb, fam16 model 4 step 3, 45nm, AM3, 3.4GHz) ---- */
+    {
+        .name = "phenom2-x4-965",
+        .level = 5,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 16,
+        .model = 4,
+        .stepping = 3,
+        .brand_id = 0x10a,
+        .default_multiplier = 17,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_CX16 |
+            CPUID_EXT_POPCNT,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .features[FEAT_SVM] =
+            CPUID_SVM_NPT | CPUID_SVM_LBRV,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Phenom(tm) II X4 965 Processor",
+                .cache_info = &phenom2_6mb_l3_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Deneb DR-C2, fam16 model 4 step 3, quad-core, 45nm, 6MB L3, AM3, 3.4GHz" },
+            { /* end */ }
+        },
+    },
+    /* ---- Phenom II X6 1055T (Thuban, fam16 model 10 step 0, 45nm, hex-core) ---- */
+    {
+        .name = "phenom2-x6-1055t",
+        .level = 5,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 16,
+        .model = 10,
+        .stepping = 0,
+        .brand_id = 0x108,
+        .default_multiplier = 14,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_CX16 |
+            CPUID_EXT_POPCNT,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .features[FEAT_SVM] =
+            CPUID_SVM_NPT | CPUID_SVM_LBRV,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Phenom(tm) II X6 1055T Processor",
+                .cache_info = &phenom2_6mb_l3_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Thuban HY-D0, fam16 model 10 step 0, hex-core, 45nm, 6MB L3, AM3" },
+            { /* end */ }
+        },
+    },
+    /* ---- Phenom II X6 1100T (Thuban, fam16 model 10 step 0, 45nm, hex-core BE) ---- */
+    {
+        .name = "phenom2-x6-1100t",
+        .level = 5,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 16,
+        .model = 10,
+        .stepping = 0,
+        .brand_id = 0x108,
+        .default_multiplier = 17,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_CX16 |
+            CPUID_EXT_POPCNT,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .features[FEAT_SVM] =
+            CPUID_SVM_NPT | CPUID_SVM_LBRV,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Phenom(tm) II X6 1100T Processor",
+                .cache_info = &phenom2_6mb_l3_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Thuban HY-D0, fam16 model 10 step 0, hex-core, 45nm, 6MB L3, AM3, Black Edition" },
+            { /* end */ }
+        },
+    },
+    /* ---- Athlon II X2 250 (Regor, fam16 model 6 step 3, 45nm, no L3) ---- */
+    {
+        .name = "athlon2-x2-250",
+        .level = 5,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 16,
+        .model = 6,
+        .stepping = 3,
+        .brand_id = 0x104,
+        .default_multiplier = 15,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_CX16 |
+            CPUID_EXT_POPCNT,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_SVM] =
+            CPUID_SVM_NPT | CPUID_SVM_LBRV,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Athlon(tm) II X2 250 Processor",
+                .cache_info = &athlon2_regor_cache_info,
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Regor RB-C3, fam16 model 6 step 3, dual-core, 45nm, no L3, AM3" },
+            { /* end */ }
+        },
+    },
     {
         .name = "core2duo",
         .level = 10,
@@ -3834,6 +4798,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 0,
         .stepping = 2,
+        .brand_id = 0xe,
+        .default_multiplier = 11,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -3857,6 +4823,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 0,
         .stepping = 7,
+        .brand_id = 0xe,
+        .default_multiplier = 15,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -3880,6 +4848,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 1,
         .stepping = 1,
+        .brand_id = 0xe,
+        .default_multiplier = 16,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -3903,6 +4873,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 2,
         .stepping = 4,
+        .brand_id = 0xe,
+        .default_multiplier = 18,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -3926,6 +4898,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 2,
         .stepping = 7,
+        .brand_id = 0xe,
+        .default_multiplier = 23,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -3949,6 +4923,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 2,
         .stepping = 9,
+        .brand_id = 0xe,
+        .default_multiplier = 24,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -3972,6 +4948,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 3,
         .stepping = 3,
+        .brand_id = 0xe,
+        .default_multiplier = 21,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -3997,6 +4975,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 4,
         .stepping = 1,
+        .brand_id = 0xe,
+        .default_multiplier = 15,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4025,6 +5005,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 4,
         .stepping = 3,
+        .brand_id = 0xe,
+        .default_multiplier = 17,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4053,6 +5035,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 4,
         .stepping = 7,
+        .brand_id = 0xe,
+        .default_multiplier = 18,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4075,12 +5059,14 @@ static const X86CPUDefinition builtin_x86_defs[] = {
     },
     /* ---- Prescott N0 (model 4, stepping 9) - mobile/value EM64T ---- */
     {
-        .name = "pentium4-prescott-n0",
+        .name = "pentium4-prescott-n0",  /* Prescott N0: P4 mobile/value, fam15 model4 step9 */
         .level = 5,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
         .stepping = 9,
+        .brand_id = 0xe,
+        .default_multiplier = 15,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4099,7 +5085,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
             { /* end */ }
         },
         .xlevel = 0x80000008,
-        .model_id = "Intel(R) Pentium(R) 4 CPU 3.20GHz",
+        .model_id = "Intel(R) Pentium(R) 4 CPU 3.00GHz",
     },
     /*
      * ---- Gallatin (Xeon MP / Pentium 4 EE) model 3, stepping 4 ----
@@ -4112,6 +5098,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 3,
         .stepping = 4,
+        .brand_id = 0xe,
+        .default_multiplier = 17,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4140,6 +5128,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 3,
         .stepping = 5,
+        .brand_id = 0x9,
+        .default_multiplier = 21,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4168,6 +5158,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 4,
         .stepping = 4,
+        .brand_id = 0xe,
+        .default_multiplier = 14,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4199,6 +5191,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 6,
         .stepping = 2,
+        .brand_id = 0xe,
+        .default_multiplier = 16,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4230,6 +5224,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 6,
         .stepping = 5,
+        .brand_id = 0xe,
+        .default_multiplier = 17,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4261,6 +5257,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 4,
         .stepping = 1,
+        .brand_id = 0xe,
+        .default_multiplier = 17,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4310,6 +5308,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 5,
         .stepping = 10,
+        .brand_id = 0x4,
+        .default_multiplier = 16,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4336,6 +5336,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 8,
         .stepping = 2,
+        .brand_id = 0x4,
+        .default_multiplier = 15,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4362,6 +5364,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 12,
         .stepping = 0,
+        .brand_id = 0x4,
+        .default_multiplier = 17,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4388,6 +5392,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 28,
         .stepping = 0,
+        .brand_id = 0x4,
+        .default_multiplier = 16,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4414,6 +5420,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 44,
         .stepping = 1,
+        .brand_id = 0x4,
+        .default_multiplier = 17,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4444,6 +5452,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 35,
         .stepping = 2,
+        .brand_id = 0x4,
+        .default_multiplier = 20,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4474,6 +5484,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 33,
         .stepping = 2,
+        .brand_id = 0x4,
+        .default_multiplier = 19,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4504,6 +5516,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 33,
         .stepping = 2,
+        .brand_id = 0x4,
+        .default_multiplier = 24,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4534,6 +5548,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 65,
         .stepping = 2,
+        .brand_id = 0x104,
+        .default_multiplier = 17,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -4564,6 +5580,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 107,
         .stepping = 1,
+        .brand_id = 0x104,
+        .default_multiplier = 20,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
             CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
@@ -7950,6 +8968,4547 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .model_id = "AMD EPYC-Turin Processor",
         .cache_info = &epyc_turin_cache_info,
     },
+
+    {
+        .name = "xeon-x5570",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 26,
+        .stepping = 5,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU X5570 @ 2.93GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Nehalem-EP, 4-core, 8MB L3, QPI, 2009" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-x5560",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 26,
+        .stepping = 5,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU X5560 @ 2.80GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Nehalem-EP, 4-core, 8MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-x5550",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 26,
+        .stepping = 5,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU X5550 @ 2.67GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Nehalem-EP, 4-core, 8MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5540",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 26,
+        .stepping = 5,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5540 @ 2.53GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Nehalem-EP, 4-core, 8MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5520",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 26,
+        .stepping = 5,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5520 @ 2.27GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Nehalem-EP, 4-core, 8MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-x5690",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 44,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU X5690 @ 3.47GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Westmere-EP, 6-core, 12MB L3, AES-NI, 2010" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-x5680",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 44,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU X5680 @ 3.33GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Westmere-EP, 6-core, 12MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-x5670",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 44,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU X5670 @ 2.93GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Westmere-EP, 6-core, 12MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-x5660",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 44,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU X5660 @ 2.80GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Westmere-EP, 6-core, 12MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5640",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 44,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5640 @ 2.67GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Westmere-EP, 4-core, 12MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2690",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 45,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sandy Bridge-EP, 8-core, 20MB L3, AVX, 2012" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2680",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 45,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2680 0 @ 2.70GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sandy Bridge-EP, 8-core, 20MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2670",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 45,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sandy Bridge-EP, 8-core, 20MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2650",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 45,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2650 0 @ 2.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sandy Bridge-EP, 8-core, 20MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2620",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 45,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2620 0 @ 2.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sandy Bridge-EP, 6-core, 15MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2697v2",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 62,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ivy Bridge-EP, 12-core, 30MB L3, 2013" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2690v2",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 62,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2690 v2 @ 3.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ivy Bridge-EP, 10-core, 25MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2680v2",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 62,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2680 v2 @ 2.80GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ivy Bridge-EP, 10-core, 25MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2670v2",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 62,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ivy Bridge-EP, 10-core, 25MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2650v2",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 62,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2650 v2 @ 2.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ivy Bridge-EP, 8-core, 20MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2699v3",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 63,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2699 v3 @ 2.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Haswell-EP, 18-core, 45MB L3, AVX2, 2014" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2697v3",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 63,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Haswell-EP, 14-core, 35MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2690v3",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 63,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2690 v3 @ 2.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Haswell-EP, 12-core, 30MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2680v3",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 63,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Haswell-EP, 12-core, 30MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2670v3",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 63,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2670 v3 @ 2.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Haswell-EP, 12-core, 30MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2699v4",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 79,
+        .stepping = 1,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2699 v4 @ 2.20GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Broadwell-EP, 22-core, 55MB L3, 2016" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2697v4",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 79,
+        .stepping = 1,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2697 v4 @ 2.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Broadwell-EP, 18-core, 45MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2690v4",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 79,
+        .stepping = 1,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Broadwell-EP, 14-core, 35MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2680v4",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 79,
+        .stepping = 1,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Broadwell-EP, 14-core, 35MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5-2650v4",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 79,
+        .stepping = 1,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5-2650 v4 @ 2.20GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Broadwell-EP, 12-core, 30MB L3" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8180",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8180 CPU @ 2.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake-SP, 28-core, AVX-512, 2017" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8176",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8176 CPU @ 2.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake-SP, 28-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8170",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8170 CPU @ 2.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake-SP, 26-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8160",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8160 CPU @ 2.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake-SP, 24-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6154",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6154 CPU @ 3.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake-SP, 18-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6140",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake-SP, 18-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6130",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6130 CPU @ 2.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake-SP, 16-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6126",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake-SP, 12-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-silver-4116",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Silver 4116 CPU @ 2.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake-SP, 12-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-silver-4110",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Silver 4110 CPU @ 2.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake-SP, 8-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-bronze-3106",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 4,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Bronze 3106 CPU @ 1.70GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake-SP, 8-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-9282",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 9282 CPU @ 2.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake, 56-core, 2019" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8280",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8280 CPU @ 2.70GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake, 28-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8270",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8270 CPU @ 2.70GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake, 26-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8260",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8260 CPU @ 2.40GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake, 24-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6258r",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6258R CPU @ 2.70GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake-R, 28-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6248r",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6248R CPU @ 3.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake-R, 24-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6248",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6248 CPU @ 2.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake, 20-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6242",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6242 CPU @ 2.80GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake, 16-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6240",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6240 CPU @ 2.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake, 18-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6234",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6234 CPU @ 3.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake, 8-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6230",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6230 CPU @ 2.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake, 20-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-silver-4215",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Silver 4215 CPU @ 2.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake, 8-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-silver-4210",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Silver 4210 CPU @ 2.20GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake, 10-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-w-3175x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) W-3175X CPU @ 3.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake-W, 28-core workstation" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-w-3265m",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) W-3265M CPU @ 2.70GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake-W, 24-core workstation" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-w-3275m",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 7,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) W-3275M CPU @ 2.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cascade Lake-W, 28-core workstation" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8380",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 106,
+        .stepping = 6,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8380 CPU @ 2.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ice Lake-SP, 40-core, 2021" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8368",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 106,
+        .stepping = 6,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8368 CPU @ 2.40GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ice Lake-SP, 38-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8352y",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 106,
+        .stepping = 6,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8352Y CPU @ 2.20GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ice Lake-SP, 32-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6354",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 106,
+        .stepping = 6,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6354 CPU @ 3.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ice Lake-SP, 18-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6348",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 106,
+        .stepping = 6,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6348 CPU @ 2.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ice Lake-SP, 28-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6338",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 106,
+        .stepping = 6,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6338 CPU @ 2.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ice Lake-SP, 32-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6330",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 106,
+        .stepping = 6,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ice Lake-SP, 28-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6314u",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 106,
+        .stepping = 6,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6314U CPU @ 2.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ice Lake-SP, 32-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-silver-4316",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 106,
+        .stepping = 6,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Silver 4316 CPU @ 2.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ice Lake-SP, 20-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-silver-4310",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 106,
+        .stepping = 6,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Silver 4310 CPU @ 2.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ice Lake-SP, 12-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8490h",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 143,
+        .stepping = 8,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8490H CPU @ 1.90GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sapphire Rapids, 60-core, AMX, 2023" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8480",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 143,
+        .stepping = 8,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8480+ CPU @ 2.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sapphire Rapids, 60-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8470",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 143,
+        .stepping = 8,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8470 CPU @ 2.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sapphire Rapids, 52-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8460h",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 143,
+        .stepping = 8,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8460H CPU @ 2.20GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sapphire Rapids, 40-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6454s",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 143,
+        .stepping = 8,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6454S CPU @ 2.20GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sapphire Rapids, 32-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6448y",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 143,
+        .stepping = 8,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6448Y CPU @ 2.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sapphire Rapids, 32-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6442y",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 143,
+        .stepping = 8,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6442Y CPU @ 2.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sapphire Rapids, 24-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6430",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 143,
+        .stepping = 8,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6430 CPU @ 2.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sapphire Rapids, 32-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6426y",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 143,
+        .stepping = 8,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6426Y CPU @ 2.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sapphire Rapids, 16-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-silver-4416",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 143,
+        .stepping = 8,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Silver 4416+ CPU @ 2.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sapphire Rapids, 20-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-silver-4410y",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 143,
+        .stepping = 8,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Silver 4410Y CPU @ 2.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sapphire Rapids, 12-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8592",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 207,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8592+ CPU @ 1.90GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Emerald Rapids, 64-core, 2023" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8580",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 207,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8580 CPU @ 2.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Emerald Rapids, 60-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8570",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 207,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8570 CPU @ 2.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Emerald Rapids, 56-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-platinum-8562y",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 207,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Platinum 8562Y+ CPU @ 2.80GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Emerald Rapids, 32-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6558q",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 207,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6558Q CPU @ 3.20GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Emerald Rapids, 32-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6554s",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 207,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6554S CPU @ 2.20GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Emerald Rapids, 36-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6548y",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 207,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6548Y+ CPU @ 2.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Emerald Rapids, 32-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-gold-6544y",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 207,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Gold 6544Y CPU @ 3.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Emerald Rapids, 16-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-silver-4514y",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 207,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Silver 4514Y CPU @ 2.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Emerald Rapids, 16-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-silver-4510",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 207,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Silver 4510 CPU @ 2.40GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Emerald Rapids, 12-core" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-w-9-3595x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 207,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) W9-3595X CPU @ 2.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Emerald Rapids-W, 60-core workstation" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-w-9-3575x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 207,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) W9-3575X CPU @ 2.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Emerald Rapids-W, 52-core workstation" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-d-1587",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 86,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Processor D-1587 @ 1.70GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Broadwell-DE, 16-core, embedded, 2015" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-d-1571",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 86,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Processor D-1571 @ 1.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Broadwell-DE, 16-core, embedded" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-d-2191",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 86,
+        .stepping = 2,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) Processor D-2191 @ 1.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Broadwell-DE, 18-core, embedded" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "fx-8150",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 1,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD FX(tm)-8150 Eight-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Bulldozer, 8-core, 8MB L3, AM3+, 3.6GHz, 2011" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "fx-8120",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 1,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD FX(tm)-8120 Eight-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Bulldozer, 8-core, 8MB L3, AM3+, 3.1GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "fx-8100",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 1,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD FX(tm)-8100 Eight-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Bulldozer, 8-core, 8MB L3, AM3+, 2.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "fx-6100",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 1,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD FX(tm)-6100 Six-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Bulldozer, 6-core, 8MB L3, AM3+, 3.3GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "fx-4100",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 1,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD FX(tm)-4100 Quad-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Bulldozer, 4-core, 8MB L3, AM3+, 3.6GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "fx-8350",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 2,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD FX(tm)-8350 Eight-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Piledriver, 8-core, 8MB L3, AM3+, 4.0GHz, 2012" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "fx-8320",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 2,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD FX(tm)-8320 Eight-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Piledriver, 8-core, 8MB L3, AM3+, 3.5GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "fx-8300",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 2,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD FX(tm)-8300 Eight-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Piledriver, 8-core, 8MB L3, AM3+, 3.3GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "fx-6350",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 2,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD FX(tm)-6350 Six-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Piledriver, 6-core, 8MB L3, AM3+, 3.9GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "fx-6300",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 2,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD FX(tm)-6300 Six-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Piledriver, 6-core, 8MB L3, AM3+, 3.5GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "fx-4350",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 2,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD FX(tm)-4350 Quad-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Piledriver, 4-core, 4MB L3, AM3+, 4.2GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "fx-4300",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 2,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD FX(tm)-4300 Quad-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Piledriver, 4-core, 4MB L3, AM3+, 3.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "a10-7850k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 48,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD A10-7850K APU with Radeon(tm) R7 Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Kaveri Steamroller, 4-core, FM2+, 3.7GHz, 2014" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "a10-7800",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 48,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD A10-7800 APU with Radeon(tm) R7 Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Kaveri Steamroller, 4-core, FM2+, 3.5GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "a8-7600",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 48,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD A8-7600 APU with Radeon(tm) R7 Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Kaveri Steamroller, 4-core, FM2+, 3.1GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "a10-8750",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 101,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD A10-8750 APU with Radeon(tm) R7 Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Carrizo Excavator, 4-core, FM2+, 3.6GHz, 2015" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "a12-9800",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 112,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD A12-9800 APU with Radeon(tm) R7 Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Bristol Ridge Excavator, 4-core, AM4, 3.8GHz, 2016" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "athlon2-x3-450",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 16,
+        .model = 6,
+        .stepping = 3,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_CX16 |
+            CPUID_EXT_POPCNT,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Athlon(tm) II X3 450 Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Rana triple-core, K10, 45nm, AM3, 3.2GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "athlon2-x3-440",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 16,
+        .model = 6,
+        .stepping = 3,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_CX16 |
+            CPUID_EXT_POPCNT,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Athlon(tm) II X3 440 Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Rana triple-core, K10, 45nm, AM3, 3.0GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "athlon2-x4-640",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 16,
+        .model = 5,
+        .stepping = 3,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_CX16 |
+            CPUID_EXT_POPCNT,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Athlon(tm) II X4 640 Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Propus quad-core, K10, 45nm, no L3, AM3, 3.0GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "athlon2-x4-620",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 16,
+        .model = 5,
+        .stepping = 3,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_CX16 |
+            CPUID_EXT_POPCNT,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Athlon(tm) II X4 620 Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Propus quad-core, K10, 45nm, no L3, AM3, 2.6GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-1800x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 1,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 1800X Eight-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen, 8-core, 16MB L3, AM4, 3.6GHz, 2017" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-1700x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 1,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 1700X Eight-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen, 8-core, 16MB L3, AM4, 3.4GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-1700",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 1,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 1700 Eight-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen, 8-core, 16MB L3, AM4, 3.0GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-1600x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 1,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 1600X Six-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen, 6-core, 16MB L3, AM4, 3.6GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-1600",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 1,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 1600 Six-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen, 6-core, 16MB L3, AM4, 3.2GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-1500x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 1,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 1500X Quad-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen, 4-core, 16MB L3, AM4, 3.5GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-1400",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 1,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 1400 Quad-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen, 4-core, 8MB L3, AM4, 3.2GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen3-1300x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 1,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 3 1300X Quad-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen, 4-core, 8MB L3, AM4, 3.5GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen3-1200",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 1,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 3 1200 Quad-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen, 4-core, 8MB L3, AM4, 3.1GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-1950x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 1,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper 1950X 16-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen, 16-core, 32MB L3, TR4, 3.4GHz, 2017" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-1920x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 1,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper 1920X 12-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen, 12-core, 32MB L3, TR4, 3.5GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-1900x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 1,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper 1900X 8-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen, 8-core, 16MB L3, TR4, 3.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-2700x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 8,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 2700X Eight-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen+, 8-core, 16MB L3, AM4, 3.7GHz, 2018" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-2700",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 8,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 2700 Eight-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen+, 8-core, 16MB L3, AM4, 3.2GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-2600x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 8,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 2600X Six-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen+, 6-core, 16MB L3, AM4, 3.6GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-2600",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 8,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 2600 Six-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen+, 6-core, 16MB L3, AM4, 3.4GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen3-2300x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 8,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 3 2300X Quad-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen+, 4-core, 8MB L3, AM4, 3.5GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-2990wx",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 8,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper 2990WX 32-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen+, 32-core, 64MB L3, TR4, 3.0GHz, 2018" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-2970wx",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 8,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper 2970WX 24-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen+, 24-core, 64MB L3, TR4, 3.0GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-2950x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 8,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper 2950X 16-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen+, 16-core, 32MB L3, TR4, 3.5GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-2920x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 8,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper 2920X 12-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen+, 12-core, 32MB L3, TR4, 3.5GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-3950x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 49,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 3950X 16-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen2, 16-core, 64MB L3, AM4, 3.5GHz, 2019" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-3900x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 49,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 3900X 12-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen2, 12-core, 64MB L3, AM4, 3.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-3900",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 49,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 3900 12-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen2, 12-core, 64MB L3, AM4, 3.1GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-3800x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 49,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 3800X 8-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen2, 8-core, 32MB L3, AM4, 3.9GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-3700x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 49,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 3700X 8-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen2, 8-core, 32MB L3, AM4, 3.6GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-3600x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 49,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 3600X 6-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen2, 6-core, 32MB L3, AM4, 3.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-3600",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 49,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 3600 6-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen2, 6-core, 32MB L3, AM4, 3.6GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen3-3300x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 49,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 3 3300X 4-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen2, 4-core, 16MB L3, AM4, 3.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen3-3100",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 49,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 3 3100 4-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen2, 4-core, 16MB L3, AM4, 3.6GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-3990x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 49,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper 3990X 64-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen2, 64-core, 256MB L3, TRX40, 2.9GHz, 2020" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-3970x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 49,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper 3970X 32-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen2, 32-core, 128MB L3, TRX40, 3.7GHz, 2019" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-3960x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 23,
+        .model = 49,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper 3960X 24-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen2, 24-core, 128MB L3, TRX40, 3.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-5950x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 33,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 5950X 16-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen3, 16-core, 64MB L3, AM4, 3.4GHz, 2020" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-5900x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 33,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 5900X 12-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen3, 12-core, 64MB L3, AM4, 3.7GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-5900",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 33,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 5900 12-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen3, 12-core, 64MB L3, AM4, 3.0GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-5800x3d",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 33,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 5800X3D 8-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen3+3D V-Cache, 8-core, 96MB L3, AM4, 3.4GHz, 2022" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-5800x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 33,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 5800X 8-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen3, 8-core, 32MB L3, AM4, 3.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-5800",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 33,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 5800 8-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen3, 8-core, 32MB L3, AM4, 3.4GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-5600x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 33,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 5600X 6-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen3, 6-core, 32MB L3, AM4, 3.7GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-5600",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 33,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 5600 6-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen3, 6-core, 32MB L3, AM4, 3.5GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen3-5300g",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 80,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 3 5300G with Radeon Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cezanne Zen3 APU, 4-core+iGPU, AM4, 4.0GHz, 2021" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-5600g",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 80,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 5600G with Radeon Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cezanne Zen3 APU, 6-core+iGPU, AM4, 3.9GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-5700g",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 80,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 5700G with Radeon Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cezanne Zen3 APU, 8-core+iGPU, AM4, 3.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-5990x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 8,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper PRO 5995WX",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen3 Pro, 64-core, 256MB L3, sWRX8, 2.7GHz, 2022" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-5965wx",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 8,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper PRO 5965WX",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen3 Pro, 24-core, 128MB L3, sWRX8, 3.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-7950x3d",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 97,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 7950X3D 16-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4+3D V-Cache, 16-core, 128MB L3, AM5, 4.2GHz, 2023" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-7950x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 97,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 7950X 16-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4, 16-core, 64MB L3, AM5, 4.5GHz, 2022" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-7900x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 97,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 7900X 12-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4, 12-core, 64MB L3, AM5, 4.7GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-7900",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 97,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 7900 12-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4, 12-core, 64MB L3, AM5, 3.7GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-7800x3d",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 97,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 7800X3D 8-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4+3D V-Cache, 8-core, 96MB L3, AM5, 4.5GHz, 2023" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-7700x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 97,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 7700X 8-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4, 8-core, 32MB L3, AM5, 4.5GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-7700",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 97,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 7700 8-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4, 8-core, 32MB L3, AM5, 3.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-7600x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 97,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 7600X 6-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4, 6-core, 32MB L3, AM5, 4.7GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-7600",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 97,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 7600 6-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4, 6-core, 32MB L3, AM5, 3.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-7500f",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 97,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 7500F 6-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4, 6-core, 32MB L3, AM5, 3.7GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-7995wx",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 0,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper PRO 7995WX",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4 Pro, 96-core, 384MB L3, sTR5, 2.5GHz, 2024" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-7980x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 0,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper 7980X 64-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4, 64-core, 256MB L3, sTR5, 3.2GHz, 2023" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-7970x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 0,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper 7970X 32-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4, 32-core, 128MB L3, sTR5, 4.0GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "threadripper-7960x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 0,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen Threadripper 7960X 24-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen4, 24-core, 128MB L3, sTR5, 4.2GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-9950x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 68,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 9950X 16-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen5, 16-core, 64MB L3, AM5, 4.3GHz, 2024" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-9900x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 68,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 9900X 12-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen5, 12-core, 64MB L3, AM5, 4.4GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-9700x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 68,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 9700X 8-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen5, 8-core, 32MB L3, AM5, 3.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-9600x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 68,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW |
+            CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB |
+            CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 9600X 6-Core Processor",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Zen5, 6-core, 32MB L3, AM5, 3.9GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "opteron-6380",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 2,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Opteron Processor 6380",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Piledriver, 16-core, 16MB L3, G34, 2.5GHz, 2012" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "opteron-6344",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 2,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Opteron Processor 6344",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Piledriver, 12-core, 16MB L3, G34, 2.6GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "opteron-4386",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 21,
+        .model = 2,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_MMXEXT |
+            CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_IBS |
+            CPUID_EXT3_TBM | CPUID_EXT3_FMA4 | CPUID_EXT3_XOP |
+            CPUID_EXT3_LWP | CPUID_EXT3_CMP_LEG | CPUID_EXT3_EXTAPIC,
+        .xlevel = 0x8000001A,
+        .model_id = "AMD Opteron Processor 4386",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Piledriver, 8-core, 8MB L3, C32, 2.8GHz" },
+            { /* end */ }
+        },
+    },
+
 };
 
 /*
@@ -9120,6 +14679,8 @@ static void x86_cpu_load_model(X86CPU *cpu, const X86CPUModel *model)
      * host cpu vendor for KVM and HVF.
      */
     object_property_set_str(OBJECT(cpu), "vendor", def->vendor, &error_abort);
+    env->cpuid_brand_id = def->brand_id;
+    env->cpuid_default_multiplier = def->default_multiplier ? def->default_multiplier : 15;
 
     if (def->avx10_version) {
         object_property_set_uint(OBJECT(cpu), "avx10-version",
@@ -9272,7 +14833,8 @@ void cpu_x86_cpuid(CPUX86State *env, uint32_t index, uint32_t count,
     case 1:
         *eax = env->cpuid_version;
         *ebx = (cpu->apic_id << 24) |
-               8 << 8; /* CLFLUSH size in quad words, Linux wants it. */
+               8 << 8 | /* CLFLUSH size in quad words, Linux wants it. */
+               (env->cpuid_brand_id & 0xff);
         *ecx = env->features[FEAT_1_ECX];
         if ((*ecx & CPUID_EXT_XSAVE) && (env->cr[4] & CR4_OSXSAVE_MASK)) {
             *ecx |= CPUID_EXT_OSXSAVE;
@@ -9376,7 +14938,7 @@ void cpu_x86_cpuid(CPUX86State *env, uint32_t index, uint32_t count,
                                     eax, ebx, ecx, edx);
                 break;
             case 3: /* L3 cache info */
-                if (cpu->enable_l3_cache) {
+                if (cpu->enable_l3_cache && caches->l3_cache) {
                     encode_cache_cpuid4(caches->l3_cache, topo_info,
                                         eax, ebx, ecx, edx);
                     break;
@@ -9729,7 +15291,18 @@ void cpu_x86_cpuid(CPUX86State *env, uint32_t index, uint32_t count,
         break;
     case 0x80000001:
         *eax = env->cpuid_version;
-        *ebx = 0;
+        /*
+         * AMD EBX[31:28] = BrandId, [21:16] = PkgType.
+         * 0x0 = Opteron/server (default), 0x6 = desktop Phenom II (AM3),
+         * 0x4 = desktop Athlon II. Set via cpuid_brand_id in CPU definition.
+         */
+        /*
+         * AMD CPUID Fn8000_0001_EBX:
+         * [31:28] = PkgType  (stored in brand_id bits [11:8])
+         * [27:20] = BrandId  (stored in brand_id bits [7:0])
+         */
+        *ebx = ((uint32_t)((env->cpuid_brand_id >> 8) & 0xf) << 28) |
+               ((uint32_t)(env->cpuid_brand_id & 0xff) << 20);
         *ecx = env->features[FEAT_8000_0001_ECX];
         *edx = env->features[FEAT_8000_0001_EDX];
 
@@ -9888,8 +15461,12 @@ void cpu_x86_cpuid(CPUX86State *env, uint32_t index, uint32_t count,
                                        topo_info, eax, ebx, ecx, edx);
             break;
         case 3: /* L3 cache info */
-            encode_cache_cpuid8000001d(env->cache_info.l3_cache,
-                                       topo_info, eax, ebx, ecx, edx);
+            if (env->cache_info.l3_cache) {
+                encode_cache_cpuid8000001d(env->cache_info.l3_cache,
+                                           topo_info, eax, ebx, ecx, edx);
+            } else {
+                *eax = *ebx = *ecx = *edx = 0;
+            }
             break;
         default: /* end of info */
             *eax = *ebx = *ecx = *edx = 0;
@@ -10669,11 +16246,13 @@ static bool x86_cpu_update_smp_cache_topo(MachineState *ms, X86CPU *cpu,
     }
 
     level = machine_get_cache_topo_level(ms, CACHE_LEVEL_AND_TYPE_L3);
-    if (level != CPU_TOPOLOGY_LEVEL_DEFAULT) {
-        env->cache_info.l3_cache->share_level = level;
-    } else {
-        machine_set_cache_topo_level(ms, CACHE_LEVEL_AND_TYPE_L3,
-            env->cache_info.l3_cache->share_level);
+    if (env->cache_info.l3_cache) {
+        if (level != CPU_TOPOLOGY_LEVEL_DEFAULT) {
+            env->cache_info.l3_cache->share_level = level;
+        } else {
+            machine_set_cache_topo_level(ms, CACHE_LEVEL_AND_TYPE_L3,
+                env->cache_info.l3_cache->share_level);
+        }
     }
 
     if (!machine_check_smp_cache(ms, errp)) {
@@ -11348,6 +16927,7 @@ static const Property x86_cpu_properties[] = {
 #endif
     DEFINE_PROP_INT32("node-id", X86CPU, node_id, CPU_UNSET_NUMA_NODE_ID),
     DEFINE_PROP_BOOL("pmu", X86CPU, enable_pmu, false),
+    DEFINE_PROP_BOOL("x-unlocked-multiplier", X86CPU, unlocked_multiplier, false),
     DEFINE_PROP_UINT64_CHECKMASK("lbr-fmt", X86CPU, lbr_fmt, PERF_CAP_LBR_FMT),
 
     DEFINE_PROP_UINT32("hv-spinlocks", X86CPU, hyperv_spinlock_attempts,

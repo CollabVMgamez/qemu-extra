@@ -199,6 +199,99 @@ uint8_t *spd_data_generate(enum sdram_type type, ram_addr_t ram_size)
     int min_log2, max_log2, sz_log2;
     int i;
 
+    /*
+     * DDR3 and DDR4 use a completely different SPD byte layout (JEDEC
+     * SPD for DDR3 = 256 bytes; DDR4 = 512 bytes).  We generate a
+     * synthetic SPD that is minimal but sufficient for CPU-Z to detect
+     * the correct type, speed, and size.
+     */
+    if (type == DDR3) {
+        uint8_t *spd3 = g_malloc0(256);
+        uint32_t sz_mb = ram_size >> 20;
+        /* SPD byte layout for DDR3 (JEDEC SPD spec rev 1.1) */
+        spd3[0]  = 0x92;  /* bytes used = 146, total = 256 */
+        spd3[1]  = 0x10;  /* SPD revision 1.0 */
+        spd3[2]  = DDR3;  /* key byte / DRAM type */
+        spd3[3]  = 0x02;  /* key byte / module type: UDIMM */
+        /* Bank address bits [3:2], SDRAM capacity [3:0]: 0x04=4Gb die */
+        spd3[4]  = (sz_mb >= 2048) ? 0x04 : 0x03;
+        spd3[5]  = 0x11;  /* row=15 bits [5:3], col=10 bits [2:0] */
+        spd3[6]  = 0x02;  /* nominal voltage: 1.5V */
+        spd3[7]  = 0x08;  /* bus width: 64-bit */
+        spd3[8]  = 0x08;  /* bus width extension: 0 (non-ECC) */
+        spd3[9]  = 0x11;  /* fine timebase / medium timebase */
+        spd3[10] = 0x08;  /* tCKavg min (8 = 1.25ns = DDR3-1600) */
+        spd3[11] = 0x00;
+        spd3[12] = 0x82;  /* CAS latencies supported [17:10] */
+        spd3[13] = 0x08;
+        spd3[14] = 0x00;  /* min CAS latency time */
+        spd3[15] = 0x00;  /* min write recovery time */
+        spd3[17] = 0x69;  /* tAA min = 13.125ns (CL9 @ DDR3-1600) */
+        spd3[18] = 0x78;  /* tWR min */
+        spd3[19] = 0x69;  /* tRCD min */
+        spd3[20] = 0x3C;  /* tRRD min */
+        spd3[21] = 0x69;  /* tRP min */
+        spd3[22] = 0x11;  /* tRAS/tRC upper nibbles */
+        spd3[23] = 0x20;  /* tRAS min LSB */
+        spd3[24] = 0x89;  /* tRC min LSB */
+        spd3[25] = 0x00;  /* tRFC1 min LSB */
+        spd3[26] = 0x05;  /* tRFC1 min MSB */
+        spd3[27] = 0x3C;  /* tFAW upper/lower */
+        spd3[28] = 0x3C;
+        /* Module size: ranks [5:3], DRAM width [2:0] */
+        spd3[7]  = 0x08;  /* 64-bit bus width */
+        spd3[13] = 0x08;  /* fine CAS latencies */
+        /* DIMM size encoding */
+        spd3[4]  = (sz_mb >= 4096) ? 0x05 :
+                   (sz_mb >= 2048) ? 0x04 :
+                   (sz_mb >= 1024) ? 0x03 : 0x02;
+        /* checksum bytes 0-116 */
+        uint8_t crc = 0;
+        for (int i = 0; i < 126; i++) crc += spd3[i];
+        spd3[126] = crc;
+        return spd3;
+    }
+
+    if (type == DDR4) {
+        uint8_t *spd4 = g_malloc0(512);
+        uint32_t sz_mb = ram_size >> 20;
+        /* SPD byte layout for DDR4 (JEDEC SPD spec rev 1.0) */
+        spd4[0]  = 0x23;  /* bytes used = 384 */
+        spd4[1]  = 0x10;  /* SPD revision 1.0 */
+        spd4[2]  = DDR4;  /* key byte / DRAM type */
+        spd4[3]  = 0x01;  /* key byte / module type: RDIMM (0x01) */
+        spd4[4]  = (sz_mb >= 4096) ? 0x05 :
+                   (sz_mb >= 2048) ? 0x04 : 0x03; /* bank/capacity */
+        spd4[5]  = 0x11;  /* row bits [5:3], col bits [2:0] */
+        spd4[6]  = 0x01;  /* primary bus width: 8 bits */
+        spd4[7]  = 0x08;  /* bus width: 64-bit */
+        spd4[8]  = 0x00;  /* bus width extension: ECC=0 */
+        spd4[9]  = 0x11;  /* fine/medium timebase */
+        spd4[10] = 0x08;  /* tCKavg min = 0.625ns -> DDR4-2133 */
+        spd4[12] = 0xFC;  /* CAS latencies: 10-17 supported */
+        spd4[13] = 0x01;
+        spd4[14] = 0x00;
+        spd4[15] = 0x00;
+        spd4[16] = 0x00;  /* min tAA */
+        spd4[17] = 0x6E;  /* tRCD min */
+        spd4[18] = 0x6E;  /* tRP min */
+        spd4[19] = 0x11;  /* tRAS/tRC upper nibbles */
+        spd4[20] = 0x18;  /* tRAS min LSB */
+        spd4[21] = 0x86;  /* tRC min LSB */
+        /* Module organization: [5:3]=ranks, [2:0]=DRAM width */
+        spd4[12] = 0xFC;
+        /* Simple CRC-16 for bytes 0-125 (SPD4 uses CRC16, not sum) */
+        uint16_t crc16 = 0;
+        for (int i = 0; i < 126; i++) {
+            crc16 ^= (uint16_t)spd4[i] << 8;
+            for (int j = 0; j < 8; j++)
+                crc16 = (crc16 & 0x8000) ? (crc16 << 1) ^ 0x1021 : crc16 << 1;
+        }
+        spd4[126] = crc16 & 0xFF;
+        spd4[127] = (crc16 >> 8) & 0xFF;
+        return spd4;
+    }
+
     switch (type) {
     case SDR:
         min_log2 = 2;

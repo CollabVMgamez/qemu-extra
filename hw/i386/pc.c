@@ -1376,6 +1376,19 @@ static HotplugHandler *pc_get_hotplug_handler(MachineState *machine,
     return NULL;
 }
 
+static char *pc_machine_get_ram_type(Object *obj, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    return g_strdup(pcms->ram_type ? pcms->ram_type : "ddr2");
+}
+
+static void pc_machine_set_ram_type(Object *obj, const char *value, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    g_free(pcms->ram_type);
+    pcms->ram_type = g_strdup(value);
+}
+
 static void pc_machine_get_vmport(Object *obj, Visitor *v, const char *name,
                                   void *opaque, Error **errp)
 {
@@ -1677,6 +1690,13 @@ static void pc_machine_class_init(ObjectClass *oc, const void *data)
         NULL, NULL);
     object_class_property_set_description(oc, PC_MACHINE_MAX_RAM_BELOW_4G,
         "Maximum ram below the 4G boundary (32bit boundary)");
+
+    object_class_property_add_str(oc, "ram-type",
+        pc_machine_get_ram_type, pc_machine_set_ram_type);
+    object_class_property_set_description(oc, "ram-type",
+        "RAM type shown in CPU-Z Memory tab (ddr, ddr2, ddr3, ddr4)");
+
+
 
     object_class_property_add(oc, PC_MACHINE_VMPORT, "OnOffAuto",
         pc_machine_get_vmport, pc_machine_set_vmport,
