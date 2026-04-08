@@ -10272,6 +10272,550 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         },
     },
     {
+        .name = "celeron-266",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 5,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_MTRR | CPUID_PGE |
+            CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 |
+            CPUID_MMX | CPUID_FXSR,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(TM) CPU 266MHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Covington, P6 core, no L2, 66MHz FSB, 1998" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-300a",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 6,
+        .stepping = 5,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_MTRR | CPUID_PGE |
+            CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 |
+            CPUID_MMX | CPUID_FXSR,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(TM) CPU 300A MHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Mendocino, 128K L2 on-die, 66MHz FSB, 1998" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-466",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 6,
+        .stepping = 5,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_MTRR | CPUID_PGE |
+            CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 |
+            CPUID_MMX | CPUID_FXSR,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(TM) CPU 466MHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Mendocino, 128K L2, 66MHz FSB, 1999" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-600",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 8,
+        .stepping = 6,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(TM) CPU 600MHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Coppermine-128, 128K L2, 100MHz FSB, 2000" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-800",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 8,
+        .stepping = 6,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(TM) CPU 800MHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Coppermine-128, 128K L2, 100MHz FSB, 2000" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-1000a",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 11,
+        .stepping = 4,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(TM) CPU 1000A MHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Tualatin, 256K L2, 100MHz FSB, 2001" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-1200",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 11,
+        .stepping = 4,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(TM) CPU 1200MHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Tualatin, 256K L2, 100MHz FSB, 2001" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-1700",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 1,
+        .stepping = 3,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2,
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Celeron(TM) CPU 1700MHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Willamette-128, NetBurst, 128K L2, 400MHz FSB, 2002" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-2000",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 1,
+        .stepping = 3,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2,
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Celeron(TM) CPU 2000MHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Willamette-128, NetBurst, 128K L2, 400MHz FSB, 2002" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-d-2400",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 2,
+        .stepping = 7,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2,
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Celeron(R) CPU 2.40GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Northwood-128, NetBurst, 128K L2, 400MHz FSB, 2003" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-d-2600",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 2,
+        .stepping = 7,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2,
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Celeron(R) CPU 2.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Northwood-128, NetBurst, 128K L2, 400MHz FSB, 2003" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-d-2800",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 2,
+        .stepping = 9,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR |
+            CPUID_SSE | CPUID_SSE2,
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Celeron(R) CPU 2.80GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Northwood-128, NetBurst, 128K L2, 400MHz FSB, 2003" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-d-320",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 3,
+        .stepping = 3,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_TM,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Celeron(R) CPU 2.40GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Prescott-256, 256K L2, 533MHz FSB, 2004" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-d-330",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 3,
+        .stepping = 3,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_TM,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Celeron(R) CPU 2.66GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Prescott-256, 256K L2, 533MHz FSB, 2004" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-d-340",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 3,
+        .stepping = 3,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_TM,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Celeron(R) CPU 2.93GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Prescott-256, 256K L2, 533MHz FSB, 2004" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-d-345",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 4,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_TM,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Celeron(R) CPU 3.06GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Prescott-256, 256K L2, 533MHz FSB, 2005" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-d-356",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 4,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_TM,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Celeron(R) CPU 3.33GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Prescott-256, 256K L2, 533MHz FSB, 2005" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-d-352",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 6,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_TM,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Celeron(R) CPU 3.20GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cedar Mill-512, 65nm, 512K L2, 533MHz FSB, 2006" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-d-360",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 15,
+        .model = 6,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
+            CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE |
+            CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR |
+            CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT |
+            CPUID_PSE36 | CPUID_CLFLUSH | CPUID_DTS | CPUID_ACPI |
+            CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_TM,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .xlevel = 0x80000004,
+        .model_id = "Intel(R) Celeron(R) CPU 3.46GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cedar Mill-512, 65nm, 512K L2, 533MHz FSB, 2006" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-420",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 22,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(R) CPU 420 @ 1.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Conroe-L, 512K L2, 800MHz FSB, 2007" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-440",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 22,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(R) CPU 440 @ 2.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Conroe-L, 512K L2, 800MHz FSB, 2007" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-450",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 22,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(R) CPU 450 @ 2.20GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Conroe-L, 512K L2, 800MHz FSB, 2007" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-e1200",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 23,
+        .stepping = 6,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(R) CPU E1200 @ 1.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Wolfdale dual-core, 1MB L2, 800MHz FSB, 2008" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-e3300",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 23,
+        .stepping = 10,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(R) CPU E3300 @ 2.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Wolfdale dual-core, 1MB L2, 800MHz FSB, 2009" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-e3400",
+        .level = 0xa,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 23,
+        .stepping = 10,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(R) CPU E3400 @ 2.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Wolfdale dual-core, 1MB L2, 800MHz FSB, 2009" },
+            { /* end */ }
+        },
+    },
+    {
         .name = "fx-8150",
         .level = 0xd,
         .vendor = CPUID_VENDOR_AMD,
