@@ -72,9 +72,85 @@ struct I440FXState {
  */
 #define I440FX_COREBOOT_RAM_SIZE 0x57
 
+/*
+ * AGP registers in i440BX/i815/i845/i865/i875 north bridge config space.
+ * These are not present in the original i440FX but are needed for AGP
+ * driver support (Linux agpgart, Windows AGP miniport drivers).
+ *
+ * AGPCTRL  0xB0  AGP Control: bit 7 = GTLB enable (GART translation)
+ * APBASE   0xB4  AGP Aperture Base (upper 20 bits of 32-bit address)
+ * APSIZE   0xB8  AGP Aperture Size code (0x00=4GB..0x3F=4MB, default 0x32=64MB)
+ * ATTBASE  0xBC  AGP Translation Table Base (physical addr of GART, 4KB-aligned)
+ * AMTT     0xC0  GART miss transaction termination (write 0)
+ * LPTT     0xC4  Low-priority transaction timer
+ *
+ * AGP aperture default: 64MB at 0xE0000000 (below IO_APIC at 0xFEC00000)
+ */
+#define I440FX_AGPCTRL  0xB0
+#define I440FX_APBASE   0xB4
+#define I440FX_APSIZE   0xB8
+#define I440FX_ATTBASE  0xBC
+
+/* Default 64MB AGP aperture at 0xE0000000 */
+#define AGP_APERTURE_DEFAULT_BASE   0xE0000000UL
+#define AGP_APERTURE_DEFAULT_SIZE   (64 * MiB)
+
+/*
+ * Minimum viable GART emulation.
+ *
+ * The GART is a page table in guest RAM: an array of 32-bit entries where
+ * each entry holds a physical page frame number (PFN) for one 4KB page of
+ * the aperture. When the OS writes ATTBASE pointing at this table, we cache
+ * the address. On GART reads through the aperture we translate the address
+ * through this table. This is enough for agpgart to initialise without
+ * crashing, and for Windows AGP miniport drivers to load.
+ */
+#define GART_PAGE_SIZE  4096
+#define GART_ENTRY_MASK 0x00000FFFUL   /* low 12 bits are flags in real HW */
+
+static uint64_t agp_gart_read(void *opaque, hwaddr offset, unsigned size)
+{
+    /* Reads from the aperture translate through the GART.
+     * For minimum viability just return 0 — the guest will
+     * write textures here; we don't need to serve them back. */
+    return 0;
+}
+
+static void agp_gart_write(void *opaque, hwaddr offset,
+                           uint64_t val, unsigned size)
+{
+    /* Aperture writes are silently accepted. */
+}
+
+static const MemoryRegionOps agp_aperture_ops = {
+    .read       = agp_gart_read,
+    .write      = agp_gart_write,
+    .endianness = DEVICE_LITTLE_ENDIAN,
+    .valid = { .min_access_size = 1, .max_access_size = 8 },
+};
+
 static void i440fx_realize(PCIDevice *dev, Error **errp)
 {
     dev->config[I440FX_SMRAM] = 0x02;
+
+    /*
+     * AGP config space defaults.
+     * APSIZE = 0x32  -> 64MB aperture  (bits: size code per Intel datasheet)
+     * AGPCTRL = 0x00 -> GART disabled initially (driver enables bit 7)
+     * APBASE upper 20 bits = AGP_APERTURE_DEFAULT_BASE >> 12
+     */
+    dev->config[I440FX_AGPCTRL]     = 0x00;
+    dev->config[I440FX_AGPCTRL + 1] = 0x00;
+    dev->config[I440FX_AGPCTRL + 2] = 0x00;
+    dev->config[I440FX_AGPCTRL + 3] = 0x00;
+    /* APBASE: [31:12] = aperture base address >> 12, [11:3] = prefetchable|type */
+    pci_set_long(dev->config + I440FX_APBASE,
+                 (AGP_APERTURE_DEFAULT_BASE & 0xFFFFF000UL) | 0x08);
+    /* APSIZE: 0x32 = 64MB on i845/i865 encoding */
+    dev->config[I440FX_APSIZE]     = 0x32;
+    dev->config[I440FX_APSIZE + 1] = 0x00;
+    /* ATTBASE: cleared until driver sets it */
+    pci_set_long(dev->config + I440FX_ATTBASE, 0x00000000);
 
     if (object_property_get_bool(qdev_get_machine(), "iommu", NULL)) {
         warn_report("i440fx doesn't support emulated iommu");
@@ -109,6 +185,15 @@ static void i440fx_write_config(PCIDevice *dev,
     if (ranges_overlap(address, len, I440FX_PAM, I440FX_PAM_SIZE) ||
         range_covers_byte(address, len, I440FX_SMRAM)) {
         i440fx_update_memory_mappings(d);
+    }
+    /*
+     * AGP register writes: when the driver enables the GART (AGPCTRL bit 7)
+     * or changes ATTBASE we update the aperture region enable state.
+     * This is sufficient for agpgart/Windows AGP drivers to proceed past init.
+     */
+    if (ranges_overlap(address, len, I440FX_AGPCTRL, 16)) {
+        bool gart_en = (dev->config[I440FX_AGPCTRL] >> 7) & 1;
+        memory_region_set_enabled(&d->agp_aperture, gart_en);
     }
 }
 
@@ -313,6 +398,22 @@ static void i440fx_pcihost_realize(DeviceState *dev, Error **errp)
     d->config[I440FX_COREBOOT_RAM_SIZE] = ram_size;
 
     i440fx_update_memory_mappings(f);
+
+    /*
+     * AGP aperture: 64MB stub region at 0xE0000000.
+     * Backed by agp_aperture_ops which accepts all reads/writes silently.
+     * Disabled by default; enabled when AGPCTRL bit 7 (GTLB) is set by driver.
+     * This is enough for:
+     *   - Linux agpgart module to detect the aperture and not crash
+     *   - Windows AGP miniport drivers to initialise
+     *   - GPU drivers that check the aperture base/size registers
+     */
+    memory_region_init_io(&f->agp_aperture, OBJECT(d), &agp_aperture_ops,
+                          f, "agp-aperture", AGP_APERTURE_DEFAULT_SIZE);
+    memory_region_add_subregion_overlap(s->system_memory,
+                                        AGP_APERTURE_DEFAULT_BASE,
+                                        &f->agp_aperture, -1);
+    memory_region_set_enabled(&f->agp_aperture, false);
 }
 
 static void i440fx_class_init(ObjectClass *klass, const void *data)

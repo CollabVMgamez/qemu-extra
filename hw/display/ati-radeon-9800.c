@@ -131,6 +131,25 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     p->config[PCI_CLASS_PROG]=0;
     pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID,GPU_SUBSYS_VID);
     pci_set_word(p->config+PCI_SUBSYSTEM_ID,GPU_SUBSYS_DID);
+
+    /* AGP Capability (PCI_CAP_ID_AGP = 0x02) at config offset 0x40.
+     * Required by Linux agpgart and Windows AGP miniport to recognize
+     * this as an AGP device. */
+    {
+        uint8_t *c = p->config;
+        uint8_t agp_off = 0x40;
+        /* Point cap list to AGP cap, AGP points to MSI at 0x50 */
+        c[PCI_CAPABILITY_LIST] = agp_off;
+        c[PCI_STATUS] |= PCI_STATUS_CAP_LIST;
+        c[agp_off + 0] = 0x02;          /* Cap ID: AGP */
+        c[agp_off + 1] = 0x50;          /* Next cap: MSI at 0x50 */
+        c[agp_off + 2] = 0x02;          /* AGP major version: 2 */
+        c[agp_off + 3] = 0x00;          /* AGP minor version: .0 */
+        /* AGP_STATUS: RQ=31, SBA, FW, RATE=0x7 (1x/2x/4x) */
+        pci_set_long(c + agp_off + 4, 0x1F000217);
+        /* AGP_COMMAND: 0 = AGP disabled until driver enables it */
+        pci_set_long(c + agp_off + 8, 0x00000000);
+    }
     gpu_caps(p);
     memory_region_init_io(&s->bar0,OBJECT(s),&b0ops,s,"ati-radeon-9800-mmio",NV_BAR0_SIZE);
     pci_register_bar(p,0,PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_32,&s->bar0);
