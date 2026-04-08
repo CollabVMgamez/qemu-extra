@@ -14,7 +14,7 @@
 #define GPU_VENDOR_ID  0x1002
 #define GPU_DEVICE_ID  0x699F
 #define GPU_SUBSYS_VID 0x1002
-#define GPU_SUBSYS_DID 0x0550
+#define GPU_SUBSYS_DID 0x0B30
 #define GPU_REVISION   0xC7
 #define GPU_CLASS      0x0300
 #define NV_BAR0_SIZE (16*MiB)
