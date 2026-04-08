@@ -14,7 +14,7 @@
 #define GPU_VENDOR_ID  0x1002
 #define GPU_DEVICE_ID  0x67DF
 #define GPU_SUBSYS_VID 0x1002
-#define GPU_SUBSYS_DID 0x0580
+#define GPU_SUBSYS_DID 0x0B36
 #define GPU_REVISION   0xEF
 #define GPU_CLASS      0x0300
 #define NV_BAR0_SIZE (16*MiB)
@@ -42,6 +42,7 @@
 #define GPU_PFB_PARTS   0x00000008
 #define GPU_PFB_REFCTRL 0x80000053
 #define GPU_CLK_BASE    1257
+#define GPU_MEM_MHZ     2000
 #define GPU_CLK_BOOST   1340
 #define GPU_PCIE_GEN    3
 #define TYPE_AMD_RX580 "amd-rx580"
@@ -74,6 +75,41 @@ static uint64_t bar0_r(void *opaque, hwaddr addr, unsigned size) {
     case NV_PFB_BOOT_0:         return GPU_PFB_BOOT_0;
     case NV_PFB_PARTS: case NV_PFB_MEM_PARTS: return GPU_PFB_PARTS;
     case NV_PFB_REFCTRL:        return GPU_PFB_REFCTRL;
+
+
+    /* AMD GCN thermal/clock registers that GPU-Z reads:
+     * CG_MULT_THERMAL_STATUS: bits[12:0] = temp * 8
+     * CURCLK_GFXIP_FREQ: GPU clock in MHz
+     * CURCLK_MEMIP_FREQ: memory clock in MHz */
+    case 0x000E0300: { /* CG_MULT_THERMAL_STATUS */
+        uint64_t _ns = qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);
+        uint32_t _seed = (uint32_t)(_ns >> 28);
+        _seed = _seed * 1664525u + 1013904223u;
+        uint32_t _range = GPU_CLK_BOOST - GPU_CLK_BASE + 1;
+        uint32_t _tc = 55 + (_range ? (_seed % _range) * 17 / _range : 0);
+        _tc += (_seed >> 28) & 3;
+        return _tc * 8; /* bits[12:0] = temp * 8 */
+    }
+    case 0x0000C0FC: /* CURCLK_GFXIP_FREQ - GPU clock in MHz */ {
+        uint64_t _ns2 = qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);
+        uint32_t _s2 = (uint32_t)(_ns2 >> 26) * 1664525u + 1013904223u;
+        uint32_t _r2 = GPU_CLK_BOOST - GPU_CLK_BASE + 1;
+        return GPU_CLK_BASE + (_r2 ? _s2 % _r2 : 0);
+    }
+    case 0x0000C100: /* CURCLK_MEMIP_FREQ - memory clock in MHz */
+        return GPU_MEM_MHZ;
+    case 0x00009498: /* MC_ARB_RAMCFG - memory config */
+        return 0x00000200; /* 256-bit bus */
+    /* SMC mailbox: GPU-Z sends messages to read sensors */
+    case 0x0001A008: /* SMC_RESP_0 - always return 1 (success) */
+        return 0x00000001;
+    case 0x0001A020: { /* SMC_MSG_ARG_0 - return temp in mC for GetTemperature */
+        uint64_t _ns3 = qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);
+        uint32_t _s3 = (uint32_t)(_ns3 >> 28) * 1664525u + 1013904223u;
+        uint32_t _r3 = GPU_CLK_BOOST - GPU_CLK_BASE + 1;
+        uint32_t _tc3 = 55 + (_r3 ? (_s3 % _r3) * 17 / _r3 : 0);
+        return _tc3 * 1000; /* millidegrees Celsius */
+    }
     default: return 0;
     }
 }

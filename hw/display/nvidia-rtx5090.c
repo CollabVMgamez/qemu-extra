@@ -159,6 +159,36 @@ static uint64_t rtx5090_bar0_read(void *opaque, hwaddr addr, unsigned size)
     case NV_PFB_REFCTRL:          return GB202_PFB_REFCTRL;
     case NV_PGRAPH_STATUS:
     case NV_PDISP_INTR_0:         return 0;
+
+    /* Temperature: GPU-Z reads NV_THERM_I2CS_SENSOR at 0x020050
+     * bits[23:16] = raw ADC, formula: celsius = raw - 120
+     * 60C idle: raw=180=0xB4 -> return 0x00B40000
+     * We fluctuate 55-72C using the same LCG as the clock */
+    case 0x020050: /* NV_THERM_I2CS_SENSOR */
+    case 0x020400: /* NV_THERM_TEMP */
+    case 0x020440: /* NV_THERM_TEMP_1 */ {
+        uint32_t mhz2 = rtx5090_get_clock(s);
+        uint32_t temp_c = 55 + ((mhz2 - RTX5090_CLOCK_BASE_MHZ) * 17) /
+                          (RTX5090_CLOCK_BOOST_MHZ - RTX5090_CLOCK_BASE_MHZ + 1);
+        uint32_t noise = (mhz2 * 6364136223846793005ULL + 1442695040888963407ULL) & 3;
+        temp_c += noise;
+        uint32_t raw = temp_c + 120;
+        return (raw << 16);
+    }
+    case 0x132020: /* NV_CLK_MCLK_PLL_COEFF */ {
+        uint32_t mhz3 = rtx5090_get_clock(s);
+        uint32_t M = 2, P = 0;
+        uint32_t N = (1750 * M) / 27;
+        N += (mhz3 & 1);
+        return (P << 16) | (N << 8) | M;
+    }
+    case 0x1373f0:
+    case 0x00410C: return 1750;
+    case 0x070090: {
+        uint32_t mhz4 = rtx5090_get_clock(s);
+        return 30 + ((mhz4 - RTX5090_CLOCK_BASE_MHZ) * 15) /
+               (RTX5090_CLOCK_BOOST_MHZ - RTX5090_CLOCK_BASE_MHZ + 1);
+    }
     default:                      return 0;
     }
 }

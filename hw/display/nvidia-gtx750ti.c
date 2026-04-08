@@ -160,6 +160,33 @@ static uint64_t gtx750ti_bar0_read(void *opaque, hwaddr addr, unsigned size)
     case NV_PFB_REFCTRL:         return vram_type_regs[type].refctrl;
     case NV_PGRAPH_STATUS:
     case NV_PDISP_INTR_0:        return 0;
+
+    /* Temperature: bits[23:16] = raw ADC, celsius = raw - 120 */
+    case 0x020050: /* NV_THERM_I2CS_SENSOR */
+    case 0x020400: /* NV_THERM_TEMP */
+    case 0x020440: /* NV_THERM_TEMP_1 */ {
+        uint32_t tmhz = gtx750ti_get_clock(s);
+        uint32_t temp_c = 55 + ((tmhz - GTX750TI_CLOCK_BASE_MHZ) * 17) /
+                          (GTX750TI_CLOCK_BOOST_MHZ - GTX750TI_CLOCK_BASE_MHZ + 1);
+        temp_c += (tmhz & 3);  /* ±3C noise */
+        return ((temp_c + 120) << 16);
+    }
+    /* Memory clock PLL: mem_mhz = (27 * N) / (M * (1<<P)) */
+    case 0x132020: /* NV_CLK_MCLK_PLL_COEFF */ {
+        uint32_t tmhz2 = gtx750ti_get_clock(s);
+        /* GTX 750 Ti GDDR5: ~1350 MHz -> N=100, M=2, P=0 */
+        uint32_t N = 100 + (tmhz2 & 1);  /* slight fluctuation */
+        return (0 << 16) | (N << 8) | 2;
+    }
+    case 0x1373f0: /* NV_CLK_MCLK_OUT */
+    case 0x00410C: /* NV_PERF_MEM_CLK */
+        return 1350;
+    /* Fan: 30-45% based on load */
+    case 0x070090: /* NV_PFAN_PERCENT */ {
+        uint32_t tmhz3 = gtx750ti_get_clock(s);
+        return 30 + ((tmhz3 - GTX750TI_CLOCK_BASE_MHZ) * 15) /
+               (GTX750TI_CLOCK_BOOST_MHZ - GTX750TI_CLOCK_BASE_MHZ + 1);
+    }
     default:                     return 0;
     }
 }

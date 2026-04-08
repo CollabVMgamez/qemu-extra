@@ -41,6 +41,7 @@
 #define GPU_PFB_PARTS   0x00000018
 #define GPU_PFB_REFCTRL 0x00000053
 #define GPU_CLK_BASE    562
+#define GPU_MEM_MHZ     1502
 #define GPU_CLK_BOOST   562
 #define GPU_PCIE_GEN    2
 #define TYPE_NVIDIA_K80 "nvidia-k80"
@@ -73,6 +74,40 @@ static uint64_t bar0_r(void *opaque, hwaddr addr, unsigned size) {
     case NV_PFB_BOOT_0:         return GPU_PFB_BOOT_0;
     case NV_PFB_PARTS: case NV_PFB_MEM_PARTS: return GPU_PFB_PARTS;
     case NV_PFB_REFCTRL:        return GPU_PFB_REFCTRL;
+
+    /* Temperature: GPU-Z reads NV_THERM_I2CS_SENSOR at 0x020050
+     * bits[23:16] = raw ADC, formula: celsius = raw - 120
+     * Fluctuates 55-72C based on timer + LCG */
+    case 0x020050: /* NV_THERM_I2CS_SENSOR */
+    case 0x020400: /* NV_THERM_TEMP */
+    case 0x020440: { /* NV_THERM_TEMP_1 */
+        uint64_t _ns = qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);
+        uint32_t _seed = (uint32_t)(_ns >> 28); /* changes ~270ms */
+        _seed = _seed * 1664525u + 1013904223u;
+        uint32_t _range = GPU_CLK_BOOST - GPU_CLK_BASE + 1;
+        uint32_t _rel = _range ? (_seed % _range) : 0;
+        uint32_t _tc = 55 + (_rel * 17) / (_range ? _range : 1);
+        _tc += (_seed >> 28) & 3; /* ±3C noise */
+        return ((_tc + 120) << 16);
+    }
+    /* Memory clock PLL: mem_mhz = (27*N)/(M*(1<<P))
+     * GPU-Z reads 0x132020, computes freq from N/M/P fields */
+    case 0x132020: { /* NV_CLK_MCLK_PLL_COEFF */
+        uint32_t _M = 2, _P = 0;
+        uint32_t _N = (GPU_MEM_MHZ * _M) / 27;
+        uint64_t _ns2 = qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);
+        _N += (uint32_t)(_ns2 >> 29) & 1; /* ±1 flicker */
+        return (_P << 16) | (_N << 8) | _M;
+    }
+    case 0x1373f0: /* NV_CLK_MCLK_OUT */
+    case 0x00410C: /* NV_PERF_MEM_CLK */
+        return GPU_MEM_MHZ;
+    case 0x070090: { /* NV_PFAN_PERCENT: 30-45% */
+        uint64_t _ns3 = qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);
+        uint32_t _fs = (uint32_t)(_ns3 >> 28) * 1664525u + 1013904223u;
+        uint32_t _range2 = GPU_CLK_BOOST - GPU_CLK_BASE + 1;
+        return 30 + (_range2 ? ((_fs % _range2) * 15 / _range2) : 0);
+    }
     default: return 0;
     }
 }
