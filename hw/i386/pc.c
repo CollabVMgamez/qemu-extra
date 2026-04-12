@@ -781,10 +781,18 @@ void pc_memory_init(PCMachineState *pcms,
     maxusedaddr = pc_max_used_gpa(pcms, pci_hole64_size);
     maxphysaddr = ((hwaddr)1 << cpu->phys_bits) - 1;
     if (maxphysaddr < maxusedaddr) {
-        error_report("Address space limit 0x%"PRIx64" < 0x%"PRIx64
-                     " phys-bits too low (%u)",
-                     maxphysaddr, maxusedaddr, cpu->phys_bits);
-        exit(EXIT_FAILURE);
+        /* Auto-bump phys_bits to cover the required address space
+         * instead of crashing. This handles cases where large PCI BARs
+         * (e.g. GPU VRAM apertures) push the address map past 32-bit. */
+        unsigned int needed_bits = 1;
+        hwaddr needed = maxusedaddr;
+        while (needed > 1) { needed >>= 1; needed_bits++; }
+        if (needed_bits < 36) needed_bits = 36;
+        warn_report("phys-bits too low (%u), auto-adjusting to %u "
+                    "to cover address space 0x%"PRIx64,
+                    cpu->phys_bits, needed_bits, maxusedaddr);
+        cpu->phys_bits = needed_bits;
+        maxphysaddr = ((hwaddr)1 << cpu->phys_bits) - 1;
     }
 
     /*
