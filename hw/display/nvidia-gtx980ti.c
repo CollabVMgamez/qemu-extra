@@ -53,6 +53,7 @@ struct NvidiaGtx980tiState {
     uint32_t intr_en, pfifo_intr_en, clock_mhz;
     uint64_t clock_last_ns;
     uint32_t gpu_count;
+    char *board_partner;
 };
 static uint32_t gpu_clk(NvidiaGtx980tiState *s) {
     uint64_t now = qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);
@@ -142,6 +143,21 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     p->config[PCI_CLASS_PROG]=0;
     pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID,GPU_SUBSYS_VID);
     pci_set_word(p->config+PCI_SUBSYSTEM_ID,GPU_SUBSYS_DID);
+
+    /* Apply board-partner subsystem vendor ID if set */
+    if (s->board_partner && s->board_partner[0]) {
+        static const struct { const char *name; uint16_t vid; } nv_partners[] = {
+            {"asus",0x1043},{"msi",0x1462},{"gigabyte",0x1458},{"evga",0x3842},
+            {"zotac",0x19DA},{"palit",0x1569},{"pny",0x196E},{"inno3d",0x1ACC},
+            {"colorful",0x7377},{"gainward",0x1569},{NULL,0}
+        };
+        for (int _i = 0; nv_partners[_i].name; _i++) {
+            if (strcasecmp(s->board_partner, nv_partners[_i].name) == 0) {
+                pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID, nv_partners[_i].vid);
+                break;
+            }
+        }
+    }
     gpu_caps(p);
     memory_region_init_io(&s->bar0,OBJECT(s),&b0ops,s,"nvidia-gtx980ti-mmio",NV_BAR0_SIZE);
     pci_register_bar(p,0,PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_32,&s->bar0);

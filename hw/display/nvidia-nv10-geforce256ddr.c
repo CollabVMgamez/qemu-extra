@@ -47,6 +47,7 @@ struct NvidiaNv10Geforce256ddrState {
     uint32_t intr_en, clock_mhz;
     uint64_t clock_last_ns;
     uint32_t gpu_count;
+    char *board_partner;
 };
 static uint32_t gpu_clk(NvidiaNv10Geforce256ddrState *s) {
     uint64_t now = qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);
@@ -90,6 +91,21 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     p->config[PCI_CLASS_PROG]=0;
     pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID,GPU_SUBSYS_VID);
     pci_set_word(p->config+PCI_SUBSYSTEM_ID,GPU_SUBSYS_DID);
+
+    /* Apply board-partner subsystem vendor ID if set */
+    if (s->board_partner && s->board_partner[0]) {
+        static const struct { const char *name; uint16_t vid; } nv_partners[] = {
+            {"asus",0x1043},{"msi",0x1462},{"gigabyte",0x1458},{"evga",0x3842},
+            {"zotac",0x19DA},{"palit",0x1569},{"pny",0x196E},{"inno3d",0x1ACC},
+            {"colorful",0x7377},{"gainward",0x1569},{NULL,0}
+        };
+        for (int _i = 0; nv_partners[_i].name; _i++) {
+            if (strcasecmp(s->board_partner, nv_partners[_i].name) == 0) {
+                pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID, nv_partners[_i].vid);
+                break;
+            }
+        }
+    }
     /* AGP 2.0 capability at offset 0x40 */
     {
         uint8_t *c=p->config;
@@ -111,8 +127,10 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     memory_region_init_io(&s->bar5,OBJECT(s),&b135ops,s,"nvidia-nv10-geforce256ddr-vgaio",NV_BAR5_SIZE);
     pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);
 }
-static const Property gpu_props_nvidia_nv10_geforce256ddr[]={DEFINE_PROP_UINT32("gpu-count",NvidiaNv10Geforce256ddrState,gpu_count,1)};
-static const VMStateDescription vms_nvidia_nv10_geforce256ddr={.name="nvidia-nv10-geforce256ddr",.version_id=1,.minimum_version_id=1,.fields=(const VMStateField[]){VMSTATE_PCI_DEVICE(parent_obj,NvidiaNv10Geforce256ddrState),VMSTATE_UINT32(intr_en,NvidiaNv10Geforce256ddrState),VMSTATE_UINT32(clock_mhz,NvidiaNv10Geforce256ddrState),VMSTATE_UINT64(clock_last_ns,NvidiaNv10Geforce256ddrState),VMSTATE_UINT32(gpu_count,NvidiaNv10Geforce256ddrState),VMSTATE_END_OF_LIST()}};
+static const Property gpu_props_nvidia_nv10_geforce256ddr[]={DEFINE_PROP_UINT32("gpu-count",NvidiaNv10Geforce256ddrState,gpu_count,1),
+    DEFINE_PROP_STRING("board-partner",NvidiaNv10Geforce256ddrState,board_partner)};
+static const VMStateDescription vms_nvidia_nv10_geforce256ddr={.name="nvidia-nv10-geforce256ddr",.version_id=1,.minimum_version_id=1,.fields=(const VMStateField[]){VMSTATE_PCI_DEVICE(parent_obj,NvidiaNv10Geforce256ddrState),VMSTATE_UINT32(intr_en,NvidiaNv10Geforce256ddrState),VMSTATE_UINT32(clock_mhz,NvidiaNv10Geforce256ddrState),VMSTATE_UINT64(clock_last_ns,NvidiaNv10Geforce256ddrState),
+        VMSTATE_UINT32(gpu_count,NvidiaNv10Geforce256ddrState),VMSTATE_END_OF_LIST()}};
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x0101;

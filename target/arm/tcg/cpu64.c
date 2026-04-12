@@ -1249,6 +1249,137 @@ static void aarch64_apple_m4_initfn(Object *obj)
     cpu->midr = 0x610F02A0; /* Apple M4 performance core */
 }
 
+/* ---- Apple M1 Pro (higher-perf Firestorm, more cores) ---- */
+static void aarch64_apple_m1_pro_initfn(Object *obj)
+{
+    aarch64_apple_m1_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,firestorm";
+    cpu->midr = 0x610F0231; /* M1 Pro Firestorm r1p0 */
+}
+/* ---- Apple M1 Max ---- */
+static void aarch64_apple_m1_max_initfn(Object *obj)
+{
+    aarch64_apple_m1_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->midr = 0x610F0232; /* M1 Max */
+}
+/* ---- Apple M2 Pro ---- */
+static void aarch64_apple_m2_pro_initfn(Object *obj)
+{
+    aarch64_apple_m2_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,avalanche";
+    cpu->midr = 0x610F0251; /* M2 Pro */
+}
+/* ---- Apple M2 Max ---- */
+static void aarch64_apple_m2_max_initfn(Object *obj)
+{
+    aarch64_apple_m2_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->midr = 0x610F0252; /* M2 Max */
+}
+/* ---- Apple M2 Ultra ---- */
+static void aarch64_apple_m2_ultra_initfn(Object *obj)
+{
+    aarch64_apple_m2_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->midr = 0x610F0253; /* M2 Ultra (2x M2 Max dies) */
+}
+/* ---- Apple M3 Pro ---- */
+static void aarch64_apple_m3_pro_initfn(Object *obj)
+{
+    aarch64_apple_m3_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,everest";
+    cpu->midr = 0x610F0281; /* M3 Pro */
+}
+/* ---- Apple M3 Max ---- */
+static void aarch64_apple_m3_max_initfn(Object *obj)
+{
+    aarch64_apple_m3_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->midr = 0x610F0282; /* M3 Max */
+}
+
+/* ---- Qualcomm Kryo 260 (Snapdragon 660, SDM660) ---- */
+static void aarch64_snapdragon660_initfn(Object *obj)
+{
+    aarch64_a57_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,kryo260";
+    cpu->midr = 0x512F8014; /* Kryo 260 */
+}
+/* ---- Qualcomm Kryo 360 (Snapdragon 710, SDM710) ---- */
+static void aarch64_snapdragon710_initfn(Object *obj)
+{
+    aarch64_a57_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,kryo360";
+    cpu->midr = 0x512F8020; /* Kryo 360 */
+}
+/* ---- Qualcomm Kryo 470 Gold (Snapdragon 730, SM7150) ---- */
+static void aarch64_snapdragon730_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,kryo470";
+    cpu->midr = 0x512F8024; /* Kryo 470 Gold */
+}
+/* ---- Qualcomm Kryo 485 Prime (Snapdragon 855+, SM8150-AC) ---- */
+static void aarch64_snapdragon855plus_initfn(Object *obj)
+{
+    aarch64_kryo485_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->midr = 0x518F802E; /* Kryo 485 Prime */
+}
+/* ---- Qualcomm Kryo 560 (Snapdragon 870, SM8250-AC) ---- */
+static void aarch64_snapdragon870_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,kryo560";
+    cpu->midr = 0x512F803E; /* Kryo 560 Prime */
+}
+/* ---- Qualcomm Oryon (Snapdragon 8cx Gen 3, SC8280XP) ---- */
+static void aarch64_snapdragon8cxgen3_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,sc8280xp";
+    cpu->midr = 0x518F02B0; /* Kryo Prime in 8cx Gen3 */
+}
+/* ---- Qualcomm Oryon (Snapdragon 8 Gen 1, SM8450) ---- */
+static void aarch64_snapdragon8gen1_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,kryo780";
+    cpu->midr = 0x519F0400; /* Cortex-X2 based in SD 8 Gen 1 */
+}
+/* ---- Qualcomm Oryon (Snapdragon 8 Gen 2, SM8550) ---- */
+static void aarch64_snapdragon8gen2_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,kryo780";
+    cpu->midr = 0x519F0500; /* Cortex-X3 based in SD 8 Gen 2 */
+}
+/* ---- Qualcomm Oryon (Snapdragon 8 Gen 3, SM8650) ---- */
+static void aarch64_snapdragon8gen3_initfn(Object *obj)
+{
+    aarch64_oryon_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->midr = 0x518F02B6; /* Oryon V1 in SD 8 Gen 3 */
+}
+/* ---- Qualcomm Oryon (Snapdragon X Plus, X1P64100) ---- */
+static void aarch64_snapdragon_xplus_initfn(Object *obj)
+{
+    aarch64_oryon_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->midr = 0x518F02B3; /* Oryon in SD X Plus */
+}
+
 static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "cortex-a35",         .initfn = aarch64_a35_initfn },
     { .name = "cortex-a55",         .initfn = aarch64_a55_initfn },
@@ -1290,6 +1421,25 @@ static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "apple-m1",                     .initfn = aarch64_apple_m1_initfn },
     { .name = "apple-m2",                     .initfn = aarch64_apple_m2_initfn },
     { .name = "apple-m3",                     .initfn = aarch64_apple_m3_initfn },
+    /* Apple M variants */
+    { .name = "apple-m1-pro",       .initfn = aarch64_apple_m1_pro_initfn },
+    { .name = "apple-m1-max",       .initfn = aarch64_apple_m1_max_initfn },
+    { .name = "apple-m2-pro",       .initfn = aarch64_apple_m2_pro_initfn },
+    { .name = "apple-m2-max",       .initfn = aarch64_apple_m2_max_initfn },
+    { .name = "apple-m2-ultra",     .initfn = aarch64_apple_m2_ultra_initfn },
+    { .name = "apple-m3-pro",       .initfn = aarch64_apple_m3_pro_initfn },
+    { .name = "apple-m3-max",       .initfn = aarch64_apple_m3_max_initfn },
+    /* Snapdragon additional */
+    { .name = "snapdragon-660",     .initfn = aarch64_snapdragon660_initfn },
+    { .name = "snapdragon-710",     .initfn = aarch64_snapdragon710_initfn },
+    { .name = "snapdragon-730",     .initfn = aarch64_snapdragon730_initfn },
+    { .name = "snapdragon-855-plus",.initfn = aarch64_snapdragon855plus_initfn },
+    { .name = "snapdragon-870",     .initfn = aarch64_snapdragon870_initfn },
+    { .name = "snapdragon-8cx-gen3",.initfn = aarch64_snapdragon8cxgen3_initfn },
+    { .name = "snapdragon-8-gen1",  .initfn = aarch64_snapdragon8gen1_initfn },
+    { .name = "snapdragon-8-gen2",  .initfn = aarch64_snapdragon8gen2_initfn },
+    { .name = "snapdragon-8-gen3",  .initfn = aarch64_snapdragon8gen3_initfn },
+    { .name = "snapdragon-x-plus",  .initfn = aarch64_snapdragon_xplus_initfn },
     { .name = "apple-m4",                     .initfn = aarch64_apple_m4_initfn },
 };
 

@@ -114,6 +114,7 @@ struct NvidiaRTX5090State {
     uint32_t clock_mhz;
     uint64_t clock_last_ns;
     uint32_t gpu_count;
+    char *board_partner;
 };
 
 /* Fluctuating clock between base and boost */

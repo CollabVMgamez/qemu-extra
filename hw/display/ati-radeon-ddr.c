@@ -47,6 +47,7 @@ struct AtiRadeonDdrState {
     MemoryRegion bar0, bar1, bar3, bar5;
     uint32_t intr_en, clock_mhz;
     uint32_t gpu_count;
+    char *board_partner;
     uint64_t clock_last_ns;
 };
 static uint32_t gpu_clk(AtiRadeonDdrState *s) {
@@ -132,6 +133,20 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     p->config[PCI_CLASS_PROG]=0;
     pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID,GPU_SUBSYS_VID);
     pci_set_word(p->config+PCI_SUBSYSTEM_ID,GPU_SUBSYS_DID);
+
+    /* Apply board-partner subsystem vendor ID if set */
+    if (s->board_partner && s->board_partner[0]) {
+        static const struct { const char *name; uint16_t vid; } amd_partners[] = {
+            {"asus",0x1043},{"msi",0x1462},{"gigabyte",0x1458},{"sapphire",0x174B},
+            {"xfx",0x1682},{"powercolor",0x148C},{"asrock",0x1849},{NULL,0}
+        };
+        for (int _i = 0; amd_partners[_i].name; _i++) {
+            if (strcasecmp(s->board_partner, amd_partners[_i].name) == 0) {
+                pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID, amd_partners[_i].vid);
+                break;
+            }
+        }
+    }
 
     /* AGP Capability (PCI_CAP_ID_AGP = 0x02) at config offset 0x40.
      * Required by Linux agpgart and Windows AGP miniport to recognize

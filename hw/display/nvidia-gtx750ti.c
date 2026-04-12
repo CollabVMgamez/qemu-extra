@@ -115,6 +115,7 @@ struct NvidiaGTX750TiState {
     uint64_t clock_last_ns;
     uint32_t vram_type;
     uint32_t gpu_count;
+    char *board_partner;
 };
 
 static uint32_t gtx750ti_get_clock(NvidiaGTX750TiState *s)

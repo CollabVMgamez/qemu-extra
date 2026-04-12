@@ -47,6 +47,7 @@ struct AmdRadeonR9NanoState {
     MemoryRegion bar0, bar1, bar3, bar5;
     uint32_t intr_en, clock_mhz;
     uint32_t gpu_count;
+    char *board_partner;
     uint64_t clock_last_ns;
 };
 static uint32_t gpu_clk(AmdRadeonR9NanoState *s) {
@@ -132,6 +133,20 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     p->config[PCI_CLASS_PROG]=0;
     pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID,GPU_SUBSYS_VID);
     pci_set_word(p->config+PCI_SUBSYSTEM_ID,GPU_SUBSYS_DID);
+
+    /* Apply board-partner subsystem vendor ID if set */
+    if (s->board_partner && s->board_partner[0]) {
+        static const struct { const char *name; uint16_t vid; } amd_partners[] = {
+            {"asus",0x1043},{"msi",0x1462},{"gigabyte",0x1458},{"sapphire",0x174B},
+            {"xfx",0x1682},{"powercolor",0x148C},{"asrock",0x1849},{NULL,0}
+        };
+        for (int _i = 0; amd_partners[_i].name; _i++) {
+            if (strcasecmp(s->board_partner, amd_partners[_i].name) == 0) {
+                pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID, amd_partners[_i].vid);
+                break;
+            }
+        }
+    }
     gpu_caps(p);
     memory_region_init_io(&s->bar0,OBJECT(s),&b0ops,s,"amd-radeon-r9-nano-mmio",NV_BAR0_SIZE);
     pci_register_bar(p,0,PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_32,&s->bar0);
