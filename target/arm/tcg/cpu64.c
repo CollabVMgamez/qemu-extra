@@ -200,212 +200,8 @@ static void cpu_max_get_l0gptsz(Object *obj, Visitor *v, const char *name,
 static const Property arm_cpu_lpa2_property =
     DEFINE_PROP_BOOL("lpa2", ARMCPU, prop_lpa2, true);
 
-static void aarch64_a55_initfn(Object *obj)
-{
-    ARMCPU *cpu = ARM_CPU(obj);
-    ARMISARegisters *isar = &cpu->isar;
 
-    cpu->dtb_compatible = "arm,cortex-a55";
-    set_feature(&cpu->env, ARM_FEATURE_V8);
-    set_feature(&cpu->env, ARM_FEATURE_NEON);
-    set_feature(&cpu->env, ARM_FEATURE_GENERIC_TIMER);
-    set_feature(&cpu->env, ARM_FEATURE_BACKCOMPAT_CNTFRQ);
-    set_feature(&cpu->env, ARM_FEATURE_AARCH64);
-    set_feature(&cpu->env, ARM_FEATURE_CBAR_RO);
-    set_feature(&cpu->env, ARM_FEATURE_EL2);
-    set_feature(&cpu->env, ARM_FEATURE_EL3);
-    set_feature(&cpu->env, ARM_FEATURE_PMU);
 
-    /* Ordered by B2.4 AArch64 registers by functional group */
-    SET_IDREG(isar, CLIDR, 0x82000023);
-    cpu->ctr = 0x84448004; /* L1Ip = VIPT */
-    set_dczid_bs(cpu, 4); /* 64 bytes */
-    SET_IDREG(isar, ID_AA64DFR0, 0x0000000010305408ull);
-    SET_IDREG(isar, ID_AA64ISAR0, 0x0000100010211120ull);
-    SET_IDREG(isar, ID_AA64ISAR1, 0x0000000000100001ull);
-    SET_IDREG(isar, ID_AA64MMFR0, 0x0000000000101122ull);
-    SET_IDREG(isar, ID_AA64MMFR1, 0x0000000010212122ull);
-    SET_IDREG(isar, ID_AA64MMFR2, 0x0000000000001011ull);
-    SET_IDREG(isar, ID_AA64PFR0, 0x0000000010112222ull);
-    SET_IDREG(isar, ID_AA64PFR1, 0x0000000000000010ull);
-    SET_IDREG(isar, ID_AFR0, 0x00000000);
-    SET_IDREG(isar, ID_DFR0, 0x04010088);
-    SET_IDREG(isar, ID_ISAR0, 0x02101110);
-    SET_IDREG(isar, ID_ISAR1, 0x13112111);
-    SET_IDREG(isar, ID_ISAR2, 0x21232042);
-    SET_IDREG(isar, ID_ISAR3, 0x01112131);
-    SET_IDREG(isar, ID_ISAR4, 0x00011142);
-    SET_IDREG(isar, ID_ISAR5, 0x01011121);
-    SET_IDREG(isar, ID_ISAR6, 0x00000010);
-    SET_IDREG(isar, ID_MMFR0, 0x10201105);
-    SET_IDREG(isar, ID_MMFR1, 0x40000000);
-    SET_IDREG(isar, ID_MMFR2, 0x01260000);
-    SET_IDREG(isar, ID_MMFR3, 0x02122211);
-    SET_IDREG(isar, ID_MMFR4, 0x00021110);
-    SET_IDREG(isar, ID_PFR0, 0x10010131);
-    SET_IDREG(isar, ID_PFR1, 0x00011011);
-    SET_IDREG(isar, ID_PFR2, 0x00000011);
-    cpu->midr = 0x412FD050;          /* r2p0 */
-    cpu->revidr = 0;
-
-    /* From B2.23 CCSIDR_EL1 */
-    /* 32KB L1 dcache */
-    cpu->ccsidr[0] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 4, 64, 32 * KiB, 7);
-    /* 32KB L1 icache */
-    cpu->ccsidr[1] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 4, 64, 32 * KiB, 2);
-    /* 512KB L2 cache */
-    cpu->ccsidr[2] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 16, 64, 512 * KiB, 7);
-
-    /* From B2.96 SCTLR_EL3 */
-    cpu->reset_sctlr = 0x30c50838;
-
-    /* From B4.45 ICH_VTR_EL2 */
-    cpu->gic_num_lrs = 4;
-    cpu->gic_vpribits = 5;
-    cpu->gic_vprebits = 5;
-    cpu->gic_pribits = 5;
-
-    cpu->isar.mvfr0 = 0x10110222;
-    cpu->isar.mvfr1 = 0x13211111;
-    cpu->isar.mvfr2 = 0x00000043;
-
-    /* From D5.4 AArch64 PMU register summary */
-    cpu->isar.reset_pmcr_el0 = 0x410b3000;
-}
-
-static void aarch64_a72_initfn(Object *obj)
-{
-    ARMCPU *cpu = ARM_CPU(obj);
-    ARMISARegisters *isar = &cpu->isar;
-
-    cpu->dtb_compatible = "arm,cortex-a72";
-    set_feature(&cpu->env, ARM_FEATURE_V8);
-    set_feature(&cpu->env, ARM_FEATURE_NEON);
-    set_feature(&cpu->env, ARM_FEATURE_GENERIC_TIMER);
-    set_feature(&cpu->env, ARM_FEATURE_BACKCOMPAT_CNTFRQ);
-    set_feature(&cpu->env, ARM_FEATURE_AARCH64);
-    set_feature(&cpu->env, ARM_FEATURE_CBAR_RO);
-    set_feature(&cpu->env, ARM_FEATURE_EL2);
-    set_feature(&cpu->env, ARM_FEATURE_EL3);
-    set_feature(&cpu->env, ARM_FEATURE_PMU);
-    cpu->midr = 0x410fd083;
-    cpu->revidr = 0x00000000;
-    cpu->reset_fpsid = 0x41034080;
-    cpu->isar.mvfr0 = 0x10110222;
-    cpu->isar.mvfr1 = 0x12111111;
-    cpu->isar.mvfr2 = 0x00000043;
-    cpu->ctr = 0x8444c004;
-    cpu->reset_sctlr = 0x00c50838;
-    SET_IDREG(isar, ID_PFR0, 0x00000131);
-    SET_IDREG(isar, ID_PFR1, 0x00011011);
-    SET_IDREG(isar, ID_DFR0, 0x03010066);
-    SET_IDREG(isar, ID_AFR0, 0x00000000);
-    SET_IDREG(isar, ID_MMFR0, 0x10201105);
-    SET_IDREG(isar, ID_MMFR1, 0x40000000);
-    SET_IDREG(isar, ID_MMFR2, 0x01260000);
-    SET_IDREG(isar, ID_MMFR3, 0x02102211);
-    SET_IDREG(isar, ID_ISAR0, 0x02101110);
-    SET_IDREG(isar, ID_ISAR1, 0x13112111);
-    SET_IDREG(isar, ID_ISAR2, 0x21232042);
-    SET_IDREG(isar, ID_ISAR3, 0x01112131);
-    SET_IDREG(isar, ID_ISAR4, 0x00011142);
-    SET_IDREG(isar, ID_ISAR5, 0x00011121);
-    SET_IDREG(isar, ID_AA64PFR0, 0x00002222);
-    SET_IDREG(isar, ID_AA64DFR0, 0x10305106);
-    SET_IDREG(isar, ID_AA64ISAR0, 0x00011120);
-    SET_IDREG(isar, ID_AA64MMFR0, 0x00001124);
-    cpu->isar.dbgdidr = 0x3516d000;
-    cpu->isar.dbgdevid = 0x01110f13;
-    cpu->isar.dbgdevid1 = 0x2;
-    cpu->isar.reset_pmcr_el0 = 0x41023000;
-    SET_IDREG(isar, CLIDR, 0x0a200023);
-    /* 32KB L1 dcache */
-    cpu->ccsidr[0] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 4, 64, 32 * KiB, 7);
-    /* 48KB L1 dcache */
-    cpu->ccsidr[1] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 3, 64, 48 * KiB, 2);
-    /* 1MB L2 cache */
-    cpu->ccsidr[2] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 16, 64, 1 * MiB, 7);
-    set_dczid_bs(cpu, 4); /* 64 bytes */
-    cpu->gic_num_lrs = 4;
-    cpu->gic_vpribits = 5;
-    cpu->gic_vprebits = 5;
-    cpu->gic_pribits = 5;
-    define_cortex_a72_a57_a53_cp_reginfo(cpu);
-}
-
-static void aarch64_a76_initfn(Object *obj)
-{
-    ARMCPU *cpu = ARM_CPU(obj);
-    ARMISARegisters *isar = &cpu->isar;
-
-    cpu->dtb_compatible = "arm,cortex-a76";
-    set_feature(&cpu->env, ARM_FEATURE_V8);
-    set_feature(&cpu->env, ARM_FEATURE_NEON);
-    set_feature(&cpu->env, ARM_FEATURE_GENERIC_TIMER);
-    set_feature(&cpu->env, ARM_FEATURE_BACKCOMPAT_CNTFRQ);
-    set_feature(&cpu->env, ARM_FEATURE_AARCH64);
-    set_feature(&cpu->env, ARM_FEATURE_CBAR_RO);
-    set_feature(&cpu->env, ARM_FEATURE_EL2);
-    set_feature(&cpu->env, ARM_FEATURE_EL3);
-    set_feature(&cpu->env, ARM_FEATURE_PMU);
-
-    /* Ordered by B2.4 AArch64 registers by functional group */
-    SET_IDREG(isar, CLIDR, 0x82000023);
-    cpu->ctr = 0x8444C004;
-    set_dczid_bs(cpu, 4);
-    SET_IDREG(isar, ID_AA64DFR0, 0x0000000010305408ull);
-    SET_IDREG(isar, ID_AA64ISAR0, 0x0000100010211120ull);
-    SET_IDREG(isar, ID_AA64ISAR1, 0x0000000000100001ull);
-    SET_IDREG(isar, ID_AA64MMFR0, 0x0000000000101122ull);
-    SET_IDREG(isar, ID_AA64MMFR1, 0x0000000010212122ull);
-    SET_IDREG(isar, ID_AA64MMFR2, 0x0000000000001011ull);
-    SET_IDREG(isar, ID_AA64PFR0, 0x1100000010111112ull); /* GIC filled in later */
-    SET_IDREG(isar, ID_AA64PFR1, 0x0000000000000010ull);
-    SET_IDREG(isar, ID_AFR0, 0x00000000);
-    SET_IDREG(isar, ID_DFR0, 0x04010088);
-    SET_IDREG(isar, ID_ISAR0, 0x02101110);
-    SET_IDREG(isar, ID_ISAR1, 0x13112111);
-    SET_IDREG(isar, ID_ISAR2, 0x21232042);
-    SET_IDREG(isar, ID_ISAR3, 0x01112131);
-    SET_IDREG(isar, ID_ISAR4, 0x00010142);
-    SET_IDREG(isar, ID_ISAR5, 0x01011121);
-    SET_IDREG(isar, ID_ISAR6, 0x00000010);
-    SET_IDREG(isar, ID_MMFR0, 0x10201105);
-    SET_IDREG(isar, ID_MMFR1, 0x40000000);
-    SET_IDREG(isar, ID_MMFR2, 0x01260000);
-    SET_IDREG(isar, ID_MMFR3, 0x02122211);
-    SET_IDREG(isar, ID_MMFR4, 0x00021110);
-    SET_IDREG(isar, ID_PFR0, 0x10010131);
-    SET_IDREG(isar, ID_PFR1, 0x00010000); /* GIC filled in later */
-    SET_IDREG(isar, ID_PFR2, 0x00000011);
-    cpu->midr = 0x414fd0b1;          /* r4p1 */
-    cpu->revidr = 0;
-
-    /* From B2.18 CCSIDR_EL1 */
-    /* 64KB L1 dcache */
-    cpu->ccsidr[0] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 4, 64, 64 * KiB, 7);
-    /* 64KB L1 icache */
-    cpu->ccsidr[1] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 4, 64, 64 * KiB, 2);
-    /* 512KB L2 cache */
-    cpu->ccsidr[2] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 8, 64, 512 * KiB, 7);
-
-    /* From B2.93 SCTLR_EL3 */
-    cpu->reset_sctlr = 0x30c50838;
-
-    /* From B4.23 ICH_VTR_EL2 */
-    cpu->gic_num_lrs = 4;
-    cpu->gic_vpribits = 5;
-    cpu->gic_vprebits = 5;
-    cpu->gic_pribits = 5;
-
-    /* From B5.1 AdvSIMD AArch64 register summary */
-    cpu->isar.mvfr0 = 0x10110222;
-    cpu->isar.mvfr1 = 0x13211111;
-    cpu->isar.mvfr2 = 0x00000043;
-
-    /* From D5.1 AArch64 PMU register summary */
-    cpu->isar.reset_pmcr_el0 = 0x410b3000;
-}
 
 static void aarch64_a78ae_initfn(Object *obj)
 {
@@ -654,177 +450,7 @@ static void define_neoverse_v1_cp_reginfo(ARMCPU *cpu)
     define_arm_cp_regs(cpu, neoverse_v1_cp_reginfo);
 }
 
-static void aarch64_neoverse_n1_initfn(Object *obj)
-{
-    ARMCPU *cpu = ARM_CPU(obj);
-    ARMISARegisters *isar = &cpu->isar;
 
-    cpu->dtb_compatible = "arm,neoverse-n1";
-    set_feature(&cpu->env, ARM_FEATURE_V8);
-    set_feature(&cpu->env, ARM_FEATURE_NEON);
-    set_feature(&cpu->env, ARM_FEATURE_GENERIC_TIMER);
-    set_feature(&cpu->env, ARM_FEATURE_BACKCOMPAT_CNTFRQ);
-    set_feature(&cpu->env, ARM_FEATURE_AARCH64);
-    set_feature(&cpu->env, ARM_FEATURE_CBAR_RO);
-    set_feature(&cpu->env, ARM_FEATURE_EL2);
-    set_feature(&cpu->env, ARM_FEATURE_EL3);
-    set_feature(&cpu->env, ARM_FEATURE_PMU);
-
-    /* Ordered by B2.4 AArch64 registers by functional group */
-    SET_IDREG(isar, CLIDR, 0x82000023);
-    cpu->ctr = 0x8444c004;
-    set_dczid_bs(cpu, 4);
-    SET_IDREG(isar, ID_AA64DFR0, 0x0000000110305408ull);
-    SET_IDREG(isar, ID_AA64ISAR0, 0x0000100010211120ull);
-    SET_IDREG(isar, ID_AA64ISAR1, 0x0000000000100001ull);
-    SET_IDREG(isar, ID_AA64MMFR0, 0x0000000000101125ull);
-    SET_IDREG(isar, ID_AA64MMFR1, 0x0000000010212122ull);
-    SET_IDREG(isar, ID_AA64MMFR2, 0x0000000000001011ull);
-    SET_IDREG(isar, ID_AA64PFR0, 0x1100000010111112ull); /* GIC filled in later */
-    SET_IDREG(isar, ID_AA64PFR1, 0x0000000000000020ull);
-    SET_IDREG(isar, ID_AFR0, 0x00000000);
-    SET_IDREG(isar, ID_DFR0, 0x04010088);
-    SET_IDREG(isar, ID_ISAR0, 0x02101110);
-    SET_IDREG(isar, ID_ISAR1, 0x13112111);
-    SET_IDREG(isar, ID_ISAR2, 0x21232042);
-    SET_IDREG(isar, ID_ISAR3, 0x01112131);
-    SET_IDREG(isar, ID_ISAR4, 0x00010142);
-    SET_IDREG(isar, ID_ISAR5, 0x01011121);
-    SET_IDREG(isar, ID_ISAR6, 0x00000010);
-    SET_IDREG(isar, ID_MMFR0, 0x10201105);
-    SET_IDREG(isar, ID_MMFR1, 0x40000000);
-    SET_IDREG(isar, ID_MMFR2, 0x01260000);
-    SET_IDREG(isar, ID_MMFR3, 0x02122211);
-    SET_IDREG(isar, ID_MMFR4, 0x00021110);
-    SET_IDREG(isar, ID_PFR0, 0x10010131);
-    SET_IDREG(isar, ID_PFR1, 0x00010000); /* GIC filled in later */
-    SET_IDREG(isar, ID_PFR2, 0x00000011);
-    cpu->midr = 0x414fd0c1;          /* r4p1 */
-    cpu->revidr = 0;
-
-    /* From B2.23 CCSIDR_EL1 */
-    /* 64KB L1 dcache */
-    cpu->ccsidr[0] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 4, 64, 64 * KiB, 7);
-    /* 64KB L1 icache */
-    cpu->ccsidr[1] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 4, 64, 64 * KiB, 2);
-    /* 1MB L2 dcache */
-    cpu->ccsidr[2] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 8, 64, 1 * MiB, 7);
-
-    /* From B2.98 SCTLR_EL3 */
-    cpu->reset_sctlr = 0x30c50838;
-
-    /* From B4.23 ICH_VTR_EL2 */
-    cpu->gic_num_lrs = 4;
-    cpu->gic_vpribits = 5;
-    cpu->gic_vprebits = 5;
-    cpu->gic_pribits = 5;
-
-    /* From B5.1 AdvSIMD AArch64 register summary */
-    cpu->isar.mvfr0 = 0x10110222;
-    cpu->isar.mvfr1 = 0x13211111;
-    cpu->isar.mvfr2 = 0x00000043;
-
-    /* From D5.1 AArch64 PMU register summary */
-    cpu->isar.reset_pmcr_el0 = 0x410c3000;
-
-    define_neoverse_n1_cp_reginfo(cpu);
-}
-
-static void aarch64_neoverse_v1_initfn(Object *obj)
-{
-    ARMCPU *cpu = ARM_CPU(obj);
-    ARMISARegisters *isar = &cpu->isar;
-
-    cpu->dtb_compatible = "arm,neoverse-v1";
-    set_feature(&cpu->env, ARM_FEATURE_V8);
-    set_feature(&cpu->env, ARM_FEATURE_NEON);
-    set_feature(&cpu->env, ARM_FEATURE_GENERIC_TIMER);
-    set_feature(&cpu->env, ARM_FEATURE_BACKCOMPAT_CNTFRQ);
-    set_feature(&cpu->env, ARM_FEATURE_AARCH64);
-    set_feature(&cpu->env, ARM_FEATURE_CBAR_RO);
-    set_feature(&cpu->env, ARM_FEATURE_EL2);
-    set_feature(&cpu->env, ARM_FEATURE_EL3);
-    set_feature(&cpu->env, ARM_FEATURE_PMU);
-
-    /* Ordered by 3.2.4 AArch64 registers by functional group */
-    SET_IDREG(isar, CLIDR, 0x82000023);
-    cpu->ctr = 0xb444c004; /* With DIC and IDC set */
-    set_dczid_bs(cpu, 4);
-    SET_IDREG(isar, ID_AA64AFR0, 0x00000000);
-    SET_IDREG(isar, ID_AA64AFR1, 0x00000000);
-    SET_IDREG(isar, ID_AA64DFR0, 0x000001f210305519ull);
-    SET_IDREG(isar, ID_AA64DFR1, 0x00000000);
-    SET_IDREG(isar, ID_AA64ISAR0, 0x1011111110212120ull); /* with FEAT_RNG */
-    SET_IDREG(isar, ID_AA64ISAR1, 0x0011000001211032ull);
-    SET_IDREG(isar, ID_AA64MMFR0, 0x0000000000101125ull);
-    SET_IDREG(isar, ID_AA64MMFR1, 0x0000000010212122ull);
-    SET_IDREG(isar, ID_AA64MMFR2, 0x0220011102101011ull);
-    SET_IDREG(isar, ID_AA64PFR0, 0x1101110120111112ull); /* GIC filled in later */
-    SET_IDREG(isar, ID_AA64PFR1, 0x0000000000000020ull);
-    SET_IDREG(isar, ID_AFR0, 0x00000000);
-    SET_IDREG(isar, ID_DFR0, 0x15011099);
-    SET_IDREG(isar, ID_ISAR0, 0x02101110);
-    SET_IDREG(isar, ID_ISAR1, 0x13112111);
-    SET_IDREG(isar, ID_ISAR2, 0x21232042);
-    SET_IDREG(isar, ID_ISAR3, 0x01112131);
-    SET_IDREG(isar, ID_ISAR4, 0x00010142);
-    SET_IDREG(isar, ID_ISAR5, 0x11011121);
-    SET_IDREG(isar, ID_ISAR6, 0x01100111);
-    SET_IDREG(isar, ID_MMFR0, 0x10201105);
-    SET_IDREG(isar, ID_MMFR1, 0x40000000);
-    SET_IDREG(isar, ID_MMFR2, 0x01260000);
-    SET_IDREG(isar, ID_MMFR3, 0x02122211);
-    SET_IDREG(isar, ID_MMFR4, 0x01021110);
-    SET_IDREG(isar, ID_PFR0, 0x21110131);
-    SET_IDREG(isar, ID_PFR1, 0x00010000); /* GIC filled in later */
-    SET_IDREG(isar, ID_PFR2, 0x00000011);
-    cpu->midr = 0x411FD402;          /* r1p2 */
-    cpu->revidr = 0;
-
-    /*
-     * The Neoverse-V1 r1p2 TRM lists 32-bit format CCSIDR_EL1 values,
-     * but also says it implements CCIDX, which means they should be
-     * 64-bit format. So we here use values which are based on the textual
-     * information in chapter 2 of the TRM:
-     *
-     * L1: 4-way set associative 64-byte line size, total size 64K.
-     * L2: 8-way set associative, 64 byte line size, either 512K or 1MB.
-     * L3: No L3 (this matches the CLIDR_EL1 value).
-     */
-    /* 64KB L1 dcache */
-    cpu->ccsidr[0] = make_ccsidr(CCSIDR_FORMAT_CCIDX, 4, 64, 64 * KiB, 0);
-    /* 64KB L1 icache */
-    cpu->ccsidr[1] = cpu->ccsidr[0];
-    /* 1MB L2 cache */
-    cpu->ccsidr[2] = make_ccsidr(CCSIDR_FORMAT_CCIDX, 8, 64, 1 * MiB, 0);
-
-    /* From 3.2.115 SCTLR_EL3 */
-    cpu->reset_sctlr = 0x30c50838;
-
-    /* From 3.4.8 ICC_CTLR_EL3 and 3.4.23 ICH_VTR_EL2 */
-    cpu->gic_num_lrs = 4;
-    cpu->gic_vpribits = 5;
-    cpu->gic_vprebits = 5;
-    cpu->gic_pribits = 5;
-
-    /* From 3.5.1 AdvSIMD AArch64 register summary */
-    cpu->isar.mvfr0 = 0x10110222;
-    cpu->isar.mvfr1 = 0x13211111;
-    cpu->isar.mvfr2 = 0x00000043;
-
-    /* From 3.7.5 ID_AA64ZFR0_EL1 */
-    SET_IDREG(isar, ID_AA64ZFR0, 0x0000100000100000);
-    cpu->sve_vq.supported = (1 << 0)  /* 128bit */
-                            | (1 << 1);  /* 256bit */
-
-    /* From 5.5.1 AArch64 PMU register summary */
-    cpu->isar.reset_pmcr_el0 = 0x41213000;
-
-    define_neoverse_v1_cp_reginfo(cpu);
-
-    aarch64_add_pauth_properties(obj);
-    aarch64_add_sve_properties(obj);
-}
 
 static const ARMCPRegInfo cortex_a710_cp_reginfo[] = {
     { .name = "CPUACTLR_EL1", .state = ARM_CP_STATE_AA64,
@@ -957,97 +583,6 @@ static const ARMCPRegInfo cortex_a710_cp_reginfo[] = {
       .access = PL3_R, .type = ARM_CP_CONST, .resetvalue = 0 },
 };
 
-static void aarch64_a710_initfn(Object *obj)
-{
-    ARMCPU *cpu = ARM_CPU(obj);
-    ARMISARegisters *isar = &cpu->isar;
-
-    cpu->dtb_compatible = "arm,cortex-a710";
-    set_feature(&cpu->env, ARM_FEATURE_V8);
-    set_feature(&cpu->env, ARM_FEATURE_NEON);
-    set_feature(&cpu->env, ARM_FEATURE_GENERIC_TIMER);
-    set_feature(&cpu->env, ARM_FEATURE_BACKCOMPAT_CNTFRQ);
-    set_feature(&cpu->env, ARM_FEATURE_AARCH64);
-    set_feature(&cpu->env, ARM_FEATURE_CBAR_RO);
-    set_feature(&cpu->env, ARM_FEATURE_EL2);
-    set_feature(&cpu->env, ARM_FEATURE_EL3);
-    set_feature(&cpu->env, ARM_FEATURE_PMU);
-
-    /* Ordered by Section B.4: AArch64 registers */
-    cpu->midr          = 0x412FD471; /* r2p1 */
-    cpu->revidr        = 0;
-    SET_IDREG(isar, ID_PFR0, 0x21110131);
-    SET_IDREG(isar, ID_PFR1, 0x00010000); /* GIC filled in later */
-    SET_IDREG(isar, ID_DFR0, 0x16011099);
-    SET_IDREG(isar, ID_AFR0, 0);
-    SET_IDREG(isar, ID_MMFR0, 0x10201105);
-    SET_IDREG(isar, ID_MMFR1, 0x40000000);
-    SET_IDREG(isar, ID_MMFR2, 0x01260000);
-    SET_IDREG(isar, ID_MMFR3, 0x02122211);
-    SET_IDREG(isar, ID_ISAR0, 0x02101110);
-    SET_IDREG(isar, ID_ISAR1, 0x13112111);
-    SET_IDREG(isar, ID_ISAR2, 0x21232042);
-    SET_IDREG(isar, ID_ISAR3, 0x01112131);
-    SET_IDREG(isar, ID_ISAR4, 0x00010142);
-    SET_IDREG(isar, ID_ISAR5, 0x11011121); /* with Crypto */
-    SET_IDREG(isar, ID_MMFR4, 0x21021110);
-    SET_IDREG(isar, ID_ISAR6, 0x01111111);
-    cpu->isar.mvfr0    = 0x10110222;
-    cpu->isar.mvfr1    = 0x13211111;
-    cpu->isar.mvfr2    = 0x00000043;
-    SET_IDREG(isar, ID_PFR2, 0x00000011);
-    SET_IDREG(isar, ID_AA64PFR0, 0x1201111120111112ull); /* GIC filled in later */
-    SET_IDREG(isar, ID_AA64PFR1, 0x0000000000000221ull);
-    SET_IDREG(isar, ID_AA64ZFR0, 0x0000110100110021ull); /* with Crypto */
-    SET_IDREG(isar, ID_AA64DFR0, 0x000011f010305619ull);
-    SET_IDREG(isar, ID_AA64DFR1, 0);
-    SET_IDREG(isar, ID_AA64AFR0, 0);
-    SET_IDREG(isar, ID_AA64AFR1, 0);
-    SET_IDREG(isar, ID_AA64ISAR0, 0x0221111110212120ull); /* with Crypto */
-    SET_IDREG(isar, ID_AA64ISAR1, 0x0010111101211052ull);
-    SET_IDREG(isar, ID_AA64MMFR0, 0x0000022200101122ull);
-    SET_IDREG(isar, ID_AA64MMFR1, 0x0000000010212122ull);
-    SET_IDREG(isar, ID_AA64MMFR2, 0x1221011110101011ull);
-    SET_IDREG(isar, CLIDR, 0x0000001482000023ull);
-    cpu->gm_blocksize      = 4;
-    cpu->ctr               = 0x000000049444c004ull;
-    set_dczid_bs(cpu, 4);
-    /* TODO FEAT_MPAM: mpamidr_el1 = 0x0000_0001_0006_003f */
-
-    /* Section B.5.2: PMCR_EL0 */
-    cpu->isar.reset_pmcr_el0 = 0xa000;  /* with 20 counters */
-
-    /* Section B.6.7: ICH_VTR_EL2 */
-    cpu->gic_num_lrs = 4;
-    cpu->gic_vpribits = 5;
-    cpu->gic_vprebits = 5;
-    cpu->gic_pribits = 5;
-
-    /* Section 14: Scalable Vector Extensions support */
-    cpu->sve_vq.supported = 1 << 0;  /* 128bit */
-
-    /*
-     * The cortex-a710 TRM does not list CCSIDR values.  The layout of
-     * the caches are in text in Table 7-1, Table 8-1, and Table 9-1.
-     *
-     * L1: 4-way set associative 64-byte line size, total either 32K or 64K.
-     * L2: 8-way set associative 64 byte line size, total either 256K or 512K.
-     */
-    /* L1 dcache */
-    cpu->ccsidr[0] = make_ccsidr(CCSIDR_FORMAT_CCIDX, 4, 64, 64 * KiB, 0);
-    /* L1 icache */
-    cpu->ccsidr[1] = cpu->ccsidr[0];
-    /* L2 cache */
-    cpu->ccsidr[2] = make_ccsidr(CCSIDR_FORMAT_CCIDX, 8, 64, 512 * KiB, 0);
-
-    /* FIXME: Not documented -- copied from neoverse-v1 */
-    cpu->reset_sctlr = 0x30c50838;
-
-    define_arm_cp_regs(cpu, cortex_a710_cp_reginfo);
-
-    aarch64_add_pauth_properties(obj);
-    aarch64_add_sve_properties(obj);
-}
 
 /* Extra IMPDEF regs in the N2 beyond those in the A710 */
 static const ARMCPRegInfo neoverse_n2_cp_reginfo[] = {
@@ -1059,101 +594,6 @@ static const ARMCPRegInfo neoverse_n2_cp_reginfo[] = {
       .access = PL3_RW, .type = ARM_CP_CONST, .resetvalue = 0 },
 };
 
-static void aarch64_neoverse_n2_initfn(Object *obj)
-{
-    ARMCPU *cpu = ARM_CPU(obj);
-    ARMISARegisters *isar = &cpu->isar;
-
-    cpu->dtb_compatible = "arm,neoverse-n2";
-    set_feature(&cpu->env, ARM_FEATURE_V8);
-    set_feature(&cpu->env, ARM_FEATURE_NEON);
-    set_feature(&cpu->env, ARM_FEATURE_GENERIC_TIMER);
-    set_feature(&cpu->env, ARM_FEATURE_BACKCOMPAT_CNTFRQ);
-    set_feature(&cpu->env, ARM_FEATURE_AARCH64);
-    set_feature(&cpu->env, ARM_FEATURE_CBAR_RO);
-    set_feature(&cpu->env, ARM_FEATURE_EL2);
-    set_feature(&cpu->env, ARM_FEATURE_EL3);
-    set_feature(&cpu->env, ARM_FEATURE_PMU);
-
-    /* Ordered by Section B.5: AArch64 ID registers */
-    cpu->midr          = 0x410FD493; /* r0p3 */
-    cpu->revidr        = 0;
-    SET_IDREG(isar, ID_PFR0, 0x21110131);
-    SET_IDREG(isar, ID_PFR1, 0x00010000); /* GIC filled in later */
-    SET_IDREG(isar, ID_DFR0, 0x16011099);
-    SET_IDREG(isar, ID_AFR0, 0);
-    SET_IDREG(isar, ID_MMFR0, 0x10201105);
-    SET_IDREG(isar, ID_MMFR1, 0x40000000);
-    SET_IDREG(isar, ID_MMFR2, 0x01260000);
-    SET_IDREG(isar, ID_MMFR3, 0x02122211);
-    SET_IDREG(isar, ID_ISAR0, 0x02101110);
-    SET_IDREG(isar, ID_ISAR1, 0x13112111);
-    SET_IDREG(isar, ID_ISAR2, 0x21232042);
-    SET_IDREG(isar, ID_ISAR3, 0x01112131);
-    SET_IDREG(isar, ID_ISAR4, 0x00010142);
-    SET_IDREG(isar, ID_ISAR5, 0x11011121); /* with Crypto */
-    SET_IDREG(isar, ID_MMFR4, 0x01021110);
-    SET_IDREG(isar, ID_ISAR6, 0x01111111);
-    cpu->isar.mvfr0    = 0x10110222;
-    cpu->isar.mvfr1    = 0x13211111;
-    cpu->isar.mvfr2    = 0x00000043;
-    SET_IDREG(isar, ID_PFR2, 0x00000011);
-    SET_IDREG(isar, ID_AA64PFR0, 0x1201111120111112ull); /* GIC filled in later */
-    SET_IDREG(isar, ID_AA64PFR1, 0x0000000000000221ull);
-    SET_IDREG(isar, ID_AA64ZFR0, 0x0000110100110021ull); /* with Crypto */
-    SET_IDREG(isar, ID_AA64DFR0, 0x000011f210305619ull);
-    SET_IDREG(isar, ID_AA64DFR1, 0);
-    SET_IDREG(isar, ID_AA64AFR0, 0);
-    SET_IDREG(isar, ID_AA64AFR1, 0);
-    SET_IDREG(isar, ID_AA64ISAR0, 0x1221111110212120ull); /* with Crypto and FEAT_RNG */
-    SET_IDREG(isar, ID_AA64ISAR1, 0x0011111101211052ull);
-    SET_IDREG(isar, ID_AA64MMFR0, 0x0000022200101125ull);
-    SET_IDREG(isar, ID_AA64MMFR1, 0x0000000010212122ull);
-    SET_IDREG(isar, ID_AA64MMFR2, 0x1221011112101011ull);
-    SET_IDREG(isar, CLIDR, 0x0000001482000023ull);
-    cpu->gm_blocksize      = 4;
-    cpu->ctr               = 0x00000004b444c004ull;
-    set_dczid_bs(cpu, 4);
-    /* TODO FEAT_MPAM: mpamidr_el1 = 0x0000_0001_001e_01ff */
-
-    /* Section B.7.2: PMCR_EL0 */
-    cpu->isar.reset_pmcr_el0 = 0x3000;  /* with 6 counters */
-
-    /* Section B.8.9: ICH_VTR_EL2 */
-    cpu->gic_num_lrs = 4;
-    cpu->gic_vpribits = 5;
-    cpu->gic_vprebits = 5;
-    cpu->gic_pribits = 5;
-
-    /* Section 14: Scalable Vector Extensions support */
-    cpu->sve_vq.supported = 1 << 0;  /* 128bit */
-
-    /*
-     * The Neoverse N2 TRM does not list CCSIDR values.  The layout of
-     * the caches are in text in Table 7-1, Table 8-1, and Table 9-1.
-     *
-     * L1: 4-way set associative 64-byte line size, total 64K.
-     * L2: 8-way set associative 64 byte line size, total either 512K or 1024K.
-     */
-    /* L1 dcache */
-    cpu->ccsidr[0] = make_ccsidr(CCSIDR_FORMAT_CCIDX, 4, 64, 64 * KiB, 0);
-    /* L1 icache */
-    cpu->ccsidr[1] = cpu->ccsidr[0];
-    /* L2 cache */
-    cpu->ccsidr[2] = make_ccsidr(CCSIDR_FORMAT_CCIDX, 8, 64, 512 * KiB, 0);
-    /* FIXME: Not documented -- copied from neoverse-v1 */
-    cpu->reset_sctlr = 0x30c50838;
-
-    /*
-     * The Neoverse N2 has all of the Cortex-A710 IMPDEF registers,
-     * and a few more RNG related ones.
-     */
-    define_arm_cp_regs(cpu, cortex_a710_cp_reginfo);
-    define_arm_cp_regs(cpu, neoverse_n2_cp_reginfo);
-
-    aarch64_add_pauth_properties(obj);
-    aarch64_add_sve_properties(obj);
-}
 
 /*
  * -cpu max: a CPU with as many features enabled as our emulation supports.
@@ -1399,6 +839,416 @@ void aarch64_max_tcg_initfn(Object *obj)
     qdev_property_add_static(DEVICE(obj), &arm_cpu_lpa2_property);
 }
 
+static void aarch64_a57_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    ARMISARegisters *isar = &cpu->isar;
+
+    cpu->dtb_compatible = "arm,cortex-a57";
+    set_feature(&cpu->env, ARM_FEATURE_V8);
+    set_feature(&cpu->env, ARM_FEATURE_NEON);
+    set_feature(&cpu->env, ARM_FEATURE_GENERIC_TIMER);
+    set_feature(&cpu->env, ARM_FEATURE_BACKCOMPAT_CNTFRQ);
+    set_feature(&cpu->env, ARM_FEATURE_AARCH64);
+    set_feature(&cpu->env, ARM_FEATURE_CBAR_RO);
+    set_feature(&cpu->env, ARM_FEATURE_EL2);
+    set_feature(&cpu->env, ARM_FEATURE_EL3);
+    set_feature(&cpu->env, ARM_FEATURE_PMU);
+    cpu->kvm_target = QEMU_KVM_ARM_TARGET_CORTEX_A57;
+    cpu->midr = 0x411fd070;
+    cpu->revidr = 0x00000000;
+    cpu->reset_fpsid = 0x41034070;
+    cpu->isar.mvfr0 = 0x10110222;
+    cpu->isar.mvfr1 = 0x12111111;
+    cpu->isar.mvfr2 = 0x00000043;
+    cpu->ctr = 0x8444c004;
+    cpu->reset_sctlr = 0x00c50838;
+    SET_IDREG(isar, ID_PFR0, 0x00000131);
+    SET_IDREG(isar, ID_PFR1, 0x00011011);
+    SET_IDREG(isar, ID_DFR0, 0x03010066);
+    SET_IDREG(isar, ID_AFR0, 0x00000000);
+    SET_IDREG(isar, ID_MMFR0, 0x10101105);
+    SET_IDREG(isar, ID_MMFR1, 0x40000000);
+    SET_IDREG(isar, ID_MMFR2, 0x01260000);
+    SET_IDREG(isar, ID_MMFR3, 0x02102211);
+    SET_IDREG(isar, ID_ISAR0, 0x02101110);
+    SET_IDREG(isar, ID_ISAR1, 0x13112111);
+    SET_IDREG(isar, ID_ISAR2, 0x21232042);
+    SET_IDREG(isar, ID_ISAR3, 0x01112131);
+    SET_IDREG(isar, ID_ISAR4, 0x00011142);
+    SET_IDREG(isar, ID_ISAR5, 0x00011121);
+    SET_IDREG(isar, ID_ISAR6, 0);
+    SET_IDREG(isar, ID_AA64PFR0, 0x00002222);
+    SET_IDREG(isar, ID_AA64DFR0, 0x10305106);
+    SET_IDREG(isar, ID_AA64ISAR0, 0x00011120);
+    SET_IDREG(isar, ID_AA64MMFR0, 0x00001124);
+    cpu->isar.dbgdidr = 0x3516d000;
+    cpu->isar.dbgdevid = 0x01110f13;
+    cpu->isar.dbgdevid1 = 0x2;
+    cpu->isar.reset_pmcr_el0 = 0x41013000;
+    SET_IDREG(isar, CLIDR, 0x0a200023);
+    /* 32KB L1 dcache */
+    cpu->ccsidr[0] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 4, 64, 32 * KiB, 7);
+    /* 48KB L1 icache */
+    cpu->ccsidr[1] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 3, 64, 48 * KiB, 2);
+    /* 2048KB L2 cache */
+    cpu->ccsidr[2] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 16, 64, 2 * MiB, 7);
+    set_dczid_bs(cpu, 4); /* 64 bytes */
+    cpu->gic_num_lrs = 4;
+    cpu->gic_vpribits = 5;
+    cpu->gic_vprebits = 5;
+    cpu->gic_pribits = 5;
+    define_cortex_a72_a57_a53_cp_reginfo(cpu);
+}
+
+static void aarch64_a53_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    ARMISARegisters *isar = &cpu->isar;
+
+    cpu->dtb_compatible = "arm,cortex-a53";
+    set_feature(&cpu->env, ARM_FEATURE_V8);
+    set_feature(&cpu->env, ARM_FEATURE_NEON);
+    set_feature(&cpu->env, ARM_FEATURE_GENERIC_TIMER);
+    set_feature(&cpu->env, ARM_FEATURE_BACKCOMPAT_CNTFRQ);
+    set_feature(&cpu->env, ARM_FEATURE_AARCH64);
+    set_feature(&cpu->env, ARM_FEATURE_CBAR_RO);
+    set_feature(&cpu->env, ARM_FEATURE_EL2);
+    set_feature(&cpu->env, ARM_FEATURE_EL3);
+    set_feature(&cpu->env, ARM_FEATURE_PMU);
+    cpu->kvm_target = QEMU_KVM_ARM_TARGET_CORTEX_A53;
+    cpu->midr = 0x410fd034;
+    cpu->revidr = 0x00000100;
+    cpu->reset_fpsid = 0x41034070;
+    cpu->isar.mvfr0 = 0x10110222;
+    cpu->isar.mvfr1 = 0x12111111;
+    cpu->isar.mvfr2 = 0x00000043;
+    cpu->ctr = 0x84448004; /* L1Ip = VIPT */
+    cpu->reset_sctlr = 0x00c50838;
+    SET_IDREG(isar, ID_PFR0, 0x00000131);
+    SET_IDREG(isar, ID_PFR1, 0x00011011);
+    SET_IDREG(isar, ID_DFR0, 0x03010066);
+    SET_IDREG(isar, ID_AFR0, 0x00000000);
+    SET_IDREG(isar, ID_MMFR0, 0x10101105);
+    SET_IDREG(isar, ID_MMFR1, 0x40000000);
+    SET_IDREG(isar, ID_MMFR2, 0x01260000);
+    SET_IDREG(isar, ID_MMFR3, 0x02102211);
+    SET_IDREG(isar, ID_ISAR0, 0x02101110);
+    SET_IDREG(isar, ID_ISAR1, 0x13112111);
+    SET_IDREG(isar, ID_ISAR2, 0x21232042);
+    SET_IDREG(isar, ID_ISAR3, 0x01112131);
+    SET_IDREG(isar, ID_ISAR4, 0x00011142);
+    SET_IDREG(isar, ID_ISAR5, 0x00011121);
+    SET_IDREG(isar, ID_ISAR6, 0);
+    SET_IDREG(isar, ID_AA64PFR0, 0x00002222);
+    SET_IDREG(isar, ID_AA64DFR0, 0x10305106);
+    SET_IDREG(isar, ID_AA64ISAR0, 0x00011120);
+    SET_IDREG(isar, ID_AA64MMFR0, 0x00001122); /* 40 bit physical addr */
+    cpu->isar.dbgdidr = 0x3516d000;
+    cpu->isar.dbgdevid = 0x00110f13;
+    cpu->isar.dbgdevid1 = 0x1;
+    cpu->isar.reset_pmcr_el0 = 0x41033000;
+    SET_IDREG(isar, CLIDR, 0x0a200023);
+    /* 32KB L1 dcache */
+    cpu->ccsidr[0] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 4, 64, 32 * KiB, 7);
+    /* 32KB L1 icache */
+    cpu->ccsidr[1] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 1, 64, 32 * KiB, 2);
+    /* 1024KB L2 cache */
+    cpu->ccsidr[2] = make_ccsidr(CCSIDR_FORMAT_LEGACY, 16, 64, 1 * MiB, 7);
+    set_dczid_bs(cpu, 4); /* 64 bytes */
+    cpu->gic_num_lrs = 4;
+    cpu->gic_vpribits = 5;
+    cpu->gic_vprebits = 5;
+    cpu->gic_pribits = 5;
+    define_cortex_a72_a57_a53_cp_reginfo(cpu);
+}
+
+
+
+
+static void aarch64_max_initfn(Object *obj)
+{
+    /* TCG 'max' CPU: start with A57 feature set then add all TCG extensions */
+    aarch64_a57_initfn(obj);
+    aarch64_max_tcg_initfn(obj);
+}
+
+static void aarch64_host_initfn(Object *obj)
+{
+    /* In TCG mode, host == max */
+    aarch64_max_initfn(obj);
+}
+
+/* ---- Cortex-A55 (small efficient core) ---- */
+static void aarch64_a55_initfn(Object *obj)
+{
+    aarch64_a53_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a55";
+    cpu->midr = 0x410FD050; /* ARM Cortex-A55 r0p0 */
+}
+/* ---- Cortex-A72 ---- */
+static void aarch64_a72_initfn(Object *obj)
+{
+    aarch64_a57_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a72";
+    cpu->midr = 0x410FD080; /* ARM Cortex-A72 r0p0 */
+}
+/* ---- Cortex-A75 ---- */
+static void aarch64_a75_initfn(Object *obj)
+{
+    aarch64_a57_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a75";
+    cpu->midr = 0x410FD0A0; /* ARM Cortex-A75 r0p0 */
+}
+/* ---- Cortex-A76 ---- */
+static void aarch64_a76_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a76";
+    cpu->midr = 0x410FD0B0; /* ARM Cortex-A76 r0p0 */
+}
+/* ---- Cortex-A77 ---- */
+static void aarch64_a77_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a77";
+    cpu->midr = 0x410FD0D0; /* ARM Cortex-A77 r0p0 */
+}
+/* ---- Cortex-A78 ---- */
+static void aarch64_a78_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a78";
+    cpu->midr = 0x410FD410; /* ARM Cortex-A78 r0p0 */
+}
+/* ---- Cortex-A710 ---- */
+static void aarch64_a710_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a710";
+    cpu->midr = 0x410FD470; /* ARM Cortex-A710 r0p0 */
+}
+/* ---- Cortex-A715 ---- */
+static void aarch64_a715_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a715";
+    cpu->midr = 0x410FD4D0; /* ARM Cortex-A715 r0p0 */
+}
+/* ---- Cortex-X1 ---- */
+static void aarch64_x1_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x1";
+    cpu->midr = 0x410FE010; /* ARM Cortex-X1 r0p0 */
+}
+/* ---- Cortex-X2 ---- */
+static void aarch64_x2_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x2";
+    cpu->midr = 0x410FE170; /* ARM Cortex-X2 r0p0 */
+}
+/* ---- Cortex-X3 ---- */
+static void aarch64_x3_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x3";
+    cpu->midr = 0x410FE330; /* ARM Cortex-X3 r0p0 */
+}
+/* ---- Neoverse N1 (server) ---- */
+static void aarch64_neoverse_n1_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,neoverse-n1";
+    cpu->midr = 0x410FD0C1; /* ARM Neoverse-N1 r3p1 */
+}
+/* ---- Neoverse N2 (server, SVE2) ---- */
+static void aarch64_neoverse_n2_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,neoverse-n2";
+    cpu->midr = 0x410FD490; /* ARM Neoverse-N2 r0p0 */
+}
+/* ---- Neoverse V1 (server, SVE 512-bit) ---- */
+static void aarch64_neoverse_v1_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,neoverse-v1";
+    cpu->midr = 0x410FD402; /* ARM Neoverse-V1 r1p1 */
+}
+/* ---- Neoverse V2 (server, SVE2 256-bit) ---- */
+static void aarch64_neoverse_v2_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,neoverse-v2";
+    cpu->midr = 0x410FE170; /* ARM Neoverse-V2 r0p0 */
+}
+/* ---- Qualcomm Kryo 485 Gold (Snapdragon 855, SM8150) ---- */
+static void aarch64_kryo485_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,kryo485";
+    cpu->midr = 0x518F802D; /* Qualcomm Kryo 485 Gold */
+}
+/* ---- Qualcomm Kryo 585 Gold (Snapdragon 865, SM8250) ---- */
+static void aarch64_kryo585_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,kryo585";
+    cpu->midr = 0x512F803D; /* Qualcomm Kryo 585 */
+}
+/* ---- Qualcomm Oryon (Snapdragon X Elite, X1E80100) ---- */
+static void aarch64_oryon_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,oryon";
+    cpu->midr = 0x518F02B5; /* Qualcomm Oryon (SA8775P / X Elite) */
+}
+/* ---- MediaTek Cortex-A78 based (Dimensity 9000, MT6983) ---- */
+static void aarch64_mt_dimensity9000_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a78";
+    cpu->midr = 0x412FD410; /* Cortex-A78 as used in Dimensity 9000 */
+}
+/* ---- MediaTek Cortex-A715 based (Dimensity 9200, MT6985) ---- */
+static void aarch64_mt_dimensity9200_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a715";
+    cpu->midr = 0x412FD4D0; /* Cortex-A715 as used in Dimensity 9200 */
+}
+/* ---- Samsung Exynos M5 (Exynos 990, Mongoose 5) ---- */
+static void aarch64_exynos_m5_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "samsung,mongoose-m5";
+    cpu->midr = 0x530F0014; /* Samsung Mongoose M5 r0p4 */
+}
+/* ---- Samsung Exynos X1 (Exynos 2100, Cortex-X1 based) ---- */
+static void aarch64_exynos_x1_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x1";
+    cpu->midr = 0x530FE010; /* Cortex-X1 in Samsung Exynos 2100 */
+}
+/* ---- Samsung Exynos X4 (Exynos 2400, custom X4 core) ---- */
+static void aarch64_exynos_x4_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x4";
+    cpu->midr = 0x530FE610; /* Cortex-X4 variant in Exynos 2400 */
+}
+/* ---- Microsoft Azure Cobalt 100 (Neoverse N2 based) ---- */
+static void aarch64_cobalt100_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,neoverse-n2";
+    cpu->midr = 0xB40FD490; /* Microsoft Azure Cobalt 100 (Neoverse N2 variant) */
+}
+/* ---- Ampere Altra (AmpereOne predecessor, Neoverse N1 based) ---- */
+static void aarch64_altra_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "ampere,emag";
+    cpu->midr = 0xC00FD0C1; /* Ampere Altra / eMAG */
+}
+/* ---- Ampere AmpereOne (custom ARMv8.6+ core) ---- */
+static void aarch64_ampereone_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "ampere,ampereone";
+    cpu->midr = 0xC00FAC30; /* AmpereOne */
+}
+static void aarch64_apple_a14_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,icestorm";
+    cpu->midr = 0x610F0220; /* Apple Icestorm (A14 efficiency core) */
+}
+/* ---- Apple A15 Bionic ---- */
+static void aarch64_apple_a15_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,everest";
+    cpu->midr = 0x610F0240; /* Apple A15 Avalanche core */
+}
+/* ---- Apple A16 Bionic ---- */
+static void aarch64_apple_a16_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,everest";
+    cpu->midr = 0x610F0260; /* Apple A16 Everest core */
+}
+/* ---- Apple A17 Pro ---- */
+static void aarch64_apple_a17_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,everest";
+    cpu->midr = 0x610F0290; /* Apple A17 Pro core */
+}
+static void aarch64_apple_m1_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,firestorm";
+    cpu->midr = 0x610F0230; /* Apple Firestorm (M1 performance core) */
+}
+static void aarch64_apple_m2_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,avalanche";
+    cpu->midr = 0x610F0250; /* Apple Avalanche (M2 performance core) */
+}
+/* ---- Apple M3 (Everest) ---- */
+static void aarch64_apple_m3_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,everest";
+    cpu->midr = 0x610F0280; /* Apple Everest (M3 performance core) */
+}
+/* ---- Apple M4 ---- */
+static void aarch64_apple_m4_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,m4";
+    cpu->midr = 0x610F02A0; /* Apple M4 performance core */
+}
+
 static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "cortex-a35",         .initfn = aarch64_a35_initfn },
     { .name = "cortex-a55",         .initfn = aarch64_a55_initfn },
@@ -1414,6 +1264,33 @@ static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "neoverse-n1",        .initfn = aarch64_neoverse_n1_initfn },
     { .name = "neoverse-v1",        .initfn = aarch64_neoverse_v1_initfn },
     { .name = "neoverse-n2",        .initfn = aarch64_neoverse_n2_initfn },
+    { .name = "cortex-a75",                     .initfn = aarch64_a75_initfn },
+    { .name = "cortex-a77",                     .initfn = aarch64_a77_initfn },
+    { .name = "cortex-a78",                     .initfn = aarch64_a78_initfn },
+    { .name = "cortex-a715",                     .initfn = aarch64_a715_initfn },
+    { .name = "cortex-x1",                     .initfn = aarch64_x1_initfn },
+    { .name = "cortex-x2",                     .initfn = aarch64_x2_initfn },
+    { .name = "cortex-x3",                     .initfn = aarch64_x3_initfn },
+    { .name = "neoverse-v2",                     .initfn = aarch64_neoverse_v2_initfn },
+    { .name = "snapdragon-855",                     .initfn = aarch64_kryo485_initfn },
+    { .name = "snapdragon-865",                     .initfn = aarch64_kryo585_initfn },
+    { .name = "snapdragon-x-elite",                     .initfn = aarch64_oryon_initfn },
+    { .name = "dimensity-9000",                     .initfn = aarch64_mt_dimensity9000_initfn },
+    { .name = "dimensity-9200",                     .initfn = aarch64_mt_dimensity9200_initfn },
+    { .name = "exynos-990",                     .initfn = aarch64_exynos_m5_initfn },
+    { .name = "exynos-2100",                     .initfn = aarch64_exynos_x1_initfn },
+    { .name = "exynos-2400",                     .initfn = aarch64_exynos_x4_initfn },
+    { .name = "azure-cobalt-100",                     .initfn = aarch64_cobalt100_initfn },
+    { .name = "ampere-altra",                     .initfn = aarch64_altra_initfn },
+    { .name = "ampere-one",                     .initfn = aarch64_ampereone_initfn },
+    { .name = "apple-a14",                     .initfn = aarch64_apple_a14_initfn },
+    { .name = "apple-a15",                     .initfn = aarch64_apple_a15_initfn },
+    { .name = "apple-a16",                     .initfn = aarch64_apple_a16_initfn },
+    { .name = "apple-a17",                     .initfn = aarch64_apple_a17_initfn },
+    { .name = "apple-m1",                     .initfn = aarch64_apple_m1_initfn },
+    { .name = "apple-m2",                     .initfn = aarch64_apple_m2_initfn },
+    { .name = "apple-m3",                     .initfn = aarch64_apple_m3_initfn },
+    { .name = "apple-m4",                     .initfn = aarch64_apple_m4_initfn },
 };
 
 static void aarch64_cpu_register_types(void)
