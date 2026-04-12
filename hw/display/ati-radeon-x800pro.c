@@ -46,6 +46,7 @@ struct AtiRadeonX800proState {
     PCIDevice parent_obj;
     MemoryRegion bar0, bar1, bar3, bar5;
     uint32_t intr_en, clock_mhz;
+    uint32_t gpu_count;
     uint64_t clock_last_ns;
 };
 static uint32_t gpu_clk(AtiRadeonX800proState *s) {
@@ -161,6 +162,9 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);
 }
 static const VMStateDescription vms_ati_radeon_x800pro={.name="ati-radeon-x800pro",.version_id=1,.minimum_version_id=1,.fields=(const VMStateField[]){VMSTATE_PCI_DEVICE(parent_obj,AtiRadeonX800proState),VMSTATE_UINT32(intr_en,AtiRadeonX800proState),VMSTATE_UINT32(clock_mhz,AtiRadeonX800proState),VMSTATE_UINT64(clock_last_ns,AtiRadeonX800proState),VMSTATE_END_OF_LIST()}};
+static const Property gpu_multi_props_AtiRadeonX800proState[] = {
+    DEFINE_PROP_UINT32("gpu-count", AtiRadeonX800proState, gpu_count, 1),
+};
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x4A49;

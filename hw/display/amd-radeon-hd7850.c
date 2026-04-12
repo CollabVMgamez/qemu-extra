@@ -46,6 +46,7 @@ struct AmdRadeonHd7850State {
     PCIDevice parent_obj;
     MemoryRegion bar0, bar1, bar3, bar5;
     uint32_t intr_en, clock_mhz;
+    uint32_t gpu_count;
     uint64_t clock_last_ns;
 };
 static uint32_t gpu_clk(AmdRadeonHd7850State *s) {
@@ -142,6 +143,9 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);
 }
 static const VMStateDescription vms_amd_radeon_hd7850={.name="amd-radeon-hd7850",.version_id=1,.minimum_version_id=1,.fields=(const VMStateField[]){VMSTATE_PCI_DEVICE(parent_obj,AmdRadeonHd7850State),VMSTATE_UINT32(intr_en,AmdRadeonHd7850State),VMSTATE_UINT32(clock_mhz,AmdRadeonHd7850State),VMSTATE_UINT64(clock_last_ns,AmdRadeonHd7850State),VMSTATE_END_OF_LIST()}};
+static const Property gpu_multi_props_AmdRadeonHd7850State[] = {
+    DEFINE_PROP_UINT32("gpu-count", AmdRadeonHd7850State, gpu_count, 1),
+};
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x6819;

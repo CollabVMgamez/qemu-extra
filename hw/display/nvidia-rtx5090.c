@@ -113,6 +113,7 @@ struct NvidiaRTX5090State {
     uint32_t pfifo_intr_en;
     uint32_t clock_mhz;
     uint64_t clock_last_ns;
+    uint32_t gpu_count;
 };
 
 /* Fluctuating clock between base and boost */
@@ -311,11 +312,15 @@ static const VMStateDescription vmstate_rtx5090 = {
         VMSTATE_UINT32(intr_en,        NvidiaRTX5090State),
         VMSTATE_UINT32(pfifo_intr_en,  NvidiaRTX5090State),
         VMSTATE_UINT32(clock_mhz,      NvidiaRTX5090State),
+        VMSTATE_UINT32(gpu_count,       NvidiaRTX5090State            ),
         VMSTATE_UINT64(clock_last_ns,  NvidiaRTX5090State),
         VMSTATE_END_OF_LIST()
     },
 };
 
+static const Property gpu_multi_props_NvidiaRTX5090State[] = {
+    DEFINE_PROP_UINT32("gpu-count", NvidiaRTX5090State, gpu_count, 1),
+};
 static void rtx5090_class_init(ObjectClass *klass, const void *data)
 {
     DeviceClass    *dc = DEVICE_CLASS(klass);
@@ -330,6 +335,7 @@ static void rtx5090_class_init(ObjectClass *klass, const void *data)
     dc->desc         = "NVIDIA GeForce RTX 5090 (GB202, Blackwell)";
     dc->vmsd         = &vmstate_rtx5090;
     dc->hotpluggable = false;
+    device_class_set_props(dc, gpu_multi_props_NvidiaRTX5090State);
     set_bit(DEVICE_CATEGORY_DISPLAY, dc->categories);
 }
 

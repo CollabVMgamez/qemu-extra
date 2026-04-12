@@ -56,7 +56,7 @@ OBJECT_DECLARE_SIMPLE_TYPE(NvidiaGtx550tiState, NVIDIA_GTX550TI)
 struct NvidiaGtx550tiState {
     PCIDevice parent_obj;
     MemoryRegion bar0, bar1, bar3, bar5;
-    uint32_t intr_en, pfifo_intr_en;
+    uint32_t intr_en, pfifo_intr_en, gpu_count;
     uint32_t clock_mhz;
     uint64_t clock_last_ns;
 };
@@ -203,11 +203,15 @@ static const VMStateDescription vmstate_nvidia_gtx550ti = {
         VMSTATE_UINT32(intr_en,       NvidiaGtx550tiState),
         VMSTATE_UINT32(pfifo_intr_en, NvidiaGtx550tiState),
         VMSTATE_UINT32(clock_mhz,     NvidiaGtx550tiState),
+        VMSTATE_UINT32(gpu_count,       NvidiaGtx550tiState           ),
         VMSTATE_UINT64(clock_last_ns, NvidiaGtx550tiState),
         VMSTATE_END_OF_LIST()
     },
 };
 
+static const Property gpu_multi_props_NvidiaGtx550tiState[] = {
+    DEFINE_PROP_UINT32("gpu-count", NvidiaGtx550tiState, gpu_count, 1),
+};
 static void gpu_class_init(ObjectClass *klass, const void *data)
 {
     DeviceClass    *dc = DEVICE_CLASS(klass);
@@ -220,6 +224,7 @@ static void gpu_class_init(ObjectClass *klass, const void *data)
     dc->desc         = "NVIDIA GeForce GTX 550 Ti (GF116, Fermi)";
     dc->vmsd         = &vmstate_nvidia_gtx550ti;
     dc->hotpluggable = false;
+    device_class_set_props(dc, gpu_multi_props_NvidiaGtx550tiState);
     set_bit(DEVICE_CATEGORY_DISPLAY, dc->categories);
 }
 

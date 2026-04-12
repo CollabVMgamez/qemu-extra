@@ -56,7 +56,7 @@ OBJECT_DECLARE_SIMPLE_TYPE(NvidiaGtx580State, NVIDIA_GTX580)
 struct NvidiaGtx580State {
     PCIDevice parent_obj;
     MemoryRegion bar0, bar1, bar3, bar5;
-    uint32_t intr_en, pfifo_intr_en;
+    uint32_t intr_en, pfifo_intr_en, gpu_count;
     uint32_t clock_mhz;
     uint64_t clock_last_ns;
 };
@@ -203,11 +203,15 @@ static const VMStateDescription vmstate_nvidia_gtx580 = {
         VMSTATE_UINT32(intr_en,       NvidiaGtx580State),
         VMSTATE_UINT32(pfifo_intr_en, NvidiaGtx580State),
         VMSTATE_UINT32(clock_mhz,     NvidiaGtx580State),
+        VMSTATE_UINT32(gpu_count,       NvidiaGtx580State             ),
         VMSTATE_UINT64(clock_last_ns, NvidiaGtx580State),
         VMSTATE_END_OF_LIST()
     },
 };
 
+static const Property gpu_multi_props_NvidiaGtx580State[] = {
+    DEFINE_PROP_UINT32("gpu-count", NvidiaGtx580State, gpu_count, 1),
+};
 static void gpu_class_init(ObjectClass *klass, const void *data)
 {
     DeviceClass    *dc = DEVICE_CLASS(klass);
@@ -220,6 +224,7 @@ static void gpu_class_init(ObjectClass *klass, const void *data)
     dc->desc         = "NVIDIA GeForce GTX 580 (GF110, Fermi)";
     dc->vmsd         = &vmstate_nvidia_gtx580;
     dc->hotpluggable = false;
+    device_class_set_props(dc, gpu_multi_props_NvidiaGtx580State);
     set_bit(DEVICE_CATEGORY_DISPLAY, dc->categories);
 }
 

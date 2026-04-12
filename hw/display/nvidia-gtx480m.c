@@ -56,7 +56,7 @@ OBJECT_DECLARE_SIMPLE_TYPE(NvidiaGtx480mState, NVIDIA_GTX480M)
 struct NvidiaGtx480mState {
     PCIDevice parent_obj;
     MemoryRegion bar0, bar1, bar3, bar5;
-    uint32_t intr_en, pfifo_intr_en;
+    uint32_t intr_en, pfifo_intr_en, gpu_count;
     uint32_t clock_mhz;
     uint64_t clock_last_ns;
 };
@@ -203,11 +203,15 @@ static const VMStateDescription vmstate_nvidia_gtx480m = {
         VMSTATE_UINT32(intr_en,       NvidiaGtx480mState),
         VMSTATE_UINT32(pfifo_intr_en, NvidiaGtx480mState),
         VMSTATE_UINT32(clock_mhz,     NvidiaGtx480mState),
+        VMSTATE_UINT32(gpu_count,       NvidiaGtx480mState            ),
         VMSTATE_UINT64(clock_last_ns, NvidiaGtx480mState),
         VMSTATE_END_OF_LIST()
     },
 };
 
+static const Property gpu_multi_props_NvidiaGtx480mState[] = {
+    DEFINE_PROP_UINT32("gpu-count", NvidiaGtx480mState, gpu_count, 1),
+};
 static void gpu_class_init(ObjectClass *klass, const void *data)
 {
     DeviceClass    *dc = DEVICE_CLASS(klass);
@@ -220,6 +224,7 @@ static void gpu_class_init(ObjectClass *klass, const void *data)
     dc->desc         = "NVIDIA GeForce GTX 480M (GF100, Fermi, Mobile)";
     dc->vmsd         = &vmstate_nvidia_gtx480m;
     dc->hotpluggable = false;
+    device_class_set_props(dc, gpu_multi_props_NvidiaGtx480mState);
     set_bit(DEVICE_CATEGORY_DISPLAY, dc->categories);
 }
 

@@ -56,7 +56,7 @@ OBJECT_DECLARE_SIMPLE_TYPE(NvidiaGtx580mState, NVIDIA_GTX580M)
 struct NvidiaGtx580mState {
     PCIDevice parent_obj;
     MemoryRegion bar0, bar1, bar3, bar5;
-    uint32_t intr_en, pfifo_intr_en;
+    uint32_t intr_en, pfifo_intr_en, gpu_count;
     uint32_t clock_mhz;
     uint64_t clock_last_ns;
 };
@@ -203,11 +203,15 @@ static const VMStateDescription vmstate_nvidia_gtx580m = {
         VMSTATE_UINT32(intr_en,       NvidiaGtx580mState),
         VMSTATE_UINT32(pfifo_intr_en, NvidiaGtx580mState),
         VMSTATE_UINT32(clock_mhz,     NvidiaGtx580mState),
+        VMSTATE_UINT32(gpu_count,       NvidiaGtx580mState            ),
         VMSTATE_UINT64(clock_last_ns, NvidiaGtx580mState),
         VMSTATE_END_OF_LIST()
     },
 };
 
+static const Property gpu_multi_props_NvidiaGtx580mState[] = {
+    DEFINE_PROP_UINT32("gpu-count", NvidiaGtx580mState, gpu_count, 1),
+};
 static void gpu_class_init(ObjectClass *klass, const void *data)
 {
     DeviceClass    *dc = DEVICE_CLASS(klass);
@@ -220,6 +224,7 @@ static void gpu_class_init(ObjectClass *klass, const void *data)
     dc->desc         = "NVIDIA GeForce GTX 580M (GF110, Fermi, Mobile)";
     dc->vmsd         = &vmstate_nvidia_gtx580m;
     dc->hotpluggable = false;
+    device_class_set_props(dc, gpu_multi_props_NvidiaGtx580mState);
     set_bit(DEVICE_CATEGORY_DISPLAY, dc->categories);
 }
 

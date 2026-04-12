@@ -56,7 +56,7 @@ OBJECT_DECLARE_SIMPLE_TYPE(NvidiaGtx470State, NVIDIA_GTX470)
 struct NvidiaGtx470State {
     PCIDevice parent_obj;
     MemoryRegion bar0, bar1, bar3, bar5;
-    uint32_t intr_en, pfifo_intr_en;
+    uint32_t intr_en, pfifo_intr_en, gpu_count;
     uint32_t clock_mhz;
     uint64_t clock_last_ns;
 };
@@ -203,11 +203,15 @@ static const VMStateDescription vmstate_nvidia_gtx470 = {
         VMSTATE_UINT32(intr_en,       NvidiaGtx470State),
         VMSTATE_UINT32(pfifo_intr_en, NvidiaGtx470State),
         VMSTATE_UINT32(clock_mhz,     NvidiaGtx470State),
+        VMSTATE_UINT32(gpu_count,       NvidiaGtx470State             ),
         VMSTATE_UINT64(clock_last_ns, NvidiaGtx470State),
         VMSTATE_END_OF_LIST()
     },
 };
 
+static const Property gpu_multi_props_NvidiaGtx470State[] = {
+    DEFINE_PROP_UINT32("gpu-count", NvidiaGtx470State, gpu_count, 1),
+};
 static void gpu_class_init(ObjectClass *klass, const void *data)
 {
     DeviceClass    *dc = DEVICE_CLASS(klass);
@@ -220,6 +224,7 @@ static void gpu_class_init(ObjectClass *klass, const void *data)
     dc->desc         = "NVIDIA GeForce GTX 470 (GF100, Fermi)";
     dc->vmsd         = &vmstate_nvidia_gtx470;
     dc->hotpluggable = false;
+    device_class_set_props(dc, gpu_multi_props_NvidiaGtx470State);
     set_bit(DEVICE_CATEGORY_DISPLAY, dc->categories);
 }
 

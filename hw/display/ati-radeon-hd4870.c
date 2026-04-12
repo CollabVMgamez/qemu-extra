@@ -46,6 +46,7 @@ struct AtiRadeonHd4870State {
     PCIDevice parent_obj;
     MemoryRegion bar0, bar1, bar3, bar5;
     uint32_t intr_en, clock_mhz;
+    uint32_t gpu_count;
     uint64_t clock_last_ns;
 };
 static uint32_t gpu_clk(AtiRadeonHd4870State *s) {
@@ -161,6 +162,9 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);
 }
 static const VMStateDescription vms_ati_radeon_hd4870={.name="ati-radeon-hd4870",.version_id=1,.minimum_version_id=1,.fields=(const VMStateField[]){VMSTATE_PCI_DEVICE(parent_obj,AtiRadeonHd4870State),VMSTATE_UINT32(intr_en,AtiRadeonHd4870State),VMSTATE_UINT32(clock_mhz,AtiRadeonHd4870State),VMSTATE_UINT64(clock_last_ns,AtiRadeonHd4870State),VMSTATE_END_OF_LIST()}};
+static const Property gpu_multi_props_AtiRadeonHd4870State[] = {
+    DEFINE_PROP_UINT32("gpu-count", AtiRadeonHd4870State, gpu_count, 1),
+};
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x9440;

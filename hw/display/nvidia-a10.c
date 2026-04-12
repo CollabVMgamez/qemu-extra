@@ -17,7 +17,7 @@
 #define GPU_REVISION   0xA1
 #define GPU_CLASS      0x0300
 #define NV_BAR0_SIZE (16*MiB)
-#define NV_BAR1_SIZE (256*MiB)
+#define NV_BAR1_SIZE (64*MiB)  /* reduced for 32-bit phys addr compat */
 #define NV_BAR3_SIZE (32*MiB)
 #define NV_BAR5_SIZE (128*KiB)
 #define NV_PMC_BOOT_0       0x000000
@@ -51,6 +51,7 @@ struct NvidiaA10State {
     MemoryRegion bar0, bar1, bar3, bar5;
     uint32_t intr_en, pfifo_intr_en, clock_mhz;
     uint64_t clock_last_ns;
+    uint32_t gpu_count;
 };
 static uint32_t gpu_clk(NvidiaA10State *s) {
     uint64_t now = qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);
@@ -151,6 +152,9 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);
 }
 static const VMStateDescription vms_nvidia_a10={.name="nvidia-a10",.version_id=1,.minimum_version_id=1,.fields=(const VMStateField[]){VMSTATE_PCI_DEVICE(parent_obj,NvidiaA10State),VMSTATE_UINT32(intr_en,NvidiaA10State),VMSTATE_UINT32(pfifo_intr_en,NvidiaA10State),VMSTATE_UINT32(clock_mhz,NvidiaA10State),VMSTATE_UINT64(clock_last_ns,NvidiaA10State),VMSTATE_END_OF_LIST()}};
+static const Property gpu_multi_props_NvidiaA10State[] = {
+    DEFINE_PROP_UINT32("gpu-count", NvidiaA10State, gpu_count, 1),
+};
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x2236;

@@ -854,9 +854,343 @@ static void aarch64_max_initfn(Object *obj)
     }
 }
 
+/*
+ * MIDR_EL1 format: [31:24]=Implementer [23:20]=Variant [19:16]=Architecture
+ *                  [15:4]=PartNum [3:0]=Revision
+ * Implementers: 0x41=ARM, 0x51=Qualcomm, 0x4D=MediaTek(unofficial),
+ *               0x53=Samsung, 0x61=Apple, 0xC0=Ampere, 0x46=Fujitsu,
+ *               0x48=HiSilicon, 0xB4=Microsoft
+ */
+
+/* ---- Cortex-A55 (small efficient core) ---- */
+static void aarch64_a55_initfn(Object *obj)
+{
+    aarch64_a53_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a55";
+    cpu->midr = 0x410FD050; /* ARM Cortex-A55 r0p0 */
+}
+/* ---- Cortex-A65 (efficiency w/ MTE) ---- */
+static void aarch64_a65_initfn(Object *obj)
+{
+    aarch64_a57_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a65";
+    cpu->midr = 0x410FD060; /* ARM Cortex-A65 r0p0 */
+}
+/* ---- Cortex-A72 ---- */
+static void aarch64_a72_initfn(Object *obj)
+{
+    aarch64_a57_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a72";
+    cpu->midr = 0x410FD080; /* ARM Cortex-A72 r0p0 */
+}
+/* ---- Cortex-A75 ---- */
+static void aarch64_a75_initfn(Object *obj)
+{
+    aarch64_a57_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a75";
+    cpu->midr = 0x410FD0A0; /* ARM Cortex-A75 r0p0 */
+}
+/* ---- Cortex-A76 ---- */
+static void aarch64_a76_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a76";
+    cpu->midr = 0x410FD0B0; /* ARM Cortex-A76 r0p0 */
+}
+/* ---- Cortex-A77 ---- */
+static void aarch64_a77_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a77";
+    cpu->midr = 0x410FD0D0; /* ARM Cortex-A77 r0p0 */
+}
+/* ---- Cortex-A78 ---- */
+static void aarch64_a78_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a78";
+    cpu->midr = 0x410FD410; /* ARM Cortex-A78 r0p0 */
+}
+/* ---- Cortex-A710 ---- */
+static void aarch64_a710_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a710";
+    cpu->midr = 0x410FD470; /* ARM Cortex-A710 r0p0 */
+}
+/* ---- Cortex-A715 ---- */
+static void aarch64_a715_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a715";
+    cpu->midr = 0x410FD4D0; /* ARM Cortex-A715 r0p0 */
+}
+/* ---- Cortex-X1 ---- */
+static void aarch64_x1_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x1";
+    cpu->midr = 0x410FE010; /* ARM Cortex-X1 r0p0 */
+}
+/* ---- Cortex-X2 ---- */
+static void aarch64_x2_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x2";
+    cpu->midr = 0x410FE170; /* ARM Cortex-X2 r0p0 */
+}
+/* ---- Cortex-X3 ---- */
+static void aarch64_x3_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x3";
+    cpu->midr = 0x410FE330; /* ARM Cortex-X3 r0p0 */
+}
+/* ---- Neoverse N1 (server) ---- */
+static void aarch64_neoverse_n1_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,neoverse-n1";
+    cpu->midr = 0x410FD0C1; /* ARM Neoverse-N1 r3p1 */
+}
+/* ---- Neoverse N2 (server, SVE2) ---- */
+static void aarch64_neoverse_n2_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,neoverse-n2";
+    cpu->midr = 0x410FD490; /* ARM Neoverse-N2 r0p0 */
+}
+/* ---- Neoverse V1 (server, SVE 512-bit) ---- */
+static void aarch64_neoverse_v1_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,neoverse-v1";
+    cpu->midr = 0x410FD402; /* ARM Neoverse-V1 r1p1 */
+}
+/* ---- Neoverse V2 (server, SVE2 256-bit) ---- */
+static void aarch64_neoverse_v2_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,neoverse-v2";
+    cpu->midr = 0x410FE170; /* ARM Neoverse-V2 r0p0 */
+}
+/* ---- Qualcomm Kryo 485 Gold (Snapdragon 855, SM8150) ---- */
+static void aarch64_kryo485_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,kryo485";
+    cpu->midr = 0x518F802D; /* Qualcomm Kryo 485 Gold */
+}
+/* ---- Qualcomm Kryo 585 Gold (Snapdragon 865, SM8250) ---- */
+static void aarch64_kryo585_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,kryo585";
+    cpu->midr = 0x512F803D; /* Qualcomm Kryo 585 */
+}
+/* ---- Qualcomm Oryon (Snapdragon X Elite, X1E80100) ---- */
+static void aarch64_oryon_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,oryon";
+    cpu->midr = 0x518F02B5; /* Qualcomm Oryon (SA8775P / X Elite) */
+}
+/* ---- MediaTek Cortex-A78 based (Dimensity 9000, MT6983) ---- */
+static void aarch64_mt_dimensity9000_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a78";
+    cpu->midr = 0x412FD410; /* Cortex-A78 as used in Dimensity 9000 */
+}
+/* ---- MediaTek Cortex-A715 based (Dimensity 9200, MT6985) ---- */
+static void aarch64_mt_dimensity9200_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a715";
+    cpu->midr = 0x412FD4D0; /* Cortex-A715 as used in Dimensity 9200 */
+}
+/* ---- Samsung Exynos M5 (Exynos 990, Mongoose 5) ---- */
+static void aarch64_exynos_m5_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "samsung,mongoose-m5";
+    cpu->midr = 0x530F0014; /* Samsung Mongoose M5 r0p4 */
+}
+/* ---- Samsung Exynos X1 (Exynos 2100, Cortex-X1 based) ---- */
+static void aarch64_exynos_x1_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x1";
+    cpu->midr = 0x530FE010; /* Cortex-X1 in Samsung Exynos 2100 */
+}
+/* ---- Samsung Exynos X4 (Exynos 2400, custom X4 core) ---- */
+static void aarch64_exynos_x4_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x4";
+    cpu->midr = 0x530FE610; /* Cortex-X4 variant in Exynos 2400 */
+}
+/* ---- Microsoft Azure Cobalt 100 (Neoverse N2 based) ---- */
+static void aarch64_cobalt100_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,neoverse-n2";
+    cpu->midr = 0xB40FD490; /* Microsoft Azure Cobalt 100 (Neoverse N2 variant) */
+}
+/* ---- Ampere Altra (AmpereOne predecessor, Neoverse N1 based) ---- */
+static void aarch64_altra_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "ampere,emag";
+    cpu->midr = 0xC00FD0C1; /* Ampere Altra / eMAG */
+}
+/* ---- Ampere AmpereOne (custom ARMv8.6+ core) ---- */
+static void aarch64_ampereone_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "ampere,ampereone";
+    cpu->midr = 0xC00FAC30; /* AmpereOne */
+}
+/* ---- Apple A14 Bionic (Icestorm/Firestorm, ARMv8.5) ---- */
+static void aarch64_apple_a14_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,icestorm";
+    cpu->midr = 0x610F0220; /* Apple Icestorm (A14 efficiency core) */
+}
+/* ---- Apple M1 (Icestorm/Firestorm) ---- */
+static void aarch64_apple_m1_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,firestorm";
+    cpu->midr = 0x610F0230; /* Apple Firestorm (M1 performance core) */
+}
+/* ---- Apple M2 (Blizzard/Avalanche) ---- */
+static void aarch64_apple_m2_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,avalanche";
+    cpu->midr = 0x610F0250; /* Apple Avalanche (M2 performance core) */
+}
+/* ---- Apple M3 (Everest) ---- */
+static void aarch64_apple_m3_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,everest";
+    cpu->midr = 0x610F0280; /* Apple Everest (M3 performance core) */
+}
+/* ---- Apple M4 ---- */
+static void aarch64_apple_m4_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,m4";
+    cpu->midr = 0x610F02A0; /* Apple M4 performance core */
+}
+/* ---- Apple A15 Bionic ---- */
+static void aarch64_apple_a15_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,everest";
+    cpu->midr = 0x610F0240; /* Apple A15 Avalanche core */
+}
+/* ---- Apple A16 Bionic ---- */
+static void aarch64_apple_a16_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,everest";
+    cpu->midr = 0x610F0260; /* Apple A16 Everest core */
+}
+/* ---- Apple A17 Pro ---- */
+static void aarch64_apple_a17_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,everest";
+    cpu->midr = 0x610F0290; /* Apple A17 Pro core */
+}
+
 static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "cortex-a57",         .initfn = aarch64_a57_initfn },
     { .name = "cortex-a53",         .initfn = aarch64_a53_initfn },
+    /* ARM Cortex-A series */
+    { .name = "cortex-a55",         .initfn = aarch64_a55_initfn },
+    { .name = "cortex-a65",         .initfn = aarch64_a65_initfn },
+    { .name = "cortex-a72",         .initfn = aarch64_a72_initfn },
+    { .name = "cortex-a75",         .initfn = aarch64_a75_initfn },
+    { .name = "cortex-a76",         .initfn = aarch64_a76_initfn },
+    { .name = "cortex-a77",         .initfn = aarch64_a77_initfn },
+    { .name = "cortex-a78",         .initfn = aarch64_a78_initfn },
+    { .name = "cortex-a710",        .initfn = aarch64_a710_initfn },
+    { .name = "cortex-a715",        .initfn = aarch64_a715_initfn },
+    /* ARM Cortex-X series */
+    { .name = "cortex-x1",          .initfn = aarch64_x1_initfn },
+    { .name = "cortex-x2",          .initfn = aarch64_x2_initfn },
+    { .name = "cortex-x3",          .initfn = aarch64_x3_initfn },
+    /* ARM Neoverse server cores */
+    { .name = "neoverse-n1",        .initfn = aarch64_neoverse_n1_initfn },
+    { .name = "neoverse-n2",        .initfn = aarch64_neoverse_n2_initfn },
+    { .name = "neoverse-v1",        .initfn = aarch64_neoverse_v1_initfn },
+    { .name = "neoverse-v2",        .initfn = aarch64_neoverse_v2_initfn },
+    /* Qualcomm Snapdragon */
+    { .name = "snapdragon-855",     .initfn = aarch64_kryo485_initfn },
+    { .name = "snapdragon-865",     .initfn = aarch64_kryo585_initfn },
+    { .name = "snapdragon-x-elite", .initfn = aarch64_oryon_initfn },
+    /* MediaTek Dimensity */
+    { .name = "dimensity-9000",     .initfn = aarch64_mt_dimensity9000_initfn },
+    { .name = "dimensity-9200",     .initfn = aarch64_mt_dimensity9200_initfn },
+    /* Samsung Exynos */
+    { .name = "exynos-990",         .initfn = aarch64_exynos_m5_initfn },
+    { .name = "exynos-2100",        .initfn = aarch64_exynos_x1_initfn },
+    { .name = "exynos-2400",        .initfn = aarch64_exynos_x4_initfn },
+    /* Microsoft Azure Cobalt */
+    { .name = "azure-cobalt-100",   .initfn = aarch64_cobalt100_initfn },
+    /* Ampere */
+    { .name = "ampere-altra",       .initfn = aarch64_altra_initfn },
+    { .name = "ampere-one",         .initfn = aarch64_ampereone_initfn },
+    /* Apple A-series */
+    { .name = "apple-a14",          .initfn = aarch64_apple_a14_initfn },
+    { .name = "apple-a15",          .initfn = aarch64_apple_a15_initfn },
+    { .name = "apple-a16",          .initfn = aarch64_apple_a16_initfn },
+    { .name = "apple-a17",          .initfn = aarch64_apple_a17_initfn },
+    /* Apple M-series */
+    { .name = "apple-m1",           .initfn = aarch64_apple_m1_initfn },
+    { .name = "apple-m2",           .initfn = aarch64_apple_m2_initfn },
+    { .name = "apple-m3",           .initfn = aarch64_apple_m3_initfn },
+    { .name = "apple-m4",           .initfn = aarch64_apple_m4_initfn },
     { .name = "max",                .initfn = aarch64_max_initfn },
 #if defined(CONFIG_KVM) || defined(CONFIG_HVF) || defined(CONFIG_WHPX)
     { .name = "host",               .initfn = aarch64_host_initfn },

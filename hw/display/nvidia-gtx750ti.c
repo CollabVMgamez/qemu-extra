@@ -114,6 +114,7 @@ struct NvidiaGTX750TiState {
     uint32_t clock_mhz;
     uint64_t clock_last_ns;
     uint32_t vram_type;
+    uint32_t gpu_count;
 };
 
 static uint32_t gtx750ti_get_clock(NvidiaGTX750TiState *s)
@@ -282,12 +283,16 @@ static const VMStateDescription vmstate_gtx750ti = {
         VMSTATE_UINT32(intr_en,       NvidiaGTX750TiState),
         VMSTATE_UINT32(pfifo_intr_en, NvidiaGTX750TiState),
         VMSTATE_UINT32(clock_mhz,     NvidiaGTX750TiState),
+        VMSTATE_UINT32(gpu_count,       NvidiaGTX750TiState           ),
         VMSTATE_UINT64(clock_last_ns, NvidiaGTX750TiState),
         VMSTATE_UINT32(vram_type,     NvidiaGTX750TiState),
         VMSTATE_END_OF_LIST()
     },
 };
 
+static const Property gpu_multi_props_NvidiaGTX750TiState[] = {
+    DEFINE_PROP_UINT32("gpu-count", NvidiaGTX750TiState, gpu_count, 1),
+};
 static void gtx750ti_class_init(ObjectClass *klass, const void *data)
 {
     DeviceClass    *dc = DEVICE_CLASS(klass);
@@ -300,6 +305,7 @@ static void gtx750ti_class_init(ObjectClass *klass, const void *data)
     dc->desc         = "NVIDIA GeForce GTX 750 Ti (GM107, Maxwell)";
     dc->vmsd         = &vmstate_gtx750ti;
     dc->hotpluggable = false;
+    device_class_set_props(dc, gpu_multi_props_NvidiaGTX750TiState);
     device_class_set_props(dc, gtx750ti_properties);
     set_bit(DEVICE_CATEGORY_DISPLAY, dc->categories);
 }
