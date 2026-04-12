@@ -3439,13 +3439,65 @@ static GPtrArray *virt_get_valid_cpu_types(const MachineState *ms)
     if (tcg_enabled() && target_aarch64()) {
         g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-a35")));
         g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-a55")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-a65")));
         g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-a72")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-a75")));
         g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-a76")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-a77")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-a78")));
         g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-a710")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-a715")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-x1")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-x2")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-x3")));
         g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("a64fx")));
         g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("neoverse-n1")));
-        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("neoverse-v1")));
         g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("neoverse-n2")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("neoverse-v1")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("neoverse-v2")));
+        /* Qualcomm Snapdragon */
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("snapdragon-660")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("snapdragon-710")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("snapdragon-730")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("snapdragon-855")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("snapdragon-855-plus")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("snapdragon-865")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("snapdragon-870")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("snapdragon-8-gen1")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("snapdragon-8-gen2")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("snapdragon-8-gen3")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("snapdragon-8cx-gen3")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("snapdragon-x-elite")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("snapdragon-x-plus")));
+        /* Samsung Exynos */
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("exynos-990")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("exynos-2100")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("exynos-2400")));
+        /* MediaTek */
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("dimensity-9000")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("dimensity-9200")));
+        /* Microsoft Azure Cobalt */
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("azure-cobalt-100")));
+        /* Ampere */
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("ampere-altra")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("ampere-one")));
+        /* Apple A-series */
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-a14")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-a15")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-a16")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-a17")));
+        /* Apple M-series */
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m1")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m1-pro")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m1-max")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m2")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m2-pro")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m2-max")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m2-ultra")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m3")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m3-pro")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m3-max")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m4")));
     }
     if (target_aarch64()) {
         g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("cortex-a53")));
