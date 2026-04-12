@@ -176,7 +176,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x7480;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="AMD Radeon RX 7600 (Navi33, RDNA 3.0)"; dc->vmsd=&vms_amd_rx7600; dc->hotpluggable=false;
+    dc->desc="AMD Radeon RX 7600 (Navi33, RDNA 3.0)"; dc->vmsd=&vms_amd_rx7600; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AmdRx7600State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_amd_rx7600={.name=TYPE_AMD_RX7600,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AmdRx7600State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

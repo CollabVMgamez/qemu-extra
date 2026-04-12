@@ -184,7 +184,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x514D;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="ATI Radeon 9100 (R200, AGP 4x, 128MB DDR, 2002)"; dc->vmsd=&vms_ati_radeon_9100; dc->hotpluggable=false;
+    dc->desc="ATI Radeon 9100 (R200, AGP 4x, 128MB DDR, 2002)"; dc->vmsd=&vms_ati_radeon_9100; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AtiRadeon9100State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_ati_radeon_9100={.name=TYPE_ATI_RADEON_9100,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AtiRadeon9100State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

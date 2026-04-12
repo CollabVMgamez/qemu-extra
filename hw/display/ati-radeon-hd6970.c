@@ -184,7 +184,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x6718;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="ATI Radeon HD 6970 (Cayman, PCIe x16, 2GB GDDR5, 2010)"; dc->vmsd=&vms_ati_radeon_hd6970; dc->hotpluggable=false;
+    dc->desc="ATI Radeon HD 6970 (Cayman, PCIe x16, 2GB GDDR5, 2010)"; dc->vmsd=&vms_ati_radeon_hd6970; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AtiRadeonHd6970State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_ati_radeon_hd6970={.name=TYPE_ATI_RADEON_HD6970,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AtiRadeonHd6970State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

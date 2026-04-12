@@ -176,7 +176,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x73FF;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="AMD Radeon RX 6600 (Navi23, RDNA 2.0)"; dc->vmsd=&vms_amd_rx6600; dc->hotpluggable=false;
+    dc->desc="AMD Radeon RX 6600 (Navi23, RDNA 2.0)"; dc->vmsd=&vms_amd_rx6600; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AmdRx6600State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_amd_rx6600={.name=TYPE_AMD_RX6600,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AmdRx6600State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

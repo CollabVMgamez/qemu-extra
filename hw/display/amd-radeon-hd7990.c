@@ -165,7 +165,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x679E;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="AMD Radeon HD 7990 (2x Tahiti, PCIe x16, 6GB GDDR5, 2013)"; dc->vmsd=&vms_amd_radeon_hd7990; dc->hotpluggable=false;
+    dc->desc="AMD Radeon HD 7990 (2x Tahiti, PCIe x16, 6GB GDDR5, 2013)"; dc->vmsd=&vms_amd_radeon_hd7990; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AmdRadeonHd7990State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_amd_radeon_hd7990={.name=TYPE_AMD_RADEON_HD7990,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AmdRadeonHd7990State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

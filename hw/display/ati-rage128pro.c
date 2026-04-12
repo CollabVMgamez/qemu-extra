@@ -184,7 +184,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x5046;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="ATI Rage 128 Pro (AGP 4x, 32MB SDR, 1999)"; dc->vmsd=&vms_ati_rage128pro; dc->hotpluggable=false;
+    dc->desc="ATI Rage 128 Pro (AGP 4x, 32MB SDR, 1999)"; dc->vmsd=&vms_ati_rage128pro; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AtiRage128proState);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_ati_rage128pro={.name=TYPE_ATI_RAGE128PRO,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AtiRage128proState),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

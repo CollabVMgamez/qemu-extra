@@ -175,7 +175,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x2330;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="NVIDIA H100 SXM5 (GH100, Hopper, 80GB HBM3)"; dc->vmsd=&vms_nvidia_h100_sxm5; dc->hotpluggable=false;
+    dc->desc="NVIDIA H100 SXM5 (GH100, Hopper, 80GB HBM3)"; dc->vmsd=&vms_nvidia_h100_sxm5; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_NvidiaH100Sxm5State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_nvidia_h100_sxm5={.name=TYPE_NVIDIA_H100_SXM5,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(NvidiaH100Sxm5State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

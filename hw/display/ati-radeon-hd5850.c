@@ -184,7 +184,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x6899;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="ATI Radeon HD 5850 (Cypress, PCIe x16, 1GB GDDR5, 2009)"; dc->vmsd=&vms_ati_radeon_hd5850; dc->hotpluggable=false;
+    dc->desc="ATI Radeon HD 5850 (Cypress, PCIe x16, 1GB GDDR5, 2009)"; dc->vmsd=&vms_ati_radeon_hd5850; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AtiRadeonHd5850State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_ati_radeon_hd5850={.name=TYPE_ATI_RADEON_HD5850,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AtiRadeonHd5850State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

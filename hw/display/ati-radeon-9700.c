@@ -184,7 +184,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x4E44;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="ATI Radeon 9700 (R300, AGP 8x, 128MB DDR, 2002)"; dc->vmsd=&vms_ati_radeon_9700; dc->hotpluggable=false;
+    dc->desc="ATI Radeon 9700 (R300, AGP 8x, 128MB DDR, 2002)"; dc->vmsd=&vms_ati_radeon_9700; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AtiRadeon9700State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_ati_radeon_9700={.name=TYPE_ATI_RADEON_9700,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AtiRadeon9700State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

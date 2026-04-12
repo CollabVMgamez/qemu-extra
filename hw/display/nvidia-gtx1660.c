@@ -176,7 +176,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x2184;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="NVIDIA GeForce GTX 1660 (TU116, Turing)"; dc->vmsd=&vms_nvidia_gtx1660; dc->hotpluggable=false;
+    dc->desc="NVIDIA GeForce GTX 1660 (TU116, Turing)"; dc->vmsd=&vms_nvidia_gtx1660; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_NvidiaGtx1660State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_nvidia_gtx1660={.name=TYPE_NVIDIA_GTX1660,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(NvidiaGtx1660State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

@@ -184,7 +184,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x94C3;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="ATI Radeon HD 2400 Pro (RV610, PCIe, 256MB DDR2, 2007)"; dc->vmsd=&vms_ati_radeon_hd2400; dc->hotpluggable=false;
+    dc->desc="ATI Radeon HD 2400 Pro (RV610, PCIe, 256MB DDR2, 2007)"; dc->vmsd=&vms_ati_radeon_hd2400; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AtiRadeonHd2400State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_ati_radeon_hd2400={.name=TYPE_ATI_RADEON_HD2400,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AtiRadeonHd2400State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

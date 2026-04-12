@@ -184,7 +184,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x5144;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="ATI Radeon 7200 (R100, AGP 4x, 64MB DDR, 2000)"; dc->vmsd=&vms_ati_radeon_7200; dc->hotpluggable=false;
+    dc->desc="ATI Radeon 7200 (R100, AGP 4x, 64MB DDR, 2000)"; dc->vmsd=&vms_ati_radeon_7200; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AtiRadeon7200State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_ati_radeon_7200={.name=TYPE_ATI_RADEON_7200,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AtiRadeon7200State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

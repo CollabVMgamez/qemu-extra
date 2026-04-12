@@ -165,7 +165,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x6799;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="AMD Radeon HD 7950 (Tahiti, PCIe x16, 3GB GDDR5, 2012)"; dc->vmsd=&vms_amd_radeon_hd7950; dc->hotpluggable=false;
+    dc->desc="AMD Radeon HD 7950 (Tahiti, PCIe x16, 3GB GDDR5, 2012)"; dc->vmsd=&vms_amd_radeon_hd7950; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AmdRadeonHd7950State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_amd_radeon_hd7950={.name=TYPE_AMD_RADEON_HD7950,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AmdRadeonHd7950State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

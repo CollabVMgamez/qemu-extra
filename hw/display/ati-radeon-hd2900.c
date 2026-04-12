@@ -184,7 +184,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x9400;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="ATI Radeon HD 2900 XT (R600, PCIe x16, 512MB GDDR3, 2007)"; dc->vmsd=&vms_ati_radeon_hd2900; dc->hotpluggable=false;
+    dc->desc="ATI Radeon HD 2900 XT (R600, PCIe x16, 512MB GDDR3, 2007)"; dc->vmsd=&vms_ati_radeon_hd2900; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AtiRadeonHd2900State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_ati_radeon_hd2900={.name=TYPE_ATI_RADEON_HD2900,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AtiRadeonHd2900State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

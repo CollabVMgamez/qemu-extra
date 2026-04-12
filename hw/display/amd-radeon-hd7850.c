@@ -165,7 +165,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x6819;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="AMD Radeon HD 7850 (Pitcairn, PCIe x16, 1GB GDDR5, 2012)"; dc->vmsd=&vms_amd_radeon_hd7850; dc->hotpluggable=false;
+    dc->desc="AMD Radeon HD 7850 (Pitcairn, PCIe x16, 1GB GDDR5, 2012)"; dc->vmsd=&vms_amd_radeon_hd7850; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AmdRadeonHd7850State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_amd_radeon_hd7850={.name=TYPE_AMD_RADEON_HD7850,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AmdRadeonHd7850State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

@@ -184,7 +184,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x68D8;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="ATI Radeon HD 5570 (Redwood, PCIe, 512MB GDDR3, 2010)"; dc->vmsd=&vms_ati_radeon_hd5570; dc->hotpluggable=false;
+    dc->desc="ATI Radeon HD 5570 (Redwood, PCIe, 512MB GDDR3, 2010)"; dc->vmsd=&vms_ati_radeon_hd5570; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AtiRadeonHd5570State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_ati_radeon_hd5570={.name=TYPE_ATI_RADEON_HD5570,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AtiRadeonHd5570State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

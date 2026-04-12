@@ -176,7 +176,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x744C;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="AMD Radeon RX 7900 XT (Navi31, RDNA 3.0)"; dc->vmsd=&vms_amd_rx7900xt; dc->hotpluggable=false;
+    dc->desc="AMD Radeon RX 7900 XT (Navi31, RDNA 3.0)"; dc->vmsd=&vms_amd_rx7900xt; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AmdRx7900xtState);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_amd_rx7900xt={.name=TYPE_AMD_RX7900XT,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AmdRx7900xtState),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

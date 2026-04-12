@@ -176,7 +176,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x67DF;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="AMD Radeon RX 480 (Polaris10, GCN 4.0)"; dc->vmsd=&vms_amd_rx480; dc->hotpluggable=false;
+    dc->desc="AMD Radeon RX 480 (Polaris10, GCN 4.0)"; dc->vmsd=&vms_amd_rx480; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AmdRx480State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_amd_rx480={.name=TYPE_AMD_RX480,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AmdRx480State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

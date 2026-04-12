@@ -184,7 +184,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x4B4A;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="ATI Radeon X850 XT Platinum (R480, AGP 8x, 256MB GDDR3, 2005)"; dc->vmsd=&vms_ati_radeon_x850xtpe; dc->hotpluggable=false;
+    dc->desc="ATI Radeon X850 XT Platinum (R480, AGP 8x, 256MB GDDR3, 2005)"; dc->vmsd=&vms_ati_radeon_x850xtpe; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AtiRadeonX850xtpeState);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_ati_radeon_x850xtpe={.name=TYPE_ATI_RADEON_X850XTPE,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AtiRadeonX850xtpeState),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

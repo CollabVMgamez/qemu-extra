@@ -165,7 +165,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x6938;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="AMD Radeon R9 380X (Antigua, PCIe x16, 4GB GDDR5, 2015)"; dc->vmsd=&vms_amd_radeon_r9_380x; dc->hotpluggable=false;
+    dc->desc="AMD Radeon R9 380X (Antigua, PCIe x16, 4GB GDDR5, 2015)"; dc->vmsd=&vms_amd_radeon_r9_380x; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AmdRadeonR9380xState);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_amd_radeon_r9_380x={.name=TYPE_AMD_RADEON_R9_380X,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AmdRadeonR9380xState),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

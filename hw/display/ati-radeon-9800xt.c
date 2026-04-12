@@ -184,7 +184,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x4E4A;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="ATI Radeon 9800 XT (R360, AGP 8x, 256MB DDR, 2003)"; dc->vmsd=&vms_ati_radeon_9800xt; dc->hotpluggable=false;
+    dc->desc="ATI Radeon 9800 XT (R360, AGP 8x, 256MB DDR, 2003)"; dc->vmsd=&vms_ati_radeon_9800xt; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AtiRadeon9800xtState);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_ati_radeon_9800xt={.name=TYPE_ATI_RADEON_9800XT,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AtiRadeon9800xtState),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

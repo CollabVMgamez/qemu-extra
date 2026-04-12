@@ -176,7 +176,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x1402;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="NVIDIA GeForce GTX 950 (GM206, Maxwell)"; dc->vmsd=&vms_nvidia_gtx950; dc->hotpluggable=false;
+    dc->desc="NVIDIA GeForce GTX 950 (GM206, Maxwell)"; dc->vmsd=&vms_nvidia_gtx950; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_NvidiaGtx950State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_nvidia_gtx950={.name=TYPE_NVIDIA_GTX950,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(NvidiaGtx950State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

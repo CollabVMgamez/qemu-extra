@@ -184,7 +184,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x5964;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="ATI Radeon 9200 SE (RV280, AGP 8x, 64MB DDR, 2003)"; dc->vmsd=&vms_ati_radeon_9200se; dc->hotpluggable=false;
+    dc->desc="ATI Radeon 9200 SE (RV280, AGP 8x, 64MB DDR, 2003)"; dc->vmsd=&vms_ati_radeon_9200se; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_AtiRadeon9200seState);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_ati_radeon_9200se={.name=TYPE_ATI_RADEON_9200SE,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AtiRadeon9200seState),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

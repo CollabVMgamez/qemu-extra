@@ -175,7 +175,7 @@ static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
     pc->realize=gpu_realize; pc->vendor_id=GPU_VENDOR_ID; pc->device_id=0x2330;
     pc->class_id=GPU_CLASS; pc->revision=GPU_REVISION;
-    dc->desc="NVIDIA DGX H100 node GPU (GH100, 80GB, 8x per node)"; dc->vmsd=&vms_nvidia_dgx_h100; dc->hotpluggable=false;
+    dc->desc="NVIDIA DGX H100 node GPU (GH100, 80GB, 8x per node)"; dc->vmsd=&vms_nvidia_dgx_h100; dc->hotpluggable=false; device_class_set_props(dc,gpu_multi_props_NvidiaDgxH100State);
     set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);
 }
 static const TypeInfo ti_nvidia_dgx_h100={.name=TYPE_NVIDIA_DGX_H100,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(NvidiaDgxH100State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};
