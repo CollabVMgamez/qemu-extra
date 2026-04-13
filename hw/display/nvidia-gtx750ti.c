@@ -115,6 +115,7 @@ struct NvidiaGTX750TiState {
     uint64_t clock_last_ns;
     uint32_t vram_type;
     uint32_t gpu_count;
+    char *gpu_name;
     char *board_partner;
 };
 
@@ -292,6 +293,7 @@ static const VMStateDescription vmstate_gtx750ti = {
 };
 
 static const Property gpu_multi_props_NvidiaGTX750TiState[] = {
+    DEFINE_PROP_STRING("gpu-name", NvidiaGTX750TiState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaGTX750TiState, gpu_count, 1),
 };
 static void gtx750ti_class_init(ObjectClass *klass, const void *data)

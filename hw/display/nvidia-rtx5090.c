@@ -114,6 +114,7 @@ struct NvidiaRTX5090State {
     uint32_t clock_mhz;
     uint64_t clock_last_ns;
     uint32_t gpu_count;
+    char *gpu_name;
     char *board_partner;
 };
 
@@ -320,6 +321,7 @@ static const VMStateDescription vmstate_rtx5090 = {
 };
 
 static const Property gpu_multi_props_NvidiaRTX5090State[] = {
+    DEFINE_PROP_STRING("gpu-name", NvidiaRTX5090State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaRTX5090State, gpu_count, 1),
 };
 static void rtx5090_class_init(ObjectClass *klass, const void *data)

@@ -109,6 +109,9 @@ static struct {
 static struct {
     const char *loc_pfx, *bank, *manufacturer, *serial, *asset, *part;
     uint16_t speed;
+    uint8_t memory_type;  /* SMBIOS memory type: 0x12=DDR2 0x18=DDR3 0x1A=DDR4 0x22=DDR5 */
+    uint8_t form_factor;  /* 0x09=DIMM 0x0D=SODIMM 0x0F=FB-DIMM */
+    const char *type_str; /* human-readable override: "DDR3" "DDR4" etc. */
 } type17;
 
 static QEnumLookup type41_kind_lookup = {
@@ -468,7 +471,15 @@ static const QemuOptDesc qemu_smbios_type17_opts[] = {
     },{
         .name = "speed",
         .type = QEMU_OPT_NUMBER,
-        .help = "maximum capable speed",
+        .help = "maximum capable speed in MHz",
+    },{
+        .name = "memory-type",
+        .type = QEMU_OPT_STRING,
+        .help = "memory type: ddr ddr2 ddr3 ddr4 ddr5 lpddr4 lpddr5",
+    },{
+        .name = "form-factor",
+        .type = QEMU_OPT_STRING,
+        .help = "form factor: dimm sodimm fbdimm",
     },
     { /* end of list */ }
 };
@@ -892,12 +903,26 @@ static void smbios_build_type_17_table(unsigned instance, uint64_t size)
         t->size = cpu_to_le16(MAX_T17_STD_SZ);
         t->extended_size = cpu_to_le32(size_mb);
     }
-    t->form_factor = 0x09; /* DIMM */
+    t->form_factor = type17.form_factor ? type17.form_factor : 0x09; /* DIMM */
     t->device_set = 0; /* Not in a set */
     snprintf(loc_str, sizeof(loc_str), "%s %d", type17.loc_pfx, instance);
     SMBIOS_TABLE_SET_STR(17, device_locator_str, loc_str);
     SMBIOS_TABLE_SET_STR(17, bank_locator_str, type17.bank);
-    t->memory_type = 0x07; /* RAM */
+    /* Memory type: use explicit type if set, else derive from type_str */
+    if (type17.memory_type) {
+        t->memory_type = type17.memory_type;
+    } else if (type17.type_str) {
+        if (!strcasecmp(type17.type_str, "ddr5"))       t->memory_type = 0x22;
+        else if (!strcasecmp(type17.type_str, "ddr4"))  t->memory_type = 0x1A;
+        else if (!strcasecmp(type17.type_str, "ddr3"))  t->memory_type = 0x18;
+        else if (!strcasecmp(type17.type_str, "ddr2"))  t->memory_type = 0x12;
+        else if (!strcasecmp(type17.type_str, "ddr"))   t->memory_type = 0x0B;
+        else if (!strcasecmp(type17.type_str, "lpddr5")) t->memory_type = 0x23;
+        else if (!strcasecmp(type17.type_str, "lpddr4")) t->memory_type = 0x1E;
+        else t->memory_type = 0x07; /* Unknown/Other */
+    } else {
+        t->memory_type = 0x07; /* Unknown */
+    }
     t->type_detail = cpu_to_le16(0x02); /* Other */
     t->speed = cpu_to_le16(type17.speed);
     SMBIOS_TABLE_SET_STR(17, manufacturer_str, type17.manufacturer);
@@ -1020,6 +1045,22 @@ void smbios_set_default_processor_family(uint16_t processor_family)
     if (type4.processor_family <= 0x01) {
         type4.processor_family = processor_family;
     }
+}
+
+
+void smbios_set_type17_memory_type(const char *type_str)
+{
+    if (!type_str) return;
+    type17.type_str = g_strdup(type_str);
+    /* Also set numeric type for immediate use */
+    if (!strcasecmp(type_str, "ddr5"))        type17.memory_type = 0x22;
+    else if (!strcasecmp(type_str, "ddr4"))   type17.memory_type = 0x1A;
+    else if (!strcasecmp(type_str, "ddr3"))   type17.memory_type = 0x18;
+    else if (!strcasecmp(type_str, "ddr2"))   type17.memory_type = 0x12;
+    else if (!strcasecmp(type_str, "ddr1") ||
+             !strcasecmp(type_str, "ddr"))    type17.memory_type = 0x0B;
+    else if (!strcasecmp(type_str, "lpddr5")) type17.memory_type = 0x23;
+    else if (!strcasecmp(type_str, "lpddr4")) type17.memory_type = 0x1E;
 }
 
 void smbios_set_defaults(const char *manufacturer, const char *product,
@@ -1543,7 +1584,17 @@ void smbios_entry_add(QemuOpts *opts, Error **errp)
             save_opt(&type17.serial, opts, "serial");
             save_opt(&type17.asset, opts, "asset");
             save_opt(&type17.part, opts, "part");
+            save_opt(&type17.type_str, opts, "memory-type");
             type17.speed = qemu_opt_get_number(opts, "speed", 0);
+            /* form-factor */
+            {
+                const char *ff = qemu_opt_get(opts, "form-factor");
+                if (ff) {
+                    if (!strcasecmp(ff, "sodimm"))      type17.form_factor = 0x0D;
+                    else if (!strcasecmp(ff, "fbdimm")) type17.form_factor = 0x0F;
+                    else                                type17.form_factor = 0x09; /* dimm */
+                }
+            }
             return;
         case 41: {
             struct type41_instance *t41_i;

@@ -41,6 +41,7 @@
 #define GPU_PFB_BOOT_0  0x00000015
 #define GPU_PFB_PARTS   0x00000008
 #define GPU_PFB_REFCTRL 0x80000083
+#define VPD_CAP_OFFSET 0x70
 #define GPU_CLK_BASE    1605
 #define GPU_MEM_MHZ     1750
 #define GPU_CLK_BOOST   1905
@@ -53,6 +54,7 @@ struct AmdRx5700xtState {
     uint32_t intr_en, pfifo_intr_en, clock_mhz;
     uint64_t clock_last_ns;
     uint32_t gpu_count;
+    char *gpu_name;
     char *board_partner;
 };
 static uint32_t gpu_clk(AmdRx5700xtState *s) {
@@ -145,6 +147,36 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID,GPU_SUBSYS_VID);
     pci_set_word(p->config+PCI_SUBSYSTEM_ID,GPU_SUBSYS_DID);
 
+    /* PCI VPD capability — allows lspci -vv and GPU-Z to read custom product name */
+    if (s->gpu_name && s->gpu_name[0]) {
+        uint8_t *c = p->config;
+        size_t name_len = strlen(s->gpu_name);
+        if (name_len > 40) name_len = 40;  /* cap at 40 chars */
+
+        /* Chain VPD after existing caps: find end of cap chain and add 0x70 */
+        /* MSI at 0x50 points to PCIe at 0x60, PCIe next=0x00 -> add VPD */
+        if (c[0x61] == 0x00) c[0x61] = VPD_CAP_OFFSET;  /* PCIe next -> VPD */
+        else if (c[0x51] == 0x60) c[0x51] = VPD_CAP_OFFSET; /* MSI next -> VPD */
+
+        c[VPD_CAP_OFFSET + 0] = 0x03;   /* Cap ID: VPD */
+        c[VPD_CAP_OFFSET + 1] = 0x00;   /* next cap: end */
+        /* VPD address register: address=0, F=1 (data ready) */
+        c[VPD_CAP_OFFSET + 2] = 0x00;
+        c[VPD_CAP_OFFSET + 3] = 0x80;   /* F=1: data ready */
+        /* VPD data at offset 0: first 4 bytes of VPD ROM */
+        /* VPD ROM: 0x82 [len_lo][len_hi] [name...] 0x79 [end] */
+        /* We put the name directly in config bytes 0x74..0x7F */
+        /* lspci reads VPD_DATA (cap+4) = config[VPD_CAP+4..+7] */
+        /* For a 40-char name, lspci does multiple reads at address 0,4,8... */
+        /* Simplest: store VPD ROM in bytes 0x74 onward */
+        uint8_t *vpd = c + VPD_CAP_OFFSET + 4;
+        vpd[0] = 0x82;                    /* Large Resource: Product Name */
+        vpd[1] = (uint8_t)name_len;       /* length low */
+        vpd[2] = 0x00;                    /* length high */
+        memcpy(vpd + 3, s->gpu_name, name_len);
+        vpd[3 + name_len] = 0x79;         /* VPD-R end tag */
+    }
+
     /* Apply board-partner subsystem vendor ID if set */
     if (s->board_partner && s->board_partner[0]) {
         static const struct { const char *name; uint16_t vid; } amd_partners[] = {
@@ -170,6 +202,7 @@ static void gpu_realize(PCIDevice *p, Error **e) {
 }
 static const VMStateDescription vms_amd_rx5700xt={.name="amd-rx5700xt",.version_id=1,.minimum_version_id=1,.fields=(const VMStateField[]){VMSTATE_PCI_DEVICE(parent_obj,AmdRx5700xtState),VMSTATE_UINT32(intr_en,AmdRx5700xtState),VMSTATE_UINT32(pfifo_intr_en,AmdRx5700xtState),VMSTATE_UINT32(clock_mhz,AmdRx5700xtState),VMSTATE_UINT64(clock_last_ns,AmdRx5700xtState),VMSTATE_END_OF_LIST()}};
 static const Property gpu_multi_props_AmdRx5700xtState[] = {
+    DEFINE_PROP_STRING("gpu-name", AmdRx5700xtState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AmdRx5700xtState, gpu_count, 1),
 };
 static void ci(ObjectClass *k, const void *d) {

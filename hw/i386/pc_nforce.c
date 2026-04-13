@@ -72,6 +72,11 @@ static void pc_init_spd(PCMachineState *pcms)
                        MACHINE(pcms)->ram_size : (1 * GiB));
     smbus_eeprom_init(pcms->smbus, 8, spd, 256);
     g_free(spd);
+    /* Also propagate ram-type to SMBIOS Type 17 */
+    if (pcms->ram_type) {
+        extern void smbios_set_type17_memory_type(const char *type_str);
+        smbios_set_type17_memory_type(pcms->ram_type);
+    }
 }
 
 /* ---------------------------------------------------------------------------

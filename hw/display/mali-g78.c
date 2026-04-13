@@ -27,6 +27,7 @@
 #define GPU_PFB_BOOT_0  0x00000013
 #define GPU_PFB_PARTS   0x00000001
 #define GPU_PFB_REFCTRL 0x80000053
+#define VPD_CAP_OFFSET 0x70
 #define GPU_CLK_BASE    818
 #define GPU_CLK_BOOST   818
 #define NV_PMC_BOOT_0   0x000000
@@ -46,6 +47,7 @@ struct MaliG78State {
     uint32_t clock_mhz;
     uint64_t clock_last_ns;
     uint32_t gpu_count;
+    char *gpu_name;
 };
 static uint32_t gpu_clk(MaliG78State *s) {
     uint64_t now = qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);
@@ -92,6 +94,36 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     p->config[PCI_CLASS_PROG]=0;
     pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID,GPU_SUBSYS_VID);
     pci_set_word(p->config+PCI_SUBSYSTEM_ID,GPU_SUBSYS_DID);
+
+    /* PCI VPD capability — allows lspci -vv and GPU-Z to read custom product name */
+    if (s->gpu_name && s->gpu_name[0]) {
+        uint8_t *c = p->config;
+        size_t name_len = strlen(s->gpu_name);
+        if (name_len > 40) name_len = 40;  /* cap at 40 chars */
+
+        /* Chain VPD after existing caps: find end of cap chain and add 0x70 */
+        /* MSI at 0x50 points to PCIe at 0x60, PCIe next=0x00 -> add VPD */
+        if (c[0x61] == 0x00) c[0x61] = VPD_CAP_OFFSET;  /* PCIe next -> VPD */
+        else if (c[0x51] == 0x60) c[0x51] = VPD_CAP_OFFSET; /* MSI next -> VPD */
+
+        c[VPD_CAP_OFFSET + 0] = 0x03;   /* Cap ID: VPD */
+        c[VPD_CAP_OFFSET + 1] = 0x00;   /* next cap: end */
+        /* VPD address register: address=0, F=1 (data ready) */
+        c[VPD_CAP_OFFSET + 2] = 0x00;
+        c[VPD_CAP_OFFSET + 3] = 0x80;   /* F=1: data ready */
+        /* VPD data at offset 0: first 4 bytes of VPD ROM */
+        /* VPD ROM: 0x82 [len_lo][len_hi] [name...] 0x79 [end] */
+        /* We put the name directly in config bytes 0x74..0x7F */
+        /* lspci reads VPD_DATA (cap+4) = config[VPD_CAP+4..+7] */
+        /* For a 40-char name, lspci does multiple reads at address 0,4,8... */
+        /* Simplest: store VPD ROM in bytes 0x74 onward */
+        uint8_t *vpd = c + VPD_CAP_OFFSET + 4;
+        vpd[0] = 0x82;                    /* Large Resource: Product Name */
+        vpd[1] = (uint8_t)name_len;       /* length low */
+        vpd[2] = 0x00;                    /* length high */
+        memcpy(vpd + 3, s->gpu_name, name_len);
+        vpd[3 + name_len] = 0x79;         /* VPD-R end tag */
+    }
     p->config[PCI_CAPABILITY_LIST]=0x50; p->config[PCI_STATUS]|=PCI_STATUS_CAP_LIST;
     p->config[0x50]=0x05;p->config[0x51]=0x00;p->config[0x52]=0x01;p->config[0x53]=0x00;
     memory_region_init_io(&s->bar0,OBJECT(s),&b0ops,s,"mali-g78-mmio",NV_BAR0_SIZE);
@@ -103,7 +135,8 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     memory_region_init_io(&s->bar5,OBJECT(s),&bops,s,"mali-g78-vgaio",NV_BAR5_SIZE);
     pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);
 }
-static const Property gpu_props_mali_g78[]={DEFINE_PROP_UINT32("gpu-count",MaliG78State,gpu_count,1)};
+static const Property gpu_props_mali_g78[]={DEFINE_PROP_UINT32("gpu-count",MaliG78State,gpu_count,1),
+    DEFINE_PROP_STRING("gpu-name",MaliG78State,gpu_name)};
 static const VMStateDescription vms_mali_g78={.name="mali-g78",.version_id=1,.minimum_version_id=1,
     .fields=(const VMStateField[]){VMSTATE_PCI_DEVICE(parent_obj,MaliG78State),VMSTATE_UINT32(clock_mhz,MaliG78State),VMSTATE_UINT64(clock_last_ns,MaliG78State),VMSTATE_UINT32(gpu_count,MaliG78State),VMSTATE_END_OF_LIST()}};
 static void ci(ObjectClass *k, const void *d) {
