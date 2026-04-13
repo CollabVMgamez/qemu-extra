@@ -59,6 +59,7 @@ typedef struct PCMachineState {
     /* RAM type shown in CPU-Z Memory tab (via SPD EEPROM on SMBus).
      * Valid values: "ddr", "ddr2", "ddr3", "ddr4"  (default: "ddr2") */
     char *ram_type;
+    char *system_name;  /* SMBIOS product name / window title */
 
     SGXEPCState sgx_epc;
     CXLState cxl_devices_state;

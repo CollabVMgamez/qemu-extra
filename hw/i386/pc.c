@@ -41,6 +41,7 @@
 #include "hw/input/i8042.h"
 #include "hw/audio/pcspk.h"
 #include "system/system.h"
+#include "hw/firmware/smbios.h"
 #include "system/xen.h"
 #include "system/reset.h"
 #include "kvm/kvm_i386.h"
@@ -538,6 +539,11 @@ void pc_machine_done(Notifier *notifier, void *data)
 
     acpi_setup();
     if (x86ms->fw_cfg) {
+        /* Apply user-specified system name to SMBIOS and window title */
+        if (pcms->system_name && pcms->system_name[0]) {
+            qemu_name = pcms->system_name;
+            smbios_type1.product = pcms->system_name;
+        }
         fw_cfg_build_smbios(pcms, x86ms->fw_cfg, pcms->smbios_entry_point_type);
         fw_cfg_add_e820(x86ms->fw_cfg);
         fw_cfg_build_feature_control(MACHINE(pcms), x86ms->fw_cfg);
@@ -1397,6 +1403,31 @@ static void pc_machine_set_ram_type(Object *obj, const char *value, Error **errp
     pcms->ram_type = g_strdup(value);
 }
 
+static char *pc_machine_get_system_name(Object *obj, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    return g_strdup(pcms->system_name ? pcms->system_name
+                                       : "QEMU Virtual Machine");
+}
+
+static void pc_machine_set_system_name(Object *obj, const char *value,
+                                        Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    g_free(pcms->system_name);
+    pcms->system_name = g_strdup(value);
+    /*
+     * Override SMBIOS Type 1 product/manufacturer so dmidecode,
+     * neofetch, fastfetch and /sys/class/dmi/id/product_name all
+     * report the user-specified name.
+     */
+    if (value && value[0]) {
+        /* Force the product name — overrides the default set later */
+        smbios_type1.product = g_strdup(value);
+        smbios_type1.manufacturer = g_strdup(value);
+    }
+}
+
 static void pc_machine_get_vmport(Object *obj, Visitor *v, const char *name,
                                   void *opaque, Error **errp)
 {
@@ -1703,6 +1734,12 @@ static void pc_machine_class_init(ObjectClass *oc, const void *data)
         pc_machine_get_ram_type, pc_machine_set_ram_type);
     object_class_property_set_description(oc, "ram-type",
         "RAM type shown in CPU-Z Memory tab (ddr, ddr2, ddr3, ddr4)");
+    object_class_property_add_str(oc, "system-name",
+        pc_machine_get_system_name, pc_machine_set_system_name);
+    object_class_property_set_description(oc, "system-name",
+        "System product name shown in dmidecode/neofetch/fastfetch "
+        "(sets SMBIOS Type 1 product name)");
+
 
 
 
