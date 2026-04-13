@@ -47,7 +47,7 @@ enum {
 };
 
 static const USBDescStrings desc_strings = {
-    [STR_MANUFACTURER] = "QEMU",
+    [STR_MANUFACTURER] = "Generic",
     [STR_PRODUCT]      = "QEMU USB HARDDRIVE",
     [STR_SERIALNUMBER] = "1",
     [STR_CONFIG_FULL]  = "Full speed config (usb 1.1)",
@@ -164,7 +164,7 @@ static const USBDescDevice desc_device_super = {
 
 static const USBDesc desc = {
     .id = {
-        .idVendor          = 0x46f4, /* CRC16() of "QEMU" */
+        .idVendor          = 0x0781, /* SanDisk */
         .idProduct         = 0x0001,
         .bcdDevice         = 0,
         .iManufacturer     = STR_MANUFACTURER,

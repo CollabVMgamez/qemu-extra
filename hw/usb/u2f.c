@@ -46,7 +46,7 @@ enum {
 };
 
 static const USBDescStrings desc_strings = {
-    [STR_MANUFACTURER]     = "QEMU",
+    [STR_MANUFACTURER]     = "Generic",
     [STR_PRODUCT]          = "U2F USB key",
     [STR_SERIALNUMBER]     = "0",
     [STR_CONFIG]           = "U2F key config",

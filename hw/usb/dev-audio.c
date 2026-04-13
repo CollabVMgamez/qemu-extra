@@ -73,7 +73,7 @@ enum usb_audio_strings {
 };
 
 static const USBDescStrings usb_audio_stringtable = {
-    [STRING_MANUFACTURER]       = "QEMU",
+    [STRING_MANUFACTURER]       = "Generic",
     [STRING_PRODUCT]            = "QEMU USB Audio",
     [STRING_SERIALNUMBER]       = "1",
     [STRING_CONFIG]             = "Audio Configuration",

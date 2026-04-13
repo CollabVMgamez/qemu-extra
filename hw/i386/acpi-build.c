@@ -1930,7 +1930,7 @@ static void build_laptop_ssdt(GArray *table_data, BIOSLinker *linker,
 {
     Aml *ssdt, *scope, *dev, *method, *pkg;
     AcpiTable table = { .sig = "SSDT", .rev = 2,
-                        .oem_id = oem_id, .oem_table_id = "QEMUBAT " };
+                        .oem_id = oem_id, .oem_table_id = "INTELBT " };
 
     acpi_table_begin(&table, table_data);
     ssdt = init_aml_allocator();
@@ -1969,10 +1969,10 @@ static void build_laptop_ssdt(GArray *table_data, BIOSLinker *linker,
     aml_append(pkg, aml_int(500));        /* Low capacity */
     aml_append(pkg, aml_int(1));          /* Granularity 1 */
     aml_append(pkg, aml_int(1));          /* Granularity 2 */
-    aml_append(pkg, aml_string("QEMU-BAT"));  /* Model */
-    aml_append(pkg, aml_string("1234567"));   /* Serial */
+    aml_append(pkg, aml_string("L19C4PC1"));  /* Model */
+    aml_append(pkg, aml_string("R18D4PH8"));  /* Serial */
     aml_append(pkg, aml_string("LION"));      /* Type: Li-Ion */
-    aml_append(pkg, aml_string("QEMU"));      /* OEM */
+    aml_append(pkg, aml_string("Lenovo"));    /* OEM */
     method = aml_method("_BIF", 0, AML_NOTSERIALIZED);
     aml_append(method, aml_return(pkg));
     aml_append(dev, method);

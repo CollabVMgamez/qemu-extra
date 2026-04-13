@@ -357,8 +357,8 @@ static void bochs_display_class_init(ObjectClass *klass, const void *data)
     PCIDeviceClass *k = PCI_DEVICE_CLASS(klass);
 
     k->class_id  = PCI_CLASS_DISPLAY_OTHER;
-    k->vendor_id = PCI_VENDOR_ID_QEMU;
-    k->device_id = PCI_DEVICE_ID_QEMU_VGA;
+    k->vendor_id = 0x8086;  /* Intel */
+    k->device_id = 0x1912;  /* Intel HD Graphics 530 (Skylake) */
 
     k->realize   = bochs_display_realize;
     k->romfile   = "vgabios-bochs-display.bin";

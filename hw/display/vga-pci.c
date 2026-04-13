@@ -355,8 +355,8 @@ static void vga_pci_class_init(ObjectClass *klass, const void *data)
     PCIDeviceClass *k = PCI_DEVICE_CLASS(klass);
     AcpiDevAmlIfClass *adevc = ACPI_DEV_AML_IF_CLASS(klass);
 
-    k->vendor_id = PCI_VENDOR_ID_QEMU;
-    k->device_id = PCI_DEVICE_ID_QEMU_VGA;
+    k->vendor_id = 0x8086;  /* Intel */
+    k->device_id = 0x1912;  /* Intel HD Graphics 530 (Skylake) */
     dc->vmsd = &vmstate_vga_pci;
     set_bit(DEVICE_CATEGORY_DISPLAY, dc->categories);
     adevc->build_dev_aml = build_vga_aml;

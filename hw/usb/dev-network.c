@@ -99,7 +99,7 @@ enum usbstring_idx {
 #define ETH_FRAME_LEN                   1514 /* Max. octets in frame sans FCS */
 
 static const USBDescStrings usb_net_stringtable = {
-    [STRING_MANUFACTURER]       = "QEMU",
+    [STRING_MANUFACTURER]       = "Generic",
     [STRING_PRODUCT]            = "RNDIS/QEMU USB Network Device",
     [STRING_ETHADDR]            = "400102030405",
     [STRING_DATA]               = "QEMU USB Net Data Interface",

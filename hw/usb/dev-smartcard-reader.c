@@ -419,7 +419,7 @@ enum {
 };
 
 static const USBDescStrings desc_strings = {
-    [STR_MANUFACTURER]  = "QEMU",
+    [STR_MANUFACTURER]  = "Generic",
     [STR_PRODUCT]       = "QEMU USB CCID",
     [STR_SERIALNUMBER]  = "1",
     [STR_INTERFACE]     = "CCID Interface",

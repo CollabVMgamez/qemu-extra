@@ -119,7 +119,7 @@ enum {
 };
 
 static const USBDescStrings desc_strings = {
-    [STR_MANUFACTURER]    = "QEMU",
+    [STR_MANUFACTURER]    = "Generic",
     [STR_PRODUCT_SERIAL]  = "QEMU USB SERIAL",
     [STR_PRODUCT_BRAILLE] = "QEMU USB BAUM BRAILLE",
     [STR_SERIALNUMBER]    = "1",
