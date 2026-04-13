@@ -170,7 +170,13 @@ system_ss.add(when: 'CONFIG_LASI', if_true: files('lasi.c'))
 # Intel ME and AMD PSP stubs
 system_ss.add(when: 'CONFIG_PCI', if_true: files('intel-me.c', 'amd-psp.c'))
 
-# Hardware identity stubs
-system_ss.add(when: 'CONFIG_PCI', if_true: files('asmedia-usb3-stub.c', 'asus-bd-writer-stub.c', 'atheros-wifi-qca6174-stub.c', 'broadcom-bt-4356-stub.c', 'broadcom-wifi-4352-stub.c', 'creative-sb-live-stub.c', 'creative-sb-xfi-stub.c', 'infineon-tpm20-stub.c', 'intel-bt-ax200-stub.c', 'intel-ehci-ich6-stub.c', 'intel-ehci-ich9-stub.c', 'intel-i219v-stub.c', 'intel-i225v-stub.c', 'intel-wifi-ax200-stub.c', 'intel-wifi-ax210-stub.c', 'intel-xhci-z170-stub.c', 'intel-xhci-z77-stub.c', 'lg-dvd-writer-stub.c', 'nec-usb3-stub.c', 'nuvoton-tpm20-stub.c', 'nvme-identity-stub.c', 'realtek-gbe-8111-stub.c', 'realtek-hda-1220-stub.c', 'realtek-hda-892-stub.c', 'st-tpm12-stub.c', 'via-usb2-stub.c'))
-
 system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files('monitor-edid-stub.c'))
+
+# Hardware identity stubs (PCI)
+system_ss.add(when: 'CONFIG_PCI', if_true: files('amd-xhci-b450-stub.c', 'amd-xhci-b550-stub.c', 'asmedia-usb3-stub.c', 'asus-bd-writer-stub.c', 'atheros-wifi-qca6174-stub.c', 'broadcom-bt-4356-stub.c', 'broadcom-wifi-4352-stub.c', 'creative-sb-live-stub.c', 'creative-sb-xfi-stub.c', 'etron-xhci-ej168-stub.c', 'fresco-xhci-fl1009-stub.c', 'fresco-xhci-fl1100-stub.c', 'genesys-xhci-gl3523-stub.c', 'infineon-tpm20-stub.c', 'intel-bt-ax200-stub.c', 'intel-ehci-ich10-stub.c', 'intel-ehci-ich6-stub.c', 'intel-ehci-ich7-stub.c', 'intel-ehci-ich9-stub.c', 'intel-i219v-stub.c', 'intel-i225v-stub.c', 'intel-ohci-ich5-stub.c', 'intel-wifi-ax200-stub.c', 'intel-wifi-ax210-stub.c', 'intel-xhci-z170-stub.c', 'intel-xhci-z270-stub.c', 'intel-xhci-z490-stub.c', 'intel-xhci-z77-stub.c', 'lg-dvd-writer-stub.c', 'nec-usb3-stub.c', 'nuvoton-tpm20-stub.c', 'nvme-identity-stub.c', 'realtek-gbe-8111-stub.c', 'realtek-hda-1220-stub.c', 'realtek-hda-892-stub.c', 'renesas-xhci-d720201-stub.c', 'renesas-xhci-d720202-stub.c', 'st-tpm12-stub.c', 'ti-ehci-tusb7320-stub.c', 'via-usb2-stub.c', 'via-xhci-vl805-stub.c'))
+
+# Monitor EDID stub (requires VGA_PCI)
+system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files('monitor-edid-stub.c'))
+
+# EC stub (ISA bus - x86 only)
+i386_ss.add(files('ec-stub.c'))

@@ -93,3 +93,5 @@ system_ss.add(when: ['CONFIG_USB', 'CONFIG_XEN_BUS', libusb], if_true: files('xe
 modules += { 'hw-usb': hw_usb_modules }
 
 system_ss.add(when: 'CONFIG_USB', if_true: files('dev-branded.c'))
+
+system_ss.add(when: 'CONFIG_USB_STORAGE_CORE', if_true: files('dev-branded-extended.c'))
