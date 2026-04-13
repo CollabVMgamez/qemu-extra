@@ -1380,6 +1380,107 @@ static void aarch64_snapdragon_xplus_initfn(Object *obj)
     cpu->midr = 0x518F02B3; /* Oryon in SD X Plus */
 }
 
+
+/* ---- Apple A7 Cyclone (iPhone 5s, iPad Air, 2013) ---- */
+static void aarch64_apple_a7_initfn(Object *obj)
+{
+    aarch64_a57_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,cyclone";
+    cpu->midr = 0x610F0010; /* Apple Cyclone r0p0 PartNum=0x001 */
+}
+/* ---- Apple A8 Typhoon (iPhone 6, 2014) ---- */
+static void aarch64_apple_a8_initfn(Object *obj)
+{
+    aarch64_a57_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,typhoon";
+    cpu->midr = 0x610F0020; /* Apple Typhoon PartNum=0x002 */
+}
+/* ---- Apple A9 Twister (iPhone 6s, 2015) ---- */
+static void aarch64_apple_a9_initfn(Object *obj)
+{
+    aarch64_a57_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,twister";
+    cpu->midr = 0x610F00B0; /* Apple Twister PartNum=0x00B */
+}
+/* ---- Apple A10 Fusion Hurricane (iPhone 7, 2016) ---- */
+static void aarch64_apple_a10_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,hurricane";
+    cpu->midr = 0x610F00F0; /* Apple Hurricane PartNum=0x00F */
+}
+/* ---- Apple A11 Bionic Monsoon (iPhone 8/X, 2017) ---- */
+static void aarch64_apple_a11_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,monsoon";
+    cpu->midr = 0x610F0100; /* Apple Monsoon PartNum=0x010 */
+}
+/* ---- Apple A12 Bionic Vortex (iPhone XS, 2018) ---- */
+static void aarch64_apple_a12_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,vortex";
+    cpu->midr = 0x610F0110; /* Apple Vortex PartNum=0x011 */
+}
+/* ---- Apple A13 Bionic Lightning (iPhone 11, 2019) ---- */
+static void aarch64_apple_a13_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,lightning";
+    cpu->midr = 0x610F0120; /* Apple Lightning PartNum=0x012 */
+}
+/* ---- Apple M4 Max (Hammerhead, more cores) ---- */
+static void aarch64_apple_m4_max_initfn(Object *obj)
+{
+    aarch64_apple_m4_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->midr = 0x610F0370; /* M4 Max PartNum=0x037 */
+}
+/* ---- Apple M4 Ultra (2x M4 Max dies) ---- */
+static void aarch64_apple_m4_ultra_initfn(Object *obj)
+{
+    aarch64_apple_m4_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->midr = 0x610F0380; /* M4 Ultra PartNum=0x038 (estimated) */
+}
+/* ---- Apple M5 (estimated, 2025+) ---- */
+static void aarch64_apple_m5_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "apple,m5";
+    cpu->midr = 0x610F0400; /* M5 PartNum=0x040 (estimated) */
+}
+/* ---- Apple M5 Pro ---- */
+static void aarch64_apple_m5_pro_initfn(Object *obj)
+{
+    aarch64_apple_m5_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->midr = 0x610F0410; /* M5 Pro (estimated) */
+}
+/* ---- Apple M5 Max ---- */
+static void aarch64_apple_m5_max_initfn(Object *obj)
+{
+    aarch64_apple_m5_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->midr = 0x610F0420; /* M5 Max (estimated) */
+}
+/* ---- Apple M5 Ultra ---- */
+static void aarch64_apple_m5_ultra_initfn(Object *obj)
+{
+    aarch64_apple_m5_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->midr = 0x610F0430; /* M5 Ultra (estimated) */
+}
+
 static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "cortex-a35",         .initfn = aarch64_a35_initfn },
     { .name = "cortex-a55",         .initfn = aarch64_a55_initfn },
@@ -1440,6 +1541,22 @@ static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "snapdragon-8-gen2",  .initfn = aarch64_snapdragon8gen2_initfn },
     { .name = "snapdragon-8-gen3",  .initfn = aarch64_snapdragon8gen3_initfn },
     { .name = "snapdragon-x-plus",  .initfn = aarch64_snapdragon_xplus_initfn },
+    /* Apple early A-series */
+    { .name = "apple-a7",           .initfn = aarch64_apple_a7_initfn },
+    { .name = "apple-a8",           .initfn = aarch64_apple_a8_initfn },
+    { .name = "apple-a9",           .initfn = aarch64_apple_a9_initfn },
+    { .name = "apple-a10",          .initfn = aarch64_apple_a10_initfn },
+    { .name = "apple-a11",          .initfn = aarch64_apple_a11_initfn },
+    { .name = "apple-a12",          .initfn = aarch64_apple_a12_initfn },
+    { .name = "apple-a13",          .initfn = aarch64_apple_a13_initfn },
+    /* Apple M4 variants */
+    { .name = "apple-m4-max",       .initfn = aarch64_apple_m4_max_initfn },
+    { .name = "apple-m4-ultra",     .initfn = aarch64_apple_m4_ultra_initfn },
+    /* Apple M5 (estimated) */
+    { .name = "apple-m5",           .initfn = aarch64_apple_m5_initfn },
+    { .name = "apple-m5-pro",       .initfn = aarch64_apple_m5_pro_initfn },
+    { .name = "apple-m5-max",       .initfn = aarch64_apple_m5_max_initfn },
+    { .name = "apple-m5-ultra",     .initfn = aarch64_apple_m5_ultra_initfn },
     { .name = "apple-m4",                     .initfn = aarch64_apple_m4_initfn },
 };
 

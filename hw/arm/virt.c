@@ -3497,6 +3497,22 @@ static GPtrArray *virt_get_valid_cpu_types(const MachineState *ms)
         g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m3")));
         g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m3-pro")));
         g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m3-max")));
+        /* Apple early A-series */
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-a7")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-a8")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-a9")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-a10")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-a11")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-a12")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-a13")));
+        /* Apple M4 Max/Ultra */
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m4-max")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m4-ultra")));
+        /* Apple M5 series */
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m5")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m5-pro")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m5-max")));
+        g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m5-ultra")));
         g_ptr_array_add(vct, g_strdup(ARM_CPU_TYPE_NAME("apple-m4")));
     }
     if (target_aarch64()) {

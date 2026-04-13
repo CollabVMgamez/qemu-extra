@@ -169,3 +169,6 @@ system_ss.add(when: 'CONFIG_LASI', if_true: files('lasi.c'))
 
 # Intel ME and AMD PSP stubs
 system_ss.add(when: 'CONFIG_PCI', if_true: files('intel-me.c', 'amd-psp.c'))
+
+# Hardware identity stubs
+system_ss.add(when: 'CONFIG_PCI', if_true: files('asmedia-usb3-stub.c', 'asus-bd-writer-stub.c', 'atheros-wifi-qca6174-stub.c', 'broadcom-bt-4356-stub.c', 'broadcom-wifi-4352-stub.c', 'creative-sb-live-stub.c', 'creative-sb-xfi-stub.c', 'infineon-tpm20-stub.c', 'intel-bt-ax200-stub.c', 'intel-ehci-ich6-stub.c', 'intel-ehci-ich9-stub.c', 'intel-i219v-stub.c', 'intel-i225v-stub.c', 'intel-wifi-ax200-stub.c', 'intel-wifi-ax210-stub.c', 'intel-xhci-z170-stub.c', 'intel-xhci-z77-stub.c', 'lg-dvd-writer-stub.c', 'nec-usb3-stub.c', 'nuvoton-tpm20-stub.c', 'nvme-identity-stub.c', 'realtek-gbe-8111-stub.c', 'realtek-hda-1220-stub.c', 'realtek-hda-892-stub.c', 'st-tpm12-stub.c', 'via-usb2-stub.c'))

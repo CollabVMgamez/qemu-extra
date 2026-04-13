@@ -10273,6 +10273,1724 @@ static const X86CPUDefinition builtin_x86_defs[] = {
     },
 
     {
+        .name = "pentium-m-725",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 9,
+        .stepping = 5,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Pentium(R) M processor 1.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Banias fam6 m9, 1MB L2, 400MHz FSB, 2003" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "pentium-m-740",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 13,
+        .stepping = 8,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Pentium(R) M processor 1.73GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Dothan fam6 m13, 2MB L2, 533MHz FSB, 2004" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "pentium-m-760",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 13,
+        .stepping = 8,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Pentium(R) M processor 2.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Dothan fam6 m13, 2MB L2, 533MHz FSB, 2005" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-m-370",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 13,
+        .stepping = 8,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(R) M processor 1.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Dothan budget, 1MB L2, 400MHz FSB, 2005" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "celeron-m-520",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 13,
+        .stepping = 8,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Celeron(R) M processor 1.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Yonah-L, 1MB L2, 533MHz FSB, 2006" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-solo-t1300",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 14,
+        .stepping = 8,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) Solo CPU T1300 @ 1.66GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Yonah, 2MB L2, 667MHz FSB, MacBook 2006" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-duo-t2300",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 14,
+        .stepping = 8,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) Duo CPU T2300 @ 1.66GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Yonah dual-core, 2MB L2, 667MHz FSB, MacBook Pro 2006" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-duo-t2500",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 14,
+        .stepping = 8,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) Duo CPU T2500 @ 2.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Yonah dual-core, 2MB L2, 667MHz FSB, MacBook Pro 2006" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "atom-n270",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 28,
+        .stepping = 2,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_MOVBE,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Atom(TM) CPU N270 @ 1.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Diamondville Bonnell, 512KB L2, netbook 2008" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "atom-n450",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 28,
+        .stepping = 10,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_MOVBE,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Atom(TM) CPU N450 @ 1.66GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Pineview Bonnell, 512KB L2, 2010" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "atom-d525",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 28,
+        .stepping = 10,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_MOVBE,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Atom(TM) CPU D525 @ 1.80GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Pineview dual-core Bonnell, 1MB L2, 2010" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "atom-z2760",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 54,
+        .stepping = 1,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 |
+            CPUID_EXT_MOVBE,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Atom(TM) CPU Z2760 @ 1.80GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Clover Trail Saltwell, tablet 2012" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "atom-z3735f",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 55,
+        .stepping = 3,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 |
+            CPUID_EXT_SSE42 | CPUID_EXT_MOVBE | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Atom(TM) CPU Z3735F @ 1.33GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Bay Trail Silvermont, tablet 2013" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "atom-x5-z8350",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 76,
+        .stepping = 4,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 |
+            CPUID_EXT_SSE42 | CPUID_EXT_MOVBE | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Atom(TM) x5-Z8350 @ 1.44GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Cherry Trail Airmont, tablet 2016" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "atom-x7-e3950",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 92,
+        .stepping = 9,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 |
+            CPUID_EXT_SSE42 | CPUID_EXT_MOVBE | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Atom(TM) x7-E3950 @ 1.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Apollo Lake Goldmont, IoT 2016" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core2-duo-t5600",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 15,
+        .stepping = 6,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Duo CPU T5600 @ 1.83GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Merom B2, 2MB L2, 667MHz FSB, 2006" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core2-duo-t9400",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 23,
+        .stepping = 6,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM)2 Duo CPU T9400 @ 2.53GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Penryn M, 6MB L2, 1066MHz FSB, 2008" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "xeon-e5345-macpro",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 15,
+        .stepping = 11,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_NX,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Xeon(R) CPU E5345 @ 2.33GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Clovertown quad-core, Mac Pro 2007, 8MB L2" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-2600",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 42,
+        .stepping = 7,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sandy Bridge, 4c+HT, 8MB L3, LGA1155, 2011" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-2700k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 42,
+        .stepping = 7,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-2700K CPU @ 3.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sandy Bridge, 4c+HT, 8MB L3, unlocked, 2011" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i5-2500k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 42,
+        .stepping = 7,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-2500K CPU @ 3.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sandy Bridge, 4c, 6MB L3, unlocked, 2011" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i5-2400",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 42,
+        .stepping = 7,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-2400 CPU @ 3.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sandy Bridge, 4c, 6MB L3, 2011" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i3-2100",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 42,
+        .stepping = 7,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i3-2100 CPU @ 3.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sandy Bridge, 2c+HT, 3MB L3, 2011" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-3930k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 45,
+        .stepping = 7,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-3930K CPU @ 3.20GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sandy Bridge-E, 6c+HT, 12MB L3, LGA2011, 2011" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-3960x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 45,
+        .stepping = 7,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-3960X CPU @ 3.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Sandy Bridge-E Extreme, 6c+HT, 15MB L3, unlocked" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-3770k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 58,
+        .stepping = 9,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-3770K CPU @ 3.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ivy Bridge, 4c+HT, 8MB L3, LGA1155, 2012" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i5-3570k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 58,
+        .stepping = 9,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-3570K CPU @ 3.40GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ivy Bridge, 4c, 6MB L3, unlocked, 2012" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i3-3220",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 58,
+        .stepping = 9,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_AVX |
+            CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i3-3220 CPU @ 3.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Ivy Bridge, 2c+HT, 3MB L3, 2012" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-4770k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 60,
+        .stepping = 3,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_HLE | CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RTM | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-4770K CPU @ 3.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Haswell, 4c+HT, 8MB L3, LGA1150, 2013" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-4790k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 60,
+        .stepping = 3,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_HLE | CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RTM | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-4790K CPU @ 4.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Devil's Canyon, 4c+HT, 8MB L3, 2014" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i5-4670k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 60,
+        .stepping = 3,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_HLE | CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RTM | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-4670K CPU @ 3.40GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Haswell, 4c, 6MB L3, unlocked, 2013" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i3-4130",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 60,
+        .stepping = 3,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_HLE | CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RTM | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i3-4130 CPU @ 3.40GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Haswell, 2c+HT, 3MB L3, 2013" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-5960x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 63,
+        .stepping = 2,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_HLE | CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RTM | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-5960X CPU @ 3.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Haswell-E, 8c+HT, 20MB L3, LGA2011-v3, 2014" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-5820k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 63,
+        .stepping = 2,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_HLE | CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RTM | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-5820K CPU @ 3.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Haswell-E, 6c+HT, 15MB L3, LGA2011-v3, 2014" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-6700k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 94,
+        .stepping = 3,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake, 4c+HT, 8MB L3, LGA1151, 2015" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i5-6600k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 94,
+        .stepping = 3,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-6600K CPU @ 3.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake, 4c, 6MB L3, unlocked, 2015" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i3-6100",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 94,
+        .stepping = 3,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i3-6100 CPU @ 3.70GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake, 2c+HT, 3MB L3, 2015" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i9-7980xe",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 4,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-7980XE CPU @ 2.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake-X, 18c+HT, 24.75MB L3, LGA2066, 2017" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i9-7900x",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 85,
+        .stepping = 4,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-7900X CPU @ 3.30GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Skylake-X, 10c+HT, 13.75MB L3, 2017" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-7700k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 158,
+        .stepping = 9,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Kaby Lake, 4c+HT, 8MB L3, LGA1151, 2017" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i5-7600k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 158,
+        .stepping = 9,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-7600K CPU @ 3.80GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Kaby Lake, 4c, 6MB L3, unlocked, 2017" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i9-9900k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 158,
+        .stepping = 13,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Coffee Lake Refresh, 8c+HT, 16MB L3, LGA1151, 2018" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-8700k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 158,
+        .stepping = 10,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Coffee Lake, 6c+HT, 12MB L3, LGA1151, 2017" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-9700k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 158,
+        .stepping = 13,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-9700K CPU @ 3.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Coffee Lake Refresh, 8c, 12MB L3, 2018" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i5-9600k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 158,
+        .stepping = 13,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-9600K CPU @ 3.70GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Coffee Lake Refresh, 6c, 9MB L3, unlocked, 2018" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i5-8400",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 158,
+        .stepping = 10,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Coffee Lake, 6c, 9MB L3, 2017" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i3-8100",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 158,
+        .stepping = 10,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i3-8100 CPU @ 3.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Coffee Lake, 4c, 6MB L3, 2017" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i9-10900k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 165,
+        .stepping = 5,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-10900K CPU @ 3.70GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Comet Lake, 10c+HT, 20MB L3, LGA1200, 2020" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-10700k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 165,
+        .stepping = 5,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Comet Lake, 8c+HT, 16MB L3, 2020" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i5-10600k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 165,
+        .stepping = 5,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-10600K CPU @ 4.10GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Comet Lake, 6c+HT, 12MB L3, 2020" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i3-10100",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 165,
+        .stepping = 5,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_HLE |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RTM |
+            CPUID_7_0_EBX_MPX | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLFLUSHOPT,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i3-10100 CPU @ 3.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Comet Lake, 4c+HT, 6MB L3, 2020" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i9-11900k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 167,
+        .stepping = 1,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_SERIALIZE,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-11900K CPU @ 3.50GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Rocket Lake, 8c+HT, 16MB L3, LGA1200, 2021" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i7-11700k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 167,
+        .stepping = 1,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_SERIALIZE,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-11700K CPU @ 3.60GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Rocket Lake, 8c+HT, 16MB L3, 2021" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "core-i5-11600k",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 167,
+        .stepping = 1,
+        .brand_id = 0x0E,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_SERIALIZE,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-11600K CPU @ 3.90GHz",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Rocket Lake, 6c+HT, 12MB L3, 2021" },
+            { /* end */ }
+        },
+    },
+
+    {
         .name = "i9-12900k",
         .level = 0x20,
         .vendor = CPUID_VENDOR_INTEL,
