@@ -998,6 +998,7 @@ uint64_t x86_cpu_get_supported_feature_word(X86CPU *cpu, FeatureWord w);
 #define CPUID_7_0_EDX_MD_CLEAR          (1U << 10)
 /* SERIALIZE instruction */
 #define CPUID_7_0_EDX_SERIALIZE         (1U << 14)
+#define CPUID_7_0_EDX_HYBRID            (1U << 15)  /* Intel Hybrid (ADL/RPL) */
 /* TSX Suspend Load Address Tracking instruction */
 #define CPUID_7_0_EDX_TSX_LDTRK         (1U << 16)
 /* Architectural LBRs */
@@ -2229,6 +2230,7 @@ typedef struct CPUArchState {
     uint32_t cpuid_version;
     uint8_t cpuid_brand_id;  /* CPUID[1].EBX[7:0] processor brand index */
     uint8_t cpuid_default_multiplier; /* default ratio for PERF_STATUS */
+    uint8_t cpuid_hybrid_core_type;   /* 0x20=E-core, 0x40=P-core, 0=none */
     FeatureWordArray features;
     /* AVX10 version */
     uint8_t avx10_version;

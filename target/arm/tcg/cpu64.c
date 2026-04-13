@@ -1192,7 +1192,7 @@ static void aarch64_apple_a14_initfn(Object *obj)
     aarch64_max_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
     cpu->dtb_compatible = "apple,icestorm";
-    cpu->midr = 0x610F0220; /* Apple Icestorm (A14 efficiency core) */
+    cpu->midr = 0x610f0220; /* Apple Icestorm (A14 efficiency core) */
 }
 /* ---- Apple A15 Bionic ---- */
 static void aarch64_apple_a15_initfn(Object *obj)
@@ -1200,7 +1200,7 @@ static void aarch64_apple_a15_initfn(Object *obj)
     aarch64_max_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
     cpu->dtb_compatible = "apple,everest";
-    cpu->midr = 0x610F0240; /* Apple A15 Avalanche core */
+    cpu->midr = 0x610f0250; /* Apple A15 Avalanche core */
 }
 /* ---- Apple A16 Bionic ---- */
 static void aarch64_apple_a16_initfn(Object *obj)
@@ -1208,7 +1208,7 @@ static void aarch64_apple_a16_initfn(Object *obj)
     aarch64_max_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
     cpu->dtb_compatible = "apple,everest";
-    cpu->midr = 0x610F0260; /* Apple A16 Everest core */
+    cpu->midr = 0x610f0290; /* Apple A16 Everest core */
 }
 /* ---- Apple A17 Pro ---- */
 static void aarch64_apple_a17_initfn(Object *obj)
@@ -1216,21 +1216,21 @@ static void aarch64_apple_a17_initfn(Object *obj)
     aarch64_max_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
     cpu->dtb_compatible = "apple,everest";
-    cpu->midr = 0x610F0290; /* Apple A17 Pro core */
+    cpu->midr = 0x610f0320; /* Apple A17 Pro core */
 }
 static void aarch64_apple_m1_initfn(Object *obj)
 {
     aarch64_max_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
     cpu->dtb_compatible = "apple,firestorm";
-    cpu->midr = 0x610F0230; /* Apple Firestorm (M1 performance core) */
+    cpu->midr = 0x610f0230; /* Apple Firestorm (M1 performance core) */
 }
 static void aarch64_apple_m2_initfn(Object *obj)
 {
     aarch64_max_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
     cpu->dtb_compatible = "apple,avalanche";
-    cpu->midr = 0x610F0250; /* Apple Avalanche (M2 performance core) */
+    cpu->midr = 0x610f0250; /* Apple Avalanche (M2 performance core) */
 }
 /* ---- Apple M3 (Everest) ---- */
 static void aarch64_apple_m3_initfn(Object *obj)
@@ -1238,7 +1238,7 @@ static void aarch64_apple_m3_initfn(Object *obj)
     aarch64_max_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
     cpu->dtb_compatible = "apple,everest";
-    cpu->midr = 0x610F0280; /* Apple Everest (M3 performance core) */
+    cpu->midr = 0x610f0290; /* Apple Everest (M3 performance core) */
 }
 /* ---- Apple M4 ---- */
 static void aarch64_apple_m4_initfn(Object *obj)
@@ -1246,7 +1246,7 @@ static void aarch64_apple_m4_initfn(Object *obj)
     aarch64_max_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
     cpu->dtb_compatible = "apple,m4";
-    cpu->midr = 0x610F02A0; /* Apple M4 performance core */
+    cpu->midr = 0x610f0360; /* Apple M4 performance core */
 }
 
 /* ---- Apple M1 Pro (higher-perf Firestorm, more cores) ---- */
@@ -1255,14 +1255,14 @@ static void aarch64_apple_m1_pro_initfn(Object *obj)
     aarch64_apple_m1_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
     cpu->dtb_compatible = "apple,firestorm";
-    cpu->midr = 0x610F0231; /* M1 Pro Firestorm r1p0 */
+    cpu->midr = 0x610f0231; /* M1 Pro Firestorm r1p0 */
 }
 /* ---- Apple M1 Max ---- */
 static void aarch64_apple_m1_max_initfn(Object *obj)
 {
     aarch64_apple_m1_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
-    cpu->midr = 0x610F0232; /* M1 Max */
+    cpu->midr = 0x610f0232; /* M1 Max */
 }
 /* ---- Apple M2 Pro ---- */
 static void aarch64_apple_m2_pro_initfn(Object *obj)
@@ -1270,21 +1270,21 @@ static void aarch64_apple_m2_pro_initfn(Object *obj)
     aarch64_apple_m2_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
     cpu->dtb_compatible = "apple,avalanche";
-    cpu->midr = 0x610F0251; /* M2 Pro */
+    cpu->midr = 0x610f0251; /* M2 Pro */
 }
 /* ---- Apple M2 Max ---- */
 static void aarch64_apple_m2_max_initfn(Object *obj)
 {
     aarch64_apple_m2_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
-    cpu->midr = 0x610F0252; /* M2 Max */
+    cpu->midr = 0x610f0252; /* M2 Max */
 }
 /* ---- Apple M2 Ultra ---- */
 static void aarch64_apple_m2_ultra_initfn(Object *obj)
 {
     aarch64_apple_m2_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
-    cpu->midr = 0x610F0253; /* M2 Ultra (2x M2 Max dies) */
+    cpu->midr = 0x610f0253; /* M2 Ultra (2x M2 Max dies) */
 }
 /* ---- Apple M3 Pro ---- */
 static void aarch64_apple_m3_pro_initfn(Object *obj)
@@ -1292,14 +1292,14 @@ static void aarch64_apple_m3_pro_initfn(Object *obj)
     aarch64_apple_m3_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
     cpu->dtb_compatible = "apple,everest";
-    cpu->midr = 0x610F0281; /* M3 Pro */
+    cpu->midr = 0x610f0291; /* M3 Pro */
 }
 /* ---- Apple M3 Max ---- */
 static void aarch64_apple_m3_max_initfn(Object *obj)
 {
     aarch64_apple_m3_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
-    cpu->midr = 0x610F0282; /* M3 Max */
+    cpu->midr = 0x610f0292; /* M3 Max */
 }
 
 /* ---- Qualcomm Kryo 260 (Snapdragon 660, SDM660) ---- */

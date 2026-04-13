@@ -10271,6 +10271,1313 @@ static const X86CPUDefinition builtin_x86_defs[] = {
             { /* end */ }
         },
     },
+
+    {
+        .name = "i9-12900k",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 151,
+        .stepping = 5,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_SERIALIZE |
+            CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-12900K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "64" },
+                  { /* end */ }
+              },
+              .note = "Alder Lake-S P-core, 8P+8E, LGA1700, 3.2GHz, 2021" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i9-12900k-e",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 151,
+        .stepping = 5,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 |
+            CPUID_EXT_SSE42 | CPUID_EXT_MOVBE | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-12900K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "32" },
+                  { /* end */ }
+              },
+              .note = "Alder Lake-S E-core (Gracemont), 8E, no HT" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i7-12700k",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 151,
+        .stepping = 5,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_SERIALIZE |
+            CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-12700K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "64" },
+                  { /* end */ }
+              },
+              .note = "Alder Lake-S P-core, 8P+4E, LGA1700, 3.6GHz, 2021" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i7-12700k-e",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 151,
+        .stepping = 5,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 |
+            CPUID_EXT_SSE42 | CPUID_EXT_MOVBE | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-12700K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "32" },
+                  { /* end */ }
+              },
+              .note = "Alder Lake-S E-core, 4E" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i5-12600k",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 151,
+        .stepping = 5,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_SERIALIZE |
+            CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-12600K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "64" },
+                  { /* end */ }
+              },
+              .note = "Alder Lake-S P-core, 6P+4E, LGA1700, 3.7GHz, 2021" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i5-12600k-e",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 151,
+        .stepping = 5,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 |
+            CPUID_EXT_SSE42 | CPUID_EXT_MOVBE | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-12600K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "32" },
+                  { /* end */ }
+              },
+              .note = "Alder Lake-S E-core, 4E" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i9-12900h",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 154,
+        .stepping = 4,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_SERIALIZE |
+            CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-12900H",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "64" },
+                  { /* end */ }
+              },
+              .note = "Alder Lake-P P-core, 6P+8E, mobile, 2.5GHz, 2022" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i9-12900h-e",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 154,
+        .stepping = 4,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 |
+            CPUID_EXT_SSE42 | CPUID_EXT_MOVBE | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-12900H",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "32" },
+                  { /* end */ }
+              },
+              .note = "Alder Lake-P E-core, 8E, mobile" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i7-1280p",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 154,
+        .stepping = 4,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_SERIALIZE |
+            CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-1280P",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "64" },
+                  { /* end */ }
+              },
+              .note = "Alder Lake-P P-core, 6P+8E, mobile, 1.8GHz, 2022" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i9-13900k",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 183,
+        .stepping = 1,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_SERIALIZE |
+            CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-13900K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "64" },
+                  { /* end */ }
+              },
+              .note = "Raptor Lake-S P-core, 8P+16E, LGA1700, 3.0GHz, 2022" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i9-13900k-e",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 183,
+        .stepping = 1,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 |
+            CPUID_EXT_SSE42 | CPUID_EXT_MOVBE | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-13900K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "32" },
+                  { /* end */ }
+              },
+              .note = "Raptor Lake-S E-core, 16E" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i7-13700k",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 183,
+        .stepping = 1,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_SERIALIZE |
+            CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-13700K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "64" },
+                  { /* end */ }
+              },
+              .note = "Raptor Lake-S P-core, 8P+8E, LGA1700, 3.4GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i7-13700k-e",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 183,
+        .stepping = 1,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 |
+            CPUID_EXT_SSE42 | CPUID_EXT_MOVBE | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i7-13700K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "32" },
+                  { /* end */ }
+              },
+              .note = "Raptor Lake-S E-core, 8E" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i5-13600k",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 183,
+        .stepping = 1,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_SERIALIZE |
+            CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-13600K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "64" },
+                  { /* end */ }
+              },
+              .note = "Raptor Lake-S P-core, 6P+8E, LGA1700, 3.5GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i5-13600k-e",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 183,
+        .stepping = 1,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 |
+            CPUID_EXT_SSE42 | CPUID_EXT_MOVBE | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i5-13600K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "32" },
+                  { /* end */ }
+              },
+              .note = "Raptor Lake-S E-core, 8E" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i9-13900h",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 186,
+        .stepping = 2,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_SERIALIZE |
+            CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-13900H",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "64" },
+                  { /* end */ }
+              },
+              .note = "Raptor Lake-P P-core, 6P+8E, mobile, 2.6GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i9-13900h-e",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 186,
+        .stepping = 2,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 |
+            CPUID_EXT_SSE42 | CPUID_EXT_MOVBE | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-13900H",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "32" },
+                  { /* end */ }
+              },
+              .note = "Raptor Lake-P E-core, 8E, mobile" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i9-14900k",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 170,
+        .stepping = 1,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_VMX | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_AVX2 | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 |
+            CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_SERIALIZE |
+            CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-14900K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "64" },
+                  { /* end */ }
+              },
+              .note = "Raptor Lake Refresh P-core, 8P+16E, LGA1700, 3.2GHz, 2023" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "i9-14900k-e",
+        .level = 0x20,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 170,
+        .stepping = 1,
+        .brand_id = 0x0E,
+        .default_multiplier = 16,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 |
+            CPUID_EXT_SSE42 | CPUID_EXT_MOVBE | CPUID_EXT_POPCNT |
+            CPUID_EXT_AES | CPUID_EXT_XSAVE | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_PDPE1GB | CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI1 |
+            CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS | CPUID_7_0_EBX_INVPCID |
+            CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX | CPUID_7_0_EBX_SMAP |
+            CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT | CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_UMIP | CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_MOVDIRI |
+            CPUID_7_0_ECX_MOVDIR64B,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM | CPUID_7_0_EDX_HYBRID,
+        .xlevel = 0x80000008,
+        .model_id = "Intel(R) Core(TM) i9-14900K",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1,
+              .props = (PropValue[]) {
+                  { "x-hybrid-core-type", "32" },
+                  { /* end */ }
+              },
+              .note = "Raptor Lake Refresh E-core, 16E" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-6800h",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 68,
+        .stepping = 1,
+        .brand_id = 0x10a,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 6800H with Radeon Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Rembrandt Zen3+, 8-core, AM5/FP7, iGPU RDNA2, 32MB L3, 3.2GHz, 2022" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-6600h",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 68,
+        .stepping = 1,
+        .brand_id = 0x10a,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 6600H with Radeon Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Rembrandt Zen3+, 6-core, iGPU RDNA2, 16MB L3, 3.3GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-7940hs",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 116,
+        .stepping = 1,
+        .brand_id = 0x10a,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 7940HS with Radeon 780M Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Phoenix Zen4, 8-core, iGPU RDNA3, 16MB L3, 4.0GHz, 2023" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-7840hs",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 116,
+        .stepping = 1,
+        .brand_id = 0x10a,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 7840HS with Radeon 780M Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Phoenix Zen4, 8-core, iGPU RDNA3, 16MB L3, 3.8GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-7640hs",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 116,
+        .stepping = 1,
+        .brand_id = 0x10a,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 7640HS with Radeon 760M Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Phoenix Zen4, 6-core, iGPU RDNA3, 16MB L3, 4.3GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen9-8945hs",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 120,
+        .stepping = 1,
+        .brand_id = 0x10a,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 9 8945HS with Radeon 780M Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Hawk Point Zen4, 8-core, iGPU RDNA3, 16MB L3, 4.0GHz, 2024" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen7-8840hs",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 120,
+        .stepping = 1,
+        .brand_id = 0x10a,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 7 8840HS with Radeon 780M Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Hawk Point Zen4, 8-core, iGPU RDNA3, 16MB L3, 3.3GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen5-8640hs",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 120,
+        .stepping = 1,
+        .brand_id = 0x10a,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen 5 8640HS with Radeon 760M Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Hawk Point Zen4, 6-core, iGPU RDNA3, 16MB L3, 4.3GHz" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen-ai9-hx370",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 36,
+        .stepping = 0,
+        .brand_id = 0x10a,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen AI 9 HX 370 with Radeon 890M Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Strix Point Zen5, 12-core, iGPU RDNA3.5, 24MB L3, 2.0GHz, 2024" },
+            { /* end */ }
+        },
+    },
+    {
+        .name = "ryzen-ai7-pro360",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 36,
+        .stepping = 0,
+        .brand_id = 0x10a,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE | CPUID_7_0_ECX_UMIP |
+            CPUID_7_0_ECX_RDPID | CPUID_7_0_ECX_GFNI | CPUID_7_0_ECX_VAES |
+            CPUID_7_0_ECX_AVX512VNNI,
+        .xlevel = 0x80000008,
+        .model_id = "AMD Ryzen AI 7 Pro 360 with Radeon 880M Graphics",
+        .versions = (X86CPUVersionDefinition[]) {
+            { .version = 1, .note = "Strix Point Zen5, 8-core, iGPU RDNA3.5, 16MB L3, 2.0GHz" },
+            { /* end */ }
+        },
+    },
     {
         .name = "celeron-266",
         .level = 0xa,
@@ -15762,6 +17069,12 @@ void cpu_x86_cpuid(CPUX86State *env, uint32_t index, uint32_t count,
         }
         break;
     }
+    case 0x1A:
+        /* Hybrid Information Leaf — Intel Alder Lake / Raptor Lake
+         * EAX[31:24]: 0x20=E-core (Gracemont), 0x40=P-core (Golden Cove) */
+        *eax = env->cpuid_hybrid_core_type ? ((uint32_t)env->cpuid_hybrid_core_type << 24) : 0;
+        *ebx = *ecx = *edx = 0;
+        break;
     case 0x1F:
         /* V2 Extended Topology Enumeration Leaf */
         if (!x86_has_cpuid_0x1f(cpu)) {
@@ -17472,6 +18785,7 @@ static const Property x86_cpu_properties[] = {
     DEFINE_PROP_INT32("node-id", X86CPU, node_id, CPU_UNSET_NUMA_NODE_ID),
     DEFINE_PROP_BOOL("pmu", X86CPU, enable_pmu, false),
     DEFINE_PROP_BOOL("x-unlocked-multiplier", X86CPU, unlocked_multiplier, false),
+    DEFINE_PROP_UINT8("x-hybrid-core-type", X86CPU, env.cpuid_hybrid_core_type, 0),
     DEFINE_PROP_UINT64_CHECKMASK("lbr-fmt", X86CPU, lbr_fmt, PERF_CAP_LBR_FMT),
 
     DEFINE_PROP_UINT32("hv-spinlocks", X86CPU, hyperv_spinlock_attempts,
