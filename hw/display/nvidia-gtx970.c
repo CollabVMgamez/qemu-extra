@@ -204,6 +204,7 @@ static const VMStateDescription vms_nvidia_gtx970={.name="nvidia-gtx970",.versio
 static const Property gpu_multi_props_NvidiaGtx970State[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaGtx970State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaGtx970State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaGtx970State, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

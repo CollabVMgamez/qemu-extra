@@ -212,6 +212,7 @@ static const VMStateDescription vms_ati_radeon_x800={.name="ati-radeon-x800",.ve
 static const Property gpu_multi_props_AtiRadeonX800State[] = {
     DEFINE_PROP_STRING("gpu-name", AtiRadeonX800State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AtiRadeonX800State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", AtiRadeonX800State, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

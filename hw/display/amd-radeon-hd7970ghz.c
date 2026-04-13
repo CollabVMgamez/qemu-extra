@@ -193,6 +193,7 @@ static const VMStateDescription vms_amd_radeon_hd7970ghz={.name="amd-radeon-hd79
 static const Property gpu_multi_props_AmdRadeonHd7970ghzState[] = {
     DEFINE_PROP_STRING("gpu-name", AmdRadeonHd7970ghzState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AmdRadeonHd7970ghzState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", AmdRadeonHd7970ghzState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

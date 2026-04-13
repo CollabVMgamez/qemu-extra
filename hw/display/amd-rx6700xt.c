@@ -204,6 +204,7 @@ static const VMStateDescription vms_amd_rx6700xt={.name="amd-rx6700xt",.version_
 static const Property gpu_multi_props_AmdRx6700xtState[] = {
     DEFINE_PROP_STRING("gpu-name", AmdRx6700xtState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AmdRx6700xtState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", AmdRx6700xtState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

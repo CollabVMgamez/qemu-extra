@@ -203,6 +203,7 @@ static const VMStateDescription vms_nvidia_p4={.name="nvidia-p4",.version_id=1,.
 static const Property gpu_multi_props_NvidiaP4State[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaP4State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaP4State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaP4State, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

@@ -212,6 +212,7 @@ static const VMStateDescription vms_ati_rage128gl={.name="ati-rage128gl",.versio
 static const Property gpu_multi_props_AtiRage128glState[] = {
     DEFINE_PROP_STRING("gpu-name", AtiRage128glState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AtiRage128glState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", AtiRage128glState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

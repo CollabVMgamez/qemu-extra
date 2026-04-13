@@ -203,6 +203,7 @@ static const VMStateDescription vms_nvidia_a800={.name="nvidia-a800",.version_id
 static const Property gpu_multi_props_NvidiaA800State[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaA800State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaA800State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaA800State, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

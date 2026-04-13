@@ -203,6 +203,7 @@ static const VMStateDescription vms_nvidia_dgx_h100={.name="nvidia-dgx-h100",.ve
 static const Property gpu_multi_props_NvidiaDgxH100State[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaDgxH100State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaDgxH100State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaDgxH100State, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

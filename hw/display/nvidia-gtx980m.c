@@ -204,6 +204,7 @@ static const VMStateDescription vms_nvidia_gtx980m={.name="nvidia-gtx980m",.vers
 static const Property gpu_multi_props_NvidiaGtx980mState[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaGtx980mState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaGtx980mState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaGtx980mState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

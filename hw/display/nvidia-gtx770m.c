@@ -204,6 +204,7 @@ static const VMStateDescription vms_nvidia_gtx770m={.name="nvidia-gtx770m",.vers
 static const Property gpu_multi_props_NvidiaGtx770mState[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaGtx770mState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaGtx770mState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaGtx770mState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

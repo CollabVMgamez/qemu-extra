@@ -204,6 +204,7 @@ static const VMStateDescription vms_nvidia_gtx780ti={.name="nvidia-gtx780ti",.ve
 static const Property gpu_multi_props_NvidiaGtx780tiState[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaGtx780tiState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaGtx780tiState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaGtx780tiState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

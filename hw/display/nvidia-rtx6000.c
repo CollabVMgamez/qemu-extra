@@ -203,6 +203,7 @@ static const VMStateDescription vms_nvidia_rtx6000={.name="nvidia-rtx6000",.vers
 static const Property gpu_multi_props_NvidiaRtx6000State[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaRtx6000State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaRtx6000State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaRtx6000State, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

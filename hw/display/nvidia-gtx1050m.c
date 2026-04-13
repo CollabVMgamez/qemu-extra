@@ -204,6 +204,7 @@ static const VMStateDescription vms_nvidia_gtx1050m={.name="nvidia-gtx1050m",.ve
 static const Property gpu_multi_props_NvidiaGtx1050mState[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaGtx1050mState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaGtx1050mState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaGtx1050mState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

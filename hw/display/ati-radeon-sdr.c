@@ -212,6 +212,7 @@ static const VMStateDescription vms_ati_radeon_sdr={.name="ati-radeon-sdr",.vers
 static const Property gpu_multi_props_AtiRadeonSdrState[] = {
     DEFINE_PROP_STRING("gpu-name", AtiRadeonSdrState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AtiRadeonSdrState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", AtiRadeonSdrState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

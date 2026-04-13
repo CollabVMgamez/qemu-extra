@@ -203,6 +203,7 @@ static const VMStateDescription vms_nvidia_a100_40gb={.name="nvidia-a100-40gb",.
 static const Property gpu_multi_props_NvidiaA10040gbState[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaA10040gbState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaA10040gbState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaA10040gbState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

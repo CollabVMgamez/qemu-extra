@@ -193,6 +193,7 @@ static const VMStateDescription vms_amd_radeon_r9_295x2={.name="amd-radeon-r9-29
 static const Property gpu_multi_props_AmdRadeonR9295x2State[] = {
     DEFINE_PROP_STRING("gpu-name", AmdRadeonR9295x2State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AmdRadeonR9295x2State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", AmdRadeonR9295x2State, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

@@ -203,6 +203,7 @@ static const VMStateDescription vms_nvidia_h200={.name="nvidia-h200",.version_id
 static const Property gpu_multi_props_NvidiaH200State[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaH200State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaH200State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaH200State, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

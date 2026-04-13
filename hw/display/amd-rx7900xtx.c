@@ -204,6 +204,7 @@ static const VMStateDescription vms_amd_rx7900xtx={.name="amd-rx7900xtx",.versio
 static const Property gpu_multi_props_AmdRx7900xtxState[] = {
     DEFINE_PROP_STRING("gpu-name", AmdRx7900xtxState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AmdRx7900xtxState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", AmdRx7900xtxState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

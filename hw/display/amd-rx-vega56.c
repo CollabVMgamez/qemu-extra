@@ -204,6 +204,7 @@ static const VMStateDescription vms_amd_rx_vega56={.name="amd-rx-vega56",.versio
 static const Property gpu_multi_props_AmdRxVega56State[] = {
     DEFINE_PROP_STRING("gpu-name", AmdRxVega56State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AmdRxVega56State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", AmdRxVega56State, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

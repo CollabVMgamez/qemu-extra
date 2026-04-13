@@ -193,6 +193,7 @@ static const VMStateDescription vms_amd_radeon_hd7850={.name="amd-radeon-hd7850"
 static const Property gpu_multi_props_AmdRadeonHd7850State[] = {
     DEFINE_PROP_STRING("gpu-name", AmdRadeonHd7850State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AmdRadeonHd7850State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", AmdRadeonHd7850State, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

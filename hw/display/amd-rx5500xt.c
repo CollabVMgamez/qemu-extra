@@ -204,6 +204,7 @@ static const VMStateDescription vms_amd_rx5500xt={.name="amd-rx5500xt",.version_
 static const Property gpu_multi_props_AmdRx5500xtState[] = {
     DEFINE_PROP_STRING("gpu-name", AmdRx5500xtState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AmdRx5500xtState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", AmdRx5500xtState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

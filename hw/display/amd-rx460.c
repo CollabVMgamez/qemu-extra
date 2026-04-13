@@ -204,6 +204,7 @@ static const VMStateDescription vms_amd_rx460={.name="amd-rx460",.version_id=1,.
 static const Property gpu_multi_props_AmdRx460State[] = {
     DEFINE_PROP_STRING("gpu-name", AmdRx460State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AmdRx460State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", AmdRx460State, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

@@ -323,6 +323,7 @@ static const VMStateDescription vmstate_rtx5090 = {
 static const Property gpu_multi_props_NvidiaRTX5090State[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaRTX5090State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaRTX5090State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaRTX5090State, board_partner),
 };
 static void rtx5090_class_init(ObjectClass *klass, const void *data)
 {

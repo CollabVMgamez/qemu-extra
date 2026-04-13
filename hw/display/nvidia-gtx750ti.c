@@ -295,6 +295,7 @@ static const VMStateDescription vmstate_gtx750ti = {
 static const Property gpu_multi_props_NvidiaGTX750TiState[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaGTX750TiState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaGTX750TiState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaGTX750TiState, board_partner),
 };
 static void gtx750ti_class_init(ObjectClass *klass, const void *data)
 {

@@ -203,6 +203,7 @@ static const VMStateDescription vms_nvidia_k80={.name="nvidia-k80",.version_id=1
 static const Property gpu_multi_props_NvidiaK80State[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaK80State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaK80State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaK80State, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

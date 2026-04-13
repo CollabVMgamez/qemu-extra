@@ -193,6 +193,7 @@ static const VMStateDescription vms_amd_radeon_r7_260x={.name="amd-radeon-r7-260
 static const Property gpu_multi_props_AmdRadeonR7260xState[] = {
     DEFINE_PROP_STRING("gpu-name", AmdRadeonR7260xState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AmdRadeonR7260xState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", AmdRadeonR7260xState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

@@ -203,6 +203,7 @@ static const VMStateDescription vms_nvidia_a16={.name="nvidia-a16",.version_id=1
 static const Property gpu_multi_props_NvidiaA16State[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaA16State, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaA16State, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaA16State, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

@@ -193,6 +193,7 @@ static const VMStateDescription vms_amd_radeon_r9_fury={.name="amd-radeon-r9-fur
 static const Property gpu_multi_props_AmdRadeonR9FuryState[] = {
     DEFINE_PROP_STRING("gpu-name", AmdRadeonR9FuryState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", AmdRadeonR9FuryState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", AmdRadeonR9FuryState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

@@ -203,6 +203,7 @@ static const VMStateDescription vms_nvidia_h100_nvl={.name="nvidia-h100-nvl",.ve
 static const Property gpu_multi_props_NvidiaH100NvlState[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaH100NvlState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaH100NvlState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaH100NvlState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);

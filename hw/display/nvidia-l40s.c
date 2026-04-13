@@ -203,6 +203,7 @@ static const VMStateDescription vms_nvidia_l40s={.name="nvidia-l40s",.version_id
 static const Property gpu_multi_props_NvidiaL40sState[] = {
     DEFINE_PROP_STRING("gpu-name", NvidiaL40sState, gpu_name),
     DEFINE_PROP_UINT32("gpu-count", NvidiaL40sState, gpu_count, 1),
+    DEFINE_PROP_STRING("board-partner", NvidiaL40sState, board_partner),
 };
 static void ci(ObjectClass *k, const void *d) {
     DeviceClass *dc=DEVICE_CLASS(k); PCIDeviceClass *pc=PCI_DEVICE_CLASS(k);
