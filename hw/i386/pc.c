@@ -1403,6 +1403,18 @@ static void pc_machine_set_ram_type(Object *obj, const char *value, Error **errp
     pcms->ram_type = g_strdup(value);
 }
 
+static bool pc_machine_get_laptop_mode(Object *obj, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    return pcms->laptop_mode;
+}
+
+static void pc_machine_set_laptop_mode(Object *obj, bool value, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    pcms->laptop_mode = value;
+}
+
 static char *pc_machine_get_system_name(Object *obj, Error **errp)
 {
     PCMachineState *pcms = PC_MACHINE(obj);
@@ -1734,6 +1746,12 @@ static void pc_machine_class_init(ObjectClass *oc, const void *data)
         pc_machine_get_ram_type, pc_machine_set_ram_type);
     object_class_property_set_description(oc, "ram-type",
         "RAM type shown in CPU-Z Memory tab (ddr, ddr2, ddr3, ddr4)");
+
+    object_class_property_add_bool(oc, "laptop-mode",
+        pc_machine_get_laptop_mode, pc_machine_set_laptop_mode);
+    object_class_property_set_description(oc, "laptop-mode",
+        "Inject battery, AC adapter and lid switch ACPI objects "
+        "(makes guest think it is a laptop)");
     object_class_property_add_str(oc, "system-name",
         pc_machine_get_system_name, pc_machine_set_system_name);
     object_class_property_set_description(oc, "system-name",

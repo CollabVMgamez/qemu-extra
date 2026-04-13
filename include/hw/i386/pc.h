@@ -60,6 +60,7 @@ typedef struct PCMachineState {
      * Valid values: "ddr", "ddr2", "ddr3", "ddr4"  (default: "ddr2") */
     char *ram_type;
     char *system_name;  /* SMBIOS product name / window title */
+    bool laptop_mode;   /* inject battery/lid/EC ACPI objects */
 
     SGXEPCState sgx_epc;
     CXLState cxl_devices_state;

@@ -1918,7 +1918,93 @@ static bool acpi_get_mcfg(AcpiMcfgInfo *mcfg)
     return true;
 }
 
-static
+
+/*
+ * Build a battery/laptop SSDT when laptop-mode=on is set.
+ * Injects: ADP1 (AC adapter), BAT0 (battery), LID0 (lid switch)
+ * into the _SB scope so the guest OS sees a laptop platform.
+ */
+static void build_laptop_ssdt(GArray *table_data, BIOSLinker *linker,
+                               const char *oem_id, const char *oem_table_id,
+                               PCMachineState *pcms)
+{
+    Aml *ssdt, *scope, *dev, *method, *pkg;
+    AcpiTable table = { .sig = "SSDT", .rev = 2,
+                        .oem_id = oem_id, .oem_table_id = "QEMUBAT " };
+
+    acpi_table_begin(&table, table_data);
+    ssdt = init_aml_allocator();
+    scope = aml_scope("_SB");
+
+    /* ── AC Adapter (ADP1) ──────────────────────────────────────────── */
+    dev = aml_device("ADP1");
+    aml_append(dev, aml_name_decl("_HID", aml_string("ACPI0003")));
+    aml_append(dev, aml_name_decl("_UID", aml_int(0)));
+    /* _STA: present, enabled, visible, functional */
+    method = aml_method("_STA", 0, AML_NOTSERIALIZED);
+    aml_append(method, aml_return(aml_int(0x0F)));
+    aml_append(dev, method);
+    /* _PSR: Power Source - 1=AC online */
+    method = aml_method("_PSR", 0, AML_NOTSERIALIZED);
+    aml_append(method, aml_return(aml_int(1)));
+    aml_append(dev, method);
+    aml_append(scope, dev);
+
+    /* ── Battery (BAT0) ─────────────────────────────────────────────── */
+    dev = aml_device("BAT0");
+    aml_append(dev, aml_name_decl("_HID", aml_eisaid("PNP0C0A")));
+    aml_append(dev, aml_name_decl("_UID", aml_int(0)));
+    /* _STA: present + charging */
+    method = aml_method("_STA", 0, AML_NOTSERIALIZED);
+    aml_append(method, aml_return(aml_int(0x1F)));
+    aml_append(dev, method);
+    /* _BIF: Battery Info */
+    pkg = aml_package(13);
+    aml_append(pkg, aml_int(1));          /* Power unit: mWh */
+    aml_append(pkg, aml_int(55000));      /* Design capacity */
+    aml_append(pkg, aml_int(55000));      /* Last full */
+    aml_append(pkg, aml_int(1));          /* Rechargeable */
+    aml_append(pkg, aml_int(12600));      /* Design voltage mV */
+    aml_append(pkg, aml_int(1000));       /* Warn capacity */
+    aml_append(pkg, aml_int(500));        /* Low capacity */
+    aml_append(pkg, aml_int(1));          /* Granularity 1 */
+    aml_append(pkg, aml_int(1));          /* Granularity 2 */
+    aml_append(pkg, aml_string("QEMU-BAT"));  /* Model */
+    aml_append(pkg, aml_string("1234567"));   /* Serial */
+    aml_append(pkg, aml_string("LION"));      /* Type: Li-Ion */
+    aml_append(pkg, aml_string("QEMU"));      /* OEM */
+    method = aml_method("_BIF", 0, AML_NOTSERIALIZED);
+    aml_append(method, aml_return(pkg));
+    aml_append(dev, method);
+    /* _BST: Battery Status */
+    pkg = aml_package(4);
+    aml_append(pkg, aml_int(2));          /* State: 2=discharging */
+    aml_append(pkg, aml_int(1500));       /* Present rate mA */
+    aml_append(pkg, aml_int(48000));      /* Remaining capacity mWh */
+    aml_append(pkg, aml_int(12100));      /* Present voltage mV */
+    method = aml_method("_BST", 0, AML_NOTSERIALIZED);
+    aml_append(method, aml_return(pkg));
+    aml_append(dev, method);
+    aml_append(scope, dev);
+
+    /* ── Lid Switch (LID0) ──────────────────────────────────────────── */
+    dev = aml_device("LID0");
+    aml_append(dev, aml_name_decl("_HID", aml_eisaid("PNP0C0D")));
+    method = aml_method("_STA", 0, AML_NOTSERIALIZED);
+    aml_append(method, aml_return(aml_int(0x0F)));
+    aml_append(dev, method);
+    /* _LID: 1=open */
+    method = aml_method("_LID", 0, AML_NOTSERIALIZED);
+    aml_append(method, aml_return(aml_int(1)));
+    aml_append(dev, method);
+    aml_append(scope, dev);
+
+    aml_append(ssdt, scope);
+    g_array_append_vals(table_data, ssdt->buf->data, ssdt->buf->len);
+    free_aml_allocator();
+    acpi_table_end(linker, &table);
+}
+
 void acpi_build(AcpiBuildTables *tables, MachineState *machine)
 {
     PCMachineState *pcms = PC_MACHINE(machine);
@@ -2077,6 +2163,13 @@ void acpi_build(AcpiBuildTables *tables, MachineState *machine)
 
     acpi_add_table(table_offsets, tables_blob);
     build_waet(tables_blob, tables->linker, x86ms->oem_id, x86ms->oem_table_id);
+
+    /* Battery/laptop ACPI if laptop-mode=on */
+    if (pcms->laptop_mode) {
+        acpi_add_table(table_offsets, tables_blob);
+        build_laptop_ssdt(tables_blob, tables->linker,
+                          oem_id, oem_table_id, pcms);
+    }
 
     /* Add tables supplied by user (if any) */
     for (u = acpi_table_first(); u; u = acpi_table_next(u)) {
