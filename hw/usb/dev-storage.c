@@ -48,7 +48,7 @@ enum {
 
 static const USBDescStrings desc_strings = {
     [STR_MANUFACTURER] = "Generic",
-    [STR_PRODUCT]      = "QEMU USB HARDDRIVE",
+    [STR_PRODUCT]      = "USB Mass Storage",
     [STR_SERIALNUMBER] = "1",
     [STR_CONFIG_FULL]  = "Full speed config (usb 1.1)",
     [STR_CONFIG_HIGH]  = "High speed config (usb 2.0)",
@@ -590,7 +590,7 @@ static void usb_msd_class_initfn_common(ObjectClass *klass, const void *data)
     DeviceClass *dc = DEVICE_CLASS(klass);
     USBDeviceClass *uc = USB_DEVICE_CLASS(klass);
 
-    uc->product_desc   = "QEMU USB MSD";
+    uc->product_desc   = "USB Mass Storage Device";
     uc->usb_desc       = &desc;
     uc->cancel_packet  = usb_msd_cancel_io;
     uc->handle_attach  = usb_desc_attach;

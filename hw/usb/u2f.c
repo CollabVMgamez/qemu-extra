@@ -322,7 +322,7 @@ static void u2f_key_class_init(ObjectClass *klass, const void *data)
     DeviceClass *dc = DEVICE_CLASS(klass);
     USBDeviceClass *uc = USB_DEVICE_CLASS(klass);
 
-    uc->product_desc   = "QEMU U2F USB key";
+    uc->product_desc   = "USB Security Key";
     uc->usb_desc       = &desc_u2f_key;
     uc->handle_reset   = u2f_key_handle_reset;
     uc->handle_control = u2f_key_handle_control;
@@ -330,7 +330,7 @@ static void u2f_key_class_init(ObjectClass *klass, const void *data)
     uc->handle_attach  = usb_desc_attach;
     uc->realize        = u2f_key_realize;
     uc->unrealize      = u2f_key_unrealize;
-    dc->desc           = "QEMU U2F key";
+    dc->desc           = "USB Security Key";
     dc->vmsd           = &vmstate_u2f_key;
 }
 

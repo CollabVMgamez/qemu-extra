@@ -100,14 +100,14 @@ enum usbstring_idx {
 
 static const USBDescStrings usb_net_stringtable = {
     [STRING_MANUFACTURER]       = "Generic",
-    [STRING_PRODUCT]            = "RNDIS/QEMU USB Network Device",
+    [STRING_PRODUCT]            = "USB Ethernet Adapter",
     [STRING_ETHADDR]            = "400102030405",
-    [STRING_DATA]               = "QEMU USB Net Data Interface",
-    [STRING_CONTROL]            = "QEMU USB Net Control Interface",
-    [STRING_RNDIS_CONTROL]      = "QEMU USB Net RNDIS Control Interface",
-    [STRING_CDC]                = "QEMU USB Net CDC",
-    [STRING_SUBSET]             = "QEMU USB Net Subset",
-    [STRING_RNDIS]              = "QEMU USB Net RNDIS",
+    [STRING_DATA]               = "USB Net Data Interface",
+    [STRING_CONTROL]            = "USB Net Control Interface",
+    [STRING_RNDIS_CONTROL]      = "USB Net RNDIS Control Interface",
+    [STRING_CDC]                = "USB Net CDC",
+    [STRING_SUBSET]             = "USB Net Subset",
+    [STRING_RNDIS]              = "USB Net RNDIS",
     [STRING_SERIALNUMBER]       = "1",
 };
 
@@ -717,7 +717,7 @@ static int ndis_query(USBNetState *s, uint32_t oid,
 
     /* mandatory */
     case OID_GEN_VENDOR_DESCRIPTION:
-        pstrcpy((char *)outbuf, outlen, "QEMU USB RNDIS Net");
+        pstrcpy((char *)outbuf, outlen, "USB RNDIS Net");
         return strlen((char *)outbuf) + 1;
 
     case OID_GEN_VENDOR_DRIVER_VERSION:
@@ -1417,7 +1417,7 @@ static void usb_net_class_initfn(ObjectClass *klass, const void *data)
     USBDeviceClass *uc = USB_DEVICE_CLASS(klass);
 
     uc->realize        = usb_net_realize;
-    uc->product_desc   = "QEMU USB Network Interface";
+    uc->product_desc   = "USB Network Interface";
     uc->usb_desc       = &desc_net;
     uc->handle_reset   = usb_net_handle_reset;
     uc->handle_control = usb_net_handle_control;

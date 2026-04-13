@@ -16,10 +16,10 @@
 
 #include "standard-headers/linux/input.h"
 
-#define VIRTIO_ID_NAME_KEYBOARD     "QEMU Virtio Keyboard"
-#define VIRTIO_ID_NAME_MOUSE        "QEMU Virtio Mouse"
-#define VIRTIO_ID_NAME_TABLET       "QEMU Virtio Tablet"
-#define VIRTIO_ID_NAME_MULTITOUCH   "QEMU Virtio MultiTouch"
+#define VIRTIO_ID_NAME_KEYBOARD     "USB Keyboard"
+#define VIRTIO_ID_NAME_MOUSE        "USB Optical Mouse"
+#define VIRTIO_ID_NAME_TABLET       "USB Digitizer Tablet"
+#define VIRTIO_ID_NAME_MULTITOUCH   "USB MultiTouch Device"
 
 /* ----------------------------------------------------------------- */
 

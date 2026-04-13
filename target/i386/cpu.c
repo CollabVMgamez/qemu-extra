@@ -3811,7 +3811,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM,
         .xlevel = 0x8000000A,
-        .model_id = "QEMU Virtual CPU version " QEMU_HW_VERSION,
+        .model_id = "Genuine Intel CPU",
     },
     {
         .name = "phenom",
@@ -4648,7 +4648,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .features[FEAT_1_ECX] =
             CPUID_EXT_SSE3,
         .xlevel = 0x80000004,
-        .model_id = "QEMU Virtual CPU version " QEMU_HW_VERSION,
+        .model_id = "Genuine Intel CPU",
     },
     {
         .name = "kvm32",
@@ -5618,7 +5618,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .features[FEAT_8000_0001_EDX] =
             CPUID_EXT2_MMXEXT | CPUID_EXT2_3DNOW | CPUID_EXT2_3DNOWEXT,
         .xlevel = 0x80000008,
-        .model_id = "QEMU Virtual CPU version " QEMU_HW_VERSION,
+        .model_id = "Genuine Intel CPU",
     },
     {
         .name = "n270",
@@ -17175,7 +17175,7 @@ static void max_x86_cpu_initfn(Object *obj)
     }
     if (!env->cpuid_model[0]) {
         object_property_set_str(OBJECT(cpu), "model-id",
-                                "QEMU TCG CPU version " QEMU_HW_VERSION,
+                                "Genuine Intel CPU",
                                 &error_abort);
     }
 }
@@ -18233,7 +18233,8 @@ static void x86_cpu_load_model(X86CPU *cpu, const X86CPUModel *model)
     /* legacy-cache defaults to 'off' if CPU model provides cache info */
     cpu->legacy_cache = !x86_cpu_get_versioned_cache_info(cpu, model);
 
-    env->features[FEAT_1_ECX] |= CPUID_EXT_HYPERVISOR;
+    /* Do not set hypervisor present bit; bare-metal CPUs do not set it */
+    env->features[FEAT_1_ECX] &= ~CPUID_EXT_HYPERVISOR;
 
     /* sysenter isn't supported in compatibility mode on AMD,
      * syscall isn't supported in compatibility mode on Intel.
@@ -18829,22 +18830,11 @@ void cpu_x86_cpuid(CPUX86State *env, uint32_t index, uint32_t count,
         }
         break;
     case 0x40000000:
-        /*
-         * CPUID code in kvm_arch_init_vcpu() ignores stuff
-         * set here, but we restrict to TCG none the less.
-         */
-        if (tcg_enabled() && cpu->expose_tcg) {
-            memcpy(signature, "Microsoft Hv", 12);
-            *eax = 0x40000001;
-            *ebx = signature[0];
-            *ecx = signature[1];
-            *edx = signature[2];
-        } else {
-            *eax = 0;
-            *ebx = 0;
-            *ecx = 0;
-            *edx = 0;
-        }
+        /* Return zeros: no hypervisor present */
+        *eax = 0;
+        *ebx = 0;
+        *ecx = 0;
+        *edx = 0;
         break;
     case 0x40000001:
         *eax = 0;

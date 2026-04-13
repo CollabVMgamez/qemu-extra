@@ -75,7 +75,7 @@ void fw_cfg_build_smbios(PCMachineState *pcms, FWCfgState *fw_cfg,
 
     if (pcmc->smbios_defaults) {
         /* These values are guest ABI, do not change */
-        smbios_set_defaults("QEMU", mc->desc, mc->name);
+        smbios_set_defaults("LENOVO", "ThinkCentre M920q", "10RRS0PA00");
     }
 
     /* tell smbios about cpuid version and features */

@@ -385,7 +385,7 @@ static void u2f_emulated_class_init(ObjectClass *klass, const void *data)
     kc->realize = u2f_emulated_realize;
     kc->unrealize = u2f_emulated_unrealize;
     kc->recv_from_guest = u2f_emulated_recv_from_guest;
-    dc->desc = "QEMU U2F emulated key";
+    dc->desc = "USB Security Key Emulated";
     device_class_set_props(dc, u2f_emulated_properties);
 }
 

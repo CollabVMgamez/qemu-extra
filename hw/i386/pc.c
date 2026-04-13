@@ -1419,7 +1419,7 @@ static char *pc_machine_get_system_name(Object *obj, Error **errp)
 {
     PCMachineState *pcms = PC_MACHINE(obj);
     return g_strdup(pcms->system_name ? pcms->system_name
-                                       : "QEMU Virtual Machine");
+                                       : "ThinkCentre M920q");
 }
 
 static void pc_machine_set_system_name(Object *obj, const char *value,

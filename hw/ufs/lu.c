@@ -184,7 +184,7 @@ static int ufs_emulate_wlun_inquiry(UfsRequest *req, uint8_t *outbuf,
     outbuf[6] = 0;
     outbuf[7] = 0x2;
     strpadcpy((char *)&outbuf[8], 8, "QEMU", ' ');
-    strpadcpy((char *)&outbuf[16], 16, "QEMU UFS", ' ');
+    strpadcpy((char *)&outbuf[16], 16, "SAMSUNG MZWLL800", ' ');
     memset(&outbuf[32], 0, 4);
 
     return SCSI_INQUIRY_LEN;

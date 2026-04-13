@@ -212,7 +212,7 @@ static void virt_build_smbios(LoongArchVirtMachineState *lvms)
     MachineClass *mc = MACHINE_GET_CLASS(lvms);
     uint8_t *smbios_tables, *smbios_anchor;
     size_t smbios_tables_len, smbios_anchor_len;
-    const char *product = "QEMU Virtual Machine";
+    const char *product = "ThinkCentre M920q";
 
     if (!lvms->fw_cfg) {
         return;

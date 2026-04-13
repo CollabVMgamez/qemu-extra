@@ -1002,7 +1002,7 @@ static void fw_cfg_common_realize(DeviceState *dev, Error **errp)
         return;
     }
 
-    fw_cfg_add_bytes(s, FW_CFG_SIGNATURE, (char *)"QEMU", 4);
+    fw_cfg_add_bytes(s, FW_CFG_SIGNATURE, (char *)"BIOS", 4);
     fw_cfg_add_bytes(s, FW_CFG_UUID, &qemu_uuid, 16);
     fw_cfg_add_i16(s, FW_CFG_NOGRAPHIC, (uint16_t)!machine->enable_graphics);
     fw_cfg_add_i16(s, FW_CFG_BOOT_MENU, (uint16_t)(machine->boot_config.has_menu && machine->boot_config.menu));

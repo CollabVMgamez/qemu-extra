@@ -74,7 +74,7 @@ enum usb_audio_strings {
 
 static const USBDescStrings usb_audio_stringtable = {
     [STRING_MANUFACTURER]       = "Generic",
-    [STRING_PRODUCT]            = "QEMU USB Audio",
+    [STRING_PRODUCT]            = "USB Audio Device",
     [STRING_SERIALNUMBER]       = "1",
     [STRING_CONFIG]             = "Audio Configuration",
     [STRING_USBAUDIO_CONTROL]   = "Audio Device",
@@ -1004,7 +1004,7 @@ static void usb_audio_class_init(ObjectClass *klass, const void *data)
     dc->vmsd          = &vmstate_usb_audio;
     device_class_set_props(dc, usb_audio_properties);
     set_bit(DEVICE_CATEGORY_SOUND, dc->categories);
-    k->product_desc   = "QEMU USB Audio Interface";
+    k->product_desc   = "USB Audio Interface";
     k->realize        = usb_audio_realize;
     k->handle_reset   = usb_audio_handle_reset;
     k->handle_control = usb_audio_handle_control;

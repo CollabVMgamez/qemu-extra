@@ -2087,7 +2087,7 @@ static void usb_mtp_class_initfn(ObjectClass *klass, const void *data)
     USBDeviceClass *uc = USB_DEVICE_CLASS(klass);
 
     uc->realize        = usb_mtp_realize;
-    uc->product_desc   = "QEMU USB MTP";
+    uc->product_desc   = "USB MTP Device";
     uc->usb_desc       = &desc;
     uc->cancel_packet  = usb_mtp_cancel_packet;
     uc->handle_attach  = usb_desc_attach;

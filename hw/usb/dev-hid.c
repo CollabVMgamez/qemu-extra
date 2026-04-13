@@ -64,9 +64,9 @@ enum {
 
 static const USBDescStrings desc_strings = {
     [STR_MANUFACTURER]     = "Generic",
-    [STR_PRODUCT_MOUSE]    = "QEMU USB Mouse",
-    [STR_PRODUCT_TABLET]   = "QEMU USB Tablet",
-    [STR_PRODUCT_KEYBOARD] = "QEMU USB Keyboard",
+    [STR_PRODUCT_MOUSE]    = "USB Optical Mouse",
+    [STR_PRODUCT_TABLET]   = "USB Digitizer Tablet",
+    [STR_PRODUCT_KEYBOARD] = "USB Keyboard",
     [STR_SERIAL_COMPAT]    = "42",
     [STR_CONFIG_MOUSE]     = "HID Mouse",
     [STR_CONFIG_TABLET]    = "HID Tablet",
@@ -368,7 +368,7 @@ static const USBDescMSOS desc_msos_suspend = {
 
 static const USBDesc desc_mouse = {
     .id = {
-        .idVendor          = 0x0627,
+        .idVendor          = 0x046D, /* Logitech */
         .idProduct         = 0x0001,
         .bcdDevice         = 0,
         .iManufacturer     = STR_MANUFACTURER,
@@ -382,7 +382,7 @@ static const USBDesc desc_mouse = {
 
 static const USBDesc desc_mouse2 = {
     .id = {
-        .idVendor          = 0x0627,
+        .idVendor          = 0x046D, /* Logitech */
         .idProduct         = 0x0001,
         .bcdDevice         = 0,
         .iManufacturer     = STR_MANUFACTURER,
@@ -397,7 +397,7 @@ static const USBDesc desc_mouse2 = {
 
 static const USBDesc desc_tablet = {
     .id = {
-        .idVendor          = 0x0627,
+        .idVendor          = 0x046D, /* Logitech */
         .idProduct         = 0x0001,
         .bcdDevice         = 0,
         .iManufacturer     = STR_MANUFACTURER,
@@ -411,7 +411,7 @@ static const USBDesc desc_tablet = {
 
 static const USBDesc desc_tablet2 = {
     .id = {
-        .idVendor          = 0x0627,
+        .idVendor          = 0x046D, /* Logitech */
         .idProduct         = 0x0001,
         .bcdDevice         = 0,
         .iManufacturer     = STR_MANUFACTURER,
@@ -426,7 +426,7 @@ static const USBDesc desc_tablet2 = {
 
 static const USBDesc desc_keyboard = {
     .id = {
-        .idVendor          = 0x0627,
+        .idVendor          = 0x046D, /* Logitech */
         .idProduct         = 0x0001,
         .bcdDevice         = 0,
         .iManufacturer     = STR_MANUFACTURER,
@@ -440,7 +440,7 @@ static const USBDesc desc_keyboard = {
 
 static const USBDesc desc_keyboard2 = {
     .id = {
-        .idVendor          = 0x0627,
+        .idVendor          = 0x046D, /* Logitech */
         .idProduct         = 0x0001,
         .bcdDevice         = 0,
         .iManufacturer     = STR_MANUFACTURER,
@@ -805,7 +805,7 @@ static void usb_tablet_class_initfn(ObjectClass *klass, const void *data)
     USBDeviceClass *uc = USB_DEVICE_CLASS(klass);
 
     uc->realize        = usb_tablet_realize;
-    uc->product_desc   = "QEMU USB Tablet";
+    uc->product_desc   = "USB Digitizer Tablet";
     dc->vmsd = &vmstate_usb_ptr;
     device_class_set_props(dc, usb_tablet_properties);
     set_bit(DEVICE_CATEGORY_INPUT, dc->categories);
@@ -827,7 +827,7 @@ static void usb_mouse_class_initfn(ObjectClass *klass, const void *data)
     USBDeviceClass *uc = USB_DEVICE_CLASS(klass);
 
     uc->realize        = usb_mouse_realize;
-    uc->product_desc   = "QEMU USB Mouse";
+    uc->product_desc   = "USB Optical Mouse";
     dc->vmsd = &vmstate_usb_ptr;
     device_class_set_props(dc, usb_mouse_properties);
     set_bit(DEVICE_CATEGORY_INPUT, dc->categories);
@@ -850,7 +850,7 @@ static void usb_keyboard_class_initfn(ObjectClass *klass, const void *data)
     USBDeviceClass *uc = USB_DEVICE_CLASS(klass);
 
     uc->realize        = usb_keyboard_realize;
-    uc->product_desc   = "QEMU USB Keyboard";
+    uc->product_desc   = "USB Keyboard";
     dc->vmsd = &vmstate_usb_kbd;
     device_class_set_props(dc, usb_keyboard_properties);
     set_bit(DEVICE_CATEGORY_INPUT, dc->categories);

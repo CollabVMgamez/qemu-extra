@@ -1387,7 +1387,7 @@ static void virt_build_smbios(RISCVVirtState *s)
     uint8_t *smbios_tables, *smbios_anchor;
     size_t smbios_tables_len, smbios_anchor_len;
     struct smbios_phys_mem_area mem_array;
-    const char *product = "QEMU Virtual Machine";
+    const char *product = "ThinkCentre M920q";
 
     if (kvm_enabled()) {
         product = "KVM Virtual Machine";
