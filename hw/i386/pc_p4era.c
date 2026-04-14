@@ -69,8 +69,17 @@ static void pc_init_spd(PCMachineState *pcms)
             stype = DDR2;
         } else if (!g_ascii_strcasecmp(pcms->ram_type, "ddr3")) {
             stype = DDR3;
-        } else if (!g_ascii_strcasecmp(pcms->ram_type, "ddr4")) {
+        } else if (!g_ascii_strcasecmp(pcms->ram_type, "ddr4") ||
+                   !g_ascii_strcasecmp(pcms->ram_type, "ddr4e")) {
             stype = DDR4;
+        } else if (!g_ascii_strcasecmp(pcms->ram_type, "ddr5") ||
+                   !g_ascii_strcasecmp(pcms->ram_type, "ddr5e")) {
+            stype = DDR5;
+        } else if (!g_ascii_strcasecmp(pcms->ram_type, "lpddr4")) {
+            stype = DDR4;
+        } else if (!g_ascii_strcasecmp(pcms->ram_type, "lpddr5") ||
+                   !g_ascii_strcasecmp(pcms->ram_type, "lpddr5x")) {
+            stype = DDR5;
         }
     }
     uint8_t *spd = spd_data_generate(stype,
@@ -78,10 +87,23 @@ static void pc_init_spd(PCMachineState *pcms)
                        MACHINE(pcms)->ram_size : (1 * GiB));
     smbus_eeprom_init(pcms->smbus, 8, spd, 256);
     g_free(spd);
-    /* Also propagate ram-type to SMBIOS Type 17 */
+
+    /* Propagate ram-type, speed, form-factor, part, manufacturer to SMBIOS Type 17 */
     if (pcms->ram_type) {
         extern void smbios_set_type17_memory_type(const char *type_str);
+        extern void smbios_set_type17_speed(uint32_t speed_mhz);
+        extern void smbios_set_type17_form_factor(const char *ff_str);
+        extern void smbios_set_type17_part_number(const char *part);
+        extern void smbios_set_type17_manufacturer(const char *mfr);
         smbios_set_type17_memory_type(pcms->ram_type);
+        if (pcms->ram_speed_mhz > 0)
+            smbios_set_type17_speed(pcms->ram_speed_mhz);
+        if (pcms->ram_form_factor)
+            smbios_set_type17_form_factor(pcms->ram_form_factor);
+        if (pcms->ram_part_number)
+            smbios_set_type17_part_number(pcms->ram_part_number);
+        if (pcms->ram_manufacturer)
+            smbios_set_type17_manufacturer(pcms->ram_manufacturer);
     }
 }
 

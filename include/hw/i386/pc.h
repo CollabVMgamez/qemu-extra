@@ -57,10 +57,41 @@ typedef struct PCMachineState {
     hwaddr memhp_io_base;
 
     /* RAM type shown in CPU-Z Memory tab (via SPD EEPROM on SMBus).
-     * Valid values: "ddr", "ddr2", "ddr3", "ddr4"  (default: "ddr2") */
+     * Valid values: "ddr", "ddr2", "ddr3", "ddr4", "ddr5",
+     *               "lpddr4", "lpddr5", "ddr4e", "ddr5e"
+     *               (default: "ddr2") */
     char *ram_type;
+
+    /* RAM speed in MHz (e.g. 3200, 4800, 6000). 0 = auto from type. */
+    uint32_t ram_speed_mhz;
+
+    /* RAM form factor: "dimm", "sodimm", "rdimm", "lrdimm", "fbdimm".
+     * Controls SMBIOS Type 17 Form Factor byte. Default: "dimm". */
+    char *ram_form_factor;
+
+    /* RAM module label / part number override shown in CPU-Z.
+     * e.g. "Corsair CMK32GX5M2B6000C30" */
+    char *ram_part_number;
+
+    /* RAM manufacturer override e.g. "Corsair", "G.Skill", "Kingston" */
+    char *ram_manufacturer;
+
     char *system_name;  /* SMBIOS product name / window title */
     bool laptop_mode;   /* inject battery/lid/EC ACPI objects */
+
+    /* Hypervisor countermeasures:
+     * hide-kvm:    set to true to clear KVM feature leaf (CPUID 0x40000001)
+     * hide-hv-sig: set to true to zero out hypervisor signature (0x40000000)
+     * spoof-bios:  set board/bios SMBIOS strings to look like real hardware */
+    bool hide_kvm_features;
+    bool hide_hv_signature;
+    char *spoof_bios_vendor;
+    char *spoof_bios_version;
+    char *spoof_board_vendor;
+    char *spoof_board_product;
+
+    /* Memory topology: number of populated DIMM slots (for SMBIOS) */
+    uint32_t mem_slot_count;
 
     SGXEPCState sgx_epc;
     CXLState cxl_devices_state;

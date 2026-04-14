@@ -1403,6 +1403,60 @@ static void pc_machine_set_ram_type(Object *obj, const char *value, Error **errp
     pcms->ram_type = g_strdup(value);
 }
 
+/* ram-speed-mhz */
+static void pc_machine_get_ram_speed(Object *obj, Visitor *v, const char *name,
+                                     void *opaque, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    uint32_t speed = pcms->ram_speed_mhz;
+    visit_type_uint32(v, name, &speed, errp);
+}
+static void pc_machine_set_ram_speed(Object *obj, Visitor *v, const char *name,
+                                     void *opaque, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    visit_type_uint32(v, name, &pcms->ram_speed_mhz, errp);
+}
+
+/* ram-form-factor */
+static char *pc_machine_get_ram_ff(Object *obj, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    return g_strdup(pcms->ram_form_factor ? pcms->ram_form_factor : "dimm");
+}
+static void pc_machine_set_ram_ff(Object *obj, const char *value, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    g_free(pcms->ram_form_factor);
+    pcms->ram_form_factor = g_strdup(value);
+}
+
+/* ram-part-number */
+static char *pc_machine_get_ram_part(Object *obj, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    return g_strdup(pcms->ram_part_number ? pcms->ram_part_number : "");
+}
+static void pc_machine_set_ram_part(Object *obj, const char *value, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    g_free(pcms->ram_part_number);
+    pcms->ram_part_number = g_strdup(value);
+}
+
+/* ram-manufacturer */
+static char *pc_machine_get_ram_mfr(Object *obj, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    return g_strdup(pcms->ram_manufacturer ? pcms->ram_manufacturer : "");
+}
+static void pc_machine_set_ram_mfr(Object *obj, const char *value, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    g_free(pcms->ram_manufacturer);
+    pcms->ram_manufacturer = g_strdup(value);
+}
+
 static bool pc_machine_get_laptop_mode(Object *obj, Error **errp)
 {
     PCMachineState *pcms = PC_MACHINE(obj);
@@ -1745,7 +1799,28 @@ static void pc_machine_class_init(ObjectClass *oc, const void *data)
     object_class_property_add_str(oc, "ram-type",
         pc_machine_get_ram_type, pc_machine_set_ram_type);
     object_class_property_set_description(oc, "ram-type",
-        "RAM type shown in CPU-Z Memory tab (ddr, ddr2, ddr3, ddr4)");
+        "RAM type for CPU-Z/SMBIOS: ddr, ddr2, ddr3, ddr4, ddr5, "
+        "lpddr4, lpddr5, lpddr5x, ddr4e, ddr5e");
+
+    object_class_property_add(oc, "ram-speed-mhz", "uint32",
+        pc_machine_get_ram_speed, pc_machine_set_ram_speed, NULL, NULL);
+    object_class_property_set_description(oc, "ram-speed-mhz",
+        "RAM speed in MHz shown in SMBIOS Type 17 (e.g. 3200, 4800, 6000)");
+
+    object_class_property_add_str(oc, "ram-form-factor",
+        pc_machine_get_ram_ff, pc_machine_set_ram_ff);
+    object_class_property_set_description(oc, "ram-form-factor",
+        "RAM form factor for SMBIOS: dimm, sodimm, rdimm, lrdimm, fbdimm");
+
+    object_class_property_add_str(oc, "ram-part-number",
+        pc_machine_get_ram_part, pc_machine_set_ram_part);
+    object_class_property_set_description(oc, "ram-part-number",
+        "RAM module part number override (e.g. CMK32GX5M2B6000C30)");
+
+    object_class_property_add_str(oc, "ram-manufacturer",
+        pc_machine_get_ram_mfr, pc_machine_set_ram_mfr);
+    object_class_property_set_description(oc, "ram-manufacturer",
+        "RAM module manufacturer override (e.g. Corsair, G.Skill, Kingston)");
 
     object_class_property_add_bool(oc, "laptop-mode",
         pc_machine_get_laptop_mode, pc_machine_set_laptop_mode);

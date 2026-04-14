@@ -1,0 +1,61 @@
+/* NVIDIA GB300 (Blackwell Ultra, 288GB HBM3e)
+ * NVIDIA GPU stub. Vendor: 0x10DE, Device: 0x2B00
+ * Usage: -device nvidia-gb300
+ * Copyright (c) 2024 QEMU P4 Fork Contributors
+ * SPDX-License-Identifier: GPL-2.0-or-later */
+#include "qemu/osdep.h"
+#include "qemu/units.h"
+#include "qemu/module.h"
+#include "qemu/timer.h"
+#include "hw/pci/pci_device.h"
+#include "hw/core/qdev-properties.h"
+#include "qom/object.h"
+#include "migration/vmstate.h"
+#define NV_VID 0x10DE
+#define GPU_DEV 0x2B00
+#define GPU_SS_V 0x10DE
+#define GPU_SS_D 0x17FC
+#define GPU_REV 0xA1
+#define GPU_CLASS 0x0300
+#define NV_BAR0_SIZE (16*MiB)
+#define NV_BAR1_SIZE (64*MiB)
+#define NV_BAR3_SIZE (32*MiB)
+#define NV_BAR5_SIZE (128*KiB)
+#define CLK_BASE 900
+#define CLK_BOOST 2200
+#define PMC_BOOT_0 0x1A2000A1
+#define PFB_PARTS 0x00000010
+#define PFB_REFCTRL 0x800006D9
+#define TYPE_NVIDIA_GB300 "nvidia-gb300"
+OBJECT_DECLARE_SIMPLE_TYPE(NvidiaGb300State, NVIDIA_GB300)
+struct NvidiaGb300State { PCIDevice parent_obj; MemoryRegion bar0,bar1,bar3,bar5; uint32_t intr_en,pfifo_intr_en,clock_mhz; uint64_t clock_last_ns; uint32_t gpu_count; char *gpu_name,*board_partner; };
+static uint32_t clk_f(NvidiaGb300State*s){ uint64_t now=qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL); if(now-s->clock_last_ns>100000000ULL){s->clock_last_ns=now;s->clock_mhz=s->clock_mhz*1664525u+1013904223u;s->clock_mhz=CLK_BASE+(s->clock_mhz%(CLK_BOOST-CLK_BASE+1));} return s->clock_mhz; }
+static uint64_t b0r(void*op,hwaddr a,unsigned sz){ (void)sz; NvidiaGb300State*s=(NvidiaGb300State*)op; uint32_t m; uint64_t n;
+switch(a&~3ULL){
+case 0x000000: return PMC_BOOT_0;
+case 0x000004: return 1;
+case 0x000100: case 0x000140: case 0x001100: case 0x002100: return 0;
+case 0x009200: return 31; case 0x009210: return 3;
+case 0x009400: m=clk_f(s);n=qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);return(uint32_t)((n*m/1000ULL)&0xFFFFFFFF);
+case 0x009410: m=clk_f(s);n=qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);return(uint32_t)(((n*m/1000ULL)>>32)&0xFFFFFFFF);
+case 0x100800: return 0x00000015;
+case 0x100200: case 0x11020C: return PFB_PARTS;
+case 0x100210: return PFB_REFCTRL;
+case 0x400700: case 0x610020: return 0;
+case 0x020050: case 0x020400: case 0x020440: { uint64_t ns=qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL); uint32_t seed=(uint32_t)(ns>>28)*1664525u+1013904223u; uint32_t tc=55+(seed%(CLK_BOOST-CLK_BASE+1))*17/(CLK_BOOST-CLK_BASE+1); return((tc+120)<<16); }
+case 0x132020: { uint32_t M=2,P=0,N=(1750*M)/27; return(P<<16)|(N<<8)|M; }
+case 0x1373f0: case 0x00410C: return 1750;
+case 0x070090: return 35;
+default: return 0;
+} }
+static void b0w(void*o,hwaddr a,uint64_t v,unsigned s){ NvidiaGb300State*ss=(NvidiaGb300State*)o; if((a&~3ULL)==0x000140)ss->intr_en=(uint32_t)v; else if((a&~3ULL)==0x002100)ss->pfifo_intr_en=(uint32_t)v; }
+static const MemoryRegionOps b0ops={.read=b0r,.write=b0w,.endianness=DEVICE_LITTLE_ENDIAN,.valid={.min_access_size=1,.max_access_size=4}};
+static uint64_t sr(void*o,hwaddr a,unsigned s){(void)o;(void)a;(void)s;return 0;} static void sw(void*o,hwaddr a,uint64_t v,unsigned s){(void)o;(void)a;(void)v;(void)s;}
+static const MemoryRegionOps b1ops={.read=sr,.write=sw,.endianness=DEVICE_LITTLE_ENDIAN,.valid={.min_access_size=1,.max_access_size=8}};
+static const MemoryRegionOps b35ops={.read=sr,.write=sw,.endianness=DEVICE_LITTLE_ENDIAN,.valid={.min_access_size=1,.max_access_size=4}};
+static void realize(PCIDevice*p,Error**e){ NvidiaGb300State*s=(NvidiaGb300State*)p; s->clock_mhz=CLK_BASE;s->clock_last_ns=0; p->config[PCI_CLASS_PROG]=0;pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID,GPU_SS_V);pci_set_word(p->config+PCI_SUBSYSTEM_ID,GPU_SS_D); uint8_t*c=p->config;c[PCI_CAPABILITY_LIST]=0x50;c[PCI_STATUS]|=PCI_STATUS_CAP_LIST;c[0x50]=0x05;c[0x51]=0x60;c[0x52]=0x01;c[0x53]=0;c[0x60]=0x10;c[0x61]=0;pci_set_word(c+0x62,0x0002);pci_set_long(c+0x64,0x00008000|5);pci_set_long(c+0x6C,(0x10<<4)|5);pci_set_word(c+0x72,(0x10<<4)|5|(1<<13)); memory_region_init_io(&s->bar0,OBJECT(s),&b0ops,s,"nvidia-gb300-mmio",NV_BAR0_SIZE);pci_register_bar(p,0,PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_32,&s->bar0); memory_region_init_io(&s->bar1,OBJECT(s),&b1ops,s,"nvidia-gb300-vram",NV_BAR1_SIZE);pci_register_bar(p,1,PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_32|PCI_BASE_ADDRESS_MEM_PREFETCH,&s->bar1); memory_region_init_io(&s->bar3,OBJECT(s),&b35ops,s,"nvidia-gb300-ramin",NV_BAR3_SIZE);pci_register_bar(p,3,PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_32,&s->bar3); memory_region_init_io(&s->bar5,OBJECT(s),&b35ops,s,"nvidia-gb300-vgaio",NV_BAR5_SIZE);pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5); }
+static const Property props[]={DEFINE_PROP_STRING("gpu-name",NvidiaGb300State,gpu_name),DEFINE_PROP_UINT32("gpu-count",NvidiaGb300State,gpu_count,1),DEFINE_PROP_STRING("board-partner",NvidiaGb300State,board_partner),};
+static const VMStateDescription vms={.name="nvidia-gb300",.version_id=1,.minimum_version_id=1,.fields=(const VMStateField[]){VMSTATE_PCI_DEVICE(parent_obj,NvidiaGb300State),VMSTATE_UINT32(intr_en,NvidiaGb300State),VMSTATE_UINT32(pfifo_intr_en,NvidiaGb300State),VMSTATE_UINT32(clock_mhz,NvidiaGb300State),VMSTATE_UINT64(clock_last_ns,NvidiaGb300State),VMSTATE_END_OF_LIST()}};
+static void ci(ObjectClass*k,const void*d){ DeviceClass*dc=DEVICE_CLASS(k);PCIDeviceClass*pc=PCI_DEVICE_CLASS(k);pc->realize=realize;pc->vendor_id=NV_VID;pc->device_id=GPU_DEV;pc->class_id=GPU_CLASS;pc->revision=GPU_REV;dc->desc="NVIDIA GB300 (Blackwell Ultra, 288GB HBM3e)";dc->vmsd=&vms;dc->hotpluggable=false;device_class_set_props(dc,props);set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories); }
+static const TypeInfo ti={.name=TYPE_NVIDIA_GB300,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(NvidiaGb300State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};
+static void reg(void){type_register_static(&ti);} type_init(reg)

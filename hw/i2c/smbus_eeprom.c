@@ -252,6 +252,27 @@ uint8_t *spd_data_generate(enum sdram_type type, ram_addr_t ram_size)
         return spd3;
     }
 
+    if (type == DDR5 || type == LPDDR4 || type == LPDDR5) {
+        /* DDR5/LPDDR4/LPDDR5 SPD (512 bytes, JEDEC SPD5 layout)  */
+        uint8_t *spd5 = g_malloc0(512);
+        uint32_t sz_mb = ram_size >> 20;
+        spd5[0]  = 0x80;
+        spd5[1]  = 0x10;
+        spd5[2]  = (uint8_t)type;
+        spd5[3]  = (type == LPDDR4 || type == LPDDR5) ? 0x03 : 0x02;
+        spd5[4]  = (sz_mb >= 8192) ? 0x06 :
+                   (sz_mb >= 4096) ? 0x05 : 0x04;
+        spd5[5]  = 0x11;
+        spd5[6]  = 0x08;
+        spd5[7]  = 0x08;
+        spd5[14] = 0x03;
+        spd5[20] = 0x14;  /* tCKavg min DDR5-4800 */
+        uint8_t csum5 = 0;
+        for (int ci = 0; ci < 126; ci++) csum5 += spd5[ci];
+        spd5[126] = csum5;
+        return spd5;
+    }
+
     if (type == DDR4) {
         uint8_t *spd4 = g_malloc0(512);
         uint32_t sz_mb = ram_size >> 20;
@@ -306,7 +327,10 @@ uint8_t *spd_data_generate(enum sdram_type type, ram_addr_t ram_size)
         max_log2 = 14;
         break;
     default:
-        g_assert_not_reached();
+        /* DDR3/DDR4/DDR5/LPDDR handled above; treat anything else as DDR2 */
+        min_log2 = 7;
+        max_log2 = 14;
+        break;
     }
     size = ram_size >> 20; /* work in terms of megabytes */
     sz_log2 = 31 - clz32(size);

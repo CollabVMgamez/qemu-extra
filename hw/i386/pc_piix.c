@@ -303,8 +303,39 @@ static void pc_init1(MachineState *machine, const char *pci_type)
 
         qdev_connect_gpio_out_named(DEVICE(piix4_pm), "smi-irq", 0, smi_irq);
         pcms->smbus = I2C_BUS(qdev_get_child_bus(DEVICE(piix4_pm), "i2c"));
-        /* TODO: Populate SPD eeprom data.  */
-        smbus_eeprom_init(pcms->smbus, 8, NULL, 0);
+        /* Populate SPD EEPROM with ram-type property data */
+        if (pcms->ram_type) {
+            extern uint8_t *spd_data_generate(enum sdram_type type, ram_addr_t size);
+            extern void smbios_set_type17_memory_type(const char *t);
+            extern void smbios_set_type17_speed(uint32_t mhz);
+            extern void smbios_set_type17_form_factor(const char *ff);
+            extern void smbios_set_type17_part_number(const char *p);
+            extern void smbios_set_type17_manufacturer(const char *m);
+            enum sdram_type stype = DDR2;
+            if (!g_ascii_strcasecmp(pcms->ram_type, "ddr") ||
+                !g_ascii_strcasecmp(pcms->ram_type, "ddr1"))         stype = DDR;
+            else if (!g_ascii_strcasecmp(pcms->ram_type, "ddr2"))    stype = DDR2;
+            else if (!g_ascii_strcasecmp(pcms->ram_type, "ddr3"))    stype = DDR3;
+            else if (!g_ascii_strcasecmp(pcms->ram_type, "ddr4") ||
+                     !g_ascii_strcasecmp(pcms->ram_type, "ddr4e"))   stype = DDR4;
+            else if (!g_ascii_strcasecmp(pcms->ram_type, "ddr5") ||
+                     !g_ascii_strcasecmp(pcms->ram_type, "ddr5e"))   stype = DDR5;
+            else if (!g_ascii_strcasecmp(pcms->ram_type, "lpddr4"))  stype = LPDDR4;
+            else if (!g_ascii_strcasecmp(pcms->ram_type, "lpddr5") ||
+                     !g_ascii_strcasecmp(pcms->ram_type, "lpddr5x")) stype = LPDDR5;
+            ram_addr_t ramsz = MACHINE(pcms)->ram_size > 0 ?
+                               MACHINE(pcms)->ram_size : (1 * GiB);
+            uint8_t *spd = spd_data_generate(stype, ramsz);
+            smbus_eeprom_init(pcms->smbus, 8, spd, 256);
+            g_free(spd);
+            smbios_set_type17_memory_type(pcms->ram_type);
+            if (pcms->ram_speed_mhz)   smbios_set_type17_speed(pcms->ram_speed_mhz);
+            if (pcms->ram_form_factor)  smbios_set_type17_form_factor(pcms->ram_form_factor);
+            if (pcms->ram_part_number)  smbios_set_type17_part_number(pcms->ram_part_number);
+            if (pcms->ram_manufacturer) smbios_set_type17_manufacturer(pcms->ram_manufacturer);
+        } else {
+            smbus_eeprom_init(pcms->smbus, 8, NULL, 0);
+        }
 
         object_property_add_link(OBJECT(machine), PC_MACHINE_ACPI_DEVICE_PROP,
                                  TYPE_HOTPLUG_HANDLER,

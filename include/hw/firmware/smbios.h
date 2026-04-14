@@ -333,6 +333,11 @@ void smbios_set_cpuid(uint32_t version, uint32_t features);
 void smbios_set_defaults(const char *manufacturer, const char *product,
                          const char *version);
 void smbios_set_default_processor_family(uint16_t processor_family);
+void smbios_set_type17_memory_type(const char *type_str);
+void smbios_set_type17_speed(uint32_t speed_mhz);
+void smbios_set_type17_form_factor(const char *ff_str);
+void smbios_set_type17_part_number(const char *part);
+void smbios_set_type17_manufacturer(const char *mfr);
 uint8_t *smbios_get_table_legacy(size_t *length, Error **errp);
 void smbios_get_tables(MachineState *ms,
                        SmbiosEntryPointType ep_type,

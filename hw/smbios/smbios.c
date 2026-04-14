@@ -1060,7 +1060,48 @@ void smbios_set_type17_memory_type(const char *type_str)
     else if (!strcasecmp(type_str, "ddr1") ||
              !strcasecmp(type_str, "ddr"))    type17.memory_type = 0x0B;
     else if (!strcasecmp(type_str, "lpddr5")) type17.memory_type = 0x23;
-    else if (!strcasecmp(type_str, "lpddr4")) type17.memory_type = 0x1E;
+     else if (!strcasecmp(type_str, "lpddr4")) type17.memory_type = 0x1E;
+    else if (!strcasecmp(type_str, "ddr5"))       type17.memory_type = 0x22;
+    else if (!strcasecmp(type_str, "ddr4e"))      type17.memory_type = 0x1A;
+    else if (!strcasecmp(type_str, "ddr5e"))      type17.memory_type = 0x22;
+    else if (!strcasecmp(type_str, "lpddr5"))     type17.memory_type = 0x23;
+    else if (!strcasecmp(type_str, "lpddr5x"))    type17.memory_type = 0x23;
+    else if (!strcasecmp(type_str, "hbm") ||
+             !strcasecmp(type_str, "hbm2") ||
+             !strcasecmp(type_str, "hbm3"))       type17.memory_type = 0x29;
+}
+
+void smbios_set_type17_speed(uint32_t speed_mhz)
+{
+    if (speed_mhz > 0) {
+        type17.speed = (uint16_t)(speed_mhz & 0xFFFF);
+    }
+}
+
+void smbios_set_type17_form_factor(const char *ff_str)
+{
+    if (!ff_str) return;
+    if (!strcasecmp(ff_str, "sodimm"))      type17.form_factor = 0x0D;
+    else if (!strcasecmp(ff_str, "rdimm"))  type17.form_factor = 0x09;
+    else if (!strcasecmp(ff_str, "lrdimm")) type17.form_factor = 0x09;
+    else if (!strcasecmp(ff_str, "fbdimm")) type17.form_factor = 0x0F;
+    else                                    type17.form_factor = 0x09; /* DIMM */
+}
+
+void smbios_set_type17_part_number(const char *part)
+{
+    if (part && part[0]) {
+        g_free((char *)type17.part);
+        type17.part = g_strdup(part);
+    }
+}
+
+void smbios_set_type17_manufacturer(const char *mfr)
+{
+    if (mfr && mfr[0]) {
+        g_free((char *)type17.manufacturer);
+        type17.manufacturer = g_strdup(mfr);
+    }
 }
 
 void smbios_set_defaults(const char *manufacturer, const char *product,

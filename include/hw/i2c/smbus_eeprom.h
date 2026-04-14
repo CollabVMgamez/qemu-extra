@@ -31,11 +31,14 @@ void smbus_eeprom_init(I2CBus *bus, int nb_eeprom,
                        const uint8_t *eeprom_spd, int size);
 
 enum sdram_type {
-    SDR  = 0x4,
-    DDR  = 0x7,
-    DDR2 = 0x8,
-    DDR3 = 0x0B,  /* JEDEC SPD byte 2 type code for DDR3 SDRAM */
-    DDR4 = 0x0C,  /* JEDEC SPD byte 2 type code for DDR4 SDRAM */
+    SDR   = 0x04,  /* JEDEC: SDRAM */
+    DDR   = 0x07,  /* JEDEC: DDR SDRAM */
+    DDR2  = 0x08,  /* JEDEC: DDR2 SDRAM */
+    DDR3  = 0x0B,  /* JEDEC: DDR3 SDRAM */
+    DDR4  = 0x0C,  /* JEDEC: DDR4 SDRAM */
+    DDR5  = 0x12,  /* JEDEC: DDR5 SDRAM */
+    LPDDR4 = 0x10, /* JEDEC: LPDDR4 SDRAM */
+    LPDDR5 = 0x13, /* JEDEC: LPDDR5 SDRAM */
 };
 uint8_t *spd_data_generate(enum sdram_type type, ram_addr_t size);
 

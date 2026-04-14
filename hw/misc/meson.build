@@ -180,3 +180,7 @@ system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files('monitor-edid-stub.c'))
 
 # EC stub (ISA bus - x86 only)
 i386_ss.add(files('ec-stub.c'))
+
+# v1.36: Fan controller, CPU VRM, preset profiles, Intel/AMD NPU stubs
+system_ss.add(files('fan-controller.c', 'cpu-vrm.c', 'qemu-preset-profiles.c'))
+system_ss.add(when: 'CONFIG_PCI', if_true: files('intel-npu.c', 'amd-npu.c'))
