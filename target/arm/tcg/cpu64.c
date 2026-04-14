@@ -1918,6 +1918,394 @@ static void aarch64_apple_a19pro_initfn(Object *obj)
     cpu->midr = 0x610F02B5; /* Apple A19 Pro (estimated) */
 }
 
+/* ============================================================
+ * v1.38: More ARM64 SoC CPU models + ARM reference cores
+ * ============================================================ */
+
+/* ARM reference cores */
+static void aarch64_a520_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a520";
+    cpu->midr = 0x412FD8D0; /* Cortex-A520 r0p0 */
+}
+static void aarch64_a725_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a725";
+    cpu->midr = 0x412FD8E0; /* Cortex-A725 r0p0 */
+}
+static void aarch64_x4_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x4";
+    cpu->midr = 0x412FD640; /* Cortex-X4 r0p0 */
+}
+static void aarch64_x5_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x5";
+    cpu->midr = 0x412FD870; /* Cortex-X5 r0p0 */
+}
+static void aarch64_neoverse_n3_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,neoverse-n3";
+    cpu->midr = 0x412FE500; /* Neoverse N3 */
+}
+static void aarch64_neoverse_v3_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,neoverse-v3";
+    cpu->midr = 0x412FE510; /* Neoverse V3 */
+}
+static void aarch64_neoverse_v3p_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,neoverse-v3p";
+    cpu->midr = 0x412FE511; /* Neoverse V3P */
+}
+
+/* Qualcomm Snapdragon 8s Gen 3 (SM8635, Cortex-X4 prime) */
+static void aarch64_snapdragon8sgen3_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x4";
+    cpu->midr = 0x519F0610; /* Cortex-X4 in SD 8s Gen 3 */
+}
+/* Qualcomm Snapdragon 8s Gen 2 (SM8735, Cortex-X3) */
+static void aarch64_snapdragon8sgen2_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x3";
+    cpu->midr = 0x519F0520; /* Cortex-X3 in SD 8s Gen 2 */
+}
+/* Qualcomm Snapdragon 7 Gen 4 (SM7550, Cortex-A720) */
+static void aarch64_snapdragon7gen4_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a720";
+    cpu->midr = 0x412FD8E1; /* Cortex-A720 in SD 7 Gen 4 */
+}
+/* Qualcomm Snapdragon 7+ Gen 2 (SM7475, Cortex-A710) */
+static void aarch64_snapdragon7plusgen2_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a710";
+    cpu->midr = 0x412FD4A2; /* Cortex-A710 in SD 7+ Gen 2 */
+}
+/* Qualcomm Snapdragon 6s Gen 3 (SM6375, Cortex-A78) */
+static void aarch64_snapdragon6sgen3_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a78";
+    cpu->midr = 0x412FD414; /* Cortex-A78 in SD 6s Gen 3 */
+}
+/* Qualcomm Snapdragon 4 Gen 1 (SM4350, Cortex-A78) */
+static void aarch64_snapdragon4gen1_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a78";
+    cpu->midr = 0x412FD415; /* Cortex-A78 in SD 4 Gen 1 */
+}
+/* Qualcomm Snapdragon 480 (SM4350, Cortex-A76) */
+static void aarch64_snapdragon480_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a76";
+    cpu->midr = 0x413FD0B4; /* Cortex-A76 in SD 480 */
+}
+/* Qualcomm Snapdragon 750G (SM7225, Cortex-A77) */
+static void aarch64_snapdragon750g_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a77";
+    cpu->midr = 0x414FD0C0; /* Cortex-A77 in SD 750G */
+}
+/* Qualcomm Snapdragon 765G (SM7250, Cortex-A76) */
+static void aarch64_snapdragon765g_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a76";
+    cpu->midr = 0x413FD0B5; /* Cortex-A76 in SD 765G */
+}
+/* Qualcomm Snapdragon 720G (SM7125, Cortex-A76) */
+static void aarch64_snapdragon720g_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a76";
+    cpu->midr = 0x413FD0B6; /* Cortex-A76 in SD 720G */
+}
+/* Qualcomm Snapdragon 662 (SM6115, Cortex-A73) */
+static void aarch64_snapdragon662_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a73";
+    cpu->midr = 0x411FD090; /* Cortex-A73 in SD 662 */
+}
+/* Qualcomm Snapdragon 460 (SM6115, Cortex-A73) */
+static void aarch64_snapdragon460_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a73";
+    cpu->midr = 0x411FD091; /* Cortex-A73 in SD 460 */
+}
+/* Qualcomm Snapdragon 439 (MSM8937, Cortex-A53) */
+static void aarch64_snapdragon439_initfn(Object *obj)
+{
+    aarch64_a55_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,msm8937";
+    cpu->midr = 0x410FD034; /* Cortex-A53 in SD 439 */
+}
+/* Qualcomm Snapdragon X2 (Oryon 3, SC8990, 2025 laptop) */
+static void aarch64_snapdragon_x2_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,oryon3";
+    cpu->midr = 0x518F02D6; /* Oryon V3 in SD X2 */
+}
+static void aarch64_mt_dimensity9300plus_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x4";
+    cpu->midr = 0x412FD641; /* Cortex-X4 in Dimensity 9300+ */
+}
+static void aarch64_mt_dimensity8400_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a725";
+    cpu->midr = 0x412FD8E2; /* Cortex-A725 in Dimensity 8400 */
+}
+static void aarch64_mt_dimensity8300ultra_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a715";
+    cpu->midr = 0x412FD4D6; /* Cortex-A715 in Dimensity 8300-Ultra */
+}
+static void aarch64_mt_dimensity7300_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a715";
+    cpu->midr = 0x412FD4D7; /* Cortex-A715 in Dimensity 7300 */
+}
+static void aarch64_mt_dimensity7050_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a710";
+    cpu->midr = 0x412FD4A3; /* Cortex-A710 in Dimensity 7050 */
+}
+static void aarch64_mt_dimensity6080_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a76";
+    cpu->midr = 0x413FD0B7; /* Cortex-A76 in Dimensity 6080 */
+}
+static void aarch64_mt_dimensity6050_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a75";
+    cpu->midr = 0x413FD0A3; /* Cortex-A75 in Dimensity 6050 */
+}
+static void aarch64_mt_kompanio830_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a78";
+    cpu->midr = 0x412FD417; /* Cortex-A78 in Kompanio 830 */
+}
+static void aarch64_mt_kompanio520_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a76";
+    cpu->midr = 0x413FD0B8; /* Cortex-A76 in Kompanio 520 */
+}
+/* Samsung Exynos 2200 (AMD RDNA2 GPU, Cortex-X2) */
+static void aarch64_exynos2200_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x2";
+    cpu->midr = 0x530FE020; /* Cortex-X2 in Exynos 2200 */
+}
+/* Samsung Exynos 2400e (lower binned 2400) */
+static void aarch64_exynos2400e_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x4";
+    cpu->midr = 0x530FE611; /* Cortex-X4 in Exynos 2400e */
+}
+/* Samsung Exynos 1480i (budget variant) */
+static void aarch64_exynos1480i_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a78";
+    cpu->midr = 0x530F5004; /* Samsung custom A78 in Exynos 1480i */
+}
+/* Samsung Exynos 850 (Cortex-A55, budget Galaxy A12/A22) */
+static void aarch64_exynos850_initfn(Object *obj)
+{
+    aarch64_a55_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "samsung,exynos850";
+    cpu->midr = 0x410FD051; /* Cortex-A55 in Exynos 850 */
+}
+/* HiSilicon Kirin 9100+ */
+static void aarch64_kirin9100plus_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-x3";
+    cpu->midr = 0x414FD5E3; /* Cortex-X3 in Kirin 9100+ */
+}
+/* HiSilicon Kirin 990 (Cortex-A76, 2019 flagship) */
+static void aarch64_kirin990_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a76";
+    cpu->midr = 0x413FD0C2; /* Cortex-A76 in Kirin 990 */
+}
+/* HiSilicon Kirin 985 (Cortex-A77, 2020) */
+static void aarch64_kirin985_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a77";
+    cpu->midr = 0x414FD0C3; /* Cortex-A77 in Kirin 985 */
+}
+static void aarch64_kirin9000s_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a77";
+    cpu->midr = 0x414FD0B4; /* Cortex-A77 in Kirin 9000s (SMIC) */
+}
+static void aarch64_kirin9000e_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a77";
+    cpu->midr = 0x414FD0B5; /* Kirin 9000E (lower bin) */
+}
+static void aarch64_kirin9000l_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a77";
+    cpu->midr = 0x414FD0B6; /* Kirin 9000L */
+}
+/* UNISOC T760 (Cortex-A76, mid-range 2024) */
+static void aarch64_unisoc_t760_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a76";
+    cpu->midr = 0x413FD0B9; /* Cortex-A76 in UNISOC T760 */
+}
+static void aarch64_unisoc_t770_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a76";
+    cpu->midr = 0x413FD0BA; /* Cortex-A76 in UNISOC T770 */
+}
+static void aarch64_unisoc_t606_initfn(Object *obj)
+{
+    aarch64_a55_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a75";
+    cpu->midr = 0x413FD0A4; /* Cortex-A55 cluster in UNISOC T606 */
+}
+static void aarch64_unisoc_t616_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "arm,cortex-a75";
+    cpu->midr = 0x413FD0A5; /* Cortex-A75 in UNISOC T616 */
+}
+/* Rockchip RK3576 (Cortex-A72, mid-range SBC 2024) */
+static void aarch64_rk3576_initfn(Object *obj)
+{
+    aarch64_a72_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "rockchip,rk3576";
+}
+/* Rockchip RK3528 (Cortex-A53, budget SBC) */
+static void aarch64_rk3528_initfn(Object *obj)
+{
+    aarch64_a55_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "rockchip,rk3528";
+}
+/* Rockchip RK3399 (Cortex-A72, classic SBC 2016) */
+static void aarch64_rk3399_initfn(Object *obj)
+{
+    aarch64_a72_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "rockchip,rk3399";
+}
+/* NVIDIA Tegra T234 (Orin, Carmel-8, Jetson Orin) */
+static void aarch64_tegra_t234_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "nvidia,carmel";
+    cpu->midr = 0x4E0F0050; /* NVIDIA Carmel in Tegra T234 */
+}
+/* NVIDIA Tegra T210 (Denver+A57, Jetson Nano) */
+static void aarch64_tegra_t210_initfn(Object *obj)
+{
+    aarch64_a57_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "nvidia,tegra210";
+}
+/* Qualcomm QCS8550 (robotics/IoT variant of SD 855) */
+static void aarch64_qcs8550_initfn(Object *obj)
+{
+    aarch64_kryo485_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,qcs8550";
+}
+/* Qualcomm SA8775P (automotive, Cortex-A710) */
+static void aarch64_sa8775p_initfn(Object *obj)
+{
+    aarch64_max_initfn(obj);
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "qcom,sa8775p";
+    cpu->midr = 0x518F02B7; /* Oryon variant in SA8775P */
+}
+
 static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "cortex-a35",         .initfn = aarch64_a35_initfn },
     { .name = "cortex-a55",         .initfn = aarch64_a55_initfn },
@@ -2044,6 +2432,58 @@ static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "apple-a16-bionic",       .initfn = aarch64_apple_a16_bionic_initfn },
     { .name = "apple-a19",              .initfn = aarch64_apple_a19_initfn },
     { .name = "apple-a19-pro",          .initfn = aarch64_apple_a19pro_initfn },
+    /* v1.38: even more ARM64 phone/tablet/SoC models */
+    { .name = "snapdragon-8s-gen3",     .initfn = aarch64_snapdragon8sgen3_initfn },
+    { .name = "snapdragon-8s-gen2",     .initfn = aarch64_snapdragon8sgen2_initfn },
+    { .name = "snapdragon-7-gen4",      .initfn = aarch64_snapdragon7gen4_initfn },
+    { .name = "snapdragon-7-plus-gen2", .initfn = aarch64_snapdragon7plusgen2_initfn },
+    { .name = "snapdragon-6s-gen3",     .initfn = aarch64_snapdragon6sgen3_initfn },
+    { .name = "snapdragon-4-gen1",      .initfn = aarch64_snapdragon4gen1_initfn },
+    { .name = "snapdragon-480",         .initfn = aarch64_snapdragon480_initfn },
+    { .name = "snapdragon-750g",        .initfn = aarch64_snapdragon750g_initfn },
+    { .name = "snapdragon-765g",        .initfn = aarch64_snapdragon765g_initfn },
+    { .name = "snapdragon-720g",        .initfn = aarch64_snapdragon720g_initfn },
+    { .name = "snapdragon-662",         .initfn = aarch64_snapdragon662_initfn },
+    { .name = "snapdragon-460",         .initfn = aarch64_snapdragon460_initfn },
+    { .name = "snapdragon-439",         .initfn = aarch64_snapdragon439_initfn },
+    { .name = "snapdragon-x2",          .initfn = aarch64_snapdragon_x2_initfn },
+    { .name = "dimensity-9300-plus",    .initfn = aarch64_mt_dimensity9300plus_initfn },
+    { .name = "dimensity-8400",         .initfn = aarch64_mt_dimensity8400_initfn },
+    { .name = "dimensity-8300-ultra",   .initfn = aarch64_mt_dimensity8300ultra_initfn },
+    { .name = "dimensity-7300",         .initfn = aarch64_mt_dimensity7300_initfn },
+    { .name = "dimensity-7050",         .initfn = aarch64_mt_dimensity7050_initfn },
+    { .name = "dimensity-6080",         .initfn = aarch64_mt_dimensity6080_initfn },
+    { .name = "dimensity-6050",         .initfn = aarch64_mt_dimensity6050_initfn },
+    { .name = "kompanio-830",           .initfn = aarch64_mt_kompanio830_initfn },
+    { .name = "kompanio-520",           .initfn = aarch64_mt_kompanio520_initfn },
+    { .name = "exynos-2200",            .initfn = aarch64_exynos2200_initfn },
+    { .name = "exynos-2400e",           .initfn = aarch64_exynos2400e_initfn },
+    { .name = "exynos-1480i",           .initfn = aarch64_exynos1480i_initfn },
+    { .name = "exynos-850",             .initfn = aarch64_exynos850_initfn },
+    { .name = "kirin-9100-plus",        .initfn = aarch64_kirin9100plus_initfn },
+    { .name = "kirin-990",              .initfn = aarch64_kirin990_initfn },
+    { .name = "kirin-985",              .initfn = aarch64_kirin985_initfn },
+    { .name = "kirin-9000s",            .initfn = aarch64_kirin9000s_initfn },
+    { .name = "kirin-9000e",            .initfn = aarch64_kirin9000e_initfn },
+    { .name = "kirin-9000l",            .initfn = aarch64_kirin9000l_initfn },
+    { .name = "unisoc-t760",            .initfn = aarch64_unisoc_t760_initfn },
+    { .name = "unisoc-t770",            .initfn = aarch64_unisoc_t770_initfn },
+    { .name = "unisoc-t606",            .initfn = aarch64_unisoc_t606_initfn },
+    { .name = "unisoc-t616",            .initfn = aarch64_unisoc_t616_initfn },
+    { .name = "rk3576",                 .initfn = aarch64_rk3576_initfn },
+    { .name = "rk3528",                 .initfn = aarch64_rk3528_initfn },
+    { .name = "rk3399",                 .initfn = aarch64_rk3399_initfn },
+    { .name = "nvidia-tegra-t234",      .initfn = aarch64_tegra_t234_initfn },
+    { .name = "nvidia-tegra-t210",      .initfn = aarch64_tegra_t210_initfn },
+    { .name = "qualcomm-qcs8550",       .initfn = aarch64_qcs8550_initfn },
+    { .name = "qualcomm-sa8775p",       .initfn = aarch64_sa8775p_initfn },
+    { .name = "cortex-a520",            .initfn = aarch64_a520_initfn },
+    { .name = "cortex-a725",            .initfn = aarch64_a725_initfn },
+    { .name = "cortex-x4",              .initfn = aarch64_x4_initfn },
+    { .name = "cortex-x5",              .initfn = aarch64_x5_initfn },
+    { .name = "neoverse-n3",            .initfn = aarch64_neoverse_n3_initfn },
+    { .name = "neoverse-v3",            .initfn = aarch64_neoverse_v3_initfn },
+    { .name = "neoverse-v3p",           .initfn = aarch64_neoverse_v3p_initfn },
 };
 
 static void aarch64_cpu_register_types(void)

@@ -178,3 +178,16 @@ system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files(
   'nvidia-rtx5060m.c', 'nvidia-rtx5070m.c', 'nvidia-rtx5080m.c',
   'amd-rx7600m.c', 'amd-rx7700m.c', 'amd-rx7800m.c', 'amd-rx8900m.c',
   'amd-radeon-780m.c', 'amd-radeon-890m.c', 'amd-radeon-90m.c'))
+
+# v1.38: More mobile/embedded/automotive GPU stubs
+system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files(
+  'adreno-506.c', 'adreno-509.c', 'adreno-510.c', 'adreno-512.c', 'adreno-530.c', 'adreno-540.c',
+  'adreno-615.c', 'adreno-640-auto.c', 'adreno-660-auto.c', 'adreno-740-auto.c', 'adreno-750-auto.c',
+  'mali-g310.c', 'mali-g410.c', 'mali-g450.c', 'mali-g510.c', 'mali-g380.c', 'mali-g31.c', 'mali-g920.c',
+  'apple-gpu-a12x.c', 'apple-gpu-a12z.c', 'apple-gpu-a13.c',
+  'apple-gpu-m1-ipad.c', 'apple-gpu-m2-ipad.c', 'apple-gpu-m3-ipad.c',
+  'nvidia-tegra-x1-gpu.c', 'nvidia-tegra-x2-gpu.c', 'nvidia-ortin-gpu.c', 'nvidia-thor-gpu.c',
+  'intel-uhd-mobile-rpl.c', 'intel-iris-xe-mobile-rpl.c', 'intel-uhd-mobile-adl.c', 'intel-iris-xe-mobile-adl.c',
+  'kirin-mali-g510.c', 'kirin-mali-g51.c',
+  'samsung-mali-g68.c', 'samsung-mali-g78.c',
+  'broadcom-videocore-vi.c', 'broadcom-videocore-vii.c'))
