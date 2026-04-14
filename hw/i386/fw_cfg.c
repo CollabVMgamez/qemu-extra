@@ -69,13 +69,14 @@ void fw_cfg_build_smbios(PCMachineState *pcms, FWCfgState *fw_cfg,
     unsigned i, array_count;
     MachineState *ms = MACHINE(pcms);
     PCMachineClass *pcmc = PC_MACHINE_GET_CLASS(pcms);
-    MachineClass *mc = MACHINE_GET_CLASS(pcms);
     X86CPU *cpu = X86_CPU(ms->possible_cpus->cpus[0].cpu);
     int nr_e820;
 
     if (pcmc->smbios_defaults) {
-        /* These values are guest ABI, do not change */
-        smbios_set_defaults("LENOVO", "ThinkCentre M920q", "10RRS0PA00");
+        smbios_set_defaults(
+            pcms->smbios_manufacturer ? pcms->smbios_manufacturer : "LENOVO",
+            pcms->smbios_product      ? pcms->smbios_product      : "ThinkCentre M920q",
+            pcms->smbios_version      ? pcms->smbios_version      : "10RRS0PA00");
     }
 
     /* tell smbios about cpuid version and features */

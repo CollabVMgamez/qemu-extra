@@ -1482,16 +1482,64 @@ static void pc_machine_set_system_name(Object *obj, const char *value,
     PCMachineState *pcms = PC_MACHINE(obj);
     g_free(pcms->system_name);
     pcms->system_name = g_strdup(value);
-    /*
-     * Override SMBIOS Type 1 product/manufacturer so dmidecode,
-     * neofetch, fastfetch and /sys/class/dmi/id/product_name all
-     * report the user-specified name.
-     */
     if (value && value[0]) {
-        /* Force the product name — overrides the default set later */
         smbios_type1.product = g_strdup(value);
         smbios_type1.manufacturer = g_strdup(value);
     }
+}
+
+static char *pc_machine_get_smbios_manufacturer(Object *obj, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    return g_strdup(pcms->smbios_manufacturer);
+}
+
+static void pc_machine_set_smbios_manufacturer(Object *obj, const char *value,
+                                                Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    g_free(pcms->smbios_manufacturer);
+    pcms->smbios_manufacturer = g_strdup(value);
+}
+
+static char *pc_machine_get_smbios_product(Object *obj, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    return g_strdup(pcms->smbios_product);
+}
+
+static void pc_machine_set_smbios_product(Object *obj, const char *value,
+                                           Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    g_free(pcms->smbios_product);
+    pcms->smbios_product = g_strdup(value);
+}
+
+static char *pc_machine_get_smbios_version(Object *obj, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    return g_strdup(pcms->smbios_version);
+}
+
+static void pc_machine_set_smbios_version(Object *obj, const char *value,
+                                           Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    g_free(pcms->smbios_version);
+    pcms->smbios_version = g_strdup(value);
+}
+
+static bool pc_machine_get_auto_applesmc(Object *obj, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    return pcms->auto_applesmc;
+}
+
+static void pc_machine_set_auto_applesmc(Object *obj, bool value, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    pcms->auto_applesmc = value;
 }
 
 static void pc_machine_get_vmport(Object *obj, Visitor *v, const char *name,
@@ -1832,6 +1880,26 @@ static void pc_machine_class_init(ObjectClass *oc, const void *data)
     object_class_property_set_description(oc, "system-name",
         "System product name shown in dmidecode/neofetch/fastfetch "
         "(sets SMBIOS Type 1 product name)");
+
+    object_class_property_add_str(oc, "smbios-manufacturer",
+        pc_machine_get_smbios_manufacturer, pc_machine_set_smbios_manufacturer);
+    object_class_property_set_description(oc, "smbios-manufacturer",
+        "Override SMBIOS Type 1/2 manufacturer (e.g. Apple Inc.)");
+
+    object_class_property_add_str(oc, "smbios-product",
+        pc_machine_get_smbios_product, pc_machine_set_smbios_product);
+    object_class_property_set_description(oc, "smbios-product",
+        "Override SMBIOS Type 1/2 product name (e.g. MacBook Pro)");
+
+    object_class_property_add_str(oc, "smbios-version",
+        pc_machine_get_smbios_version, pc_machine_set_smbios_version);
+    object_class_property_set_description(oc, "smbios-version",
+        "Override SMBIOS Type 1/2 version string (e.g. 1.0)");
+
+    object_class_property_add_bool(oc, "auto-applesmc",
+        pc_machine_get_auto_applesmc, pc_machine_set_auto_applesmc);
+    object_class_property_set_description(oc, "auto-applesmc",
+        "Automatically create Apple SMC ISA device (for Mac machine types)");
 
 
 

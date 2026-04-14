@@ -247,7 +247,7 @@ uint8_t *spd_data_generate(enum sdram_type type, ram_addr_t ram_size)
                    (sz_mb >= 1024) ? 0x03 : 0x02;
         /* checksum bytes 0-116 */
         uint8_t crc = 0;
-        for (int i = 0; i < 126; i++) crc += spd3[i];
+        for (i = 0; i < 126; i++) crc += spd3[i];
         spd3[126] = crc;
         return spd3;
     }
@@ -303,7 +303,7 @@ uint8_t *spd_data_generate(enum sdram_type type, ram_addr_t ram_size)
         spd4[12] = 0xFC;
         /* Simple CRC-16 for bytes 0-125 (SPD4 uses CRC16, not sum) */
         uint16_t crc16 = 0;
-        for (int i = 0; i < 126; i++) {
+        for (i = 0; i < 126; i++) {
             crc16 ^= (uint16_t)spd4[i] << 8;
             for (int j = 0; j < 8; j++)
                 crc16 = (crc16 & 0x8000) ? (crc16 << 1) ^ 0x1021 : crc16 << 1;

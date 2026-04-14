@@ -103,6 +103,7 @@ static void usb_flash_drive_realize(USBDevice *dev, Error **errp)
     usb_desc_set_string(dev, 2, s->product);
     usb_desc_set_string(dev, 3, s->serial);
     strncpy(dev->product_desc, s->product, sizeof(dev->product_desc)-1);
+    dev->product_desc[sizeof(dev->product_desc)-1] = '\0';
 }
 
 static const Property usb_flash_drive_props[] = {
@@ -164,7 +165,7 @@ static void webcam_##qemu_name##_realize(USBDevice *dev, Error **errp)         \
     usb_desc_set_string(dev, 1, mfr);                                          \
     usb_desc_set_string(dev, 2, prod);                                         \
     if (ser) usb_desc_set_string(dev, 3, ser);                                 \
-    strncpy(dev->product_desc, prod, sizeof(dev->product_desc)-1);            \
+    strncpy(dev->product_desc, prod, sizeof(dev->product_desc)-1); dev->product_desc[sizeof(dev->product_desc)-1] = '\0';            \
 }                                                                               \
 static void webcam_##qemu_name##_class_init(ObjectClass *k, const void *d)     \
 {                                                                               \
@@ -226,7 +227,7 @@ static void bt_##qemu_name##_realize(USBDevice *dev, Error **errp)             \
     if (*errp) return;                                                          \
     usb_desc_set_string(dev, 1, mfr);                                          \
     usb_desc_set_string(dev, 2, prod);                                          \
-    strncpy(dev->product_desc, prod, sizeof(dev->product_desc)-1);            \
+    strncpy(dev->product_desc, prod, sizeof(dev->product_desc)-1); dev->product_desc[sizeof(dev->product_desc)-1] = '\0';            \
 }                                                                               \
 static void bt_##qemu_name##_class_init(ObjectClass *k, const void *d)         \
 {                                                                               \
@@ -287,7 +288,7 @@ static void aud_##qemu_name##_realize(USBDevice *dev, Error **errp)             
     if (*errp) return;                                                          \
     usb_desc_set_string(dev, 1, mfr);                                          \
     usb_desc_set_string(dev, 2, prod);                                          \
-    strncpy(dev->product_desc, prod, sizeof(dev->product_desc)-1);            \
+    strncpy(dev->product_desc, prod, sizeof(dev->product_desc)-1); dev->product_desc[sizeof(dev->product_desc)-1] = '\0';            \
 }                                                                               \
 static void aud_##qemu_name##_class_init(ObjectClass *k, const void *d)         \
 {                                                                               \

@@ -72,7 +72,7 @@ struct NvmeIdentityState {
 };
 
 /* Build NVMe Identify Controller response (CNS=0x01) — 4096 bytes */
-static void nvme_build_identify_ctrl(NvmeIdentityState *s, uint8_t *buf)
+static void __attribute__((unused)) nvme_build_identify_ctrl(NvmeIdentityState *s, uint8_t *buf)
 {
     memset(buf, 0, 4096);
 
@@ -116,7 +116,7 @@ static void nvme_build_identify_ctrl(NvmeIdentityState *s, uint8_t *buf)
 }
 
 /* Build NVMe SMART/Health Information log page — 512 bytes */
-static void nvme_build_smart_log(NvmeIdentityState *s, uint8_t *buf)
+static void __attribute__((unused)) nvme_build_smart_log(NvmeIdentityState *s, uint8_t *buf)
 {
     memset(buf, 0, 512);
 
@@ -157,7 +157,7 @@ static void nvme_build_smart_log(NvmeIdentityState *s, uint8_t *buf)
 }
 
 /* Shared 4KB DMA buffer for identify/log responses */
-static uint8_t nvme_dma_buf[4096];
+static uint8_t nvme_dma_buf[4096] __attribute__((unused));
 
 static uint64_t nvme_bar0_read(void *opaque, hwaddr addr, unsigned size)
 {

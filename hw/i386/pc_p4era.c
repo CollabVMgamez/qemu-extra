@@ -51,8 +51,7 @@
 #include "target/i386/cpu.h"
 #include "migration/global_state.h"
 #include "system/numa.h"
-
-
+#include "hw/firmware/smbios.h"
 /* ---------------------------------------------------------------------------
  * Parse the ram_type property and generate matching SPD EEPROM data.
  * CPU-Z reads SPD byte 2 (the DRAM type code) to show DDR1/DDR2/DDR3/DDR4.
@@ -90,11 +89,6 @@ static void pc_init_spd(PCMachineState *pcms)
 
     /* Propagate ram-type, speed, form-factor, part, manufacturer to SMBIOS Type 17 */
     if (pcms->ram_type) {
-        extern void smbios_set_type17_memory_type(const char *type_str);
-        extern void smbios_set_type17_speed(uint32_t speed_mhz);
-        extern void smbios_set_type17_form_factor(const char *ff_str);
-        extern void smbios_set_type17_part_number(const char *part);
-        extern void smbios_set_type17_manufacturer(const char *mfr);
         smbios_set_type17_memory_type(pcms->ram_type);
         if (pcms->ram_speed_mhz > 0)
             smbios_set_type17_speed(pcms->ram_speed_mhz);

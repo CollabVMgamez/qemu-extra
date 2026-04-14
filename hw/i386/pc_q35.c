@@ -57,6 +57,7 @@
 #include "qapi/error.h"
 #include "qemu/error-report.h"
 #include "system/numa.h"
+#include "hw/firmware/smbios.h"
 #include "hw/hyperv/vmbus-bridge.h"
 #include "hw/mem/nvdimm.h"
 #include "hw/uefi/var-service-api.h"
@@ -128,7 +129,7 @@ static int ehci_create_ich9_with_companions(PCIBus *bus, int slot)
 }
 
 /* PC hardware initialisation */
-static void pc_q35_init(MachineState *machine)
+void pc_q35_init(MachineState *machine)
 {
     PCMachineState *pcms = PC_MACHINE(machine);
     PCMachineClass *pcmc = PC_MACHINE_GET_CLASS(pcms);
@@ -317,12 +318,6 @@ static void pc_q35_init(MachineState *machine)
         pcms->smbus = I2C_BUS(qdev_get_child_bus(DEVICE(smb), "i2c"));
 
         if (pcms->ram_type) {
-            extern uint8_t *spd_data_generate(enum sdram_type type, ram_addr_t size);
-            extern void smbios_set_type17_memory_type(const char *t);
-            extern void smbios_set_type17_speed(uint32_t mhz);
-            extern void smbios_set_type17_form_factor(const char *ff);
-            extern void smbios_set_type17_part_number(const char *p);
-            extern void smbios_set_type17_manufacturer(const char *m);
             enum sdram_type stype = DDR4;
             if (!g_ascii_strcasecmp(pcms->ram_type, "ddr") ||
                 !g_ascii_strcasecmp(pcms->ram_type, "ddr1"))         stype = DDR;
@@ -353,6 +348,13 @@ static void pc_q35_init(MachineState *machine)
     /* the rest devices to which pci devfn is automatically assigned */
     pc_vga_init(isa_bus, pcms->pcibus);
     pc_nic_init(pcmc, isa_bus, pcms->pcibus);
+
+    if (pcms->auto_applesmc) {
+        ISADevice *smc = isa_new("isa-applesmc");
+        qdev_prop_set_string(DEVICE(smc), "osk",
+            "This is a dummy key. Enter the real key using the -osk parameter");
+        isa_realize_and_unref(smc, isa_bus, &error_fatal);
+    }
 
     if (machine->nvdimms_state->is_enabled) {
         nvdimm_init_acpi_state(machine->nvdimms_state, system_io,

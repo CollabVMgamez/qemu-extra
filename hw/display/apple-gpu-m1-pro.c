@@ -65,7 +65,7 @@ static uint64_t bar0_r(void *opaque, hwaddr addr, unsigned size) {
     case NV_PFB_BOOT_0:     return GPU_PFB_BOOT_0;
     case NV_PFB_PARTS_R:    return GPU_PFB_PARTS;
     case NV_PFB_REFCTRL_R:  return GPU_PFB_REFCTRL;
-    case ATI_MEM_SIZE:      return (uint32_t)(GPU_VRAM_MB * 1024 * 1024);
+    case ATI_MEM_SIZE:      return (uint32_t)(GPU_VRAM_MB * 1024ULL * 1024ULL);
     case 0x000E0300: { /* AMD GCN temperature */
         uint64_t _ns=qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);
         uint32_t _t=45+(uint32_t)((_ns>>28)%25); return _t * 8;

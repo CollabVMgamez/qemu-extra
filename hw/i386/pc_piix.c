@@ -60,6 +60,7 @@
 #include "migration/misc.h"
 #include "system/runstate.h"
 #include "system/numa.h"
+#include "hw/firmware/smbios.h"
 #include "hw/hyperv/vmbus-bridge.h"
 #include "hw/mem/nvdimm.h"
 #include "hw/uefi/var-service-api.h"
@@ -305,12 +306,6 @@ static void pc_init1(MachineState *machine, const char *pci_type)
         pcms->smbus = I2C_BUS(qdev_get_child_bus(DEVICE(piix4_pm), "i2c"));
         /* Populate SPD EEPROM with ram-type property data */
         if (pcms->ram_type) {
-            extern uint8_t *spd_data_generate(enum sdram_type type, ram_addr_t size);
-            extern void smbios_set_type17_memory_type(const char *t);
-            extern void smbios_set_type17_speed(uint32_t mhz);
-            extern void smbios_set_type17_form_factor(const char *ff);
-            extern void smbios_set_type17_part_number(const char *p);
-            extern void smbios_set_type17_manufacturer(const char *m);
             enum sdram_type stype = DDR2;
             if (!g_ascii_strcasecmp(pcms->ram_type, "ddr") ||
                 !g_ascii_strcasecmp(pcms->ram_type, "ddr1"))         stype = DDR;

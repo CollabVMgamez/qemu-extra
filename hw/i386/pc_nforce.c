@@ -45,6 +45,7 @@
 #include "target/i386/cpu.h"
 #include "migration/global_state.h"
 #include "system/numa.h"
+#include "hw/firmware/smbios.h"
 
 
 /* ---------------------------------------------------------------------------
@@ -74,7 +75,6 @@ static void pc_init_spd(PCMachineState *pcms)
     g_free(spd);
     /* Also propagate ram-type to SMBIOS Type 17 */
     if (pcms->ram_type) {
-        extern void smbios_set_type17_memory_type(const char *type_str);
         smbios_set_type17_memory_type(pcms->ram_type);
     }
 }

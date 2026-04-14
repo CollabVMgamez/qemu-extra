@@ -17,7 +17,7 @@ i386_ss.add(when: 'CONFIG_I440FX', if_true: files('pc_piix.c', 'pc_p4era.c', 'pc
 i386_ss.add(when: 'CONFIG_ISAPC', if_true: files('isapc.c'))
 i386_ss.add(when: 'CONFIG_MICROVM', if_true: files('x86-common.c', 'microvm.c', 'acpi-microvm.c', 'microvm-dt.c'))
 i386_ss.add(when: 'CONFIG_NITRO_ENCLAVE', if_true: files('nitro_enclave.c'))
-i386_ss.add(when: 'CONFIG_Q35', if_true: files('pc_q35.c'))
+i386_ss.add(when: 'CONFIG_Q35', if_true: files('pc_q35.c', 'mac_machine.c'))
 i386_ss.add(when: 'CONFIG_VMMOUSE', if_true: files('vmmouse.c'))
 i386_ss.add(when: 'CONFIG_VMPORT', if_true: files('vmport.c'))
 i386_ss.add(when: 'CONFIG_VTD', if_true: files('intel_iommu.c'))

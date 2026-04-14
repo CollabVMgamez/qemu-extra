@@ -93,6 +93,14 @@ typedef struct PCMachineState {
     /* Memory topology: number of populated DIMM slots (for SMBIOS) */
     uint32_t mem_slot_count;
 
+    /* Per-machine SMBIOS overrides (used by Mac machines etc.) */
+    char *smbios_manufacturer;
+    char *smbios_product;
+    char *smbios_version;
+
+    /* Apple SMC auto-attach (Mac machines) */
+    bool auto_applesmc;
+
     SGXEPCState sgx_epc;
     CXLState cxl_devices_state;
 } PCMachineState;
@@ -353,5 +361,7 @@ extern const size_t pc_compat_4_1_len;
         type_register_static(&MACHINE_VER_SYM(info, namesym, __VA_ARGS__)); \
     } \
     type_init(MACHINE_VER_SYM(register, namesym, __VA_ARGS__));
+
+void pc_q35_init(MachineState *machine);
 
 #endif

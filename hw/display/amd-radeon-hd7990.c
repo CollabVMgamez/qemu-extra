@@ -66,7 +66,7 @@ static uint64_t bar0_r(void *opaque, hwaddr addr, unsigned size) {
     switch (addr & ~3ULL) {
     case ATI_CHIP_ID:   return GPU_CHIP_ID;
     case ATI_CHIP_REV:  return 0x00000001;
-    case ATI_MEM_SIZE:  return (uint32_t)(GPU_VRAM_MB * 1024 * 1024);
+    case ATI_MEM_SIZE:  return (uint32_t)(GPU_VRAM_MB * 1024ULL * 1024ULL);
     case NV_PFB_BOOT_0: return GPU_PFB_BOOT_0;
     case NV_PFB_PARTS: return GPU_PFB_PARTS;
     case NV_PFB_REFCTRL: return GPU_PFB_REFCTRL;

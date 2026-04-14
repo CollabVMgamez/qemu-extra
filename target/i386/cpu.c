@@ -4233,7 +4233,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 16,
         .model = 5,
         .stepping = 2,
-        .brand_id = 0x10e,
+        .brand_id = 0x0e,
         .default_multiplier = 14,
         .default_multiplier = 12,
         .default_multiplier = 10,
@@ -4281,7 +4281,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 16,
         .model = 5,
         .stepping = 3,
-        .brand_id = 0x10e,
+        .brand_id = 0x0e,
         .default_multiplier = 15,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
@@ -4316,7 +4316,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 16,
         .model = 4,
         .stepping = 2,
-        .brand_id = 0x10c,
+        .brand_id = 0x0c,
         .default_multiplier = 14,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
@@ -4386,7 +4386,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 0x10a,
+        .brand_id = 0x0a,
         .default_multiplier = 16,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
@@ -4421,7 +4421,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 0x10a,
+        .brand_id = 0x0a,
         .default_multiplier = 17,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
@@ -4456,7 +4456,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 16,
         .model = 10,
         .stepping = 0,
-        .brand_id = 0x108,
+        .brand_id = 0x08,
         .default_multiplier = 14,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
@@ -4491,7 +4491,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 16,
         .model = 10,
         .stepping = 0,
-        .brand_id = 0x108,
+        .brand_id = 0x08,
         .default_multiplier = 17,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
@@ -4526,7 +4526,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 16,
         .model = 6,
         .stepping = 3,
-        .brand_id = 0x104,
+        .brand_id = 0x04,
         .default_multiplier = 15,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
@@ -5548,7 +5548,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 65,
         .stepping = 2,
-        .brand_id = 0x104,
+        .brand_id = 0x04,
         .default_multiplier = 17,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
@@ -5580,7 +5580,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 15,
         .model = 107,
         .stepping = 1,
-        .brand_id = 0x104,
+        .brand_id = 0x04,
         .default_multiplier = 20,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE |
@@ -12883,7 +12883,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 25,
         .model = 68,
         .stepping = 1,
-        .brand_id = 0x10a,
+        .brand_id = 0x0a,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
             CPUID_PSE36 | CPUID_VME | CPUID_HT,
@@ -12925,7 +12925,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 25,
         .model = 68,
         .stepping = 1,
-        .brand_id = 0x10a,
+        .brand_id = 0x0a,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
             CPUID_PSE36 | CPUID_VME | CPUID_HT,
@@ -12967,7 +12967,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 25,
         .model = 116,
         .stepping = 1,
-        .brand_id = 0x10a,
+        .brand_id = 0x0a,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
             CPUID_PSE36 | CPUID_VME | CPUID_HT,
@@ -13009,7 +13009,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 25,
         .model = 116,
         .stepping = 1,
-        .brand_id = 0x10a,
+        .brand_id = 0x0a,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
             CPUID_PSE36 | CPUID_VME | CPUID_HT,
@@ -13051,7 +13051,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 25,
         .model = 116,
         .stepping = 1,
-        .brand_id = 0x10a,
+        .brand_id = 0x0a,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
             CPUID_PSE36 | CPUID_VME | CPUID_HT,
@@ -13093,7 +13093,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 25,
         .model = 120,
         .stepping = 1,
-        .brand_id = 0x10a,
+        .brand_id = 0x0a,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
             CPUID_PSE36 | CPUID_VME | CPUID_HT,
@@ -13135,7 +13135,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 25,
         .model = 120,
         .stepping = 1,
-        .brand_id = 0x10a,
+        .brand_id = 0x0a,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
             CPUID_PSE36 | CPUID_VME | CPUID_HT,
@@ -13177,7 +13177,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 25,
         .model = 120,
         .stepping = 1,
-        .brand_id = 0x10a,
+        .brand_id = 0x0a,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
             CPUID_PSE36 | CPUID_VME | CPUID_HT,
@@ -13219,7 +13219,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 26,
         .model = 36,
         .stepping = 0,
-        .brand_id = 0x10a,
+        .brand_id = 0x0a,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
             CPUID_PSE36 | CPUID_VME | CPUID_HT,
@@ -13261,7 +13261,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         .family = 26,
         .model = 36,
         .stepping = 0,
-        .brand_id = 0x10a,
+        .brand_id = 0x0a,
         .features[FEAT_1_EDX] =
             PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
             CPUID_PSE36 | CPUID_VME | CPUID_HT,
@@ -18368,7 +18368,6 @@ void cpu_x86_cpuid(CPUX86State *env, uint32_t index, uint32_t count,
     X86CPU *cpu = env_archcpu(env);
     CPUState *cs = env_cpu(env);
     uint32_t limit;
-    uint32_t signature[3];
     X86CPUTopoInfo *topo_info = &env->topo_info;
     uint32_t threads_per_pkg;
 

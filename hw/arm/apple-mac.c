@@ -32,8 +32,7 @@
 #include "target/arm/cpu-qom.h"
 #include "qom/object.h"
 
-/* Declared in target/arm/machine.c */
-extern const InterfaceInfo arm_aarch64_machine_interfaces[];
+/* arm_aarch64_machine_interfaces is provided by target/arm/machine.o */
 
 /* TYPE_VIRT_MACHINE is defined in hw/arm/virt.h as MACHINE_TYPE_NAME("virt") */
 

@@ -419,7 +419,7 @@ static const ARMCPRegInfo neoverse_n1_cp_reginfo[] = {
       .accessfn = access_actlr_w },
 };
 
-static void define_neoverse_n1_cp_reginfo(ARMCPU *cpu)
+static void __attribute__((unused)) define_neoverse_n1_cp_reginfo(ARMCPU *cpu)
 {
     define_arm_cp_regs(cpu, neoverse_n1_cp_reginfo);
 }
@@ -440,7 +440,7 @@ static const ARMCPRegInfo neoverse_v1_cp_reginfo[] = {
       .access = PL3_RW, .type = ARM_CP_CONST, .resetvalue = 0 },
 };
 
-static void define_neoverse_v1_cp_reginfo(ARMCPU *cpu)
+static void __attribute__((unused)) define_neoverse_v1_cp_reginfo(ARMCPU *cpu)
 {
     /*
      * The Neoverse V1 has all of the Neoverse N1's IMPDEF
@@ -452,7 +452,7 @@ static void define_neoverse_v1_cp_reginfo(ARMCPU *cpu)
 
 
 
-static const ARMCPRegInfo cortex_a710_cp_reginfo[] = {
+static const ARMCPRegInfo __attribute__((unused)) cortex_a710_cp_reginfo[] = {
     { .name = "CPUACTLR_EL1", .state = ARM_CP_STATE_AA64,
       .opc0 = 3, .opc1 = 0, .crn = 15, .crm = 1, .opc2 = 0,
       .access = PL1_RW, .type = ARM_CP_CONST, .resetvalue = 0,
@@ -585,7 +585,7 @@ static const ARMCPRegInfo cortex_a710_cp_reginfo[] = {
 
 
 /* Extra IMPDEF regs in the N2 beyond those in the A710 */
-static const ARMCPRegInfo neoverse_n2_cp_reginfo[] = {
+static const ARMCPRegInfo __attribute__((unused)) neoverse_n2_cp_reginfo[] = {
     { .name = "CPURNDBR_EL3", .state = ARM_CP_STATE_AA64,
       .opc0 = 3, .opc1 = 6, .crn = 15, .crm = 3, .opc2 = 0,
       .access = PL3_RW, .type = ARM_CP_CONST, .resetvalue = 0 },
@@ -973,7 +973,7 @@ static void aarch64_max_initfn(Object *obj)
     aarch64_max_tcg_initfn(obj);
 }
 
-static void aarch64_host_initfn(Object *obj)
+static void __attribute__((unused)) aarch64_host_initfn(Object *obj)
 {
     /* In TCG mode, host == max */
     aarch64_max_initfn(obj);
@@ -1585,7 +1585,7 @@ static void aarch64_apple_a18pro_initfn(Object *obj)
 }
 
 /* Apple A16 Bionic (iPhone 14 Pro, 2022) */
-static void aarch64_apple_a16_extra_initfn(Object *obj)
+static void __attribute__((unused)) aarch64_apple_a16_extra_initfn(Object *obj)
 {
     aarch64_max_initfn(obj);
     ARMCPU *cpu = ARM_CPU(obj);
