@@ -158,3 +158,23 @@ system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files(
   'nvidia-dgx-b100.c', 'nvidia-dgx-b200.c', 'nvidia-dgx-gb200.c',
   'nvidia-h20.c', 'nvidia-l40s-48gb.c',
   'nvidia-rtx5080.c', 'nvidia-rtx5070ti.c', 'nvidia-rtx5070.c', 'nvidia-rtx5060ti.c'))
+
+# v1.37: Mobile/SoC GPU stubs (Adreno, Mali, Immortalis, Xclipse, Apple, PowerVR, Rockchip, mobile dGPUs)
+system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files(
+  'adreno-610.c', 'adreno-620.c', 'adreno-680.c', 'adreno-690.c', 'adreno-710.c',
+  'adreno-830.c', 'adreno-830a.c',
+  'mali-g57.c', 'mali-g610.c', 'mali-g620.c', 'mali-g710.c', 'mali-g820.c',
+  'immortalis-g920.c',
+  'samsung-xclipse-960.c',
+  'apple-gpu-a14.c', 'apple-gpu-a15.c', 'apple-gpu-a16.c', 'apple-gpu-a17.c',
+  'apple-gpu-a18.c', 'apple-gpu-a18-pro.c', 'apple-gpu-a19.c', 'apple-gpu-a19-pro.c',
+  'apple-gpu-m4.c', 'apple-gpu-m4-pro.c', 'apple-gpu-m4-max.c', 'apple-gpu-m4-ultra.c',
+  'apple-gpu-m5.c', 'apple-gpu-m5-pro.c', 'apple-gpu-m5-max.c', 'apple-gpu-m5-ultra.c',
+  'rockchip-mali-t860.c', 'rockchip-mali-g52.c', 'rockchip-mali-g610.c',
+  'powervr-bxe-4-32.c', 'powervr-bxm-4-64.c', 'powervr-dxm-2-256.c',
+  'kirin-mali-g620.c', 'kirin-mali-g715.c',
+  'intel-arc-a370m.c', 'intel-arc-a570m.c', 'intel-arc-a730m.c', 'intel-arc-a770m.c', 'intel-arc-bm-g21.c',
+  'nvidia-rtx4050m.c', 'nvidia-rtx4060m.c', 'nvidia-rtx4070m.c', 'nvidia-rtx4080m.c', 'nvidia-rtx4090m.c',
+  'nvidia-rtx5060m.c', 'nvidia-rtx5070m.c', 'nvidia-rtx5080m.c',
+  'amd-rx7600m.c', 'amd-rx7700m.c', 'amd-rx7800m.c', 'amd-rx8900m.c',
+  'amd-radeon-780m.c', 'amd-radeon-890m.c', 'amd-radeon-90m.c'))
