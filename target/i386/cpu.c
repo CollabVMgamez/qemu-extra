@@ -17078,7 +17078,9 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         },
     },
 
-};
+#include "celeron-pentium-ulv-table.inc.c"
+
+ };
 
 /*
  * We resolve CPU model aliases using -v1 when using "-machine
