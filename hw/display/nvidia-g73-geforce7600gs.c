@@ -7,6 +7,7 @@
 #include "qemu/module.h"
 #include "qemu/timer.h"
 #include "hw/pci/pci_device.h"
+#include "hw/pci/pci_bus.h"
 #include "hw/core/qdev-properties.h"
 #include "qom/object.h"
 #include "migration/vmstate.h"
@@ -157,7 +158,7 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     memory_region_init_io(&s->bar3,OBJECT(s),&b135ops,s,"nvidia-g73-geforce7600gs-ramin",NV_BAR3_SIZE);
     pci_register_bar(p,3,PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_32,&s->bar3);
     memory_region_init_io(&s->bar5,OBJECT(s),&b135ops,s,"nvidia-g73-geforce7600gs-vgaio",NV_BAR5_SIZE);
-    pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);
+    pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);if(s->gpu_count>1){PCIBus*bus=pci_get_bus(p);const char*tn=object_get_typename(OBJECT(s));for(uint32_t i=1;i<s->gpu_count&&i<8;i++){PCIDevice*ex=pci_create_simple(bus,-1,tn);if(ex){qdev_prop_set_uint32(DEVICE(ex),"gpu-count",1);Error*le=NULL;qdev_realize(DEVICE(ex),&bus->qbus,&le);if(le){error_free(le);break;}}}}
 }
 static const Property gpu_props_nvidia_g73_geforce7600gs[]={DEFINE_PROP_UINT32("gpu-count",NvidiaG73Geforce7600gsState,gpu_count,1),
     DEFINE_PROP_STRING("gpu-name",NvidiaG73Geforce7600gsState,gpu_name),

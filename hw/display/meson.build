@@ -223,3 +223,30 @@ system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files(
   'intel-hd-4000-bay-trail.c', 'intel-hd-4000-braswell.c',
   'intel-hd-505-apollo-lake.c', 'intel-hd-500-apollo-lake.c',
   'intel-gna-1-0.c', 'intel-gna-2-0.c', 'intel-gna-3-0.c', 'intel-gna-3-5.c'))
+
+# v1.41b: All RTX 20/30/40/50 series + RTX PRO workstation + 5090 variants
+system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files(
+  'nvidia-rtx2060.c', 'nvidia-rtx2060s.c', 'nvidia-rtx2060-12gb.c',
+  'nvidia-rtx2070.c', 'nvidia-rtx2070s.c', 'nvidia-rtx2080.c', 'nvidia-rtx2080s.c',
+  'nvidia-rtx2080ti.c', 'nvidia-titan-rtx.c',
+  'nvidia-rtx3050.c', 'nvidia-rtx3050-oem.c', 'nvidia-rtx3060.c',
+  'nvidia-rtx3060ti.c', 'nvidia-rtx3060ti-gddr6x.c', 'nvidia-rtx3070.c', 'nvidia-rtx3070ti.c',
+  'nvidia-rtx3080.c', 'nvidia-rtx3080-12gb.c', 'nvidia-rtx3080ti.c',
+  'nvidia-rtx3090.c', 'nvidia-rtx3090ti.c',
+  'nvidia-rtx3050m.c', 'nvidia-rtx3050ti-m.c', 'nvidia-rtx3060m.c',
+  'nvidia-rtx3070m.c', 'nvidia-rtx3070ti-m.c', 'nvidia-rtx3080m.c', 'nvidia-rtx3080ti-m.c',
+  'nvidia-rtx4060.c', 'nvidia-rtx4060ti.c', 'nvidia-rtx4060ti-16gb.c',
+  'nvidia-rtx4070.c', 'nvidia-rtx4070s.c', 'nvidia-rtx4070ti.c', 'nvidia-rtx4070tis.c',
+  'nvidia-rtx4080.c', 'nvidia-rtx4080s.c', 'nvidia-rtx4090.c', 'nvidia-rtx4090d.c',
+  'nvidia-rtx5060.c', 'nvidia-rtx5060ti-8gb.c', 'nvidia-rtx5060ti-16gb.c', 'nvidia-rtx5070ti-16gb.c',
+  'nvidia-rtx5090-fe.c', 'nvidia-rtx5090-rog.c', 'nvidia-rtx5090-suprim.c',
+  'nvidia-rtx5090-aorus.c', 'nvidia-rtx5090-gaming-oc.c', 'nvidia-rtx5090-phantom.c',
+  'nvidia-rtx5090-ventus.c', 'nvidia-rtx5090-igame.c', 'nvidia-rtx5090-pny.c',
+  'nvidia-rtxa2000.c', 'nvidia-rtxa2000-12gb.c', 'nvidia-rtxa3000m.c',
+  'nvidia-rtxa4000.c', 'nvidia-rtxa4500.c', 'nvidia-rtxa5000.c', 'nvidia-rtxa5500.c',
+  'nvidia-rtxa6000.c', 'nvidia-rtxa6000-hbr3.c',
+  'nvidia-rtx4000-ada.c', 'nvidia-rtx4500-ada.c', 'nvidia-rtx5000-ada.c', 'nvidia-rtx6000-ada.c',
+  'nvidia-rtx-pro-6000.c',
+  'nvidia-rtx2060m.c', 'nvidia-rtx2060s-m.c', 'nvidia-rtx2070m.c', 'nvidia-rtx2070s-m.c',
+  'nvidia-rtx2080m.c', 'nvidia-rtx2080s-m.c',
+  'nvidia-rtx5050m.c', 'nvidia-rtx5070ti-m.c', 'nvidia-rtx5090m.c'))

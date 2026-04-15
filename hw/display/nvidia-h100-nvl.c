@@ -7,6 +7,7 @@
 #include "qemu/module.h"
 #include "qemu/timer.h"
 #include "hw/pci/pci_device.h"
+#include "hw/pci/pci_bus.h"
 #include "hw/core/qdev-properties.h"
 #include "qom/object.h"
 #include "migration/vmstate.h"
@@ -139,7 +140,7 @@ static void gpu_caps(PCIDevice *p) {
     pci_set_word(c+PC+18,(0x10<<4)|GPU_PCIE_GEN|(1<<13));
 }
 static void gpu_realize(PCIDevice *p, Error **e) {
-    NvidiaH100NvlState *s=(NvidiaH100NvlState*)p;
+    NvidiaH100NvlState *s=(NvidiaH100NvlState*)p; s->gpu_count=1;
     s->clock_mhz=GPU_CLK_BASE; s->clock_last_ns=0;
     p->config[PCI_CLASS_PROG]=0;
     pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID,GPU_SUBSYS_VID);
@@ -197,7 +198,7 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     memory_region_init_io(&s->bar3,OBJECT(s),&b35ops,s,"nvidia-h100-nvl-ramin",NV_BAR3_SIZE);
     pci_register_bar(p,3,PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_32,&s->bar3);
     memory_region_init_io(&s->bar5,OBJECT(s),&b35ops,s,"nvidia-h100-nvl-vgaio",NV_BAR5_SIZE);
-    pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);
+    pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);if(s->gpu_count>1){PCIBus*bus=pci_get_bus(p);const char*tn=object_get_typename(OBJECT(s));for(uint32_t i=1;i<s->gpu_count&&i<8;i++){PCIDevice*ex=pci_create_simple(bus,-1,tn);if(ex){qdev_prop_set_uint32(DEVICE(ex),"gpu-count",1);Error*le=NULL;qdev_realize(DEVICE(ex),&bus->qbus,&le);if(le){error_free(le);break;}}}}
 }
 static const VMStateDescription vms_nvidia_h100_nvl={.name="nvidia-h100-nvl",.version_id=1,.minimum_version_id=1,.fields=(const VMStateField[]){VMSTATE_PCI_DEVICE(parent_obj,NvidiaH100NvlState),VMSTATE_UINT32(intr_en,NvidiaH100NvlState),VMSTATE_UINT32(pfifo_intr_en,NvidiaH100NvlState),VMSTATE_UINT32(clock_mhz,NvidiaH100NvlState),VMSTATE_UINT64(clock_last_ns,NvidiaH100NvlState),VMSTATE_END_OF_LIST()}};
 static const Property gpu_multi_props_NvidiaH100NvlState[] = {

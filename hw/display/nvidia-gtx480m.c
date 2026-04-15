@@ -8,6 +8,7 @@
 #include "qemu/module.h"
 #include "qemu/timer.h"
 #include "hw/pci/pci_device.h"
+#include "hw/pci/pci_bus.h"
 #include "hw/core/qdev-properties.h"
 #include "qom/object.h"
 #include "migration/vmstate.h"
@@ -180,7 +181,7 @@ static void gpu_setup_caps(PCIDevice *pdev)
 
 static void gpu_realize(PCIDevice *pdev, Error **errp)
 {
-    NvidiaGtx480mState *s = (NvidiaGtx480mState *)pdev;
+    NvidiaGtx480mState *s = (NvidiaGtx480mState *)pdev; s->gpu_count=1;
     s->clock_mhz = GPU_CLK_BASE; s->clock_last_ns = 0;
     pdev->config[PCI_CLASS_PROG] = 0x00;
     pci_set_word(pdev->config+PCI_SUBSYSTEM_VENDOR_ID, GPU_SUBSYS_VID);
@@ -193,7 +194,7 @@ static void gpu_realize(PCIDevice *pdev, Error **errp)
     memory_region_init_io(&s->bar3, OBJECT(s), &bar35_ops, s, "nvidia-gtx480m-ramin",NV_BAR3_SIZE);
     pci_register_bar(pdev, 3, PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_32, &s->bar3);
     memory_region_init_io(&s->bar5, OBJECT(s), &bar35_ops, s, "nvidia-gtx480m-vgaio",NV_BAR5_SIZE);
-    pci_register_bar(pdev, 5, PCI_BASE_ADDRESS_SPACE_MEMORY, &s->bar5);
+    pci_register_bar(pdev, 5, PCI_BASE_ADDRESS_SPACE_MEMORY, &s->bar5);if(s->gpu_count>1){PCIBus*bus=pci_get_bus(pdev);const char*tn=object_get_typename(OBJECT(s));for(uint32_t i=1;i<s->gpu_count&&i<8;i++){PCIDevice*ex=pci_create_simple(bus,-1,tn);if(ex){qdev_prop_set_uint32(DEVICE(ex),"gpu-count",1);Error*le=NULL;qdev_realize(DEVICE(ex),&bus->qbus,&le);if(le){error_free(le);break;}}}}
 }
 
 static const VMStateDescription vmstate_nvidia_gtx480m = {
