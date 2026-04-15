@@ -187,3 +187,24 @@ system_ss.add(when: 'CONFIG_PCI', if_true: files('intel-npu.c', 'amd-npu.c', 'ap
 
 # v1.39: NVMe SSD, NIC, Audio, TPM, Thunderbolt identity stubs
 system_ss.add(when: 'CONFIG_PCI', if_true: files('nvme-ssd-stubs.c', 'nic-stubs.c', 'audio-stubs.c', 'tpm-stubs.c', 'thunderbolt-stubs.c'))
+
+# v1.41: NPU stubs — Qualcomm Hexagon, MediaTek APU, Apple Neural Engine, Google Edge TPU/TPU, Samsung NPU, HiSilicon Da Vinci
+system_ss.add(when: 'CONFIG_PCI', if_true: files(
+  'qualcomm-hexagon-dsp-690.c', 'qualcomm-hexagon-dsp-680.c', 'qualcomm-hexagon-dsp-670.c',
+  'qualcomm-hexagon-dsp-665.c', 'qualcomm-ai-engine-qcs8250.c', 'qualcomm-ai-engine-qcs6490.c',
+  'qualcomm-cloud-ai-100.c', 'qualcomm-cloud-ai-100-ultra.c',
+  'mediatek-apu-v3.c', 'mediatek-apu-v4.c', 'mediatek-apu-v5.c', 'mediatek-apu-v6.c',
+  'mediatek-neuron-pilot.c',
+  'apple-neural-engine-m1.c', 'apple-neural-engine-m1-pro.c', 'apple-neural-engine-m1-max.c',
+  'apple-neural-engine-m1-ultra.c', 'apple-neural-engine-m2.c', 'apple-neural-engine-m2-pro.c',
+  'apple-neural-engine-m2-max.c', 'apple-neural-engine-m2-ultra.c',
+  'apple-neural-engine-m3.c', 'apple-neural-engine-m3-pro.c', 'apple-neural-engine-m3-max.c',
+  'apple-neural-engine-m4.c', 'apple-neural-engine-m4-pro.c', 'apple-neural-engine-m4-max.c',
+  'google-edge-tpu-coral.c', 'google-edge-tpu-coral-m2.c', 'google-edge-tpu-coral-mini.c',
+  'google-edge-tpu-coral-pcie.c', 'google-tpu-v4.c', 'google-tpu-v5.c',
+  'google-tpu-v5p.c', 'google-tpu-v5e.c',
+  'samsung-npu-exynos-2100.c', 'samsung-npu-exynos-2200.c',
+  'samsung-npu-exynos-2400.c', 'samsung-npu-exynos-2500.c',
+  'hisilicon-davinci-mini.c', 'hisilicon-davinci-lite.c', 'hisilicon-davinci-max.c',
+  'hisilicon-davinci-max2.c', 'hisilicon-davinci-max2b.c', 'hisilicon-davinci-super.c',
+  'hisilicon-ascend-310b.c'))

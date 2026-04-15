@@ -4,6 +4,16 @@
  */
 
     {
+        .name = "custom",
+        .level = 0x16,
+        .vendor = CPUID_VENDOR_INTEL,
+        .family = 6,
+        .model = 142,
+        .stepping = 12,
+        .model_id = "Custom CPU",
+    },
+
+    {
         .name = "celeron-433",
         .level = 5,
         .vendor = CPUID_VENDOR_INTEL,

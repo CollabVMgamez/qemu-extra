@@ -190,4 +190,36 @@ system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files(
   'intel-uhd-mobile-rpl.c', 'intel-iris-xe-mobile-rpl.c', 'intel-uhd-mobile-adl.c', 'intel-iris-xe-mobile-adl.c',
   'kirin-mali-g510.c', 'kirin-mali-g51.c',
   'samsung-mali-g68.c', 'samsung-mali-g78.c',
-  'broadcom-videocore-vi.c', 'broadcom-videocore-vii.c'))
+   'broadcom-videocore-vi.c', 'broadcom-videocore-vii.c',
+    'custom-gpu.c'))
+
+# v1.41: Intel iGPU/dGPU/GNA stubs — Sandy Bridge through Lunar Lake, Arc Pro, GNA
+system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files(
+  'intel-hd-2000.c', 'intel-hd-3000.c', 'intel-hd-2000-snb-server.c',
+  'intel-hd-2500.c', 'intel-hd-4000.c', 'intel-hd-2500-ivb-server.c', 'intel-hd-4000-ivb-server.c',
+  'intel-hd-4600.c', 'intel-hd-4400.c', 'intel-hd-5000.c',
+  'intel-iris-pro-5200.c', 'intel-iris-5100.c', 'intel-hd-4200.c',
+  'intel-hd-4600-hsw-server.c', 'intel-iris-pro-p5200.c',
+  'intel-hd-5500.c', 'intel-hd-6000.c', 'intel-iris-pro-6200.c', 'intel-iris-6100.c',
+  'intel-hd-530.c', 'intel-hd-520.c', 'intel-hd-515.c', 'intel-hd-p530.c',
+  'intel-iris-pro-p580.c', 'intel-hd-540.c',
+  'intel-hd-620.c', 'intel-hd-630-kbl.c', 'intel-hd-615.c', 'intel-hd-640.c',
+  'intel-iris-plus-640.c', 'intel-iris-plus-650.c',
+  'intel-uhd-620-kbl.c', 'intel-uhd-615-kbl.c', 'intel-uhd-617.c',
+  'intel-uhd-600.c', 'intel-uhd-605.c', 'intel-hd-505.c', 'intel-hd-500.c',
+  'intel-uhd-630-cfl-h.c', 'intel-uhd-610.c',
+  'intel-iris-plus-655.c', 'intel-iris-plus-645.c', 'intel-uhd-620-cfl.c',
+  'intel-uhd-620-cml.c', 'intel-uhd-630-cml.c', 'intel-uhd-p630-cml.c', 'intel-uhd-617-cml.c',
+  'intel-iris-plus-g7.c', 'intel-iris-plus-g4.c', 'intel-uhd-g1.c',
+  'intel-uhd-jasper-lake.c', 'intel-uhd-elkhart-lake.c',
+  'intel-uhd-750.c', 'intel-uhd-770-rkl.c',
+  'intel-iris-xe-tgl-u.c', 'intel-uhd-tgl.c',
+  'intel-uhd-710.c', 'intel-uhd-770-adl.c', 'intel-uhd-graphics-adl-n.c',
+  'intel-uhd-770-rpl-s.c', 'intel-uhd-730-rpl-s.c',
+  'intel-iris-xe-mtl-u.c', 'intel-iris-xe2-lnl.c',
+  'intel-arc-pro-a40.c', 'intel-arc-pro-a50.c', 'intel-arc-pro-a30m.c',
+  'intel-arc-pro-a40m.c', 'intel-arc-pro-a50m.c', 'intel-arc-pro-a60.c', 'intel-arc-pro-a60m.c',
+  'intel-arc-pro-b50.c', 'intel-arc-pro-b60.c',
+  'intel-hd-4000-bay-trail.c', 'intel-hd-4000-braswell.c',
+  'intel-hd-505-apollo-lake.c', 'intel-hd-500-apollo-lake.c',
+  'intel-gna-1-0.c', 'intel-gna-2-0.c', 'intel-gna-3-0.c', 'intel-gna-3-5.c'))

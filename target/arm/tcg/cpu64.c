@@ -2306,6 +2306,156 @@ static void aarch64_sa8775p_initfn(Object *obj)
     cpu->midr = 0x518F02B7; /* Oryon variant in SA8775P */
 }
 
+static void aarch64_nvidia_grace_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "nvidia,grace";
+    cpu->midr = 0x610F0000;
+    cpu->sve_max_vq = 2;
+    cpu->ctr = 0x8444c004;
+    object_property_set_uint(obj, "sve-max-vq", 2, &error_abort);
+}
+
+static void aarch64_nvidia_grace_hopper_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "nvidia,grace-hopper";
+    cpu->midr = 0x610F0001;
+    cpu->sve_max_vq = 2;
+    cpu->ctr = 0x8444c004;
+    object_property_set_uint(obj, "sve-max-vq", 2, &error_abort);
+}
+
+static void aarch64_graviton3_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "amazon,graviton3";
+    cpu->midr = 0xd0c00000;
+    cpu->sve_max_vq = 4;
+    cpu->ctr = 0x8444c004;
+    object_property_set_uint(obj, "sve-max-vq", 4, &error_abort);
+}
+
+static void aarch64_graviton4_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "amazon,graviton4";
+    cpu->midr = 0xd0c00001;
+    cpu->sve_max_vq = 4;
+    cpu->ctr = 0x8444c004;
+    object_property_set_uint(obj, "sve-max-vq", 4, &error_abort);
+}
+
+static void aarch64_kunpeng920_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "hisilicon,kunpeng920";
+    cpu->midr = 0x690f0000;
+    cpu->sve_max_vq = 4;
+    cpu->ctr = 0x8444c004;
+    object_property_set_uint(obj, "sve-max-vq", 4, &error_abort);
+}
+
+static void aarch64_kunpeng930_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "hisilicon,kunpeng930";
+    cpu->midr = 0x690f0001;
+    cpu->sve_max_vq = 4;
+    cpu->ctr = 0x8444c004;
+    object_property_set_uint(obj, "sve-max-vq", 4, &error_abort);
+}
+
+static void aarch64_thunderx2_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "marvell,thunderx2";
+    cpu->midr = 0x0b07f000;
+    cpu->sve_max_vq = 2;
+    cpu->ctr = 0x8444c004;
+    object_property_set_uint(obj, "sve-max-vq", 2, &error_abort);
+}
+
+static void aarch64_layerscape2088_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "fsl,ls2088a";
+    cpu->midr = 0x0b70f000;
+    cpu->ctr = 0x8444c004;
+}
+
+static void aarch64_layerscape1088_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "fsl,ls1088a";
+    cpu->midr = 0x0b70f001;
+    cpu->ctr = 0x8444c004;
+}
+
+static void aarch64_layerscape2048_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "fsl,lx2160a";
+    cpu->midr = 0x0b70f002;
+    cpu->sve_max_vq = 2;
+    cpu->ctr = 0x8444c004;
+    object_property_set_uint(obj, "sve-max-vq", 2, &error_abort);
+}
+
+static void aarch64_am654_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "ti,am654";
+    cpu->midr = 0x411fd000;
+    cpu->ctr = 0x8444c004;
+}
+
+static void aarch64_dmp1k_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "ti,dmp1k";
+    cpu->midr = 0x411fd001;
+    cpu->ctr = 0x8444c004;
+}
+
+static void aarch64_j721e_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "ti,j721e";
+    cpu->midr = 0x411fd002;
+    cpu->ctr = 0x8444c004;
+}
+
+static void aarch64_altra_max_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "ampere,emag";
+    cpu->midr = 0xc00fac0;
+    cpu->sve_max_vq = 2;
+    cpu->ctr = 0x8444c004;
+    object_property_set_uint(obj, "sve-max-vq", 2, &error_abort);
+}
+
+static void aarch64_ampereone_192_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "ampere,ampereone";
+    cpu->midr = 0xc00fac1;
+    cpu->sve_max_vq = 4;
+    cpu->ctr = 0x8444c004;
+    object_property_set_uint(obj, "sve-max-vq", 4, &error_abort);
+}
+
+static void aarch64_ampereone_256_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "ampere,ampereone-256";
+    cpu->midr = 0xc00fac2;
+    cpu->sve_max_vq = 4;
+    cpu->ctr = 0x8444c004;
+    object_property_set_uint(obj, "sve-max-vq", 4, &error_abort);
+}
+
 static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "cortex-a35",         .initfn = aarch64_a35_initfn },
     { .name = "cortex-a55",         .initfn = aarch64_a55_initfn },
@@ -2484,6 +2634,23 @@ static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "neoverse-n3",            .initfn = aarch64_neoverse_n3_initfn },
     { .name = "neoverse-v3",            .initfn = aarch64_neoverse_v3_initfn },
     { .name = "neoverse-v3p",           .initfn = aarch64_neoverse_v3p_initfn },
+    /* v1.41: Server/embedded ARM64 CPUs */
+    { .name = "nvidia-grace",           .initfn = aarch64_nvidia_grace_initfn },
+    { .name = "nvidia-grace-hopper",    .initfn = aarch64_nvidia_grace_hopper_initfn },
+    { .name = "graviton3",              .initfn = aarch64_graviton3_initfn },
+    { .name = "graviton4",              .initfn = aarch64_graviton4_initfn },
+    { .name = "kunpeng920",             .initfn = aarch64_kunpeng920_initfn },
+    { .name = "kunpeng930",             .initfn = aarch64_kunpeng930_initfn },
+    { .name = "thunderx2",              .initfn = aarch64_thunderx2_initfn },
+    { .name = "layerscape2088",         .initfn = aarch64_layerscape2088_initfn },
+    { .name = "layerscape1088",         .initfn = aarch64_layerscape1088_initfn },
+    { .name = "layerscape2048",         .initfn = aarch64_layerscape2048_initfn },
+    { .name = "am654",                  .initfn = aarch64_am654_initfn },
+    { .name = "dmp1k",                  .initfn = aarch64_dmp1k_initfn },
+    { .name = "j721e",                  .initfn = aarch64_j721e_initfn },
+    { .name = "altra-max",              .initfn = aarch64_altra_max_initfn },
+    { .name = "ampereone-192",          .initfn = aarch64_ampereone_192_initfn },
+    { .name = "ampereone-256",          .initfn = aarch64_ampereone_256_initfn },
 };
 
 static void aarch64_cpu_register_types(void)

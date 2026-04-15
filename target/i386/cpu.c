@@ -17078,6 +17078,385 @@ static const X86CPUDefinition builtin_x86_defs[] = {
         },
     },
 
+    /* v1.41: Additional AMD EPYC / Threadripper / Ryzen AI entries */
+    {
+        .name = "EPYC-Milan-X",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 0x01,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .model_id = "AMD EPYC-Milan-X Processor",
+    },
+    {
+        .name = "EPYC-Genoa-X",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 0x11,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE,
+        .features[FEAT_7_0_EDX] =
+            CPUID_7_0_EDX_FSRM,
+        .model_id = "AMD EPYC-Genoa-X Processor",
+    },
+    {
+        .name = "EPYC-Siena",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 0x11,
+        .stepping = 1,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE,
+        .model_id = "AMD EPYC-Siena Processor (Edge/Telecom)",
+    },
+    {
+        .name = "EPYC-Turin-Density",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 0x06,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE,
+        .model_id = "AMD EPYC-Turin Density Processor (Dense Cloud)",
+    },
+    {
+        .name = "ryzen-ai9-hx375",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 36,
+        .stepping = 0,
+        .brand_id = 0x0a,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE,
+        .model_id = "AMD Ryzen AI 9 HX 375",
+    },
+    {
+        .name = "ryzen-ai7-365",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 36,
+        .stepping = 1,
+        .brand_id = 0x0a,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE,
+        .model_id = "AMD Ryzen AI 7 365",
+    },
+    {
+        .name = "ryzen-ai5-340",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 26,
+        .model = 36,
+        .stepping = 2,
+        .brand_id = 0x0a,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE,
+        .model_id = "AMD Ryzen AI 5 340",
+    },
+    {
+        .name = "threadripper-pro-5975wx",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 8,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE,
+        .model_id = "AMD Ryzen Threadripper PRO 5975WX",
+    },
+    {
+        .name = "threadripper-pro-5995wx",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 8,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE,
+        .model_id = "AMD Ryzen Threadripper PRO 5995WX",
+    },
+    {
+        .name = "threadripper-pro-7955wx",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 0x11,
+        .stepping = 0,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE,
+        .model_id = "AMD Ryzen Threadripper PRO 7955WX",
+    },
+    {
+        .name = "threadripper-pro-7995wx-pro",
+        .level = 0xd,
+        .vendor = CPUID_VENDOR_AMD,
+        .family = 25,
+        .model = 0x11,
+        .stepping = 2,
+        .features[FEAT_1_EDX] =
+            PPRO_FEATURES | CPUID_MTRR | CPUID_CLFLUSH | CPUID_MCA |
+            CPUID_PSE36 | CPUID_VME | CPUID_HT,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR |
+            CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 |
+            CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_MOVBE |
+            CPUID_EXT_POPCNT | CPUID_EXT_AES | CPUID_EXT_XSAVE |
+            CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_SYSCALL | CPUID_EXT2_NX |
+            CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_PDPE1GB |
+            CPUID_EXT2_RDTSCP,
+        .features[FEAT_8000_0001_ECX] =
+            CPUID_EXT3_LAHF_LM | CPUID_EXT3_SVM | CPUID_EXT3_ABM |
+            CPUID_EXT3_SSE4A | CPUID_EXT3_MISALIGNSSE |
+            CPUID_EXT3_3DNOWPREFETCH | CPUID_EXT3_OSVW | CPUID_EXT3_CMP_LEG,
+        .features[FEAT_7_0_EBX] =
+            CPUID_7_0_EBX_FSGSBASE | CPUID_7_0_EBX_BMI1 | CPUID_7_0_EBX_AVX2 |
+            CPUID_7_0_EBX_SMEP | CPUID_7_0_EBX_BMI2 | CPUID_7_0_EBX_ERMS |
+            CPUID_7_0_EBX_INVPCID | CPUID_7_0_EBX_RDSEED | CPUID_7_0_EBX_ADX |
+            CPUID_7_0_EBX_SMAP | CPUID_7_0_EBX_CLWB | CPUID_7_0_EBX_CLFLUSHOPT |
+            CPUID_7_0_EBX_SHA_NI,
+        .features[FEAT_7_0_ECX] =
+            CPUID_7_0_ECX_PKU | CPUID_7_0_ECX_OSPKE,
+        .model_id = "AMD Ryzen Threadripper PRO 7995WX",
+    },
+
 #include "celeron-pentium-ulv-table.inc.c"
 
  };
