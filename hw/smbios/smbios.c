@@ -114,6 +114,12 @@ static struct {
     const char *type_str; /* human-readable override: "DDR3" "DDR4" etc. */
 } type17;
 
+static struct {
+    uint64_t fake_ram_mb;
+    uint32_t fake_dimm_mb;
+    uint32_t slot_count;
+} type17_fake;
+
 static QEnumLookup type41_kind_lookup = {
     .array = (const char *const[]) {
         "other",
@@ -860,13 +866,17 @@ static void smbios_build_type_11_table(void)
 static void smbios_build_type_16_table(unsigned dimm_cnt)
 {
     uint64_t size_kb;
+    uint64_t ram_for_smbios;
 
     SMBIOS_BUILD_TABLE_PRE(16, T16_BASE, true); /* required */
 
     t->location = 0x01; /* Other */
     t->use = 0x03; /* System memory */
     t->error_correction = 0x06; /* Multi-bit ECC (for Microsoft, per SeaBIOS) */
-    size_kb = QEMU_ALIGN_UP(current_machine->ram_size, KiB) / KiB;
+    ram_for_smbios = (type17_fake.fake_ram_mb > 0)
+                     ? type17_fake.fake_ram_mb * MiB
+                     : current_machine->ram_size;
+    size_kb = QEMU_ALIGN_UP(ram_for_smbios, KiB) / KiB;
     if (size_kb < MAX_T16_STD_SZ) {
         t->maximum_capacity = cpu_to_le32(size_kb);
         t->extended_maximum_capacity = cpu_to_le64(0);
@@ -1104,6 +1114,14 @@ void smbios_set_type17_manufacturer(const char *mfr)
     }
 }
 
+void smbios_set_fake_ram(uint64_t fake_ram_mb, uint32_t fake_dimm_mb,
+                         uint32_t slot_count)
+{
+    type17_fake.fake_ram_mb = fake_ram_mb;
+    type17_fake.fake_dimm_mb = fake_dimm_mb;
+    type17_fake.slot_count = slot_count > 0 ? slot_count : 0;
+}
+
 void smbios_set_defaults(const char *manufacturer, const char *product,
                          const char *version)
 {
@@ -1215,20 +1233,32 @@ static bool smbios_get_tables_ep(MachineState *ms,
     smbios_build_type_9_table(errp);
     smbios_build_type_11_table();
 
-#define GET_DIMM_SZ ((i < dimm_cnt - 1) ? mc->smbios_memory_device_size \
-    : ((current_machine->ram_size - 1) % mc->smbios_memory_device_size) + 1)
+    uint64_t eff_ram = current_machine->ram_size;
+    uint64_t eff_ram_mb = eff_ram / MiB;
+    if (type17_fake.fake_ram_mb > 0) {
+        eff_ram = type17_fake.fake_ram_mb * MiB;
+        eff_ram_mb = type17_fake.fake_ram_mb;
+    }
 
-    dimm_cnt = QEMU_ALIGN_UP(current_machine->ram_size,
-                             mc->smbios_memory_device_size) /
-               mc->smbios_memory_device_size;
+    if (type17_fake.slot_count > 0) {
+        dimm_cnt = type17_fake.slot_count;
+    } else {
+        dimm_cnt = QEMU_ALIGN_UP(eff_ram, mc->smbios_memory_device_size) /
+                   mc->smbios_memory_device_size;
+    }
 
-    /*
-     * The offset determines if we need to keep additional space between
-     * table 17 and table 19 header handle numbers so that they do
-     * not overlap. For example, for a VM with larger than 8 TB guest
-     * memory and DIMM like chunks of 16 GiB, the default space between
-     * the two tables (T19_BASE - T17_BASE = 512) is not enough.
-     */
+    uint64_t per_dimm;
+    if (type17_fake.fake_dimm_mb > 0) {
+        per_dimm = (uint64_t)type17_fake.fake_dimm_mb * MiB;
+    } else if (type17_fake.slot_count > 0) {
+        per_dimm = QEMU_ALIGN_UP(eff_ram_mb, dimm_cnt) / dimm_cnt * MiB;
+    } else {
+        per_dimm = mc->smbios_memory_device_size;
+    }
+
+#undef GET_DIMM_SZ
+#define GET_DIMM_SZ per_dimm
+
     offset = (dimm_cnt > (T19_BASE - T17_BASE)) ? \
              dimm_cnt - (T19_BASE - T17_BASE) : 0;
 
@@ -1238,9 +1268,17 @@ static bool smbios_get_tables_ep(MachineState *ms,
         smbios_build_type_17_table(i, GET_DIMM_SZ);
     }
 
-    for (i = 0; i < mem_array_size; i++) {
-        smbios_build_type_19_table(i, offset, mem_array[i].address,
-                                   mem_array[i].length);
+    if (type17_fake.fake_ram_mb > 0) {
+        struct smbios_phys_mem_area fake_area;
+        fake_area.address = 0;
+        fake_area.length = eff_ram;
+        smbios_build_type_19_table(0, offset, fake_area.address,
+                                   fake_area.length);
+    } else {
+        for (i = 0; i < mem_array_size; i++) {
+            smbios_build_type_19_table(i, offset, mem_array[i].address,
+                                       mem_array[i].length);
+        }
     }
 
     /*

@@ -1457,6 +1457,40 @@ static void pc_machine_set_ram_mfr(Object *obj, const char *value, Error **errp)
     pcms->ram_manufacturer = g_strdup(value);
 }
 
+static void pc_machine_get_fake_ram_mb(Object *obj, Visitor *v,
+                                        const char *name, void *opaque,
+                                        Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    uint64_t val = pcms->fake_ram_mb;
+    visit_type_uint64(v, name, &val, errp);
+}
+
+static void pc_machine_set_fake_ram_mb(Object *obj, Visitor *v,
+                                        const char *name, void *opaque,
+                                        Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    visit_type_uint64(v, name, &pcms->fake_ram_mb, errp);
+}
+
+static void pc_machine_get_fake_dimm_mb(Object *obj, Visitor *v,
+                                         const char *name, void *opaque,
+                                         Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    uint32_t val = pcms->fake_dimm_mb;
+    visit_type_uint32(v, name, &val, errp);
+}
+
+static void pc_machine_set_fake_dimm_mb(Object *obj, Visitor *v,
+                                         const char *name, void *opaque,
+                                         Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    visit_type_uint32(v, name, &pcms->fake_dimm_mb, errp);
+}
+
 static bool pc_machine_get_laptop_mode(Object *obj, Error **errp)
 {
     PCMachineState *pcms = PC_MACHINE(obj);
@@ -1467,6 +1501,23 @@ static void pc_machine_set_laptop_mode(Object *obj, bool value, Error **errp)
 {
     PCMachineState *pcms = PC_MACHINE(obj);
     pcms->laptop_mode = value;
+}
+
+static void pc_machine_get_mem_slot_count(Object *obj, Visitor *v,
+                                           const char *name, void *opaque,
+                                           Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    uint32_t val = pcms->mem_slot_count;
+    visit_type_uint32(v, name, &val, errp);
+}
+
+static void pc_machine_set_mem_slot_count(Object *obj, Visitor *v,
+                                           const char *name, void *opaque,
+                                           Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    visit_type_uint32(v, name, &pcms->mem_slot_count, errp);
 }
 
 static char *pc_machine_get_system_name(Object *obj, Error **errp)
@@ -1869,6 +1920,24 @@ static void pc_machine_class_init(ObjectClass *oc, const void *data)
         pc_machine_get_ram_mfr, pc_machine_set_ram_mfr);
     object_class_property_set_description(oc, "ram-manufacturer",
         "RAM module manufacturer override (e.g. Corsair, G.Skill, Kingston)");
+
+    object_class_property_add(oc, "fake-ram-mb", "uint64",
+        pc_machine_get_fake_ram_mb, pc_machine_set_fake_ram_mb, NULL, NULL);
+    object_class_property_set_description(oc, "fake-ram-mb",
+        "Fake total RAM in MB for SMBIOS/CPU-Z — OS sees this much RAM "
+        "but actual allocation stays whatever -m says (0 = use real ram)");
+
+    object_class_property_add(oc, "fake-dimm-mb", "uint32",
+        pc_machine_get_fake_dimm_mb, pc_machine_set_fake_dimm_mb, NULL, NULL);
+    object_class_property_set_description(oc, "fake-dimm-mb",
+        "Per-DIMM fake size in MB for SMBIOS Type 17 (0 = auto-divide fake-ram-mb "
+        "evenly across slots)");
+
+    object_class_property_add(oc, "mem-slot-count", "uint32",
+        pc_machine_get_mem_slot_count, pc_machine_set_mem_slot_count, NULL, NULL);
+    object_class_property_set_description(oc, "mem-slot-count",
+        "Number of populated DIMM slots for SMBIOS Type 16/17 "
+        "(default 0 = auto from ram size)");
 
     object_class_property_add_bool(oc, "laptop-mode",
         pc_machine_get_laptop_mode, pc_machine_set_laptop_mode);

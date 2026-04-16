@@ -183,7 +183,7 @@ i386_ss.add(files('ec-stub.c'))
 
 # v1.36: Fan controller, CPU VRM, preset profiles, Intel/AMD NPU stubs
 system_ss.add(files('fan-controller.c', 'cpu-vrm.c', 'qemu-preset-profiles.c'))
-system_ss.add(when: 'CONFIG_PCI', if_true: files('intel-npu.c', 'amd-npu.c', 'apple-t2.c'))
+system_ss.add(when: 'CONFIG_PCI', if_true: files('intel-npu.c', 'amd-npu.c', 'apple-t2.c', 'amd-xdna-1.c', 'amd-xdna-2.c', 'amd-xdna-2-pro.c', 'amd-ryzen-ai-npu.c', 'amd-ryzen-ai-max-npu.c'))
 
 # v1.39: NVMe SSD, NIC, Audio, TPM, Thunderbolt identity stubs
 system_ss.add(when: 'CONFIG_PCI', if_true: files('nvme-ssd-stubs.c', 'nic-stubs.c', 'audio-stubs.c', 'tpm-stubs.c', 'thunderbolt-stubs.c'))

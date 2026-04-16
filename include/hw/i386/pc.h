@@ -93,6 +93,16 @@ typedef struct PCMachineState {
     /* Memory topology: number of populated DIMM slots (for SMBIOS) */
     uint32_t mem_slot_count;
 
+    /* Fake RAM total for SMBIOS — guest OS sees this much RAM in System Info
+     * and CPU-Z, but actual allocation stays whatever -m says.
+     * Type 16 maximum_capacity, Type 17 per-DIMM size, and Type 19 mapped
+     * ranges all use this instead of ram_size.  0 = use real ram_size. */
+    uint64_t fake_ram_mb;
+
+    /* Per-DIMM fake size in MB for SMBIOS Type 17. 0 = auto-divide fake_ram_mb
+     * evenly across mem_slot_count DIMMs. */
+    uint32_t fake_dimm_mb;
+
     /* Per-machine SMBIOS overrides (used by Mac machines etc.) */
     char *smbios_manufacturer;
     char *smbios_product;

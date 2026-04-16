@@ -338,6 +338,7 @@ void smbios_set_type17_speed(uint32_t speed_mhz);
 void smbios_set_type17_form_factor(const char *ff_str);
 void smbios_set_type17_part_number(const char *part);
 void smbios_set_type17_manufacturer(const char *mfr);
+void smbios_set_fake_ram(uint64_t fake_ram_mb, uint32_t fake_dimm_mb, uint32_t slot_count);
 uint8_t *smbios_get_table_legacy(size_t *length, Error **errp);
 void smbios_get_tables(MachineState *ms,
                        SmbiosEntryPointType ep_type,

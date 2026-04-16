@@ -98,6 +98,8 @@ static void pc_init_spd(PCMachineState *pcms)
             smbios_set_type17_part_number(pcms->ram_part_number);
         if (pcms->ram_manufacturer)
             smbios_set_type17_manufacturer(pcms->ram_manufacturer);
+        if (pcms->fake_ram_mb)
+            smbios_set_fake_ram(pcms->fake_ram_mb, pcms->fake_dimm_mb, pcms->mem_slot_count);
     }
 }
 

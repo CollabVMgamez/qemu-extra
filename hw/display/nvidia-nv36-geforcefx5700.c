@@ -158,7 +158,7 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     memory_region_init_io(&s->bar3,OBJECT(s),&b135ops,s,"nvidia-nv36-geforcefx5700-ramin",NV_BAR3_SIZE);
     pci_register_bar(p,3,PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_32,&s->bar3);
     memory_region_init_io(&s->bar5,OBJECT(s),&b135ops,s,"nvidia-nv36-geforcefx5700-vgaio",NV_BAR5_SIZE);
-    pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);if(s->gpu_count>1){PCIBus*bus=pci_get_bus(p);const char*tn=object_get_typename(OBJECT(s));for(uint32_t i=1;i<s->gpu_count&&i<8;i++){PCIDevice*ex=pci_create_simple(bus,-1,tn);if(ex){qdev_prop_set_uint32(DEVICE(ex),"gpu-count",1);Error*le=NULL;qdev_realize(DEVICE(ex),&bus->qbus,&le);if(le){error_free(le);break;}}}}
+    pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);if(s->gpu_count>1){PCIBus*bus=pci_get_bus(p);const char*tn=object_get_typename(OBJECT(s));for(uint32_t i=1;i<s->gpu_count&&i<8;i++){PCIDevice*ex=pci_new(-1,tn);if(ex){qdev_prop_set_uint32(DEVICE(ex),"gpu-count",1);pci_realize_and_unref(ex,bus,&error_abort);}}}
 }
 static const Property gpu_props_nvidia_nv36_geforcefx5700[]={DEFINE_PROP_UINT32("gpu-count",NvidiaNv36Geforcefx5700State,gpu_count,1),
     DEFINE_PROP_STRING("gpu-name",NvidiaNv36Geforcefx5700State,gpu_name),

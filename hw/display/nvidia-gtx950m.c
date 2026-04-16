@@ -199,7 +199,7 @@ static void gpu_realize(PCIDevice *p, Error **e) {
     memory_region_init_io(&s->bar3,OBJECT(s),&b35ops,s,"nvidia-gtx950m-ramin",NV_BAR3_SIZE);
     pci_register_bar(p,3,PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_32,&s->bar3);
     memory_region_init_io(&s->bar5,OBJECT(s),&b35ops,s,"nvidia-gtx950m-vgaio",NV_BAR5_SIZE);
-    pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);if(s->gpu_count>1){PCIBus*bus=pci_get_bus(p);const char*tn=object_get_typename(OBJECT(s));for(uint32_t i=1;i<s->gpu_count&&i<8;i++){PCIDevice*ex=pci_create_simple(bus,-1,tn);if(ex){qdev_prop_set_uint32(DEVICE(ex),"gpu-count",1);Error*le=NULL;qdev_realize(DEVICE(ex),&bus->qbus,&le);if(le){error_free(le);break;}}}}
+    pci_register_bar(p,5,PCI_BASE_ADDRESS_SPACE_MEMORY,&s->bar5);if(s->gpu_count>1){PCIBus*bus=pci_get_bus(p);const char*tn=object_get_typename(OBJECT(s));for(uint32_t i=1;i<s->gpu_count&&i<8;i++){PCIDevice*ex=pci_new(-1,tn);if(ex){qdev_prop_set_uint32(DEVICE(ex),"gpu-count",1);pci_realize_and_unref(ex,bus,&error_abort);}}}
 }
 static const VMStateDescription vms_nvidia_gtx950m={.name="nvidia-gtx950m",.version_id=1,.minimum_version_id=1,.fields=(const VMStateField[]){VMSTATE_PCI_DEVICE(parent_obj,NvidiaGtx950mState),VMSTATE_UINT32(intr_en,NvidiaGtx950mState),VMSTATE_UINT32(pfifo_intr_en,NvidiaGtx950mState),VMSTATE_UINT32(clock_mhz,NvidiaGtx950mState),VMSTATE_UINT64(clock_last_ns,NvidiaGtx950mState),VMSTATE_END_OF_LIST()}};
 static const Property gpu_multi_props_NvidiaGtx950mState[] = {

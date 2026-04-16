@@ -3782,4 +3782,4 @@
         .stepping = 8,
         .brand_id = 0,
         .model_id = "Intel(R) Atom(TM) x6211RE",
-    }
+    },
