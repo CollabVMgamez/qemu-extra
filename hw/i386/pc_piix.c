@@ -219,7 +219,17 @@ static void pc_init1(MachineState *machine, const char *pci_type)
 
     hole64_size = object_property_get_uint(phb,
                                            PCI_HOST_PROP_PCI_HOLE64_SIZE,
-                                           &error_abort);
+                                            &error_abort);
+
+    /* Propagate RAM details to SMBIOS BEFORE pc_memory_init builds tables */
+    if (pcms->ram_type) {
+        smbios_set_type17_memory_type(pcms->ram_type);
+        if (pcms->ram_speed_mhz)   smbios_set_type17_speed(pcms->ram_speed_mhz);
+        if (pcms->ram_form_factor)  smbios_set_type17_form_factor(pcms->ram_form_factor);
+        if (pcms->ram_part_number)  smbios_set_type17_part_number(pcms->ram_part_number);
+        if (pcms->ram_manufacturer) smbios_set_type17_manufacturer(pcms->ram_manufacturer);
+    }
+    if (pcms->fake_ram_mb)          smbios_set_fake_ram(pcms->fake_ram_mb, pcms->fake_dimm_mb, pcms->mem_slot_count);
 
     /* allocate ram and load rom/bios */
     if (!xen_enabled()) {
@@ -323,12 +333,6 @@ static void pc_init1(MachineState *machine, const char *pci_type)
             uint8_t *spd = spd_data_generate(stype, ramsz);
             smbus_eeprom_init(pcms->smbus, 8, spd, 256);
             g_free(spd);
-            smbios_set_type17_memory_type(pcms->ram_type);
-            if (pcms->ram_speed_mhz)   smbios_set_type17_speed(pcms->ram_speed_mhz);
-            if (pcms->ram_form_factor)  smbios_set_type17_form_factor(pcms->ram_form_factor);
-            if (pcms->ram_part_number)  smbios_set_type17_part_number(pcms->ram_part_number);
-            if (pcms->ram_manufacturer) smbios_set_type17_manufacturer(pcms->ram_manufacturer);
-            if (pcms->fake_ram_mb)      smbios_set_fake_ram(pcms->fake_ram_mb, pcms->fake_dimm_mb, pcms->mem_slot_count);
         } else {
             smbus_eeprom_init(pcms->smbus, 8, NULL, 0);
         }

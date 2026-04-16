@@ -86,21 +86,6 @@ static void pc_init_spd(PCMachineState *pcms)
                        MACHINE(pcms)->ram_size : (1 * GiB));
     smbus_eeprom_init(pcms->smbus, 8, spd, 256);
     g_free(spd);
-
-    /* Propagate ram-type, speed, form-factor, part, manufacturer to SMBIOS Type 17 */
-    if (pcms->ram_type) {
-        smbios_set_type17_memory_type(pcms->ram_type);
-        if (pcms->ram_speed_mhz > 0)
-            smbios_set_type17_speed(pcms->ram_speed_mhz);
-        if (pcms->ram_form_factor)
-            smbios_set_type17_form_factor(pcms->ram_form_factor);
-        if (pcms->ram_part_number)
-            smbios_set_type17_part_number(pcms->ram_part_number);
-        if (pcms->ram_manufacturer)
-            smbios_set_type17_manufacturer(pcms->ram_manufacturer);
-        if (pcms->fake_ram_mb)
-            smbios_set_fake_ram(pcms->fake_ram_mb, pcms->fake_dimm_mb, pcms->mem_slot_count);
-    }
 }
 
 /* ---------------------------------------------------------------------------
@@ -183,7 +168,22 @@ static void pc_p4era_init(MachineState *machine)
 
     hole64_size = object_property_get_uint(phb,
                                            PCI_HOST_PROP_PCI_HOLE64_SIZE,
-                                           &error_abort);
+                                            &error_abort);
+
+    /* Propagate RAM details to SMBIOS BEFORE pc_memory_init builds tables */
+    if (pcms->ram_type) {
+        smbios_set_type17_memory_type(pcms->ram_type);
+        if (pcms->ram_speed_mhz > 0)
+            smbios_set_type17_speed(pcms->ram_speed_mhz);
+        if (pcms->ram_form_factor)
+            smbios_set_type17_form_factor(pcms->ram_form_factor);
+        if (pcms->ram_part_number)
+            smbios_set_type17_part_number(pcms->ram_part_number);
+        if (pcms->ram_manufacturer)
+            smbios_set_type17_manufacturer(pcms->ram_manufacturer);
+    }
+    if (pcms->fake_ram_mb)
+        smbios_set_fake_ram(pcms->fake_ram_mb, pcms->fake_dimm_mb, pcms->mem_slot_count);
 
     pc_memory_init(pcms, system_memory, pci_memory, hole64_size);
 
