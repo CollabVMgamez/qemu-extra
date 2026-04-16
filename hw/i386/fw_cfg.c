@@ -79,6 +79,16 @@ void fw_cfg_build_smbios(PCMachineState *pcms, FWCfgState *fw_cfg,
             pcms->smbios_version      ? pcms->smbios_version      : "10RRS0PA00");
     }
 
+    /* Apply spoof bios/board overrides for anti-VM */
+    if (pcms->spoof_bios_vendor)
+        smbios_set_type0_vendor(pcms->spoof_bios_vendor);
+    if (pcms->spoof_bios_version)
+        smbios_set_type0_version(pcms->spoof_bios_version);
+    if (pcms->spoof_board_vendor)
+        smbios_set_type2_manufacturer(pcms->spoof_board_vendor);
+    if (pcms->spoof_board_product)
+        smbios_set_type2_product(pcms->spoof_board_product);
+
     /* tell smbios about cpuid version and features */
     smbios_set_cpuid(cpu->env.cpuid_version, cpu->env.features[FEAT_1_EDX]);
 

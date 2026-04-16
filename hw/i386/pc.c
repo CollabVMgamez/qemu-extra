@@ -1581,6 +1581,74 @@ static void pc_machine_set_smbios_version(Object *obj, const char *value,
     pcms->smbios_version = g_strdup(value);
 }
 
+static bool pc_machine_get_hide_kvm(Object *obj, Error **errp)
+{
+    return PC_MACHINE(obj)->hide_kvm_features;
+}
+
+static void pc_machine_set_hide_kvm(Object *obj, bool value, Error **errp)
+{
+    PC_MACHINE(obj)->hide_kvm_features = value;
+}
+
+static bool pc_machine_get_hide_hv(Object *obj, Error **errp)
+{
+    return PC_MACHINE(obj)->hide_hv_signature;
+}
+
+static void pc_machine_set_hide_hv(Object *obj, bool value, Error **errp)
+{
+    PC_MACHINE(obj)->hide_hv_signature = value;
+}
+
+static char *pc_machine_get_spoof_bios_vendor(Object *obj, Error **errp)
+{
+    return g_strdup(PC_MACHINE(obj)->spoof_bios_vendor);
+}
+
+static void pc_machine_set_spoof_bios_vendor(Object *obj, const char *value, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    g_free(pcms->spoof_bios_vendor);
+    pcms->spoof_bios_vendor = g_strdup(value);
+}
+
+static char *pc_machine_get_spoof_bios_version(Object *obj, Error **errp)
+{
+    return g_strdup(PC_MACHINE(obj)->spoof_bios_version);
+}
+
+static void pc_machine_set_spoof_bios_version(Object *obj, const char *value, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    g_free(pcms->spoof_bios_version);
+    pcms->spoof_bios_version = g_strdup(value);
+}
+
+static char *pc_machine_get_spoof_board_vendor(Object *obj, Error **errp)
+{
+    return g_strdup(PC_MACHINE(obj)->spoof_board_vendor);
+}
+
+static void pc_machine_set_spoof_board_vendor(Object *obj, const char *value, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    g_free(pcms->spoof_board_vendor);
+    pcms->spoof_board_vendor = g_strdup(value);
+}
+
+static char *pc_machine_get_spoof_board_product(Object *obj, Error **errp)
+{
+    return g_strdup(PC_MACHINE(obj)->spoof_board_product);
+}
+
+static void pc_machine_set_spoof_board_product(Object *obj, const char *value, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    g_free(pcms->spoof_board_product);
+    pcms->spoof_board_product = g_strdup(value);
+}
+
 static bool pc_machine_get_auto_applesmc(Object *obj, Error **errp)
 {
     PCMachineState *pcms = PC_MACHINE(obj);
@@ -1964,6 +2032,36 @@ static void pc_machine_class_init(ObjectClass *oc, const void *data)
         pc_machine_get_smbios_version, pc_machine_set_smbios_version);
     object_class_property_set_description(oc, "smbios-version",
         "Override SMBIOS Type 1/2 version string (e.g. 1.0)");
+
+    object_class_property_add_bool(oc, "hide-kvm-features",
+        pc_machine_get_hide_kvm, pc_machine_set_hide_kvm);
+    object_class_property_set_description(oc, "hide-kvm-features",
+        "Clear KVM CPUID feature leaf to hide virtualization");
+
+    object_class_property_add_bool(oc, "hide-hv-signature",
+        pc_machine_get_hide_hv, pc_machine_set_hide_hv);
+    object_class_property_set_description(oc, "hide-hv-signature",
+        "Zero out hypervisor signature in CPUID 0x40000000");
+
+    object_class_property_add_str(oc, "spoof-bios-vendor",
+        pc_machine_get_spoof_bios_vendor, pc_machine_set_spoof_bios_vendor);
+    object_class_property_set_description(oc, "spoof-bios-vendor",
+        "Override BIOS vendor string in SMBIOS Type 0");
+
+    object_class_property_add_str(oc, "spoof-bios-version",
+        pc_machine_get_spoof_bios_version, pc_machine_set_spoof_bios_version);
+    object_class_property_set_description(oc, "spoof-bios-version",
+        "Override BIOS version string in SMBIOS Type 0");
+
+    object_class_property_add_str(oc, "spoof-board-vendor",
+        pc_machine_get_spoof_board_vendor, pc_machine_set_spoof_board_vendor);
+    object_class_property_set_description(oc, "spoof-board-vendor",
+        "Override board vendor string in SMBIOS Type 2");
+
+    object_class_property_add_str(oc, "spoof-board-product",
+        pc_machine_get_spoof_board_product, pc_machine_set_spoof_board_product);
+    object_class_property_set_description(oc, "spoof-board-product",
+        "Override board product string in SMBIOS Type 2");
 
     object_class_property_add_bool(oc, "auto-applesmc",
         pc_machine_get_auto_applesmc, pc_machine_set_auto_applesmc);

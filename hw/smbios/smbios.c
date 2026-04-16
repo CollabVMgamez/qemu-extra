@@ -1122,19 +1122,51 @@ void smbios_set_fake_ram(uint64_t fake_ram_mb, uint32_t fake_dimm_mb,
     type17_fake.slot_count = slot_count > 0 ? slot_count : 0;
 }
 
+void smbios_set_type0_vendor(const char *vendor)
+{
+    if (vendor && vendor[0]) {
+        g_free((char *)smbios_type0.vendor);
+        smbios_type0.vendor = g_strdup(vendor);
+    }
+}
+
+void smbios_set_type0_version(const char *version)
+{
+    if (version && version[0]) {
+        g_free((char *)smbios_type0.version);
+        smbios_type0.version = g_strdup(version);
+    }
+}
+
+void smbios_set_type2_manufacturer(const char *mfr)
+{
+    if (mfr && mfr[0]) {
+        g_free((char *)type2.manufacturer);
+        type2.manufacturer = g_strdup(mfr);
+    }
+}
+
+void smbios_set_type2_product(const char *product)
+{
+    if (product && product[0]) {
+        g_free((char *)type2.product);
+        type2.product = g_strdup(product);
+    }
+}
+
 void smbios_set_defaults(const char *manufacturer, const char *product,
                          const char *version)
 {
     smbios_have_defaults = true;
 
-    SMBIOS_SET_DEFAULT(smbios_type1.manufacturer, manufacturer);
-    SMBIOS_SET_DEFAULT(smbios_type1.product, product);
-    SMBIOS_SET_DEFAULT(smbios_type1.version, version);
-    SMBIOS_SET_DEFAULT(type2.manufacturer, manufacturer);
-    SMBIOS_SET_DEFAULT(type2.product, product);
-    SMBIOS_SET_DEFAULT(type2.version, version);
-    SMBIOS_SET_DEFAULT(type3.manufacturer, manufacturer);
-    SMBIOS_SET_DEFAULT(type3.version, version);
+    SMBIOS_SET_DEFAULT(smbios_type1.manufacturer, g_strdup(manufacturer));
+    SMBIOS_SET_DEFAULT(smbios_type1.product, g_strdup(product));
+    SMBIOS_SET_DEFAULT(smbios_type1.version, g_strdup(version));
+    SMBIOS_SET_DEFAULT(type2.manufacturer, g_strdup(manufacturer));
+    SMBIOS_SET_DEFAULT(type2.product, g_strdup(product));
+    SMBIOS_SET_DEFAULT(type2.version, g_strdup(version));
+    SMBIOS_SET_DEFAULT(type3.manufacturer, g_strdup(manufacturer));
+    SMBIOS_SET_DEFAULT(type3.version, g_strdup(version));
     SMBIOS_SET_DEFAULT(type4.sock_pfx, "CPU");
     SMBIOS_SET_DEFAULT(type4.manufacturer, manufacturer);
     SMBIOS_SET_DEFAULT(type4.version, version);

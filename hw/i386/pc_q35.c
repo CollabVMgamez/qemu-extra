@@ -192,6 +192,21 @@ void pc_q35_init(MachineState *machine)
     }
 
     pc_machine_init_sgx_epc(pcms);
+
+    /* Apply hide-kvm/hide-hv anti-VM as global CPU properties before CPUs init */
+    if (pcms->hide_kvm_features) {
+        static GlobalProperty hide_kvm_prop = {
+            .driver = TYPE_X86_CPU, .property = "kvm", .value = "off",
+        };
+        qdev_prop_register_global(&hide_kvm_prop);
+    }
+    if (pcms->hide_hv_signature) {
+        static GlobalProperty hide_hv_prop = {
+            .driver = TYPE_X86_CPU, .property = "hv-vendor-id", .value = "",
+        };
+        qdev_prop_register_global(&hide_hv_prop);
+    }
+
     x86_cpus_init(x86ms, pcmc->default_cpu_version);
 
     if (kvm_enabled()) {
