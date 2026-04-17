@@ -904,7 +904,7 @@
         .model_id = "Intel(R) Xeon(R) CPU 3050 @ 2.13GHz",
     },
     {
-        .name = "Intel-Xeon-3060",
+        .name = "Intel-Xeon-3060-SP",
         .level = 10,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
