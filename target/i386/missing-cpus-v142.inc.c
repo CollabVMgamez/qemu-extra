@@ -11,6 +11,11 @@
         .model = 0x97,
         .stepping = 0x02,
         .brand_id = 16,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i9-12900K",
     },
     {
@@ -21,6 +26,11 @@
         .model = 0x97,
         .stepping = 0x02,
         .brand_id = 16,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i9-12900KF",
     },
     {
@@ -31,6 +41,11 @@
         .model = 0x97,
         .stepping = 0x02,
         .brand_id = 15,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i9-12900",
     },
     {
@@ -41,6 +56,11 @@
         .model = 0x97,
         .stepping = 0x02,
         .brand_id = 15,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i9-12900E",
     },
     {
@@ -51,6 +71,11 @@
         .model = 0x97,
         .stepping = 0x02,
         .brand_id = 12,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-12700K",
     },
     {
@@ -61,6 +86,11 @@
         .model = 0x97,
         .stepping = 0x02,
         .brand_id = 12,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-12700KF",
     },
     {
@@ -71,6 +101,11 @@
         .model = 0x97,
         .stepping = 0x02,
         .brand_id = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-12700",
     },
     {
@@ -81,6 +116,11 @@
         .model = 0x97,
         .stepping = 0x02,
         .brand_id = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-12700F",
     },
     {
@@ -91,6 +131,11 @@
         .model = 0x97,
         .stepping = 0x02,
         .brand_id = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-12600K",
     },
     {
@@ -101,6 +146,11 @@
         .model = 0x97,
         .stepping = 0x02,
         .brand_id = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-12600KF",
     },
     {
@@ -111,6 +161,11 @@
         .model = 0x97,
         .stepping = 0x02,
         .brand_id = 9,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-12600",
     },
     {
@@ -121,6 +176,11 @@
         .model = 0x97,
         .stepping = 0x02,
         .brand_id = 8,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i3-12100",
     },
     {
@@ -131,6 +191,11 @@
         .model = 0x97,
         .stepping = 0x02,
         .brand_id = 8,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i3-12100F",
     },
     {
@@ -141,6 +206,11 @@
         .model = 0x9A,
         .stepping = 0x03,
         .brand_id = 14,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i9-12900H",
     },
     {
@@ -151,6 +221,11 @@
         .model = 0x9A,
         .stepping = 0x03,
         .brand_id = 12,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-12800H",
     },
     {
@@ -161,6 +236,11 @@
         .model = 0x9A,
         .stepping = 0x03,
         .brand_id = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-1260P",
     },
     {
@@ -171,6 +251,11 @@
         .model = 0x9A,
         .stepping = 0x03,
         .brand_id = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-12500H",
     },
     {
@@ -181,6 +266,11 @@
         .model = 0x9A,
         .stepping = 0x03,
         .brand_id = 9,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-1240P",
     },
     {
@@ -191,6 +281,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 16,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i9-13900K",
     },
     {
@@ -201,6 +296,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 16,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i9-13900KF",
     },
     {
@@ -211,6 +311,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 15,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i9-13900",
     },
     {
@@ -221,6 +326,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 12,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-13700K",
     },
     {
@@ -231,6 +341,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 12,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-13700KF",
     },
     {
@@ -241,6 +356,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-13700",
     },
     {
@@ -251,6 +371,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-13700F",
     },
     {
@@ -261,6 +386,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-13600K",
     },
     {
@@ -271,6 +401,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-13600KF",
     },
     {
@@ -281,6 +416,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 9,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-13600",
     },
     {
@@ -291,6 +431,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 8,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-13400",
     },
     {
@@ -301,6 +446,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 8,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-13400F",
     },
     {
@@ -311,6 +461,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i3-13100",
     },
     {
@@ -321,6 +476,11 @@
         .model = 0xB7,
         .stepping = 0x01,
         .brand_id = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i3-13100F",
     },
     {
@@ -331,6 +491,11 @@
         .model = 0xBA,
         .stepping = 0x01,
         .brand_id = 16,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i9-13980HX",
     },
     {
@@ -341,6 +506,11 @@
         .model = 0xBA,
         .stepping = 0x01,
         .brand_id = 15,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i9-13900HX",
     },
     {
@@ -351,6 +521,11 @@
         .model = 0xBA,
         .stepping = 0x01,
         .brand_id = 12,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-13800H",
     },
     {
@@ -361,6 +536,11 @@
         .model = 0xBA,
         .stepping = 0x01,
         .brand_id = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-1360P",
     },
     {
@@ -371,6 +551,11 @@
         .model = 0xBA,
         .stepping = 0x01,
         .brand_id = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-13500H",
     },
     {
@@ -381,6 +566,11 @@
         .model = 0xBA,
         .stepping = 0x01,
         .brand_id = 9,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-1340P",
     },
     {
@@ -391,6 +581,11 @@
         .model = 0xB7,
         .stepping = 0x04,
         .brand_id = 16,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i9-14900K",
     },
     {
@@ -401,6 +596,11 @@
         .model = 0xB7,
         .stepping = 0x04,
         .brand_id = 16,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i9-14900KF",
     },
     {
@@ -411,6 +611,11 @@
         .model = 0xB7,
         .stepping = 0x04,
         .brand_id = 12,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-14700K",
     },
     {
@@ -421,6 +626,11 @@
         .model = 0xB7,
         .stepping = 0x04,
         .brand_id = 12,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-14700KF",
     },
     {
@@ -431,6 +641,11 @@
         .model = 0xB7,
         .stepping = 0x04,
         .brand_id = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-14600K",
     },
     {
@@ -441,6 +656,11 @@
         .model = 0xB7,
         .stepping = 0x04,
         .brand_id = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-14600KF",
     },
     {
@@ -451,6 +671,11 @@
         .model = 0xB7,
         .stepping = 0x04,
         .brand_id = 8,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-14400",
     },
     {
@@ -461,6 +686,11 @@
         .model = 0xB7,
         .stepping = 0x04,
         .brand_id = 8,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-14400F",
     },
     {
@@ -471,6 +701,11 @@
         .model = 0xB7,
         .stepping = 0x04,
         .brand_id = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i3-14100",
     },
     {
@@ -481,6 +716,11 @@
         .model = 0xB7,
         .stepping = 0x04,
         .brand_id = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i3-14100F",
     },
     {
@@ -491,6 +731,11 @@
         .model = 0xBA,
         .stepping = 0x04,
         .brand_id = 16,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i9-14900HX",
     },
     {
@@ -501,6 +746,11 @@
         .model = 0xBA,
         .stepping = 0x04,
         .brand_id = 15,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-14700HX",
     },
     {
@@ -511,6 +761,11 @@
         .model = 0xBA,
         .stepping = 0x04,
         .brand_id = 12,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i7-14650HX",
     },
     {
@@ -521,6 +776,11 @@
         .model = 0xBA,
         .stepping = 0x04,
         .brand_id = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) i5-14500HX",
     },
     {
@@ -531,6 +791,11 @@
         .model = 0xBE,
         .stepping = 0x01,
         .brand_id = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Atom(TM) N100",
     },
     {
@@ -541,6 +806,11 @@
         .model = 0xBE,
         .stepping = 0x01,
         .brand_id = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Atom(TM) N200",
     },
     {
@@ -551,6 +821,11 @@
         .model = 0xBE,
         .stepping = 0x01,
         .brand_id = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Atom(TM) N97",
     },
     {
@@ -561,6 +836,11 @@
         .model = 0xBE,
         .stepping = 0x01,
         .brand_id = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) N100",
     },
     {
@@ -571,6 +851,11 @@
         .model = 0xBE,
         .stepping = 0x01,
         .brand_id = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) N200",
     },
     {
@@ -581,6 +866,11 @@
         .model = 0xBE,
         .stepping = 0x01,
         .brand_id = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) N95",
     },
     {
@@ -591,6 +881,11 @@
         .model = 0xBE,
         .stepping = 0x01,
         .brand_id = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) N97",
     },
     {
@@ -601,6 +896,11 @@
         .model = 0xBA,
         .stepping = 0x01,
         .brand_id = 16,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) Ultra 9 185H",
     },
     {
@@ -611,6 +911,11 @@
         .model = 0xBA,
         .stepping = 0x01,
         .brand_id = 12,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) Ultra 7 155H",
     },
     {
@@ -621,6 +926,11 @@
         .model = 0xBA,
         .stepping = 0x01,
         .brand_id = 12,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) Ultra 7 165H",
     },
     {
@@ -631,6 +941,11 @@
         .model = 0xBA,
         .stepping = 0x01,
         .brand_id = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) Ultra 5 125H",
     },
     {
@@ -641,6 +956,11 @@
         .model = 0xBA,
         .stepping = 0x01,
         .brand_id = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) Ultra 5 135H",
     },
     {
@@ -651,6 +971,11 @@
         .model = 0xBA,
         .stepping = 0x01,
         .brand_id = 8,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) Ultra 5 125U",
     },
     {
@@ -661,6 +986,11 @@
         .model = 0xBA,
         .stepping = 0x01,
         .brand_id = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) Ultra 7 164U",
     },
     {
@@ -671,6 +1001,11 @@
         .model = 0xC6,
         .stepping = 0x01,
         .brand_id = 16,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) Ultra 9 285K",
     },
     {
@@ -681,6 +1016,11 @@
         .model = 0xC6,
         .stepping = 0x01,
         .brand_id = 12,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) Ultra 7 265K",
     },
     {
@@ -691,6 +1031,11 @@
         .model = 0xC6,
         .stepping = 0x01,
         .brand_id = 12,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) Ultra 7 265KF",
     },
     {
@@ -701,6 +1046,11 @@
         .model = 0xC6,
         .stepping = 0x01,
         .brand_id = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) Ultra 5 245K",
     },
     {
@@ -711,6 +1061,11 @@
         .model = 0xC6,
         .stepping = 0x01,
         .brand_id = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Core(TM) Ultra 5 245KF",
     },
     {
@@ -721,6 +1076,13 @@
         .model = 0x61,
         .stepping = 0x02,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 9 7900X3D 12-Core Processor",
     },
     {
@@ -731,6 +1093,13 @@
         .model = 0x61,
         .stepping = 0x02,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 7 7700X3D 8-Core Processor",
     },
     {
@@ -741,6 +1110,13 @@
         .model = 0x61,
         .stepping = 0x02,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 7 7700 8-Core Processor",
     },
     {
@@ -751,6 +1127,13 @@
         .model = 0x61,
         .stepping = 0x02,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 7 7700E 8-Core Processor",
     },
     {
@@ -761,6 +1144,13 @@
         .model = 0x61,
         .stepping = 0x02,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 5 7600 6-Core Processor",
     },
     {
@@ -771,6 +1161,13 @@
         .model = 0x61,
         .stepping = 0x02,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 5 7600X3D 6-Core Processor",
     },
     {
@@ -781,6 +1178,13 @@
         .model = 0x61,
         .stepping = 0x02,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 9 7900 12-Core Processor",
     },
     {
@@ -791,6 +1195,13 @@
         .model = 0x61,
         .stepping = 0x04,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 9 9950X3D 16-Core Processor",
     },
     {
@@ -801,6 +1212,13 @@
         .model = 0x61,
         .stepping = 0x04,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 9 9900X3D 12-Core Processor",
     },
     {
@@ -811,6 +1229,13 @@
         .model = 0x61,
         .stepping = 0x04,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 7 9800X3D 8-Core Processor",
     },
     {
@@ -821,6 +1246,13 @@
         .model = 0x61,
         .stepping = 0x04,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 9 9900 12-Core Processor",
     },
     {
@@ -831,6 +1263,13 @@
         .model = 0x61,
         .stepping = 0x04,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 7 9700 8-Core Processor",
     },
     {
@@ -841,6 +1280,13 @@
         .model = 0x61,
         .stepping = 0x04,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 5 9600 6-Core Processor",
     },
     {
@@ -851,6 +1297,13 @@
         .model = 0x61,
         .stepping = 0x02,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 7 8700G with Radeon 780M Graphics",
     },
     {
@@ -861,6 +1314,13 @@
         .model = 0x61,
         .stepping = 0x02,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 5 8600G with Radeon 760M Graphics",
     },
     {
@@ -871,6 +1331,13 @@
         .model = 0x61,
         .stepping = 0x02,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 5 8500G with Radeon 740M Graphics",
     },
     {
@@ -881,6 +1348,13 @@
         .model = 0x61,
         .stepping = 0x02,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen 3 8300G with Radeon 740M Graphics",
     },
     {
@@ -891,6 +1365,13 @@
         .model = 0x61,
         .stepping = 0x05,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen AI 9 HX 370 with Radeon 890M",
     },
     {
@@ -901,6 +1382,13 @@
         .model = 0x61,
         .stepping = 0x05,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen AI 7 365 with Radeon 880M",
     },
     {
@@ -911,6 +1399,13 @@
         .model = 0x61,
         .stepping = 0x05,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen AI 9 HX 375 with Radeon 890M",
     },
     {
@@ -921,6 +1416,13 @@
         .model = 0x61,
         .stepping = 0x05,
         .brand_id = 255,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_SSSE3 | CPUID_EXT_FMA | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .model_id = "AMD Ryzen AI 7 PRO 360 with Radeon 880M",
     },
     {
@@ -930,6 +1432,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5330 @ 2.00GHz",
     },
     {
@@ -939,6 +1448,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5340 @ 2.33GHz",
     },
     {
@@ -948,6 +1464,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5350 @ 2.66GHz",
     },
     {
@@ -957,5 +1480,12 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5360 @ 3.00GHz",
     },

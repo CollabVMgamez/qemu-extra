@@ -10,6 +10,11 @@
         .family = 6,
         .model = 5,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Pentium(R) II Xeon (R) CPU at 400MHz",
     },
     {
@@ -19,6 +24,11 @@
         .family = 6,
         .model = 5,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Pentium(R) II Xeon (R) CPU at 450MHz",
     },
     {
@@ -28,6 +38,11 @@
         .family = 6,
         .model = 7,
         .stepping = 3,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Pentium(R) III Xeon (R) CPU at 500MHz",
     },
     {
@@ -37,6 +52,11 @@
         .family = 6,
         .model = 7,
         .stepping = 3,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Pentium(R) III Xeon (R) CPU at 550MHz",
     },
     {
@@ -46,6 +66,11 @@
         .family = 6,
         .model = 13,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Pentium(R) III Xeon (R) CPU at 600MHz",
     },
     {
@@ -55,6 +80,11 @@
         .family = 6,
         .model = 13,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Pentium(R) III Xeon (R) CPU at 667MHz",
     },
     {
@@ -64,6 +94,11 @@
         .family = 6,
         .model = 13,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Pentium(R) III Xeon (R) CPU at 700MHz",
     },
     {
@@ -73,6 +108,11 @@
         .family = 6,
         .model = 13,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Pentium(R) III Xeon (R) CPU at 733MHz",
     },
     {
@@ -82,6 +122,11 @@
         .family = 6,
         .model = 13,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Pentium(R) III Xeon (R) CPU at 800MHz",
     },
     {
@@ -91,6 +136,11 @@
         .family = 6,
         .model = 13,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Pentium(R) III Xeon (R) CPU at 866MHz",
     },
     {
@@ -100,6 +150,11 @@
         .family = 6,
         .model = 13,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Pentium(R) III Xeon (R) CPU at 900MHz",
     },
     {
@@ -109,6 +164,11 @@
         .family = 6,
         .model = 13,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Pentium(R) III Xeon (R) CPU at 933MHz",
     },
     {
@@ -118,6 +178,11 @@
         .family = 6,
         .model = 13,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_8000_0001_EDX] =
+            0,
         .model_id = "Intel(R) Pentium(R) III Xeon (R) CPU at 1.00GHz",
     },
     {
@@ -127,6 +192,13 @@
         .family = 15,
         .model = 0,
         .stepping = 3,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 1.40GHz",
     },
     {
@@ -136,6 +208,13 @@
         .family = 15,
         .model = 0,
         .stepping = 3,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 1.50GHz",
     },
     {
@@ -145,6 +224,13 @@
         .family = 15,
         .model = 0,
         .stepping = 3,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 1.60GHz",
     },
     {
@@ -154,6 +240,13 @@
         .family = 15,
         .model = 2,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 1.80GHz",
     },
     {
@@ -163,6 +256,13 @@
         .family = 15,
         .model = 2,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 2.00GHz",
     },
     {
@@ -172,6 +272,13 @@
         .family = 15,
         .model = 2,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 2.20GHz",
     },
     {
@@ -181,6 +288,13 @@
         .family = 15,
         .model = 2,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 2.40GHz",
     },
     {
@@ -190,6 +304,13 @@
         .family = 15,
         .model = 2,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 2.53GHz",
     },
     {
@@ -199,6 +320,13 @@
         .family = 15,
         .model = 2,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 2.66GHz",
     },
     {
@@ -208,6 +336,13 @@
         .family = 15,
         .model = 2,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 2.80GHz",
     },
     {
@@ -217,6 +352,13 @@
         .family = 15,
         .model = 2,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.06GHz",
     },
     {
@@ -226,6 +368,13 @@
         .family = 15,
         .model = 2,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) MP CPU 1.50GHz",
     },
     {
@@ -235,6 +384,13 @@
         .family = 15,
         .model = 2,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) MP CPU 1.60GHz",
     },
     {
@@ -244,6 +400,13 @@
         .family = 15,
         .model = 2,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) MP CPU 2.00GHz",
     },
     {
@@ -253,6 +416,13 @@
         .family = 15,
         .model = 4,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 2.80GHz",
     },
     {
@@ -262,6 +432,13 @@
         .family = 15,
         .model = 4,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.00GHz",
     },
     {
@@ -271,6 +448,13 @@
         .family = 15,
         .model = 4,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.20GHz",
     },
     {
@@ -280,6 +464,13 @@
         .family = 15,
         .model = 4,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.40GHz",
     },
     {
@@ -289,6 +480,13 @@
         .family = 15,
         .model = 4,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.60GHz",
     },
     {
@@ -298,6 +496,13 @@
         .family = 15,
         .model = 4,
         .stepping = 3,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 2.80GHz",
     },
     {
@@ -307,6 +512,13 @@
         .family = 15,
         .model = 4,
         .stepping = 3,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.00GHz",
     },
     {
@@ -316,6 +528,13 @@
         .family = 15,
         .model = 4,
         .stepping = 3,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.20GHz",
     },
     {
@@ -325,6 +544,13 @@
         .family = 15,
         .model = 4,
         .stepping = 3,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.40GHz",
     },
     {
@@ -334,6 +560,13 @@
         .family = 15,
         .model = 4,
         .stepping = 3,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.60GHz",
     },
     {
@@ -343,6 +576,13 @@
         .family = 15,
         .model = 4,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 2.80GHz",
     },
     {
@@ -352,6 +592,13 @@
         .family = 15,
         .model = 6,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.00GHz",
     },
     {
@@ -361,6 +608,13 @@
         .family = 15,
         .model = 6,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.00GHz",
     },
     {
@@ -370,6 +624,13 @@
         .family = 15,
         .model = 6,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.20GHz",
     },
     {
@@ -379,6 +640,13 @@
         .family = 15,
         .model = 6,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.20GHz",
     },
     {
@@ -388,6 +656,13 @@
         .family = 15,
         .model = 6,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(TM) CPU 3.73GHz",
     },
     {
@@ -397,6 +672,13 @@
         .family = 6,
         .model = 15,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5110 @ 1.60GHz",
     },
     {
@@ -406,6 +688,13 @@
         .family = 6,
         .model = 15,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5120 @ 1.86GHz",
     },
     {
@@ -415,6 +704,13 @@
         .family = 6,
         .model = 15,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5130 @ 2.00GHz",
     },
     {
@@ -424,6 +720,13 @@
         .family = 6,
         .model = 15,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5140 @ 2.33GHz",
     },
     {
@@ -433,6 +736,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5150 @ 2.66GHz",
     },
     {
@@ -442,6 +752,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5160 @ 3.00GHz",
     },
     {
@@ -451,6 +768,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5310 @ 1.60GHz",
     },
     {
@@ -460,6 +784,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5320 @ 1.86GHz",
     },
     {
@@ -469,6 +800,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5335 @ 2.00GHz",
     },
     {
@@ -478,6 +816,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5345 @ 2.33GHz",
     },
     {
@@ -487,6 +832,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5355 @ 2.66GHz",
     },
     {
@@ -496,6 +848,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 5365 @ 3.00GHz",
     },
     {
@@ -505,6 +864,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5205 @ 1.86GHz",
     },
     {
@@ -514,6 +880,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5210 @ 1.60GHz",
     },
     {
@@ -523,6 +896,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5220 @ 2.26GHz",
     },
     {
@@ -532,6 +912,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5240 @ 2.40GHz",
     },
     {
@@ -541,6 +928,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5260 @ 2.60GHz",
     },
     {
@@ -550,6 +944,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5405 @ 2.00GHz",
     },
     {
@@ -559,6 +960,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5410 @ 2.33GHz",
     },
     {
@@ -568,6 +976,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5420 @ 2.50GHz",
     },
     {
@@ -577,6 +992,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5430 @ 2.66GHz",
     },
     {
@@ -586,6 +1008,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5440 @ 2.83GHz",
     },
     {
@@ -595,6 +1024,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5450 @ 3.00GHz",
     },
     {
@@ -604,6 +1040,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5472 @ 3.00GHz",
     },
     {
@@ -613,6 +1056,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X5260 @ 2.66GHz",
     },
     {
@@ -622,6 +1072,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X5270 @ 2.93GHz",
     },
     {
@@ -631,6 +1088,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X5460 @ 3.16GHz",
     },
     {
@@ -640,6 +1104,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X5470 @ 3.33GHz",
     },
     {
@@ -649,6 +1120,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X5482 @ 3.20GHz",
     },
     {
@@ -658,6 +1136,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5410 @ 2.33GHz",
     },
     {
@@ -667,6 +1152,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5420 @ 2.50GHz",
     },
     {
@@ -676,6 +1168,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5430 @ 2.66GHz",
     },
     {
@@ -685,6 +1184,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5440 @ 2.83GHz",
     },
     {
@@ -694,6 +1200,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5450 @ 3.00GHz",
     },
     {
@@ -703,6 +1216,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5470 @ 3.33GHz",
     },
     {
@@ -712,6 +1232,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X5450 @ 3.00GHz",
     },
     {
@@ -721,6 +1248,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X5460 @ 3.16GHz",
     },
     {
@@ -730,6 +1264,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X5470 @ 3.33GHz",
     },
     {
@@ -739,6 +1280,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X5475 @ 3.50GHz",
     },
     {
@@ -748,6 +1296,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X5482 @ 3.20GHz",
     },
     {
@@ -757,6 +1312,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L5410 @ 2.33GHz",
     },
     {
@@ -766,6 +1328,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L5420 @ 2.50GHz",
     },
     {
@@ -775,6 +1344,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L5430 @ 2.66GHz",
     },
     {
@@ -784,6 +1360,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L5240 @ 2.26GHz",
     },
     {
@@ -793,6 +1376,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E7450 @ 2.40GHz",
     },
     {
@@ -802,6 +1392,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E7440 @ 2.40GHz",
     },
     {
@@ -811,6 +1408,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E7430 @ 2.13GHz",
     },
     {
@@ -820,6 +1424,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E7420 @ 2.13GHz",
     },
     {
@@ -829,6 +1440,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X7460 @ 2.66GHz",
     },
     {
@@ -838,6 +1456,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X7450 @ 2.40GHz",
     },
     {
@@ -847,6 +1472,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L7450 @ 2.13GHz",
     },
     {
@@ -856,6 +1488,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E6550 @ 2.33GHz",
     },
     {
@@ -865,6 +1504,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E6540 @ 2.33GHz",
     },
     {
@@ -874,6 +1520,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E6530 @ 2.13GHz",
     },
     {
@@ -883,6 +1536,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E6520 @ 2.13GHz",
     },
     {
@@ -892,6 +1552,13 @@
         .family = 6,
         .model = 15,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 3040 @ 1.86GHz",
     },
     {
@@ -901,6 +1568,13 @@
         .family = 6,
         .model = 15,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 3050 @ 2.13GHz",
     },
     {
@@ -910,6 +1584,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 3060 @ 2.40GHz",
     },
     {
@@ -919,6 +1600,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 3065 @ 2.33GHz",
     },
     {
@@ -928,6 +1616,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 3070 @ 2.66GHz",
     },
     {
@@ -937,6 +1632,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 3075 @ 2.66GHz",
     },
     {
@@ -946,6 +1648,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU 3085 @ 3.00GHz",
     },
     {
@@ -955,6 +1664,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X3210 @ 2.13GHz",
     },
     {
@@ -964,6 +1680,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X3220 @ 2.40GHz",
     },
     {
@@ -973,6 +1696,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X3230 @ 2.66GHz",
     },
     {
@@ -982,6 +1712,13 @@
         .family = 6,
         .model = 15,
         .stepping = 11,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X3240 @ 2.83GHz",
     },
     {
@@ -991,6 +1728,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E3110 @ 3.00GHz",
     },
     {
@@ -1000,6 +1744,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E3120 @ 3.16GHz",
     },
     {
@@ -1009,6 +1760,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E3130 @ 3.40GHz",
     },
     {
@@ -1018,6 +1776,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X3350 @ 2.66GHz",
     },
     {
@@ -1027,6 +1792,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X3360 @ 2.83GHz",
     },
     {
@@ -1036,6 +1808,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X3370 @ 3.00GHz",
     },
     {
@@ -1045,6 +1824,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU X3380 @ 3.16GHz",
     },
     {
@@ -1054,6 +1840,13 @@
         .family = 6,
         .model = 23,
         .stepping = 6,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L3360 @ 2.83GHz",
     },
     {
@@ -1063,6 +1856,13 @@
         .family = 6,
         .model = 23,
         .stepping = 10,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L3426 @ 2.13GHz",
     },
     {
@@ -1072,6 +1872,13 @@
         .family = 6,
         .model = 26,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L5506 @ 2.13GHz",
     },
     {
@@ -1081,6 +1888,13 @@
         .family = 6,
         .model = 26,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L5518 @ 2.13GHz",
     },
     {
@@ -1090,6 +1904,13 @@
         .family = 6,
         .model = 26,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L5520 @ 2.26GHz",
     },
     {
@@ -1099,6 +1920,13 @@
         .family = 6,
         .model = 26,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L5530 @ 2.40GHz",
     },
     {
@@ -1108,6 +1936,13 @@
         .family = 6,
         .model = 26,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3503 @ 2.40GHz",
     },
     {
@@ -1117,6 +1952,13 @@
         .family = 6,
         .model = 26,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3505 @ 2.53GHz",
     },
     {
@@ -1126,6 +1968,13 @@
         .family = 6,
         .model = 26,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3520 @ 2.66GHz",
     },
     {
@@ -1135,6 +1984,13 @@
         .family = 6,
         .model = 26,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3530 @ 2.80GHz",
     },
     {
@@ -1144,6 +2000,13 @@
         .family = 6,
         .model = 26,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3540 @ 2.93GHz",
     },
     {
@@ -1153,6 +2016,13 @@
         .family = 6,
         .model = 26,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3550 @ 3.06GHz",
     },
     {
@@ -1162,6 +2032,13 @@
         .family = 6,
         .model = 26,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3565 @ 3.20GHz",
     },
     {
@@ -1171,6 +2048,13 @@
         .family = 6,
         .model = 26,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3570 @ 3.20GHz",
     },
     {
@@ -1180,6 +2064,13 @@
         .family = 6,
         .model = 26,
         .stepping = 5,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3580 @ 3.33GHz",
     },
     {
@@ -1189,6 +2080,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3670 @ 3.20GHz",
     },
     {
@@ -1198,6 +2096,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3680 @ 3.33GHz",
     },
     {
@@ -1207,6 +2112,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3690 @ 3.46GHz",
     },
     {
@@ -1216,6 +2128,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3770 @ 3.50GHz",
     },
     {
@@ -1225,6 +2144,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5603 @ 1.60GHz",
     },
     {
@@ -1234,6 +2160,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5606 @ 2.13GHz",
     },
     {
@@ -1243,6 +2176,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5607 @ 2.26GHz",
     },
     {
@@ -1252,6 +2192,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5620 @ 2.40GHz",
     },
     {
@@ -1261,6 +2208,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5630 @ 2.53GHz",
     },
     {
@@ -1270,6 +2224,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5645 @ 2.40GHz",
     },
     {
@@ -1279,6 +2240,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5650 @ 2.66GHz",
     },
     {
@@ -1288,6 +2256,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5660 @ 2.80GHz",
     },
     {
@@ -1297,6 +2272,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5670 @ 2.93GHz",
     },
     {
@@ -1306,6 +2288,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5675 @ 3.06GHz",
     },
     {
@@ -1315,6 +2304,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5680 @ 3.33GHz",
     },
     {
@@ -1324,6 +2320,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L5609 @ 1.86GHz",
     },
     {
@@ -1333,6 +2336,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L5618 @ 1.87GHz",
     },
     {
@@ -1342,6 +2352,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L5630 @ 2.13GHz",
     },
     {
@@ -1351,6 +2368,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L5638 @ 2.00GHz",
     },
     {
@@ -1360,6 +2384,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU L5640 @ 2.26GHz",
     },
     {
@@ -1369,6 +2400,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3620 @ 2.66GHz",
     },
     {
@@ -1378,6 +2416,13 @@
         .family = 6,
         .model = 44,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU W3640 @ 3.00GHz",
     },
     {
@@ -1387,6 +2432,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1620 0 @ 3.60GHz",
     },
     {
@@ -1396,6 +2448,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1630 0 @ 3.70GHz",
     },
     {
@@ -1405,6 +2464,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1650 0 @ 3.20GHz",
     },
     {
@@ -1414,6 +2480,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1660 0 @ 3.30GHz",
     },
     {
@@ -1423,6 +2496,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1680 0 @ 3.70GHz",
     },
     {
@@ -1432,6 +2512,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2620 0 @ 2.00GHz",
     },
     {
@@ -1441,6 +2528,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2630 0 @ 2.30GHz",
     },
     {
@@ -1450,6 +2544,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
     },
     {
@@ -1459,6 +2560,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2650 0 @ 2.00GHz",
     },
     {
@@ -1468,6 +2576,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2660 0 @ 2.20GHz",
     },
     {
@@ -1477,6 +2592,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2667 0 @ 2.90GHz",
     },
     {
@@ -1486,6 +2608,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz",
     },
     {
@@ -1495,6 +2624,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2680 0 @ 2.70GHz",
     },
     {
@@ -1504,6 +2640,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2690 0 @ 2.90GHz",
     },
     {
@@ -1513,6 +2656,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4620 0 @ 2.20GHz",
     },
     {
@@ -1522,6 +2672,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4640 0 @ 2.40GHz",
     },
     {
@@ -1531,6 +2688,13 @@
         .family = 6,
         .model = 45,
         .stepping = 7,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4650 0 @ 2.70GHz",
     },
     {
@@ -1540,6 +2704,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1620 v2 @ 3.70GHz",
     },
     {
@@ -1549,6 +2720,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1630 v2 @ 3.80GHz",
     },
     {
@@ -1558,6 +2736,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1650 v2 @ 3.50GHz",
     },
     {
@@ -1567,6 +2752,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1660 v2 @ 3.70GHz",
     },
     {
@@ -1576,6 +2768,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1680 v2 @ 3.80GHz",
     },
     {
@@ -1585,6 +2784,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz",
     },
     {
@@ -1594,6 +2800,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2630 v2 @ 2.60GHz",
     },
     {
@@ -1603,6 +2816,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2640 v2 @ 2.00GHz",
     },
     {
@@ -1612,6 +2832,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2650 v2 @ 2.60GHz",
     },
     {
@@ -1621,6 +2848,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2660 v2 @ 2.20GHz",
     },
     {
@@ -1630,6 +2864,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2667 v2 @ 3.30GHz",
     },
     {
@@ -1639,6 +2880,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz",
     },
     {
@@ -1648,6 +2896,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2680 v2 @ 2.80GHz",
     },
     {
@@ -1657,6 +2912,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2690 v2 @ 3.00GHz",
     },
     {
@@ -1666,6 +2928,13 @@
         .family = 6,
         .model = 62,
         .stepping = 4,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz",
     },
     {
@@ -1675,6 +2944,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1603 v3 @ 2.80GHz",
     },
     {
@@ -1684,6 +2960,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1607 v3 @ 3.10GHz",
     },
     {
@@ -1693,6 +2976,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz",
     },
     {
@@ -1702,6 +2992,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.80GHz",
     },
     {
@@ -1711,6 +3008,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1650 v3 @ 3.50GHz",
     },
     {
@@ -1720,6 +3024,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1660 v3 @ 3.70GHz",
     },
     {
@@ -1729,6 +3040,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1680 v3 @ 3.80GHz",
     },
     {
@@ -1738,6 +3056,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2603 v3 @ 1.60GHz",
     },
     {
@@ -1747,6 +3072,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2609 v3 @ 1.90GHz",
     },
     {
@@ -1756,6 +3088,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz",
     },
     {
@@ -1765,6 +3104,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2630 v3 @ 2.40GHz",
     },
     {
@@ -1774,6 +3120,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2640 v3 @ 2.60GHz",
     },
     {
@@ -1783,6 +3136,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2650 v3 @ 2.30GHz",
     },
     {
@@ -1792,6 +3152,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2660 v3 @ 2.60GHz",
     },
     {
@@ -1801,6 +3168,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2670 v3 @ 2.30GHz",
     },
     {
@@ -1810,6 +3184,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz",
     },
     {
@@ -1819,6 +3200,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2683 v3 @ 2.00GHz",
     },
     {
@@ -1828,6 +3216,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2690 v3 @ 2.60GHz",
     },
     {
@@ -1837,6 +3232,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2695 v3 @ 2.30GHz",
     },
     {
@@ -1846,6 +3248,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz",
     },
     {
@@ -1855,6 +3264,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2699 v3 @ 2.30GHz",
     },
     {
@@ -1864,6 +3280,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4603 v3 @ 2.10GHz",
     },
     {
@@ -1873,6 +3296,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4620 v3 @ 2.00GHz",
     },
     {
@@ -1882,6 +3312,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4640 v3 @ 2.40GHz",
     },
     {
@@ -1891,6 +3328,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4660 v3 @ 2.60GHz",
     },
     {
@@ -1900,6 +3344,13 @@
         .family = 6,
         .model = 63,
         .stepping = 2,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_PCLMULQDQ | CPUID_EXT_MONITOR | CPUID_EXT_VMX | CPUID_EXT_SMX | CPUID_EXT_EST | CPUID_EXT_TM2 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_XSAVE | CPUID_EXT_OSXSAVE | CPUID_EXT_AVX | CPUID_EXT_F16C | CPUID_EXT_RDRAND | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4669 v3 @ 2.10GHz",
     },
     {
@@ -1909,6 +3360,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2620 v4 @ 2.10GHz",
     },
     {
@@ -1918,6 +3376,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz",
     },
     {
@@ -1927,6 +3392,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2640 v4 @ 2.40GHz",
     },
     {
@@ -1936,6 +3408,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2650 v4 @ 2.20GHz",
     },
     {
@@ -1945,6 +3424,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2660 v4 @ 2.00GHz",
     },
     {
@@ -1954,6 +3440,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2670 v4 @ 2.30GHz",
     },
     {
@@ -1963,6 +3456,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz",
     },
     {
@@ -1972,6 +3472,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz",
     },
     {
@@ -1981,6 +3488,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz",
     },
     {
@@ -1990,6 +3504,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2697 v4 @ 2.30GHz",
     },
     {
@@ -1999,6 +3520,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2699 v4 @ 2.20GHz",
     },
     {
@@ -2008,6 +3536,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4620 v4 @ 2.10GHz",
     },
     {
@@ -2017,6 +3552,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4640 v4 @ 2.20GHz",
     },
     {
@@ -2026,6 +3568,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4660 v4 @ 2.60GHz",
     },
     {
@@ -2035,6 +3584,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4680 v4 @ 2.40GHz",
     },
     {
@@ -2044,6 +3600,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4683 v4 @ 2.00GHz",
     },
     {
@@ -2053,6 +3616,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4690 v4 @ 2.20GHz",
     },
     {
@@ -2062,6 +3632,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-4697 v4 @ 2.30GHz",
     },
     {
@@ -2071,6 +3648,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2623 v4 @ 2.60GHz",
     },
     {
@@ -2080,6 +3664,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2637 v4 @ 3.50GHz",
     },
     {
@@ -2089,6 +3680,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2643 v4 @ 3.40GHz",
     },
     {
@@ -2098,6 +3696,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2667 v4 @ 3.20GHz",
     },
     {
@@ -2107,6 +3712,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2687W v4 @ 3.00GHz",
     },
     {
@@ -2116,6 +3728,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-2697A v4 @ 2.60GHz",
     },
     {
@@ -2125,6 +3744,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1630 v4 @ 3.70GHz",
     },
     {
@@ -2134,6 +3760,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1650 v4 @ 3.50GHz",
     },
     {
@@ -2143,6 +3776,13 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1660 v4 @ 3.60GHz",
     },
     {
@@ -2152,5 +3792,12 @@
         .family = 6,
         .model = 79,
         .stepping = 1,
+        
+        .features[FEAT_1_EDX] =
+            CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
+        .features[FEAT_1_ECX] =
+            CPUID_EXT_SSE3 | CPUID_EXT_SSSE3 | CPUID_EXT_CX16 | CPUID_EXT_SSE41 | CPUID_EXT_SSE42 | CPUID_EXT_POPCNT | CPUID_EXT_HYPERVISOR,
+        .features[FEAT_8000_0001_EDX] =
+            CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL,
         .model_id = "Intel(R) Xeon(R) CPU E5-1680 v4 @ 3.40GHz",
     },
