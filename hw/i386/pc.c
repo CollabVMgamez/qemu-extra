@@ -106,7 +106,6 @@ GlobalProperty pc_compat_9_0[] = {
     { TYPE_X86_CPU, "x-amd-topoext-features-only", "false" },
     { TYPE_X86_CPU, "x-l1-cache-per-thread", "false" },
     { TYPE_X86_CPU, "guest-phys-bits", "0" },
-    { TYPE_X86_CPU, "phys-bits", "40" },
     { "sev-guest", "legacy-vm-type", "on" },
     { TYPE_X86_CPU, "legacy-multi-node", "on" },
 };
@@ -1948,6 +1947,13 @@ static void pc_machine_class_init(ObjectClass *oc, const void *data)
     hc->unplug_request = pc_machine_device_unplug_request_cb;
     hc->unplug = pc_machine_device_unplug_cb;
     mc->default_cpu_type = TARGET_DEFAULT_CPU_TYPE;
+
+    qdev_prop_register_global(&(GlobalProperty){
+        .driver = TYPE_X86_CPU,
+        .property = "phys-bits",
+        .value = "40",
+    });
+
     mc->nvdimm_supported = true;
     mc->smp_props.dies_supported = true;
     mc->smp_props.modules_supported = true;
