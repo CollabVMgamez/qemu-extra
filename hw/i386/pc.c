@@ -794,9 +794,6 @@ void pc_memory_init(PCMachineState *pcms,
         hwaddr needed = maxusedaddr;
         while (needed > 1) { needed >>= 1; needed_bits++; }
         if (needed_bits < 36) needed_bits = 36;
-        warn_report("phys-bits too low (%u), auto-adjusting to %u "
-                    "to cover address space 0x%"PRIx64,
-                    cpu->phys_bits, needed_bits, maxusedaddr);
         cpu->phys_bits = needed_bits;
         maxphysaddr = ((hwaddr)1 << cpu->phys_bits) - 1;
     }
