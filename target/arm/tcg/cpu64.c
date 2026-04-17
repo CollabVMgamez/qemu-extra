@@ -2456,6 +2456,8 @@ static void aarch64_ampereone_256_initfn(Object *obj)
     object_property_set_uint(obj, "sve-max-vq", 4, &error_abort);
 }
 
+#include "v15-arm64-cpus.inc.c"
+
 static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "cortex-a35",         .initfn = aarch64_a35_initfn },
     { .name = "cortex-a55",         .initfn = aarch64_a55_initfn },
@@ -2651,6 +2653,7 @@ static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "altra-max",              .initfn = aarch64_altra_max_initfn },
     { .name = "ampereone-192",          .initfn = aarch64_ampereone_192_initfn },
     { .name = "ampereone-256",          .initfn = aarch64_ampereone_256_initfn },
+#include "v15-arm64-table.inc.c"
 };
 
 static void aarch64_cpu_register_types(void)
