@@ -17459,6 +17459,7 @@ static const X86CPUDefinition builtin_x86_defs[] = {
 
 #include "celeron-pentium-ulv-table.inc.c"
 #include "missing-cpus-v142.inc.c"
+#include "xeon-table.inc.c"
 
  };
 
