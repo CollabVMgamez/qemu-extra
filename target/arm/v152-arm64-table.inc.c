@@ -1,16 +1,12 @@
-/* v1.52 ARM64 CPU table entries - 17 CPUs */
+/* v1.52 ARM64 CPU table entries - 12 CPUs */
 
     { .name = "oryon-x1e-78-100", .initfn = aarch64_oryon_x1e_78_100_initfn },
     { .name = "oryon-x1e-80-100", .initfn = aarch64_oryon_x1e_80_100_initfn },
     { .name = "oryon-x1p-64-100", .initfn = aarch64_oryon_x1p_64_100_initfn },
     { .name = "oryon-x1e-84-100", .initfn = aarch64_oryon_x1e_84_100_initfn },
-    { .name = "cortex-x5", .initfn = aarch64_cortex_x5_initfn },
-    { .name = "cortex-a730", .initfn = aarch64_cortex_a730_initfn },
     { .name = "dimensity-9400-x5", .initfn = aarch64_dimensity_9400_x5_initfn },
     { .name = "dimensity-9300-x4", .initfn = aarch64_dimensity_9300_x4_initfn },
     { .name = "dimensity-9300-a720", .initfn = aarch64_dimensity_9300_a720_initfn },
-    { .name = "kirin-9100", .initfn = aarch64_kirin_9100_initfn },
-    { .name = "kirin-9010", .initfn = aarch64_kirin_9010_initfn },
     { .name = "ampereone-a1", .initfn = aarch64_ampereone_a1_initfn },
     { .name = "ampereone-a128", .initfn = aarch64_ampereone_a128_initfn },
     { .name = "lx2160a-a72", .initfn = aarch64_lx2160a_a72_initfn },

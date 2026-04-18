@@ -1,4 +1,4 @@
-/* v1.52 ARM64 CPU initfn functions - 17 CPUs */
+/* v1.52 ARM64 CPU initfn functions - 12 CPUs */
 
 static void aarch64_oryon_x1e_78_100_initfn(Object *obj)
 {
@@ -32,22 +32,6 @@ static void aarch64_oryon_x1e_84_100_initfn(Object *obj)
     cpu->ctr = 0x84448000;
 }
 
-static void aarch64_cortex_x5_initfn(Object *obj)
-{
-    ARMCPU *cpu = ARM_CPU(obj);
-    cpu->dtb_compatible = "arm,cortex-x5";
-    cpu->midr = 1091518464;
-    cpu->ctr = 0x84448000;
-}
-
-static void aarch64_cortex_a730_initfn(Object *obj)
-{
-    ARMCPU *cpu = ARM_CPU(obj);
-    cpu->dtb_compatible = "arm,cortex-a730";
-    cpu->midr = 1091531520;
-    cpu->ctr = 0x8444c000;
-}
-
 static void aarch64_dimensity_9400_x5_initfn(Object *obj)
 {
     ARMCPU *cpu = ARM_CPU(obj);
@@ -70,22 +54,6 @@ static void aarch64_dimensity_9300_a720_initfn(Object *obj)
     cpu->dtb_compatible = "mediatek,mt6989-a720";
     cpu->midr = 1091531264;
     cpu->ctr = 0x8444c000;
-}
-
-static void aarch64_kirin_9100_initfn(Object *obj)
-{
-    ARMCPU *cpu = ARM_CPU(obj);
-    cpu->dtb_compatible = "hisilicon,kirin9100";
-    cpu->midr = 1208958976;
-    cpu->ctr = 0x84448000;
-}
-
-static void aarch64_kirin_9010_initfn(Object *obj)
-{
-    ARMCPU *cpu = ARM_CPU(obj);
-    cpu->dtb_compatible = "hisilicon,kirin9010";
-    cpu->midr = 1208954880;
-    cpu->ctr = 0x84448000;
 }
 
 static void aarch64_ampereone_a1_initfn(Object *obj)
@@ -119,7 +87,6 @@ static void aarch64_lx2160a_a72_2_initfn(Object *obj)
     cpu->midr = 1091555457;
     cpu->ctr = 0x84448000;
 }
-
 
 static void aarch64_fujitsu_2a64fx_initfn(Object *obj)
 {
