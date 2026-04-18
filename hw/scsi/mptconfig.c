@@ -193,7 +193,7 @@ size_t mptsas_config_manufacturing_0(MPTSASState *s, uint8_t **data, int address
                               "LSI SAS1068",
                               "2.5",
                               "LSI SAS1068",
-                              "QEMU",
+                              "LSI Logic",
                               "0000111122223333");
 }
 

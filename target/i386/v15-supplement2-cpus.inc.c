@@ -1,11 +1,11 @@
     {
         .name = "Intel-Pentium-III-M-866",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
         .stepping = 1,
-        .xlevel = 0,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_ACPI | CPUID_SS,
@@ -16,11 +16,11 @@
     {
         .name = "Intel-Pentium-III-M-933",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
         .stepping = 1,
-        .xlevel = 0,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_ACPI | CPUID_SS,
@@ -31,11 +31,11 @@
     {
         .name = "Intel-Pentium-III-M-1000",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
         .stepping = 1,
-        .xlevel = 0,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_ACPI | CPUID_SS,
@@ -46,11 +46,11 @@
     {
         .name = "Intel-Pentium-III-M-1066",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
         .stepping = 1,
-        .xlevel = 0,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_ACPI | CPUID_SS,
@@ -61,11 +61,11 @@
     {
         .name = "Intel-Pentium-III-M-1133",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
         .stepping = 1,
-        .xlevel = 0,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_ACPI | CPUID_SS,
@@ -76,11 +76,11 @@
     {
         .name = "Intel-Pentium-III-M-1200",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 11,
         .stepping = 1,
-        .xlevel = 0,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_ACPI | CPUID_SS,
@@ -91,11 +91,11 @@
     {
         .name = "Intel-Pentium-III-M-1266",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 11,
         .stepping = 1,
-        .xlevel = 0,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_ACPI | CPUID_SS,
@@ -106,11 +106,11 @@
     {
         .name = "Intel-Pentium-III-M-1333",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 11,
         .stepping = 1,
-        .xlevel = 0,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_ACPI | CPUID_SS,
@@ -121,11 +121,11 @@
     {
         .name = "Intel-Pentium-III-M-1400",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 11,
         .stepping = 1,
-        .xlevel = 0,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_ACPI | CPUID_SS,
@@ -136,11 +136,11 @@
     {
         .name = "Intel-Pentium-III-M-1500",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 11,
         .stepping = 1,
-        .xlevel = 0,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_ACPI | CPUID_SS,
@@ -151,11 +151,11 @@
     {
         .name = "Intel-Pentium-III-M-1600",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 11,
         .stepping = 1,
-        .xlevel = 0,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_ACPI | CPUID_SS,
@@ -166,11 +166,11 @@
     {
         .name = "Intel-Celeron-M-310",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
         .stepping = 6,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -181,11 +181,11 @@
     {
         .name = "Intel-Celeron-M-320",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
         .stepping = 6,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -196,11 +196,11 @@
     {
         .name = "Intel-Celeron-M-330",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
         .stepping = 6,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -211,11 +211,11 @@
     {
         .name = "Intel-Celeron-M-340",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
         .stepping = 6,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -226,11 +226,11 @@
     {
         .name = "Intel-Celeron-M-350",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
         .stepping = 8,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -241,11 +241,11 @@
     {
         .name = "Intel-Celeron-M-360",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
         .stepping = 8,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -256,11 +256,11 @@
     {
         .name = "Intel-Celeron-M-370",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
         .stepping = 8,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -271,11 +271,11 @@
     {
         .name = "Intel-Celeron-M-380",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 14,
         .stepping = 8,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -286,11 +286,11 @@
     {
         .name = "Intel-Celeron-M-390",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 14,
         .stepping = 8,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -301,11 +301,11 @@
     {
         .name = "Intel-Celeron-M-450",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 14,
         .stepping = 8,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -316,11 +316,11 @@
     {
         .name = "Intel-Celeron-M-520",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 14,
         .stepping = 8,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -331,11 +331,11 @@
     {
         .name = "Intel-Celeron-M-530",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 14,
         .stepping = 8,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -346,11 +346,11 @@
     {
         .name = "Intel-Celeron-M-540",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 14,
         .stepping = 8,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -361,11 +361,11 @@
     {
         .name = "Intel-Celeron-M-550",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 14,
         .stepping = 8,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -376,11 +376,11 @@
     {
         .name = "Intel-Celeron-M-560",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
         .stepping = 13,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -391,11 +391,11 @@
     {
         .name = "Intel-Xeon-E5502",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
         .stepping = 4,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -410,11 +410,11 @@
     {
         .name = "Intel-Xeon-E5504",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
         .stepping = 4,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -429,11 +429,11 @@
     {
         .name = "Intel-Xeon-E5506",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
         .stepping = 4,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -448,11 +448,11 @@
     {
         .name = "Intel-Xeon-E5507",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
         .stepping = 4,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -467,11 +467,11 @@
     {
         .name = "Intel-Xeon-E5520",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
         .stepping = 4,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -486,11 +486,11 @@
     {
         .name = "Intel-Xeon-E5530",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
         .stepping = 4,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -505,11 +505,11 @@
     {
         .name = "Intel-Xeon-E5540",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
         .stepping = 4,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -524,11 +524,11 @@
     {
         .name = "Intel-Xeon-E5640",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
         .stepping = 2,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -543,11 +543,11 @@
     {
         .name = "Intel-Xeon-X5650",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
         .stepping = 2,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -562,11 +562,11 @@
     {
         .name = "Intel-Xeon-X5660",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
         .stepping = 2,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -581,11 +581,11 @@
     {
         .name = "Intel-Xeon-X5670",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
         .stepping = 2,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -600,11 +600,11 @@
     {
         .name = "Intel-Xeon-X5675",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
         .stepping = 2,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -619,11 +619,11 @@
     {
         .name = "Intel-Xeon-X5680",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
         .stepping = 2,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -638,11 +638,11 @@
     {
         .name = "Intel-Xeon-X5690",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
         .stepping = 2,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -657,11 +657,11 @@
     {
         .name = "Intel-Xeon-W5580",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
         .stepping = 4,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,
@@ -676,11 +676,11 @@
     {
         .name = "Intel-Xeon-W5590",
         .level = 11,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
         .stepping = 4,
-        .xlevel = 2147483656,
         .brand_id = 0,
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_CLFLUSH | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2 | CPUID_ACPI | CPUID_SS,

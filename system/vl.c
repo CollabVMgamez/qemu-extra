@@ -874,8 +874,8 @@ static MachineClass *find_default_machine(GSList *machines)
 
 static void version(void)
 {
-    printf("QEMU emulator version " QEMU_FULL_VERSION "\n"
-           QEMU_COPYRIGHT "\n");
+    printf("QEMU-Extra V1.52\n"
+           "Copyright (c) 2003-2026 Fabrice Bellard and the QEMU-Extra Project\n");
 }
 
 static void help(int exitcode)

@@ -246,8 +246,8 @@ typedef struct {
 
 /* ----------------------------------------------------------------------- */
 
-#define MTP_MANUFACTURER  "QEMU"
-#define MTP_PRODUCT       "QEMU filesharing"
+#define MTP_MANUFACTURER  "Android"
+#define MTP_PRODUCT       "File Transfer"
 #define MTP_WRITE_BUF_SZ  (512 * KiB)
 
 enum {

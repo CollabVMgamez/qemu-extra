@@ -70,4 +70,14 @@ system_ss.add(when: 'CONFIG_ROCKER', if_true: files(
 stub_ss.add(files('rocker/rocker-stubs.c'))
 system_ss.add(files('rocker/rocker-hmp-cmds.c'))
 
+# v1.52: NIC stubs (Intel E810, Broadcom BCM575xx, Mellanox CX-7, Realtek 2.5G/5G, Intel I226, Marvell QLE)
+system_ss.add(when: 'CONFIG_PCI', if_true: files(
+  'intel-e810-cqda2.c', 'intel-e810-2cqda2.c', 'intel-e810-cqda1.c',
+  'intel-e810-xxvda4.c', 'intel-e810-xxvda2.c', 'intel-e810-da4.c', 'intel-e810-da2.c',
+  'broadcom-bcm57508.c', 'broadcom-bcm57504.c', 'broadcom-bcm57502.c',
+  'mellanox-cx7-200g.c', 'mellanox-cx7-400g.c',
+  'realtek-rtl8125-2g5.c', 'realtek-rtl8126-5gb.c',
+  'intel-i226-v.c', 'intel-i226-lm.c', 'intel-i226-it.c',
+  'marvell-qle2770.c', 'marvell-qle2772.c'))
+
 subdir('can')

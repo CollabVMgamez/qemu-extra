@@ -6,6 +6,7 @@
     {
         .name = "Intel-Xeon-400MHz",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 5,
@@ -22,6 +23,7 @@
     {
         .name = "Intel-Xeon-450MHz",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 5,
@@ -38,6 +40,7 @@
     {
         .name = "Intel-Xeon-500MHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 7,
@@ -54,6 +57,7 @@
     {
         .name = "Intel-Xeon-550MHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 7,
@@ -70,6 +74,7 @@
     {
         .name = "Intel-Xeon-600MHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -84,6 +89,7 @@
     {
         .name = "Intel-Xeon-667MHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -98,6 +104,7 @@
     {
         .name = "Intel-Xeon-700MHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -112,6 +119,7 @@
     {
         .name = "Intel-Xeon-733MHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -126,6 +134,7 @@
     {
         .name = "Intel-Xeon-800MHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -140,6 +149,7 @@
     {
         .name = "Intel-Xeon-866MHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -154,6 +164,7 @@
     {
         .name = "Intel-Xeon-900MHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -168,6 +179,7 @@
     {
         .name = "Intel-Xeon-933MHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -182,6 +194,7 @@
     {
         .name = "Intel-Xeon-1GHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -196,6 +209,7 @@
     {
         .name = "Intel-Xeon-1400",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 0,
@@ -214,6 +228,7 @@
     {
         .name = "Intel-Xeon-1500",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 0,
@@ -232,6 +247,7 @@
     {
         .name = "Intel-Xeon-1600",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 0,
@@ -250,6 +266,7 @@
     {
         .name = "Intel-Xeon-1800",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 2,
@@ -268,6 +285,7 @@
     {
         .name = "Intel-Xeon-2000",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 2,
@@ -286,6 +304,7 @@
     {
         .name = "Intel-Xeon-2200",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 2,
@@ -304,6 +323,7 @@
     {
         .name = "Intel-Xeon-2400",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 2,
@@ -322,6 +342,7 @@
     {
         .name = "Intel-Xeon-2530",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 2,
@@ -340,6 +361,7 @@
     {
         .name = "Intel-Xeon-2660",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 2,
@@ -358,6 +380,7 @@
     {
         .name = "Intel-Xeon-2800",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 2,
@@ -376,6 +399,7 @@
     {
         .name = "Intel-Xeon-3060",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 2,
@@ -394,6 +418,7 @@
     {
         .name = "Intel-Xeon-MP-1500",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 2,
@@ -412,6 +437,7 @@
     {
         .name = "Intel-Xeon-MP-1600",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 2,
@@ -430,6 +456,7 @@
     {
         .name = "Intel-Xeon-MP-2000",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 2,
@@ -448,6 +475,7 @@
     {
         .name = "Intel-Xeon-2800-Nocona",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -466,6 +494,7 @@
     {
         .name = "Intel-Xeon-3000-Nocona",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -484,6 +513,7 @@
     {
         .name = "Intel-Xeon-3200-Nocona",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -502,6 +532,7 @@
     {
         .name = "Intel-Xeon-3400-Nocona",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -520,6 +551,7 @@
     {
         .name = "Intel-Xeon-3600-Nocona",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -538,6 +570,7 @@
     {
         .name = "Intel-Xeon-2800-Irwindale",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -556,6 +589,7 @@
     {
         .name = "Intel-Xeon-3000-Irwindale",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -574,6 +608,7 @@
     {
         .name = "Intel-Xeon-3200-Irwindale",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -592,6 +627,7 @@
     {
         .name = "Intel-Xeon-3400-Irwindale",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -610,6 +646,7 @@
     {
         .name = "Intel-Xeon-3600-Irwindale",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -628,6 +665,7 @@
     {
         .name = "Intel-Xeon-DP-2800-Paxville",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -646,6 +684,7 @@
     {
         .name = "Intel-Xeon-5030",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 6,
@@ -664,6 +703,7 @@
     {
         .name = "Intel-Xeon-5050",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 6,
@@ -682,6 +722,7 @@
     {
         .name = "Intel-Xeon-5060",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 6,
@@ -700,6 +741,7 @@
     {
         .name = "Intel-Xeon-5063",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 6,
@@ -718,6 +760,7 @@
     {
         .name = "Intel-Xeon-5080",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 6,
@@ -736,6 +779,7 @@
     {
         .name = "Intel-Xeon-5110",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -754,6 +798,7 @@
     {
         .name = "Intel-Xeon-5120",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -772,6 +817,7 @@
     {
         .name = "Intel-Xeon-5130",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -790,6 +836,7 @@
     {
         .name = "Intel-Xeon-5140",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -808,6 +855,7 @@
     {
         .name = "Intel-Xeon-5150",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -826,6 +874,7 @@
     {
         .name = "Intel-Xeon-5160",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -844,6 +893,7 @@
     {
         .name = "Intel-Xeon-5310",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -862,6 +912,7 @@
     {
         .name = "Intel-Xeon-5320",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -880,6 +931,7 @@
     {
         .name = "Intel-Xeon-5335",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -898,6 +950,7 @@
     {
         .name = "Intel-Xeon-5345",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -916,6 +969,7 @@
     {
         .name = "Intel-Xeon-5355",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -934,6 +988,7 @@
     {
         .name = "Intel-Xeon-5365",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -952,6 +1007,7 @@
     {
         .name = "Intel-Xeon-E5205",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -970,6 +1026,7 @@
     {
         .name = "Intel-Xeon-E5210",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -988,6 +1045,7 @@
     {
         .name = "Intel-Xeon-E5220",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1006,6 +1064,7 @@
     {
         .name = "Intel-Xeon-E5240",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1024,6 +1083,7 @@
     {
         .name = "Intel-Xeon-E5260",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1042,6 +1102,7 @@
     {
         .name = "Intel-Xeon-E5405",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1060,6 +1121,7 @@
     {
         .name = "Intel-Xeon-E5410",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1078,6 +1140,7 @@
     {
         .name = "Intel-Xeon-E5420",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1096,6 +1159,7 @@
     {
         .name = "Intel-Xeon-E5430",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1114,6 +1178,7 @@
     {
         .name = "Intel-Xeon-E5440",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1132,6 +1197,7 @@
     {
         .name = "Intel-Xeon-E5450",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1150,6 +1216,7 @@
     {
         .name = "Intel-Xeon-E5472",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1168,6 +1235,7 @@
     {
         .name = "Intel-Xeon-X5260",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1186,6 +1254,7 @@
     {
         .name = "Intel-Xeon-X5270",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1204,6 +1273,7 @@
     {
         .name = "Intel-Xeon-X5460",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1222,6 +1292,7 @@
     {
         .name = "Intel-Xeon-X5470",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1240,6 +1311,7 @@
     {
         .name = "Intel-Xeon-X5482",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1258,6 +1330,7 @@
     {
         .name = "Intel-Xeon-E5410-Harpertown",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1276,6 +1349,7 @@
     {
         .name = "Intel-Xeon-E5420-Harpertown",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1294,6 +1368,7 @@
     {
         .name = "Intel-Xeon-E5430-Harpertown",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1312,6 +1387,7 @@
     {
         .name = "Intel-Xeon-E5440-Harpertown",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1330,6 +1406,7 @@
     {
         .name = "Intel-Xeon-E5450-Harpertown",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1348,6 +1425,7 @@
     {
         .name = "Intel-Xeon-E5470",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1366,6 +1444,7 @@
     {
         .name = "Intel-Xeon-X5450-Harpertown",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1384,6 +1463,7 @@
     {
         .name = "Intel-Xeon-X5460-Harpertown",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1402,6 +1482,7 @@
     {
         .name = "Intel-Xeon-X5470-Harpertown",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1420,6 +1501,7 @@
     {
         .name = "Intel-Xeon-X5475",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1438,6 +1520,7 @@
     {
         .name = "Intel-Xeon-X5482-Harpertown",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1456,6 +1539,7 @@
     {
         .name = "Intel-Xeon-L5410",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1474,6 +1558,7 @@
     {
         .name = "Intel-Xeon-L5420",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1492,6 +1577,7 @@
     {
         .name = "Intel-Xeon-L5430",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1510,6 +1596,7 @@
     {
         .name = "Intel-Xeon-L5240",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1528,6 +1615,7 @@
     {
         .name = "Intel-Xeon-E7450",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1546,6 +1634,7 @@
     {
         .name = "Intel-Xeon-E7440",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1564,6 +1653,7 @@
     {
         .name = "Intel-Xeon-E7430",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1582,6 +1672,7 @@
     {
         .name = "Intel-Xeon-E7420",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1600,6 +1691,7 @@
     {
         .name = "Intel-Xeon-X7460",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1618,6 +1710,7 @@
     {
         .name = "Intel-Xeon-X7450",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1636,6 +1729,7 @@
     {
         .name = "Intel-Xeon-L7450",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1654,6 +1748,7 @@
     {
         .name = "Intel-Xeon-E6550",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1672,6 +1767,7 @@
     {
         .name = "Intel-Xeon-E6540",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1690,6 +1786,7 @@
     {
         .name = "Intel-Xeon-E6530",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1708,6 +1805,7 @@
     {
         .name = "Intel-Xeon-E6520",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1726,6 +1824,7 @@
     {
         .name = "Intel-Xeon-3040",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -1744,6 +1843,7 @@
     {
         .name = "Intel-Xeon-3050",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -1762,6 +1862,7 @@
     {
         .name = "Intel-Xeon-3060-SP",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -1780,6 +1881,7 @@
     {
         .name = "Intel-Xeon-3065",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -1798,6 +1900,7 @@
     {
         .name = "Intel-Xeon-3070",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -1816,6 +1919,7 @@
     {
         .name = "Intel-Xeon-3075",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -1834,6 +1938,7 @@
     {
         .name = "Intel-Xeon-3085",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -1852,6 +1957,7 @@
     {
         .name = "Intel-Xeon-X3210",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -1870,6 +1976,7 @@
     {
         .name = "Intel-Xeon-X3220",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -1888,6 +1995,7 @@
     {
         .name = "Intel-Xeon-X3230",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -1906,6 +2014,7 @@
     {
         .name = "Intel-Xeon-X3240",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -1924,6 +2033,7 @@
     {
         .name = "Intel-Xeon-E3110",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1942,6 +2052,7 @@
     {
         .name = "Intel-Xeon-E3120",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1960,6 +2071,7 @@
     {
         .name = "Intel-Xeon-E3130",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1978,6 +2090,7 @@
     {
         .name = "Intel-Xeon-X3350",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -1996,6 +2109,7 @@
     {
         .name = "Intel-Xeon-X3360",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2014,6 +2128,7 @@
     {
         .name = "Intel-Xeon-X3370",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2032,6 +2147,7 @@
     {
         .name = "Intel-Xeon-X3380",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2050,6 +2166,7 @@
     {
         .name = "Intel-Xeon-L3360",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2068,6 +2185,7 @@
     {
         .name = "Intel-Xeon-L3426",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2086,6 +2204,7 @@
     {
         .name = "Intel-Xeon-L5506",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
@@ -2104,6 +2223,7 @@
     {
         .name = "Intel-Xeon-L5518",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
@@ -2122,6 +2242,7 @@
     {
         .name = "Intel-Xeon-L5520",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
@@ -2140,6 +2261,7 @@
     {
         .name = "Intel-Xeon-L5530",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
@@ -2158,6 +2280,7 @@
     {
         .name = "Intel-Xeon-W3503",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
@@ -2176,6 +2299,7 @@
     {
         .name = "Intel-Xeon-W3505",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
@@ -2194,6 +2318,7 @@
     {
         .name = "Intel-Xeon-W3520",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
@@ -2212,6 +2337,7 @@
     {
         .name = "Intel-Xeon-W3530",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
@@ -2230,6 +2356,7 @@
     {
         .name = "Intel-Xeon-W3540",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
@@ -2248,6 +2375,7 @@
     {
         .name = "Intel-Xeon-W3550",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
@@ -2266,6 +2394,7 @@
     {
         .name = "Intel-Xeon-W3565",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
@@ -2284,6 +2413,7 @@
     {
         .name = "Intel-Xeon-W3570",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
@@ -2302,6 +2432,7 @@
     {
         .name = "Intel-Xeon-W3580",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 26,
@@ -2320,6 +2451,7 @@
     {
         .name = "Intel-Xeon-W3670",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2338,6 +2470,7 @@
     {
         .name = "Intel-Xeon-W3680",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2356,6 +2489,7 @@
     {
         .name = "Intel-Xeon-W3690",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2374,6 +2508,7 @@
     {
         .name = "Intel-Xeon-W3770",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2392,6 +2527,7 @@
     {
         .name = "Intel-Xeon-E5603",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2410,6 +2546,7 @@
     {
         .name = "Intel-Xeon-E5606",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2428,6 +2565,7 @@
     {
         .name = "Intel-Xeon-E5607",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2446,6 +2584,7 @@
     {
         .name = "Intel-Xeon-E5620",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2464,6 +2603,7 @@
     {
         .name = "Intel-Xeon-E5630",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2482,6 +2622,7 @@
     {
         .name = "Intel-Xeon-E5645",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2500,6 +2641,7 @@
     {
         .name = "Intel-Xeon-E5650",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2518,6 +2660,7 @@
     {
         .name = "Intel-Xeon-E5660",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2536,6 +2679,7 @@
     {
         .name = "Intel-Xeon-E5670",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2554,6 +2698,7 @@
     {
         .name = "Intel-Xeon-E5675",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2572,6 +2717,7 @@
     {
         .name = "Intel-Xeon-E5680",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2590,6 +2736,7 @@
     {
         .name = "Intel-Xeon-L5609",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2608,6 +2755,7 @@
     {
         .name = "Intel-Xeon-L5618",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2626,6 +2774,7 @@
     {
         .name = "Intel-Xeon-L5630",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2644,6 +2793,7 @@
     {
         .name = "Intel-Xeon-L5638",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2662,6 +2812,7 @@
     {
         .name = "Intel-Xeon-L5640",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2680,6 +2831,7 @@
     {
         .name = "Intel-Xeon-W3620",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2698,6 +2850,7 @@
     {
         .name = "Intel-Xeon-W3640",
         .level = 17,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 44,
@@ -2716,6 +2869,7 @@
     {
         .name = "Intel-Xeon-E5-1620",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2734,6 +2888,7 @@
     {
         .name = "Intel-Xeon-E5-1630",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2752,6 +2907,7 @@
     {
         .name = "Intel-Xeon-E5-1650",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2770,6 +2926,7 @@
     {
         .name = "Intel-Xeon-E5-1660",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2788,6 +2945,7 @@
     {
         .name = "Intel-Xeon-E5-1680",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2806,6 +2964,7 @@
     {
         .name = "Intel-Xeon-E5-2620",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2824,6 +2983,7 @@
     {
         .name = "Intel-Xeon-E5-2630",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2842,6 +3002,7 @@
     {
         .name = "Intel-Xeon-E5-2640",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2860,6 +3021,7 @@
     {
         .name = "Intel-Xeon-E5-2650",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2878,6 +3040,7 @@
     {
         .name = "Intel-Xeon-E5-2660",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2896,6 +3059,7 @@
     {
         .name = "Intel-Xeon-E5-2667",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2914,6 +3078,7 @@
     {
         .name = "Intel-Xeon-E5-2670",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2932,6 +3097,7 @@
     {
         .name = "Intel-Xeon-E5-2680",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2950,6 +3116,7 @@
     {
         .name = "Intel-Xeon-E5-2690",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2968,6 +3135,7 @@
     {
         .name = "Intel-Xeon-E5-4620",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -2986,6 +3154,7 @@
     {
         .name = "Intel-Xeon-E5-4640",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -3004,6 +3173,7 @@
     {
         .name = "Intel-Xeon-E5-4650",
         .level = 18,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 45,
@@ -3022,6 +3192,7 @@
     {
         .name = "Intel-Xeon-E5-1620-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3040,6 +3211,7 @@
     {
         .name = "Intel-Xeon-E5-1630-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3058,6 +3230,7 @@
     {
         .name = "Intel-Xeon-E5-1650-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3076,6 +3249,7 @@
     {
         .name = "Intel-Xeon-E5-1660-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3094,6 +3268,7 @@
     {
         .name = "Intel-Xeon-E5-1680-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3112,6 +3287,7 @@
     {
         .name = "Intel-Xeon-E5-2620-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3130,6 +3306,7 @@
     {
         .name = "Intel-Xeon-E5-2630-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3148,6 +3325,7 @@
     {
         .name = "Intel-Xeon-E5-2640-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3166,6 +3344,7 @@
     {
         .name = "Intel-Xeon-E5-2650-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3184,6 +3363,7 @@
     {
         .name = "Intel-Xeon-E5-2660-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3202,6 +3382,7 @@
     {
         .name = "Intel-Xeon-E5-2667-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3220,6 +3401,7 @@
     {
         .name = "Intel-Xeon-E5-2670-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3238,6 +3420,7 @@
     {
         .name = "Intel-Xeon-E5-2680-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3256,6 +3439,7 @@
     {
         .name = "Intel-Xeon-E5-2690-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3274,6 +3458,7 @@
     {
         .name = "Intel-Xeon-E5-2697-v2",
         .level = 19,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 62,
@@ -3292,6 +3477,7 @@
     {
         .name = "Intel-Xeon-E5-1603-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3310,6 +3496,7 @@
     {
         .name = "Intel-Xeon-E5-1607-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3328,6 +3515,7 @@
     {
         .name = "Intel-Xeon-E5-1620-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3346,6 +3534,7 @@
     {
         .name = "Intel-Xeon-E5-1630-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3364,6 +3553,7 @@
     {
         .name = "Intel-Xeon-E5-1650-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3382,6 +3572,7 @@
     {
         .name = "Intel-Xeon-E5-1660-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3400,6 +3591,7 @@
     {
         .name = "Intel-Xeon-E5-1680-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3418,6 +3610,7 @@
     {
         .name = "Intel-Xeon-E5-2603-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3436,6 +3629,7 @@
     {
         .name = "Intel-Xeon-E5-2609-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3454,6 +3648,7 @@
     {
         .name = "Intel-Xeon-E5-2620-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3472,6 +3667,7 @@
     {
         .name = "Intel-Xeon-E5-2630-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3490,6 +3686,7 @@
     {
         .name = "Intel-Xeon-E5-2640-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3508,6 +3705,7 @@
     {
         .name = "Intel-Xeon-E5-2650-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3526,6 +3724,7 @@
     {
         .name = "Intel-Xeon-E5-2660-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3544,6 +3743,7 @@
     {
         .name = "Intel-Xeon-E5-2670-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3562,6 +3762,7 @@
     {
         .name = "Intel-Xeon-E5-2680-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3580,6 +3781,7 @@
     {
         .name = "Intel-Xeon-E5-2683-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3598,6 +3800,7 @@
     {
         .name = "Intel-Xeon-E5-2690-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3616,6 +3819,7 @@
     {
         .name = "Intel-Xeon-E5-2695-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3634,6 +3838,7 @@
     {
         .name = "Intel-Xeon-E5-2697-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3652,6 +3857,7 @@
     {
         .name = "Intel-Xeon-E5-2699-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3670,6 +3876,7 @@
     {
         .name = "Intel-Xeon-E5-4603-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3688,6 +3895,7 @@
     {
         .name = "Intel-Xeon-E5-4620-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3706,6 +3914,7 @@
     {
         .name = "Intel-Xeon-E5-4640-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3724,6 +3933,7 @@
     {
         .name = "Intel-Xeon-E5-4660-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3742,6 +3952,7 @@
     {
         .name = "Intel-Xeon-E5-4669-v3",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 63,
@@ -3760,6 +3971,7 @@
     {
         .name = "Intel-Xeon-E5-2620-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -3778,6 +3990,7 @@
     {
         .name = "Intel-Xeon-E5-2630-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -3796,6 +4009,7 @@
     {
         .name = "Intel-Xeon-E5-2640-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -3814,6 +4028,7 @@
     {
         .name = "Intel-Xeon-E5-2650-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -3832,6 +4047,7 @@
     {
         .name = "Intel-Xeon-E5-2660-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -3850,6 +4066,7 @@
     {
         .name = "Intel-Xeon-E5-2670-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -3868,6 +4085,7 @@
     {
         .name = "Intel-Xeon-E5-2680-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -3886,6 +4104,7 @@
     {
         .name = "Intel-Xeon-E5-2690-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -3904,6 +4123,7 @@
     {
         .name = "Intel-Xeon-E5-2695-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -3922,6 +4142,7 @@
     {
         .name = "Intel-Xeon-E5-2697-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -3940,6 +4161,7 @@
     {
         .name = "Intel-Xeon-E5-2699-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -3958,6 +4180,7 @@
     {
         .name = "Intel-Xeon-E5-4620-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -3976,6 +4199,7 @@
     {
         .name = "Intel-Xeon-E5-4640-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -3994,6 +4218,7 @@
     {
         .name = "Intel-Xeon-E5-4660-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4012,6 +4237,7 @@
     {
         .name = "Intel-Xeon-E5-4680-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4030,6 +4256,7 @@
     {
         .name = "Intel-Xeon-E5-4683-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4048,6 +4275,7 @@
     {
         .name = "Intel-Xeon-E5-4690-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4066,6 +4294,7 @@
     {
         .name = "Intel-Xeon-E5-4697-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4084,6 +4313,7 @@
     {
         .name = "Intel-Xeon-E5-2623-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4102,6 +4332,7 @@
     {
         .name = "Intel-Xeon-E5-2637-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4120,6 +4351,7 @@
     {
         .name = "Intel-Xeon-E5-2643-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4138,6 +4370,7 @@
     {
         .name = "Intel-Xeon-E5-2667-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4156,6 +4389,7 @@
     {
         .name = "Intel-Xeon-E5-2687W-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4174,6 +4408,7 @@
     {
         .name = "Intel-Xeon-E5-2697A-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4192,6 +4427,7 @@
     {
         .name = "Intel-Xeon-E5-1630-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4210,6 +4446,7 @@
     {
         .name = "Intel-Xeon-E5-1650-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4228,6 +4465,7 @@
     {
         .name = "Intel-Xeon-E5-1660-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,
@@ -4246,6 +4484,7 @@
     {
         .name = "Intel-Xeon-E5-1680-v4",
         .level = 21,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 79,

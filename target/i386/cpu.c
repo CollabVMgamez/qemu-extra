@@ -17464,6 +17464,8 @@ static const X86CPUDefinition builtin_x86_defs[] = {
 #include "v15-supplement-cpus.inc.c"
 #include "v15-supplement2-cpus.inc.c"
 #include "v15-final-cpus.inc.c"
+#include "wince-x86-cpus.inc.c"
+#include "v152-cpus.inc.c"
 
  };
 

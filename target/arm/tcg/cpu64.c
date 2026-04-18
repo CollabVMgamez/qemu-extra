@@ -2457,6 +2457,7 @@ static void aarch64_ampereone_256_initfn(Object *obj)
 }
 
 #include "v15-arm64-cpus.inc.c"
+#include "v152-arm64-cpus.inc.c"
 
 static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "cortex-a35",         .initfn = aarch64_a35_initfn },
@@ -2654,6 +2655,7 @@ static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "ampereone-192",          .initfn = aarch64_ampereone_192_initfn },
     { .name = "ampereone-256",          .initfn = aarch64_ampereone_256_initfn },
 #include "v15-arm64-table.inc.c"
+#include "v152-arm64-table.inc.c"
 };
 
 static void aarch64_cpu_register_types(void)

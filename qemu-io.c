@@ -590,8 +590,8 @@ int main(int argc, char **argv)
             trace_opt_parse(optarg);
             break;
         case 'V':
-            printf("%s version " QEMU_FULL_VERSION "\n"
-                   QEMU_COPYRIGHT "\n", g_get_prgname());
+            printf("%s QEMU-Extra V1.52\n"
+                   "Copyright (c) 2003-2026 Fabrice Bellard and the QEMU-Extra Project\n", g_get_prgname());
             exit(0);
         case 'h':
             usage(g_get_prgname());

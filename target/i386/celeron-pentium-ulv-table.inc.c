@@ -6,6 +6,7 @@
     {
         .name = "custom",
         .level = 0x16,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -25,6 +26,7 @@
     {
         .name = "celeron-433",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
@@ -40,6 +42,7 @@
     {
         .name = "celeron-500",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
@@ -55,6 +58,7 @@
     {
         .name = "celeron-533",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
@@ -70,6 +74,7 @@
     {
         .name = "celeron-533a",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
@@ -85,6 +90,7 @@
     {
         .name = "celeron-566",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
@@ -100,6 +106,7 @@
     {
         .name = "celeron-633",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
@@ -115,6 +122,7 @@
     {
         .name = "celeron-667",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
@@ -130,6 +138,7 @@
     {
         .name = "celeron-700",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
@@ -145,6 +154,7 @@
     {
         .name = "celeron-733",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 8,
@@ -160,6 +170,7 @@
     {
         .name = "celeron-900",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 11,
@@ -179,6 +190,7 @@
     {
         .name = "celeron-1100",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 11,
@@ -198,6 +210,7 @@
     {
         .name = "celeron-1300",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 11,
@@ -217,6 +230,7 @@
     {
         .name = "celeron-1400",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 11,
@@ -236,6 +250,7 @@
     {
         .name = "celeron-d-310",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -255,6 +270,7 @@
     {
         .name = "celeron-d-315",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -274,6 +290,7 @@
     {
         .name = "celeron-d-325",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 4,
@@ -293,6 +310,7 @@
     {
         .name = "celeron-d-326",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 6,
@@ -312,6 +330,7 @@
     {
         .name = "celeron-d-331",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 6,
@@ -331,6 +350,7 @@
     {
         .name = "celeron-d-336",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 6,
@@ -350,6 +370,7 @@
     {
         .name = "celeron-d-341",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 6,
@@ -369,6 +390,7 @@
     {
         .name = "celeron-d-346",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 6,
@@ -388,6 +410,7 @@
     {
         .name = "celeron-d-347",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 6,
@@ -407,6 +430,7 @@
     {
         .name = "celeron-d-351",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 6,
@@ -426,6 +450,7 @@
     {
         .name = "celeron-d-355",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 15,
         .model = 6,
@@ -445,6 +470,7 @@
     {
         .name = "celeron-m-310",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 9,
@@ -460,6 +486,7 @@
     {
         .name = "celeron-m-320",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 9,
@@ -475,6 +502,7 @@
     {
         .name = "celeron-m-330",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 9,
@@ -490,6 +518,7 @@
     {
         .name = "celeron-m-340",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 9,
@@ -505,6 +534,7 @@
     {
         .name = "celeron-m-350",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 9,
@@ -520,6 +550,7 @@
     {
         .name = "celeron-m-360",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -535,6 +566,7 @@
     {
         .name = "celeron-m-373",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -550,6 +582,7 @@
     {
         .name = "celeron-m-440",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 14,
@@ -567,6 +600,7 @@
     {
         .name = "celeron-m-450",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 14,
@@ -584,6 +618,7 @@
     {
         .name = "celeron-m-530",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 14,
@@ -601,6 +636,7 @@
     {
         .name = "celeron-m-540",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 14,
@@ -618,6 +654,7 @@
     {
         .name = "celeron-m-550",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 14,
@@ -635,6 +672,7 @@
     {
         .name = "celeron-m-560",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 14,
@@ -652,6 +690,7 @@
     {
         .name = "celeron-e1400",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -671,6 +710,7 @@
     {
         .name = "celeron-e1500",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -690,6 +730,7 @@
     {
         .name = "celeron-e1600",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -709,6 +750,7 @@
     {
         .name = "celeron-e2200",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -728,6 +770,7 @@
     {
         .name = "celeron-e2500",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -747,6 +790,7 @@
     {
         .name = "celeron-e2600",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -766,6 +810,7 @@
     {
         .name = "celeron-e2700",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -785,6 +830,7 @@
     {
         .name = "celeron-e2800",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -804,6 +850,7 @@
     {
         .name = "celeron-e2900",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -823,6 +870,7 @@
     {
         .name = "celeron-e3200",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -842,6 +890,7 @@
     {
         .name = "celeron-e3500",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -861,6 +910,7 @@
     {
         .name = "celeron-b800",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -880,6 +930,7 @@
     {
         .name = "celeron-b810",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -899,6 +950,7 @@
     {
         .name = "celeron-b820",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -918,6 +970,7 @@
     {
         .name = "celeron-b830",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -937,6 +990,7 @@
     {
         .name = "celeron-g440",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -956,6 +1010,7 @@
     {
         .name = "celeron-g460",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -975,6 +1030,7 @@
     {
         .name = "celeron-g470",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -994,6 +1050,7 @@
     {
         .name = "celeron-g530",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -1013,6 +1070,7 @@
     {
         .name = "celeron-g540",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -1032,6 +1090,7 @@
     {
         .name = "celeron-g550",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -1051,6 +1110,7 @@
     {
         .name = "celeron-g560",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -1070,6 +1130,7 @@
     {
         .name = "celeron-g1610",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -1089,6 +1150,7 @@
     {
         .name = "celeron-g1620",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -1108,6 +1170,7 @@
     {
         .name = "celeron-g1630",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -1127,6 +1190,7 @@
     {
         .name = "celeron-857",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -1146,6 +1210,7 @@
     {
         .name = "celeron-867",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -1165,6 +1230,7 @@
     {
         .name = "celeron-877",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -1184,6 +1250,7 @@
     {
         .name = "celeron-887",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -1203,6 +1270,7 @@
     {
         .name = "celeron-g1610t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -1222,6 +1290,7 @@
     {
         .name = "celeron-g1620t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -1241,6 +1310,7 @@
     {
         .name = "celeron-g1630t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -1260,6 +1330,7 @@
     {
         .name = "celeron-1000m",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -1279,6 +1350,7 @@
     {
         .name = "celeron-1005m",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -1298,6 +1370,7 @@
     {
         .name = "celeron-1017u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -1317,6 +1390,7 @@
     {
         .name = "celeron-1020m",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -1336,6 +1410,7 @@
     {
         .name = "celeron-1037u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -1355,6 +1430,7 @@
     {
         .name = "celeron-g1820",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -1374,6 +1450,7 @@
     {
         .name = "celeron-g1830",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -1393,6 +1470,7 @@
     {
         .name = "celeron-g1840",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -1412,6 +1490,7 @@
     {
         .name = "celeron-g1850",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -1431,6 +1510,7 @@
     {
         .name = "celeron-g2820",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -1450,6 +1530,7 @@
     {
         .name = "celeron-g2830",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -1469,6 +1550,7 @@
     {
         .name = "celeron-g2840",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -1488,6 +1570,7 @@
     {
         .name = "celeron-g2850",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -1507,6 +1590,7 @@
     {
         .name = "celeron-2950m",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -1526,6 +1610,7 @@
     {
         .name = "celeron-2955u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -1545,6 +1630,7 @@
     {
         .name = "celeron-2980u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -1564,6 +1650,7 @@
     {
         .name = "celeron-3205u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -1583,6 +1670,7 @@
     {
         .name = "celeron-3755",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -1602,6 +1690,7 @@
     {
         .name = "celeron-3755u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -1621,6 +1710,7 @@
     {
         .name = "celeron-g3900",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -1640,6 +1730,7 @@
     {
         .name = "celeron-g3900t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -1659,6 +1750,7 @@
     {
         .name = "celeron-g3902",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -1678,6 +1770,7 @@
     {
         .name = "celeron-g3920",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -1697,6 +1790,7 @@
     {
         .name = "celeron-g3930",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -1716,6 +1810,7 @@
     {
         .name = "celeron-g3930t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -1735,6 +1830,7 @@
     {
         .name = "celeron-g3950",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -1754,6 +1850,7 @@
     {
         .name = "celeron-j3355",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 92,
@@ -1773,6 +1870,7 @@
     {
         .name = "celeron-j3455",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 92,
@@ -1792,6 +1890,7 @@
     {
         .name = "celeron-j4105",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -1811,6 +1910,7 @@
     {
         .name = "celeron-j4115",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -1830,6 +1930,7 @@
     {
         .name = "celeron-n3350",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 92,
@@ -1849,6 +1950,7 @@
     {
         .name = "celeron-n3450",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 92,
@@ -1868,6 +1970,7 @@
     {
         .name = "celeron-n4000",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 122,
@@ -1887,6 +1990,7 @@
     {
         .name = "celeron-n4100",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 122,
@@ -1906,6 +2010,7 @@
     {
         .name = "celeron-3865u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -1925,6 +2030,7 @@
     {
         .name = "celeron-3965u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -1944,6 +2050,7 @@
     {
         .name = "celeron-g4900",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -1963,6 +2070,7 @@
     {
         .name = "celeron-g4900t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -1982,6 +2090,7 @@
     {
         .name = "celeron-g4920",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -2001,6 +2110,7 @@
     {
         .name = "celeron-g4930",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -2020,6 +2130,7 @@
     {
         .name = "celeron-g4930t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -2039,6 +2150,7 @@
     {
         .name = "celeron-g4950",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -2058,6 +2170,7 @@
     {
         .name = "celeron-j5005",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -2077,6 +2190,7 @@
     {
         .name = "celeron-n5105",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 126,
@@ -2096,6 +2210,7 @@
     {
         .name = "celeron-n5100",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 126,
@@ -2115,6 +2230,7 @@
     {
         .name = "celeron-n5095",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 126,
@@ -2134,6 +2250,7 @@
     {
         .name = "celeron-4205u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -2153,6 +2270,7 @@
     {
         .name = "celeron-5205u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -2172,6 +2290,7 @@
     {
         .name = "celeron-5305u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -2191,6 +2310,7 @@
     {
         .name = "celeron-5405u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -2210,6 +2330,7 @@
     {
         .name = "celeron-6305u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -2229,6 +2350,7 @@
     {
         .name = "celeron-g5900",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -2248,6 +2370,7 @@
     {
         .name = "celeron-g5900t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -2267,6 +2390,7 @@
     {
         .name = "celeron-g5905",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -2286,6 +2410,7 @@
     {
         .name = "celeron-g5920",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -2305,6 +2430,7 @@
     {
         .name = "celeron-j6413",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 150,
@@ -2324,6 +2450,7 @@
     {
         .name = "celeron-n6211",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 150,
@@ -2343,6 +2470,7 @@
     {
         .name = "celeron-n6210",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 150,
@@ -2362,6 +2490,7 @@
     {
         .name = "celeron-n4505",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 150,
@@ -2381,6 +2510,7 @@
     {
         .name = "celeron-7305u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -2400,6 +2530,7 @@
     {
         .name = "celeron-g6900",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 151,
@@ -2419,6 +2550,7 @@
     {
         .name = "celeron-g6900e",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 151,
@@ -2438,6 +2570,7 @@
     {
         .name = "celeron-n100",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 186,
@@ -2457,6 +2590,7 @@
     {
         .name = "celeron-n200",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 186,
@@ -2476,6 +2610,7 @@
     {
         .name = "celeron-n97",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 186,
@@ -2495,6 +2630,7 @@
     {
         .name = "celeron-n95",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 186,
@@ -2514,6 +2650,7 @@
     {
         .name = "pentium-e2140",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -2533,6 +2670,7 @@
     {
         .name = "pentium-e2160",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -2552,6 +2690,7 @@
     {
         .name = "pentium-e2180",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -2571,6 +2710,7 @@
     {
         .name = "pentium-e2200",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -2590,6 +2730,7 @@
     {
         .name = "pentium-e2220",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -2609,6 +2750,7 @@
     {
         .name = "pentium-e5200",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2628,6 +2770,7 @@
     {
         .name = "pentium-e5300",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2647,6 +2790,7 @@
     {
         .name = "pentium-e5400",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2666,6 +2810,7 @@
     {
         .name = "pentium-e5500",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2685,6 +2830,7 @@
     {
         .name = "pentium-e5700",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2704,6 +2850,7 @@
     {
         .name = "pentium-e5800",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2723,6 +2870,7 @@
     {
         .name = "pentium-e6500",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2742,6 +2890,7 @@
     {
         .name = "pentium-e6700",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2761,6 +2910,7 @@
     {
         .name = "pentium-e6800",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2780,6 +2930,7 @@
     {
         .name = "pentium-t3200",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2799,6 +2950,7 @@
     {
         .name = "pentium-t3400",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2818,6 +2970,7 @@
     {
         .name = "pentium-t4300",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2837,6 +2990,7 @@
     {
         .name = "pentium-t4400",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2856,6 +3010,7 @@
     {
         .name = "pentium-t4500",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 23,
@@ -2875,6 +3030,7 @@
     {
         .name = "pentium-g620",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -2894,6 +3050,7 @@
     {
         .name = "pentium-g620t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -2913,6 +3070,7 @@
     {
         .name = "pentium-g630",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -2932,6 +3090,7 @@
     {
         .name = "pentium-g630t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -2951,6 +3110,7 @@
     {
         .name = "pentium-g640",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -2970,6 +3130,7 @@
     {
         .name = "pentium-g640t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -2989,6 +3150,7 @@
     {
         .name = "pentium-g645",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3008,6 +3170,7 @@
     {
         .name = "pentium-g840",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3027,6 +3190,7 @@
     {
         .name = "pentium-g850",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3046,6 +3210,7 @@
     {
         .name = "pentium-g860",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3065,6 +3230,7 @@
     {
         .name = "pentium-g870",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3084,6 +3250,7 @@
     {
         .name = "pentium-b940",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3103,6 +3270,7 @@
     {
         .name = "pentium-b950",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3122,6 +3290,7 @@
     {
         .name = "pentium-b960",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3141,6 +3310,7 @@
     {
         .name = "pentium-b970",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3160,6 +3330,7 @@
     {
         .name = "pentium-977",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3179,6 +3350,7 @@
     {
         .name = "pentium-987",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3198,6 +3370,7 @@
     {
         .name = "pentium-g2010",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -3217,6 +3390,7 @@
     {
         .name = "pentium-g2020",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -3236,6 +3410,7 @@
     {
         .name = "pentium-g2030",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -3255,6 +3430,7 @@
     {
         .name = "pentium-g2120",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -3274,6 +3450,7 @@
     {
         .name = "pentium-g2130",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -3293,6 +3470,7 @@
     {
         .name = "pentium-g2140",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -3312,6 +3490,7 @@
     {
         .name = "pentium-2020m",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -3331,6 +3510,7 @@
     {
         .name = "pentium-2117u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -3350,6 +3530,7 @@
     {
         .name = "pentium-2127u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -3369,6 +3550,7 @@
     {
         .name = "pentium-997",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -3388,6 +3570,7 @@
     {
         .name = "pentium-1005m",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -3407,6 +3590,7 @@
     {
         .name = "pentium-1007u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -3426,6 +3610,7 @@
     {
         .name = "pentium-g4400",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3445,6 +3630,7 @@
     {
         .name = "pentium-g4400t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3464,6 +3650,7 @@
     {
         .name = "pentium-g4500",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3483,6 +3670,7 @@
     {
         .name = "pentium-g4500t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3502,6 +3690,7 @@
     {
         .name = "pentium-g4600",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3521,6 +3710,7 @@
     {
         .name = "pentium-g4560",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3540,6 +3730,7 @@
     {
         .name = "pentium-g4620",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3559,6 +3750,7 @@
     {
         .name = "pentium-g5400",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3578,6 +3770,7 @@
     {
         .name = "pentium-g5500",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3597,6 +3790,7 @@
     {
         .name = "pentium-g5600",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3616,6 +3810,7 @@
     {
         .name = "pentium-g6400",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3635,6 +3830,7 @@
     {
         .name = "pentium-g6500",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3654,6 +3850,7 @@
     {
         .name = "pentium-g6600",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3673,6 +3870,7 @@
     {
         .name = "pentium-g7400",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 151,
@@ -3692,6 +3890,7 @@
     {
         .name = "pentium-g7400t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 151,
@@ -3711,6 +3910,7 @@
     {
         .name = "pentium-silver-j5005",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -3730,6 +3930,7 @@
     {
         .name = "pentium-silver-n5000",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 92,
@@ -3749,6 +3950,7 @@
     {
         .name = "pentium-silver-n5030",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 92,
@@ -3768,6 +3970,7 @@
     {
         .name = "pentium-silver-j5040",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 122,
@@ -3787,6 +3990,7 @@
     {
         .name = "pentium-silver-n6005",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 126,
@@ -3806,6 +4010,7 @@
     {
         .name = "pentium-gold-7505",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -3825,6 +4030,7 @@
     {
         .name = "pentium-gold-8505",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -3844,6 +4050,7 @@
     {
         .name = "core-i3-330um",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 37,
@@ -3863,6 +4070,7 @@
     {
         .name = "core-i5-430um",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 37,
@@ -3882,6 +4090,7 @@
     {
         .name = "core-i7-620um",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 37,
@@ -3901,6 +4110,7 @@
     {
         .name = "core-i7-660um",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 37,
@@ -3920,6 +4130,7 @@
     {
         .name = "core-i3-2367m",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3939,6 +4150,7 @@
     {
         .name = "core-i3-2377m",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3958,6 +4170,7 @@
     {
         .name = "core-i5-2467m",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3977,6 +4190,7 @@
     {
         .name = "core-i5-2557m",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -3996,6 +4210,7 @@
     {
         .name = "core-i5-2537m",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -4015,6 +4230,7 @@
     {
         .name = "core-i7-2637m",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -4034,6 +4250,7 @@
     {
         .name = "core-i7-2677m",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 42,
@@ -4053,6 +4270,7 @@
     {
         .name = "core-i3-3217u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -4072,6 +4290,7 @@
     {
         .name = "core-i3-3227u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -4091,6 +4310,7 @@
     {
         .name = "core-i5-3317u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -4110,6 +4330,7 @@
     {
         .name = "core-i5-3337u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -4129,6 +4350,7 @@
     {
         .name = "core-i5-3427u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -4148,6 +4370,7 @@
     {
         .name = "core-i7-3517u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -4167,6 +4390,7 @@
     {
         .name = "core-i7-3537u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -4186,6 +4410,7 @@
     {
         .name = "core-i7-3667u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 58,
@@ -4205,6 +4430,7 @@
     {
         .name = "core-i3-4010u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4224,6 +4450,7 @@
     {
         .name = "core-i3-4012y",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4243,6 +4470,7 @@
     {
         .name = "core-i5-4200u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4262,6 +4490,7 @@
     {
         .name = "core-i5-4202y",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4281,6 +4510,7 @@
     {
         .name = "core-i5-4250u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4300,6 +4530,7 @@
     {
         .name = "core-i5-4260u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4319,6 +4550,7 @@
     {
         .name = "core-i5-4300u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4338,6 +4570,7 @@
     {
         .name = "core-i5-4350u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4357,6 +4590,7 @@
     {
         .name = "core-i7-4500u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4376,6 +4610,7 @@
     {
         .name = "core-i7-4550u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4395,6 +4630,7 @@
     {
         .name = "core-i7-4558u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4414,6 +4650,7 @@
     {
         .name = "core-i7-4600u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4433,6 +4670,7 @@
     {
         .name = "core-i7-4610y",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4452,6 +4690,7 @@
     {
         .name = "core-i7-4650u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -4471,6 +4710,7 @@
     {
         .name = "core-i3-5005u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4490,6 +4730,7 @@
     {
         .name = "core-i3-5010u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4509,6 +4750,7 @@
     {
         .name = "core-i3-5020u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4528,6 +4770,7 @@
     {
         .name = "core-i5-5200u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4547,6 +4790,7 @@
     {
         .name = "core-i5-5250u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4566,6 +4810,7 @@
     {
         .name = "core-i5-5300u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4585,6 +4830,7 @@
     {
         .name = "core-i5-5350u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4604,6 +4850,7 @@
     {
         .name = "core-i7-5500u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4623,6 +4870,7 @@
     {
         .name = "core-i7-5550u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4642,6 +4890,7 @@
     {
         .name = "core-i7-5600u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4661,6 +4910,7 @@
     {
         .name = "core-i7-5650u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4680,6 +4930,7 @@
     {
         .name = "core-m-5y10",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4699,6 +4950,7 @@
     {
         .name = "core-m-5y31",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4718,6 +4970,7 @@
     {
         .name = "core-m-5y51",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4737,6 +4990,7 @@
     {
         .name = "core-m-5y70",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4756,6 +5010,7 @@
     {
         .name = "core-m-5y71",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 61,
@@ -4775,6 +5030,7 @@
     {
         .name = "core-i3-6100u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -4794,6 +5050,7 @@
     {
         .name = "core-i5-6200u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -4813,6 +5070,7 @@
     {
         .name = "core-i5-6260u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -4832,6 +5090,7 @@
     {
         .name = "core-i5-6300u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -4851,6 +5110,7 @@
     {
         .name = "core-i5-6360u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -4870,6 +5130,7 @@
     {
         .name = "core-i7-6500u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -4889,6 +5150,7 @@
     {
         .name = "core-i7-6560u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -4908,6 +5170,7 @@
     {
         .name = "core-i7-6600u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -4927,6 +5190,7 @@
     {
         .name = "core-i7-6660u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -4946,6 +5210,7 @@
     {
         .name = "core-m3-6y30",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -4965,6 +5230,7 @@
     {
         .name = "core-m5-6y54",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -4984,6 +5250,7 @@
     {
         .name = "core-m7-6y75",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -5003,6 +5270,7 @@
     {
         .name = "core-i3-7100u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5022,6 +5290,7 @@
     {
         .name = "core-i5-7200u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5041,6 +5310,7 @@
     {
         .name = "core-i5-7260u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5060,6 +5330,7 @@
     {
         .name = "core-i5-7267u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5079,6 +5350,7 @@
     {
         .name = "core-i5-7300u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5098,6 +5370,7 @@
     {
         .name = "core-i5-7360u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5117,6 +5390,7 @@
     {
         .name = "core-i5-8257u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5136,6 +5410,7 @@
     {
         .name = "core-i7-7500u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5155,6 +5430,7 @@
     {
         .name = "core-i7-7560u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5174,6 +5450,7 @@
     {
         .name = "core-i7-7567u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5193,6 +5470,7 @@
     {
         .name = "core-i7-7600u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5212,6 +5490,7 @@
     {
         .name = "core-i7-7660u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5231,6 +5510,7 @@
     {
         .name = "core-i7-8500y",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5250,6 +5530,7 @@
     {
         .name = "core-m3-7y30",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5269,6 +5550,7 @@
     {
         .name = "core-m5-7y54",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5288,6 +5570,7 @@
     {
         .name = "core-m7-7y75",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5307,6 +5590,7 @@
     {
         .name = "core-i3-8145u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5326,6 +5610,7 @@
     {
         .name = "core-i5-8210y",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5345,6 +5630,7 @@
     {
         .name = "core-i5-8259u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5364,6 +5650,7 @@
     {
         .name = "core-i5-8269u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5383,6 +5670,7 @@
     {
         .name = "core-i5-8279u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5402,6 +5690,7 @@
     {
         .name = "core-i5-8285u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5421,6 +5710,7 @@
     {
         .name = "core-i7-8510y",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5440,6 +5730,7 @@
     {
         .name = "core-i7-8557u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5459,6 +5750,7 @@
     {
         .name = "core-i7-8559u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5478,6 +5770,7 @@
     {
         .name = "core-i3-8100t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -5497,6 +5790,7 @@
     {
         .name = "core-i5-8500t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -5516,6 +5810,7 @@
     {
         .name = "core-i5-8600t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -5535,6 +5830,7 @@
     {
         .name = "core-i7-8700t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -5554,6 +5850,7 @@
     {
         .name = "core-i3-1005g1",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 126,
@@ -5573,6 +5870,7 @@
     {
         .name = "core-i5-1035g1",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 126,
@@ -5592,6 +5890,7 @@
     {
         .name = "core-i5-1035g4",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 126,
@@ -5611,6 +5910,7 @@
     {
         .name = "core-i5-1035g7",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 126,
@@ -5630,6 +5930,7 @@
     {
         .name = "core-i7-1065g7",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 126,
@@ -5649,6 +5950,7 @@
     {
         .name = "core-i7-1068ng7",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 126,
@@ -5668,6 +5970,7 @@
     {
         .name = "core-i3-10110u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5687,6 +5990,7 @@
     {
         .name = "core-i5-10210u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5706,6 +6010,7 @@
     {
         .name = "core-i5-10310u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5725,6 +6030,7 @@
     {
         .name = "core-i7-10510u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5744,6 +6050,7 @@
     {
         .name = "core-i7-10710u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5763,6 +6070,7 @@
     {
         .name = "core-i7-10810u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -5782,6 +6090,7 @@
     {
         .name = "core-i5-10400t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -5801,6 +6110,7 @@
     {
         .name = "core-i7-10700t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -5820,6 +6130,7 @@
     {
         .name = "core-i9-10900t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -5839,6 +6150,7 @@
     {
         .name = "core-i3-1115g4",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -5858,6 +6170,7 @@
     {
         .name = "core-i3-1125g4",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -5877,6 +6190,7 @@
     {
         .name = "core-i5-1135g7",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -5896,6 +6210,7 @@
     {
         .name = "core-i5-1145g7",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -5915,6 +6230,7 @@
     {
         .name = "core-i5-1155g7",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -5934,6 +6250,7 @@
     {
         .name = "core-i7-1160g7",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -5953,6 +6270,7 @@
     {
         .name = "core-i7-1165g7",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -5972,6 +6290,7 @@
     {
         .name = "core-i7-1180g7",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -5991,6 +6310,7 @@
     {
         .name = "core-i7-1185g7",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -6010,6 +6330,7 @@
     {
         .name = "core-i3-1210u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -6029,6 +6350,7 @@
     {
         .name = "core-i3-1215u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -6048,6 +6370,7 @@
     {
         .name = "core-i5-1230u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -6067,6 +6390,7 @@
     {
         .name = "core-i5-1235u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -6086,6 +6410,7 @@
     {
         .name = "core-i5-1240u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -6105,6 +6430,7 @@
     {
         .name = "core-i5-1245u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -6124,6 +6450,7 @@
     {
         .name = "core-i5-1255u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -6143,6 +6470,7 @@
     {
         .name = "core-i7-1250u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -6162,6 +6490,7 @@
     {
         .name = "core-i7-1255u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -6181,6 +6510,7 @@
     {
         .name = "core-i7-1260u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -6200,6 +6530,7 @@
     {
         .name = "core-i7-1265u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -6219,6 +6550,7 @@
     {
         .name = "core-i7-1268u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 154,
@@ -6238,6 +6570,7 @@
     {
         .name = "core-i5-12450t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 151,
@@ -6257,6 +6590,7 @@
     {
         .name = "core-i5-12500t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 151,
@@ -6276,6 +6610,7 @@
     {
         .name = "core-i7-12700t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 151,
@@ -6295,6 +6630,7 @@
     {
         .name = "core-i9-12900t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 151,
@@ -6314,6 +6650,7 @@
     {
         .name = "core-i3-1315u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 186,
@@ -6333,6 +6670,7 @@
     {
         .name = "core-i5-1334u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 186,
@@ -6352,6 +6690,7 @@
     {
         .name = "core-i5-1335u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 186,
@@ -6371,6 +6710,7 @@
     {
         .name = "core-i5-1345u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 186,
@@ -6390,6 +6730,7 @@
     {
         .name = "core-i7-1355u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 186,
@@ -6409,6 +6750,7 @@
     {
         .name = "core-i7-1365u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 186,
@@ -6428,6 +6770,7 @@
     {
         .name = "core-i5-13420t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 183,
@@ -6447,6 +6790,7 @@
     {
         .name = "core-i5-13500t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 183,
@@ -6466,6 +6810,7 @@
     {
         .name = "core-i7-13700t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 183,
@@ -6485,6 +6830,7 @@
     {
         .name = "core-i9-13900t",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 183,
@@ -6504,6 +6850,7 @@
     {
         .name = "core-ultra-5-125u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 170,
@@ -6523,6 +6870,7 @@
     {
         .name = "core-ultra-5-134u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 170,
@@ -6542,6 +6890,7 @@
     {
         .name = "core-ultra-7-155u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 170,
@@ -6561,6 +6910,7 @@
     {
         .name = "core-ultra-7-164u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 170,
@@ -6580,6 +6930,7 @@
     {
         .name = "core-ultra-5-218v",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 198,
@@ -6599,6 +6950,7 @@
     {
         .name = "core-ultra-5-226v",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 198,
@@ -6618,6 +6970,7 @@
     {
         .name = "core-ultra-5-228v",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 198,
@@ -6637,6 +6990,7 @@
     {
         .name = "core-ultra-7-258v",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 198,
@@ -6656,6 +7010,7 @@
     {
         .name = "core-ultra-7-268v",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 198,
@@ -6675,6 +7030,7 @@
     {
         .name = "core-ultra-5-225u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 198,
@@ -6694,6 +7050,7 @@
     {
         .name = "core-ultra-5-228u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 198,
@@ -6713,6 +7070,7 @@
     {
         .name = "core-ultra-7-255u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 198,
@@ -6732,6 +7090,7 @@
     {
         .name = "core-ultra-7-265u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 198,
@@ -6751,6 +7110,7 @@
     {
         .name = "core-ultra-9-285u",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 198,
@@ -6770,6 +7130,7 @@
     {
         .name = "atom-d410",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 28,
@@ -6789,6 +7150,7 @@
     {
         .name = "atom-d510",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 28,
@@ -6808,6 +7170,7 @@
     {
         .name = "atom-n2600",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 28,
@@ -6827,6 +7190,7 @@
     {
         .name = "atom-n2800",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 28,
@@ -6846,6 +7210,7 @@
     {
         .name = "atom-c2338",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 54,
@@ -6865,6 +7230,7 @@
     {
         .name = "atom-c2358",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 54,
@@ -6884,6 +7250,7 @@
     {
         .name = "atom-c2550",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 54,
@@ -6903,6 +7270,7 @@
     {
         .name = "atom-c2750",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 54,
@@ -6922,6 +7290,7 @@
     {
         .name = "atom-c3338",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 95,
@@ -6941,6 +7310,7 @@
     {
         .name = "atom-c3558",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 95,
@@ -6960,6 +7330,7 @@
     {
         .name = "atom-c3758",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 95,
@@ -6979,6 +7350,7 @@
     {
         .name = "atom-p5312",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -6998,6 +7370,7 @@
     {
         .name = "atom-p5314",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -7017,6 +7390,7 @@
     {
         .name = "atom-p5322",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 140,
@@ -7036,6 +7410,7 @@
     {
         .name = "atom-n5105",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 126,
@@ -7055,6 +7430,7 @@
     {
         .name = "atom-x6413re",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 150,
@@ -7074,6 +7450,7 @@
     {
         .name = "atom-x6425re",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 150,
@@ -7093,6 +7470,7 @@
     {
         .name = "atom-x6211re",
         .level = 5,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 150,

@@ -203,8 +203,8 @@ static void sdl_update_caption(struct sdl2_console *scon)
                  scon->idx, status);
         snprintf(icon_title, sizeof(icon_title), "QEMU (%s)", qemu_name);
     } else {
-        snprintf(win_title, sizeof(win_title), "QEMU%s", status);
-        snprintf(icon_title, sizeof(icon_title), "QEMU");
+        snprintf(win_title, sizeof(win_title), "QEMU-Extra%s", status);
+        snprintf(icon_title, sizeof(icon_title), "QEMU-Extra");
     }
 
     if (scon->real_window) {

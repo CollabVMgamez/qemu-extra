@@ -151,8 +151,8 @@ void cpu_loop(CPUArchState *env)
 
 static void usage(void)
 {
-    printf("qemu-" TARGET_NAME " version " QEMU_FULL_VERSION
-           "\n" QEMU_COPYRIGHT "\n"
+    printf("qemu-" TARGET_NAME " QEMU-Extra V1.52\n"
+           "Copyright (c) 2003-2026 Fabrice Bellard and the QEMU-Extra Project\n"
            "usage: qemu-" TARGET_NAME " [options] program [arguments...]\n"
            "BSD CPU emulator (compiled for %s emulation)\n"
            "\n"

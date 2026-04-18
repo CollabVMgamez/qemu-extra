@@ -6,6 +6,7 @@
     {
         .name = "Intel-Xeon-Silver-4110",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -24,6 +25,7 @@
     {
         .name = "Intel-Xeon-Silver-4114",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -42,6 +44,7 @@
     {
         .name = "Intel-Xeon-Silver-4116",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -60,6 +63,7 @@
     {
         .name = "Intel-Xeon-Silver-4208",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -78,6 +82,7 @@
     {
         .name = "Intel-Xeon-Silver-4210",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -96,6 +101,7 @@
     {
         .name = "Intel-Xeon-Silver-4214",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -114,6 +120,7 @@
     {
         .name = "Intel-Xeon-Gold-5118",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -132,6 +139,7 @@
     {
         .name = "Intel-Xeon-Gold-5120",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -150,6 +158,7 @@
     {
         .name = "Intel-Xeon-Gold-5218",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -168,6 +177,7 @@
     {
         .name = "Intel-Xeon-Gold-6130",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -186,6 +196,7 @@
     {
         .name = "Intel-Xeon-Gold-6132",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -204,6 +215,7 @@
     {
         .name = "Intel-Xeon-Gold-6134",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -222,6 +234,7 @@
     {
         .name = "Intel-Xeon-Gold-6136",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -240,6 +253,7 @@
     {
         .name = "Intel-Xeon-Gold-6140",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -258,6 +272,7 @@
     {
         .name = "Intel-Xeon-Gold-6142",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -276,6 +291,7 @@
     {
         .name = "Intel-Xeon-Gold-6144",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -294,6 +310,7 @@
     {
         .name = "Intel-Xeon-Gold-6146",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -312,6 +329,7 @@
     {
         .name = "Intel-Xeon-Gold-6152",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -330,6 +348,7 @@
     {
         .name = "Intel-Xeon-Gold-6154",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -348,6 +367,7 @@
     {
         .name = "Intel-Xeon-Platinum-8156",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -366,6 +386,7 @@
     {
         .name = "Intel-Xeon-Platinum-8160",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -384,6 +405,7 @@
     {
         .name = "Intel-Xeon-Platinum-8170",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -402,6 +424,7 @@
     {
         .name = "Intel-Xeon-Platinum-8176",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -420,6 +443,7 @@
     {
         .name = "Intel-Xeon-Platinum-8180",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -438,6 +462,7 @@
     {
         .name = "Intel-Xeon-Silver-4214Y",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -456,6 +481,7 @@
     {
         .name = "Intel-Xeon-Silver-4215",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -474,6 +500,7 @@
     {
         .name = "Intel-Xeon-Silver-4210Y",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -492,6 +519,7 @@
     {
         .name = "Intel-Xeon-Gold-5218L",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -510,6 +538,7 @@
     {
         .name = "Intel-Xeon-Gold-5218R",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -528,6 +557,7 @@
     {
         .name = "Intel-Xeon-Gold-5220",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -546,6 +576,7 @@
     {
         .name = "Intel-Xeon-Gold-5222",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -564,6 +595,7 @@
     {
         .name = "Intel-Xeon-Gold-6230",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -582,6 +614,7 @@
     {
         .name = "Intel-Xeon-Gold-6234",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -600,6 +633,7 @@
     {
         .name = "Intel-Xeon-Gold-6240",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -618,6 +652,7 @@
     {
         .name = "Intel-Xeon-Gold-6242",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -636,6 +671,7 @@
     {
         .name = "Intel-Xeon-Gold-6244",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -654,6 +690,7 @@
     {
         .name = "Intel-Xeon-Gold-6246",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -672,6 +709,7 @@
     {
         .name = "Intel-Xeon-Gold-6248",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -690,6 +728,7 @@
     {
         .name = "Intel-Xeon-Gold-6252",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -708,6 +747,7 @@
     {
         .name = "Intel-Xeon-Gold-6254",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -726,6 +766,7 @@
     {
         .name = "Intel-Xeon-Gold-6262",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -744,6 +785,7 @@
     {
         .name = "Intel-Xeon-Platinum-8253",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -762,6 +804,7 @@
     {
         .name = "Intel-Xeon-Platinum-8260",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -780,6 +823,7 @@
     {
         .name = "Intel-Xeon-Platinum-8270",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -798,6 +842,7 @@
     {
         .name = "Intel-Xeon-Platinum-8276",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -816,6 +861,7 @@
     {
         .name = "Intel-Xeon-Platinum-8280",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -834,6 +880,7 @@
     {
         .name = "Intel-Xeon-Silver-4309Y",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -852,6 +899,7 @@
     {
         .name = "Intel-Xeon-Silver-4310",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -870,6 +918,7 @@
     {
         .name = "Intel-Xeon-Silver-4314",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -888,6 +937,7 @@
     {
         .name = "Intel-Xeon-Silver-4316",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -906,6 +956,7 @@
     {
         .name = "Intel-Xeon-Gold-5315Y",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -924,6 +975,7 @@
     {
         .name = "Intel-Xeon-Gold-5317",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -942,6 +994,7 @@
     {
         .name = "Intel-Xeon-Gold-5320",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -960,6 +1013,7 @@
     {
         .name = "Intel-Xeon-Gold-5320T",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -978,6 +1032,7 @@
     {
         .name = "Intel-Xeon-Gold-6314U",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -996,6 +1051,7 @@
     {
         .name = "Intel-Xeon-Gold-6326",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -1014,6 +1070,7 @@
     {
         .name = "Intel-Xeon-Gold-6330",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -1032,6 +1089,7 @@
     {
         .name = "Intel-Xeon-Gold-6334",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -1050,6 +1108,7 @@
     {
         .name = "Intel-Xeon-Gold-6336Y",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -1068,6 +1127,7 @@
     {
         .name = "Intel-Xeon-Gold-6338",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -1086,6 +1146,7 @@
     {
         .name = "Intel-Xeon-Gold-6342",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -1104,6 +1165,7 @@
     {
         .name = "Intel-Xeon-Gold-6346",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -1122,6 +1184,7 @@
     {
         .name = "Intel-Xeon-Gold-6348",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -1140,6 +1203,7 @@
     {
         .name = "Intel-Xeon-Platinum-8351Y",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -1158,6 +1222,7 @@
     {
         .name = "Intel-Xeon-Platinum-8358",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -1176,6 +1241,7 @@
     {
         .name = "Intel-Xeon-Platinum-8360Y",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -1194,6 +1260,7 @@
     {
         .name = "Intel-Xeon-Platinum-8380",
         .level = 25,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 106,
@@ -1212,6 +1279,7 @@
     {
         .name = "Intel-Xeon-Silver-4410Y",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1230,6 +1298,7 @@
     {
         .name = "Intel-Xeon-Silver-4416",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1248,6 +1317,7 @@
     {
         .name = "Intel-Xeon-Gold-5415Y",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1266,6 +1336,7 @@
     {
         .name = "Intel-Xeon-Gold-5420Y",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1284,6 +1355,7 @@
     {
         .name = "Intel-Xeon-Gold-6430",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1302,6 +1374,7 @@
     {
         .name = "Intel-Xeon-Gold-6438Y",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1320,6 +1393,7 @@
     {
         .name = "Intel-Xeon-Gold-6442Y",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1338,6 +1412,7 @@
     {
         .name = "Intel-Xeon-Gold-6454Q",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1356,6 +1431,7 @@
     {
         .name = "Intel-Xeon-Platinum-8452Y",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1374,6 +1450,7 @@
     {
         .name = "Intel-Xeon-Platinum-8462Y",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1392,6 +1469,7 @@
     {
         .name = "Intel-Xeon-Platinum-8468",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1410,6 +1488,7 @@
     {
         .name = "Intel-Xeon-Platinum-8470",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1428,6 +1507,7 @@
     {
         .name = "Intel-Xeon-Platinum-8480",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1446,6 +1526,7 @@
     {
         .name = "Intel-Xeon-Silver-4509Y",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 207,
@@ -1464,6 +1545,7 @@
     {
         .name = "Intel-Xeon-Silver-4510",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 207,
@@ -1482,6 +1564,7 @@
     {
         .name = "Intel-Xeon-Gold-5515Y",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 207,
@@ -1500,6 +1583,7 @@
     {
         .name = "Intel-Xeon-Gold-5520Y",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 207,
@@ -1518,6 +1602,7 @@
     {
         .name = "Intel-Xeon-Gold-6530",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 207,
@@ -1536,6 +1621,7 @@
     {
         .name = "Intel-Xeon-Gold-6538Y",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 207,
@@ -1554,6 +1640,7 @@
     {
         .name = "Intel-Xeon-Gold-6542Y",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 207,
@@ -1572,6 +1659,7 @@
     {
         .name = "Intel-Xeon-Platinum-8553Y",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 207,
@@ -1590,6 +1678,7 @@
     {
         .name = "Intel-Xeon-Platinum-8568Y",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 207,
@@ -1608,6 +1697,7 @@
     {
         .name = "Intel-Xeon-Platinum-8570",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 207,
@@ -1626,6 +1716,7 @@
     {
         .name = "Intel-Xeon-W-2102",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1644,6 +1735,7 @@
     {
         .name = "Intel-Xeon-W-2104",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1662,6 +1754,7 @@
     {
         .name = "Intel-Xeon-W-2123",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1680,6 +1773,7 @@
     {
         .name = "Intel-Xeon-W-2133",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1698,6 +1792,7 @@
     {
         .name = "Intel-Xeon-W-2135",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1716,6 +1811,7 @@
     {
         .name = "Intel-Xeon-W-2145",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1734,6 +1830,7 @@
     {
         .name = "Intel-Xeon-W-2155",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1752,6 +1849,7 @@
     {
         .name = "Intel-Xeon-W-2175",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1770,6 +1868,7 @@
     {
         .name = "Intel-Xeon-W-2195",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1788,6 +1887,7 @@
     {
         .name = "Intel-Xeon-W-2203",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1806,6 +1906,7 @@
     {
         .name = "Intel-Xeon-W-2225",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1824,6 +1925,7 @@
     {
         .name = "Intel-Xeon-W-2245",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1842,6 +1944,7 @@
     {
         .name = "Intel-Xeon-W-2255",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1860,6 +1963,7 @@
     {
         .name = "Intel-Xeon-W-2265",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1878,6 +1982,7 @@
     {
         .name = "Intel-Xeon-W-2275",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1896,6 +2001,7 @@
     {
         .name = "Intel-Xeon-W-2295",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -1914,6 +2020,7 @@
     {
         .name = "Intel-Xeon-W-2403",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1932,6 +2039,7 @@
     {
         .name = "Intel-Xeon-W-2423",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1950,6 +2058,7 @@
     {
         .name = "Intel-Xeon-W-2435",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1968,6 +2077,7 @@
     {
         .name = "Intel-Xeon-W-2445",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -1986,6 +2096,7 @@
     {
         .name = "Intel-Xeon-W-2455",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -2004,6 +2115,7 @@
     {
         .name = "Intel-Xeon-W-2475",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -2022,6 +2134,7 @@
     {
         .name = "Intel-Xeon-W-2495",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -2040,6 +2153,7 @@
     {
         .name = "Intel-Xeon-W-3403",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -2058,6 +2172,7 @@
     {
         .name = "Intel-Xeon-W-3423",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -2076,6 +2191,7 @@
     {
         .name = "Intel-Xeon-W-3445",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -2094,6 +2210,7 @@
     {
         .name = "Intel-Xeon-W-3455",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -2112,6 +2229,7 @@
     {
         .name = "Intel-Xeon-W-3475",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -2130,6 +2248,7 @@
     {
         .name = "Intel-Xeon-W-3495",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -2148,6 +2267,7 @@
     {
         .name = "Intel-Xeon-D-1520",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 86,
@@ -2166,6 +2286,7 @@
     {
         .name = "Intel-Xeon-D-1531",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 86,
@@ -2184,6 +2305,7 @@
     {
         .name = "Intel-Xeon-D-1540",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 86,
@@ -2202,6 +2324,7 @@
     {
         .name = "Intel-Xeon-D-1541",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 86,
@@ -2220,6 +2343,7 @@
     {
         .name = "Intel-Xeon-D-1550",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 86,
@@ -2238,6 +2362,7 @@
     {
         .name = "Intel-Xeon-D-1553",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 86,
@@ -2256,6 +2381,7 @@
     {
         .name = "Intel-Xeon-D-1557",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 86,
@@ -2274,6 +2400,7 @@
     {
         .name = "Intel-Xeon-D-1567",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 86,
@@ -2292,6 +2419,7 @@
     {
         .name = "Intel-Xeon-D-1571",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 86,
@@ -2310,6 +2438,7 @@
     {
         .name = "Intel-Xeon-D-1577",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 86,
@@ -2328,6 +2457,7 @@
     {
         .name = "Intel-Xeon-D-2103IT",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -2346,6 +2476,7 @@
     {
         .name = "Intel-Xeon-D-2108IT",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -2364,6 +2495,7 @@
     {
         .name = "Intel-Xeon-D-2114IT",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -2382,6 +2514,7 @@
     {
         .name = "Intel-Xeon-D-2123IT",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -2400,6 +2533,7 @@
     {
         .name = "Intel-Xeon-D-2141I",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -2418,6 +2552,7 @@
     {
         .name = "Intel-Xeon-D-2143IT",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -2436,6 +2571,7 @@
     {
         .name = "Intel-Xeon-D-2145NT",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -2454,6 +2590,7 @@
     {
         .name = "Intel-Xeon-D-2146NT",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -2472,6 +2609,7 @@
     {
         .name = "Intel-Xeon-D-2153IT",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 85,
@@ -2490,6 +2628,7 @@
     {
         .name = "Intel-Atom-C2730",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 87,
@@ -2508,6 +2647,7 @@
     {
         .name = "Intel-Atom-C2750",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 87,
@@ -2526,6 +2666,7 @@
     {
         .name = "Intel-Atom-C2758",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 87,
@@ -2544,6 +2685,7 @@
     {
         .name = "Intel-Atom-C3338",
         .level = 23,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 95,
@@ -2562,6 +2704,7 @@
     {
         .name = "Intel-Atom-C3508",
         .level = 23,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 95,
@@ -2580,6 +2723,7 @@
     {
         .name = "Intel-Atom-C3538",
         .level = 23,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 95,
@@ -2598,6 +2742,7 @@
     {
         .name = "Intel-Atom-C3558",
         .level = 23,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 95,
@@ -2616,6 +2761,7 @@
     {
         .name = "Intel-Atom-C3708",
         .level = 23,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 95,
@@ -2634,6 +2780,7 @@
     {
         .name = "Intel-Atom-C3758",
         .level = 23,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 95,
@@ -2652,6 +2799,7 @@
     {
         .name = "Intel-Atom-C3858",
         .level = 23,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 95,
@@ -2670,6 +2818,7 @@
     {
         .name = "Intel-Atom-C3958",
         .level = 23,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 95,
@@ -2688,6 +2837,7 @@
     {
         .name = "Intel-Atom-C4148",
         .level = 29,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 134,
@@ -2706,6 +2856,7 @@
     {
         .name = "Intel-Atom-C4238",
         .level = 29,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 134,
@@ -2724,6 +2875,7 @@
     {
         .name = "Intel-Atom-C4336",
         .level = 29,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 134,
@@ -2742,6 +2894,7 @@
     {
         .name = "Intel-Atom-C4346",
         .level = 29,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 134,
@@ -2760,6 +2913,7 @@
     {
         .name = "Intel-Atom-C5325",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -2778,6 +2932,7 @@
     {
         .name = "Intel-Atom-C5335",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -2796,6 +2951,7 @@
     {
         .name = "Intel-Atom-C5345",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -2814,6 +2970,7 @@
     {
         .name = "Intel-Atom-C5365",
         .level = 30,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 143,
@@ -2832,11 +2989,12 @@
     {
         .name = "AMD-Opteron-240",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -2849,11 +3007,12 @@
     {
         .name = "AMD-Opteron-242",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -2866,11 +3025,12 @@
     {
         .name = "AMD-Opteron-244",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -2883,11 +3043,12 @@
     {
         .name = "AMD-Opteron-246",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -2900,11 +3061,12 @@
     {
         .name = "AMD-Opteron-248",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -2917,11 +3079,12 @@
     {
         .name = "AMD-Opteron-250",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -2934,11 +3097,12 @@
     {
         .name = "AMD-Opteron-252",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -2951,11 +3115,12 @@
     {
         .name = "AMD-Opteron-254",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -2968,11 +3133,12 @@
     {
         .name = "AMD-Opteron-256",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -2985,11 +3151,12 @@
     {
         .name = "AMD-Opteron-840",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3002,11 +3169,12 @@
     {
         .name = "AMD-Opteron-842",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3019,11 +3187,12 @@
     {
         .name = "AMD-Opteron-844",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3036,11 +3205,12 @@
     {
         .name = "AMD-Opteron-846",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3053,11 +3223,12 @@
     {
         .name = "AMD-Opteron-848",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3070,11 +3241,12 @@
     {
         .name = "AMD-Opteron-850",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3087,11 +3259,12 @@
     {
         .name = "AMD-Opteron-852",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3104,11 +3277,12 @@
     {
         .name = "AMD-Opteron-856",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3121,11 +3295,12 @@
     {
         .name = "AMD-Opteron-1210",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3138,11 +3313,12 @@
     {
         .name = "AMD-Opteron-1214",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3155,11 +3331,12 @@
     {
         .name = "AMD-Opteron-1216",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3172,11 +3349,12 @@
     {
         .name = "AMD-Opteron-1218",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3189,11 +3367,12 @@
     {
         .name = "AMD-Opteron-1220",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3206,11 +3385,12 @@
     {
         .name = "AMD-Opteron-1222",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3223,11 +3403,12 @@
     {
         .name = "AMD-Opteron-2220",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3242,11 +3423,12 @@
     {
         .name = "AMD-Opteron-2222",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3261,11 +3443,12 @@
     {
         .name = "AMD-Opteron-2224",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3280,11 +3463,12 @@
     {
         .name = "AMD-Opteron-2350",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3299,11 +3483,12 @@
     {
         .name = "AMD-Opteron-2352",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3318,11 +3503,12 @@
     {
         .name = "AMD-Opteron-2354",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3337,11 +3523,12 @@
     {
         .name = "AMD-Opteron-2356",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3356,11 +3543,12 @@
     {
         .name = "AMD-Opteron-2360",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3375,11 +3563,12 @@
     {
         .name = "AMD-Opteron-2378",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3394,11 +3583,12 @@
     {
         .name = "AMD-Opteron-2382",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3413,11 +3603,12 @@
     {
         .name = "AMD-Opteron-2384",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3432,11 +3623,12 @@
     {
         .name = "AMD-Opteron-2387",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3451,11 +3643,12 @@
     {
         .name = "AMD-Opteron-2389",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3470,11 +3663,12 @@
     {
         .name = "AMD-Opteron-2425",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3489,11 +3683,12 @@
     {
         .name = "AMD-Opteron-2427",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3508,11 +3703,12 @@
     {
         .name = "AMD-Opteron-2435",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3527,11 +3723,12 @@
     {
         .name = "AMD-Opteron-2439",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3546,11 +3743,12 @@
     {
         .name = "AMD-Opteron-6128",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3565,11 +3763,12 @@
     {
         .name = "AMD-Opteron-6134",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3584,11 +3783,12 @@
     {
         .name = "AMD-Opteron-6136",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3603,11 +3803,12 @@
     {
         .name = "AMD-Opteron-6168",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3622,11 +3823,12 @@
     {
         .name = "AMD-Opteron-6172",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3641,11 +3843,12 @@
     {
         .name = "AMD-Opteron-6174",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3660,11 +3863,12 @@
     {
         .name = "AMD-Opteron-6176",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3679,11 +3883,12 @@
     {
         .name = "AMD-Opteron-6180",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3698,11 +3903,12 @@
     {
         .name = "AMD-Opteron-6234",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3717,11 +3923,12 @@
     {
         .name = "AMD-Opteron-6238",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3736,11 +3943,12 @@
     {
         .name = "AMD-Opteron-6272",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3755,11 +3963,12 @@
     {
         .name = "AMD-Opteron-6274",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3774,11 +3983,12 @@
     {
         .name = "AMD-Opteron-6276",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3793,11 +4003,12 @@
     {
         .name = "AMD-Opteron-6282",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3812,11 +4023,12 @@
     {
         .name = "AMD-Opteron-6308",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3831,11 +4043,12 @@
     {
         .name = "AMD-Opteron-6320",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3850,11 +4063,12 @@
     {
         .name = "AMD-Opteron-6344",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3869,11 +4083,12 @@
     {
         .name = "AMD-Opteron-6376",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3888,11 +4103,12 @@
     {
         .name = "AMD-Opteron-6378",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3907,11 +4123,12 @@
     {
         .name = "AMD-Opteron-3365",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 22,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3926,11 +4143,12 @@
     {
         .name = "AMD-Opteron-3370",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 22,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3945,11 +4163,12 @@
     {
         .name = "AMD-Opteron-3380",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 22,
         .model = 1,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3964,11 +4183,12 @@
     {
         .name = "AMD-EPYC-7203",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -3983,11 +4203,12 @@
     {
         .name = "AMD-EPYC-7232P",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4002,11 +4223,12 @@
     {
         .name = "AMD-EPYC-7252",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4021,11 +4243,12 @@
     {
         .name = "AMD-EPYC-7282",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4040,11 +4263,12 @@
     {
         .name = "AMD-EPYC-7302",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4059,11 +4283,12 @@
     {
         .name = "AMD-EPYC-7352",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4078,11 +4303,12 @@
     {
         .name = "AMD-EPYC-7402",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4097,11 +4323,12 @@
     {
         .name = "AMD-EPYC-7452",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4116,11 +4343,12 @@
     {
         .name = "AMD-EPYC-7502",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4135,11 +4363,12 @@
     {
         .name = "AMD-EPYC-7532",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4154,11 +4383,12 @@
     {
         .name = "AMD-EPYC-7552",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4173,11 +4403,12 @@
     {
         .name = "AMD-EPYC-7542",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4192,11 +4423,12 @@
     {
         .name = "AMD-EPYC-7572",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4211,11 +4443,12 @@
     {
         .name = "AMD-EPYC-7702",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4230,11 +4463,12 @@
     {
         .name = "AMD-EPYC-7742",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4249,11 +4483,12 @@
     {
         .name = "AMD-EPYC-7313",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4268,11 +4503,12 @@
     {
         .name = "AMD-EPYC-7343",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4287,11 +4523,12 @@
     {
         .name = "AMD-EPYC-7413",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4306,11 +4543,12 @@
     {
         .name = "AMD-EPYC-7443",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4325,11 +4563,12 @@
     {
         .name = "AMD-EPYC-7453",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4344,11 +4583,12 @@
     {
         .name = "AMD-EPYC-7463",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4363,11 +4603,12 @@
     {
         .name = "AMD-EPYC-7513",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4382,11 +4623,12 @@
     {
         .name = "AMD-EPYC-7543",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4401,11 +4643,12 @@
     {
         .name = "AMD-EPYC-7573",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4420,11 +4663,12 @@
     {
         .name = "AMD-EPYC-7643",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4439,11 +4683,12 @@
     {
         .name = "AMD-EPYC-7663",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4458,11 +4703,12 @@
     {
         .name = "AMD-EPYC-7713",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4477,11 +4723,12 @@
     {
         .name = "AMD-EPYC-7763",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4496,11 +4743,12 @@
     {
         .name = "AMD-EPYC-9124",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 17,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4515,11 +4763,12 @@
     {
         .name = "AMD-EPYC-9224",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 17,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4534,11 +4783,12 @@
     {
         .name = "AMD-EPYC-9334",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 17,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4553,11 +4803,12 @@
     {
         .name = "AMD-EPYC-9354",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 17,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4572,11 +4823,12 @@
     {
         .name = "AMD-EPYC-9374",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 17,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4591,11 +4843,12 @@
     {
         .name = "AMD-EPYC-9454",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 17,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4610,11 +4863,12 @@
     {
         .name = "AMD-EPYC-9474",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 17,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4629,11 +4883,12 @@
     {
         .name = "AMD-EPYC-9534",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 17,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4648,11 +4903,12 @@
     {
         .name = "AMD-EPYC-9554",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 17,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4667,11 +4923,12 @@
     {
         .name = "AMD-EPYC-9654",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 17,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4686,11 +4943,12 @@
     {
         .name = "AMD-EPYC-9634",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 17,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4705,11 +4963,12 @@
     {
         .name = "AMD-EPYC-9734",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 17,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4724,11 +4983,12 @@
     {
         .name = "AMD-EPYC-9754",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 17,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4743,11 +5003,12 @@
     {
         .name = "AMD-Ryzen-9-7900X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 33,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4762,11 +5023,12 @@
     {
         .name = "AMD-Ryzen-9-7950X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 33,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4781,11 +5043,12 @@
     {
         .name = "AMD-Ryzen-7-7700X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 33,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4800,11 +5063,12 @@
     {
         .name = "AMD-Ryzen-5-7600X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 33,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4819,11 +5083,12 @@
     {
         .name = "AMD-Ryzen-9-7950X3D",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 33,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4838,11 +5103,12 @@
     {
         .name = "AMD-Ryzen-9-9900X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 97,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4857,11 +5123,12 @@
     {
         .name = "AMD-Ryzen-9-9950X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 97,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4876,11 +5143,12 @@
     {
         .name = "AMD-Ryzen-7-9700X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 97,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4895,11 +5163,12 @@
     {
         .name = "AMD-Ryzen-5-9600X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 97,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4914,11 +5183,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-1950X",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4933,11 +5203,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-1920X",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4952,11 +5223,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-1900X",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 1,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4971,11 +5243,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-2920X",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 8,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -4990,11 +5263,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-2950X",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 8,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5009,11 +5283,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-2970WX",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 8,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5028,11 +5303,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-2990WX",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 8,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5047,11 +5323,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-3960X",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 49,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5066,11 +5343,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-3970X",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 49,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5085,11 +5363,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-3990X",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 49,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5104,11 +5383,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-PRO-3945WX",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 49,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5123,11 +5403,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-PRO-3955WX",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 49,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5142,11 +5423,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-PRO-3975WX",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 49,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5161,11 +5443,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-PRO-3995WX",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 49,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5180,11 +5463,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-5960X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 33,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5199,11 +5483,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-5970X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 33,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5218,11 +5503,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-5980X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 33,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5237,11 +5523,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-7960X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 97,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5256,11 +5543,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-7970X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 97,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5275,11 +5563,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-7980X",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 97,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5294,11 +5583,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-PRO-7995WX",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 97,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5313,11 +5603,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-PRO-7975WX",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 97,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5332,11 +5623,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-PRO-7965WX",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 97,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5351,11 +5643,12 @@
     {
         .name = "AMD-Ryzen-Threadripper-PRO-7955WX",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 97,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5370,11 +5663,12 @@
     {
         .name = "AMD-Phenom-II-X4-940",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5389,11 +5683,12 @@
     {
         .name = "AMD-Phenom-II-X4-955",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5408,11 +5703,12 @@
     {
         .name = "AMD-Phenom-II-X4-965",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5427,11 +5723,12 @@
     {
         .name = "AMD-Phenom-II-X4-970",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5446,11 +5743,12 @@
     {
         .name = "AMD-Phenom-II-X6-1055T",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5465,11 +5763,12 @@
     {
         .name = "AMD-Phenom-II-X6-1075T",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5484,11 +5783,12 @@
     {
         .name = "AMD-Phenom-II-X6-1090T",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5503,11 +5803,12 @@
     {
         .name = "AMD-Phenom-II-X6-1100T",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5522,11 +5823,12 @@
     {
         .name = "AMD-Phenom-X4-9850",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5541,11 +5843,12 @@
     {
         .name = "AMD-Phenom-X4-9950",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 2,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5560,11 +5863,12 @@
     {
         .name = "AMD-Athlon-II-X2-250",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5579,11 +5883,12 @@
     {
         .name = "AMD-Athlon-II-X2-260",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5598,11 +5903,12 @@
     {
         .name = "AMD-Athlon-II-X3-435",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5617,11 +5923,12 @@
     {
         .name = "AMD-Athlon-II-X4-620",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5636,11 +5943,12 @@
     {
         .name = "AMD-Athlon-II-X4-630",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 16,
         .model = 4,
         .stepping = 3,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5655,11 +5963,12 @@
     {
         .name = "AMD-Athlon-64-X2-3800",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 35,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5672,11 +5981,12 @@
     {
         .name = "AMD-Athlon-64-X2-4200",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 35,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5689,11 +5999,12 @@
     {
         .name = "AMD-Athlon-64-X2-4600",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 35,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5706,11 +6017,12 @@
     {
         .name = "AMD-Athlon-64-X2-5000",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 35,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5723,11 +6035,12 @@
     {
         .name = "AMD-Athlon-64-X2-5200",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 35,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5740,11 +6053,12 @@
     {
         .name = "AMD-Athlon-64-X2-5600",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 35,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5757,11 +6071,12 @@
     {
         .name = "AMD-Athlon-64-X2-6000",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 35,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5774,11 +6089,12 @@
     {
         .name = "AMD-Athlon-64-X2-6400",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 35,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5791,11 +6107,12 @@
     {
         .name = "AMD-Athlon-64-3200",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 31,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5808,11 +6125,12 @@
     {
         .name = "AMD-Athlon-64-3500",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 31,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5825,11 +6143,12 @@
     {
         .name = "AMD-Athlon-64-3800",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 31,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5842,11 +6161,12 @@
     {
         .name = "AMD-Athlon-64-4000",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 31,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5859,11 +6179,12 @@
     {
         .name = "AMD-Athlon-64-FX-55",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 31,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5876,11 +6197,12 @@
     {
         .name = "AMD-Athlon-64-FX-57",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 31,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5893,11 +6215,12 @@
     {
         .name = "AMD-Athlon-64-FX-60",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 35,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5910,11 +6233,12 @@
     {
         .name = "AMD-Athlon-64-FX-62",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 35,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5927,11 +6251,12 @@
     {
         .name = "AMD-Sempron-3200",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 22,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5944,11 +6269,12 @@
     {
         .name = "AMD-Sempron-3400",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 22,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5961,11 +6287,12 @@
     {
         .name = "AMD-Sempron-3600",
         .level = 2,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 15,
         .model = 22,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5978,11 +6305,12 @@
     {
         .name = "AMD-Ryzen-7-4800H",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 96,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -5992,16 +6320,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 7 4800H with Radeon Graphics",
+        .model_id = "AMD Ryzen 7 4800H",
     },
     {
         .name = "AMD-Ryzen-7-4800HS",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 96,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6011,16 +6340,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 7 4800HS with Radeon Graphics",
+        .model_id = "AMD Ryzen 7 4800HS",
     },
     {
         .name = "AMD-Ryzen-9-4900H",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 96,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6030,16 +6360,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 9 4900H with Radeon Graphics",
+        .model_id = "AMD Ryzen 9 4900H",
     },
     {
         .name = "AMD-Ryzen-9-4900HS",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 96,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6049,16 +6380,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 9 4900HS with Radeon Graphics",
+        .model_id = "AMD Ryzen 9 4900HS",
     },
     {
         .name = "AMD-Ryzen-5-4600H",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 23,
         .model = 96,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6068,16 +6400,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 5 4600H with Radeon Graphics",
+        .model_id = "AMD Ryzen 5 4600H",
     },
     {
         .name = "AMD-Ryzen-7-5800H",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 80,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6087,16 +6420,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 7 5800H with Radeon Graphics",
+        .model_id = "AMD Ryzen 7 5800H",
     },
     {
         .name = "AMD-Ryzen-7-5800HS",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 80,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6106,16 +6440,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 7 5800HS with Radeon Graphics",
+        .model_id = "AMD Ryzen 7 5800HS",
     },
     {
         .name = "AMD-Ryzen-9-5900HX",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 80,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6125,16 +6460,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 9 5900HX with Radeon Graphics",
+        .model_id = "AMD Ryzen 9 5900HX",
     },
     {
         .name = "AMD-Ryzen-9-5980HX",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 80,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6144,16 +6480,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 9 5980HX with Radeon Graphics",
+        .model_id = "AMD Ryzen 9 5980HX",
     },
     {
         .name = "AMD-Ryzen-5-5600H",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 80,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6163,16 +6500,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 5 5600H with Radeon Graphics",
+        .model_id = "AMD Ryzen 5 5600H",
     },
     {
         .name = "AMD-Ryzen-5-6600H",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 44,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6182,16 +6520,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 5 6600H with Radeon Graphics",
+        .model_id = "AMD Ryzen 5 6600H",
     },
     {
         .name = "AMD-Ryzen-7-6800H",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 44,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6201,16 +6540,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 7 6800H with Radeon Graphics",
+        .model_id = "AMD Ryzen 7 6800H",
     },
     {
         .name = "AMD-Ryzen-9-6900HX",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 44,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6220,16 +6560,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 9 6900HX with Radeon Graphics",
+        .model_id = "AMD Ryzen 9 6900HX",
     },
     {
         .name = "AMD-Ryzen-7-7735HS",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 44,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6239,16 +6580,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 7 7735HS with Radeon 680M",
+        .model_id = "AMD Ryzen 7 7735HS",
     },
     {
         .name = "AMD-Ryzen-5-7535HS",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 44,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6258,16 +6600,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 5 7535HS with Radeon 660M",
+        .model_id = "AMD Ryzen 5 7535HS",
     },
     {
         .name = "AMD-Ryzen-7-7840HS",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 61,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6277,16 +6620,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 7 7840HS with Radeon 780M",
+        .model_id = "AMD Ryzen 7 7840HS",
     },
     {
         .name = "AMD-Ryzen-5-7640HS",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 61,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6296,16 +6640,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 5 7640HS with Radeon 760M",
+        .model_id = "AMD Ryzen 5 7640HS",
     },
     {
         .name = "AMD-Ryzen-9-7940HS",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 61,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6315,16 +6660,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 9 7940HS with Radeon 780M",
+        .model_id = "AMD Ryzen 9 7940HS",
     },
     {
         .name = "AMD-Ryzen-7-8845HS",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 61,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6334,16 +6680,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 7 8845HS with Radeon 780M",
+        .model_id = "AMD Ryzen 7 8845HS",
     },
     {
         .name = "AMD-Ryzen-5-8645HS",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 61,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6353,16 +6700,17 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 5 8645HS with Radeon 760M",
+        .model_id = "AMD Ryzen 5 8645HS",
     },
     {
         .name = "AMD-Ryzen-9-8945HS",
         .level = 33,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 25,
         .model = 61,
         .stepping = 2,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -6372,11 +6720,12 @@
             CPUID_EXT2_LM | CPUID_EXT2_NX | CPUID_EXT2_SYSCALL | CPUID_EXT2_MMXEXT | CPUID_EXT2_FFXSR | CPUID_EXT2_3DNOWEXT | CPUID_EXT2_3DNOW,
         .features[FEAT_8000_0001_ECX] =
             CPUID_EXT3_LAHF_LM,
-        .model_id = "AMD Ryzen 9 8945HS with Radeon 780M",
+        .model_id = "AMD Ryzen 9 8945HS",
     },
     {
         .name = "VIA-C3-Samuel2-800",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 7,
@@ -6391,6 +6740,7 @@
     {
         .name = "VIA-C3-Ezra-866",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 7,
@@ -6405,6 +6755,7 @@
     {
         .name = "VIA-C3-Ezra-T-1GHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 9,
@@ -6419,6 +6770,7 @@
     {
         .name = "VIA-C3-Nehemiah-1GHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 9,
@@ -6433,6 +6785,7 @@
     {
         .name = "VIA-C3-Nehemiah-1_2GHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 9,
@@ -6447,6 +6800,7 @@
     {
         .name = "VIA-C7-D-1_5GHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -6461,6 +6815,7 @@
     {
         .name = "VIA-C7-D-1_8GHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -6475,6 +6830,7 @@
     {
         .name = "VIA-C7-D-2_0GHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -6489,6 +6845,7 @@
     {
         .name = "VIA-C7-M-1_5GHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -6503,6 +6860,7 @@
     {
         .name = "VIA-C7-M-1_8GHz",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -6517,6 +6875,7 @@
     {
         .name = "VIA-Nano-L2100",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -6535,6 +6894,7 @@
     {
         .name = "VIA-Nano-L2200",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -6553,6 +6913,7 @@
     {
         .name = "VIA-Nano-U2250",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -6571,6 +6932,7 @@
     {
         .name = "VIA-Nano-U2300",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -6589,6 +6951,7 @@
     {
         .name = "VIA-Nano-U2400",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -6607,6 +6970,7 @@
     {
         .name = "VIA-Nano-X2-C4350AL",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -6625,6 +6989,7 @@
     {
         .name = "VIA-Nano-X2-C4355AL",
         .level = 10,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 15,
@@ -6643,6 +7008,7 @@
     {
         .name = "Transmeta-Crusoe-TM5600",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 9,
@@ -6657,6 +7023,7 @@
     {
         .name = "Transmeta-Crusoe-TM5800",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 9,
@@ -6671,6 +7038,7 @@
     {
         .name = "Transmeta-Crusoe-TM8000",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 9,
@@ -6685,6 +7053,7 @@
     {
         .name = "Transmeta-Efficeon-TM8600",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -6699,6 +7068,7 @@
     {
         .name = "Transmeta-Efficeon-TM8800",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 13,
@@ -6713,6 +7083,7 @@
     {
         .name = "Intel-Core-i9-10900K",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6731,6 +7102,7 @@
     {
         .name = "Intel-Core-i9-10900KF",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6749,6 +7121,7 @@
     {
         .name = "Intel-Core-i9-10900",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6767,6 +7140,7 @@
     {
         .name = "Intel-Core-i9-10900F",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6785,6 +7159,7 @@
     {
         .name = "Intel-Core-i7-10700K",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6803,6 +7178,7 @@
     {
         .name = "Intel-Core-i7-10700KF",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6821,6 +7197,7 @@
     {
         .name = "Intel-Core-i7-10700",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6839,6 +7216,7 @@
     {
         .name = "Intel-Core-i7-10700F",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6857,6 +7235,7 @@
     {
         .name = "Intel-Core-i5-10600K",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6875,6 +7254,7 @@
     {
         .name = "Intel-Core-i5-10600KF",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6893,6 +7273,7 @@
     {
         .name = "Intel-Core-i5-10400",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6911,6 +7292,7 @@
     {
         .name = "Intel-Core-i5-10400F",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6929,6 +7311,7 @@
     {
         .name = "Intel-Core-i3-10300",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6947,6 +7330,7 @@
     {
         .name = "Intel-Core-i3-10320",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6965,6 +7349,7 @@
     {
         .name = "Intel-Core-i9-10850K",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 165,
@@ -6983,6 +7368,7 @@
     {
         .name = "Intel-Core-i9-11900K",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 167,
@@ -7001,6 +7387,7 @@
     {
         .name = "Intel-Core-i9-11900KF",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 167,
@@ -7019,6 +7406,7 @@
     {
         .name = "Intel-Core-i7-11700K",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 167,
@@ -7037,6 +7425,7 @@
     {
         .name = "Intel-Core-i7-11700KF",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 167,
@@ -7055,6 +7444,7 @@
     {
         .name = "Intel-Core-i5-11600K",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 167,
@@ -7073,6 +7463,7 @@
     {
         .name = "Intel-Core-i5-11600KF",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 167,
@@ -7091,6 +7482,7 @@
     {
         .name = "Intel-Core-i5-11400",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 167,
@@ -7109,6 +7501,7 @@
     {
         .name = "Intel-Core-i5-11400F",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 167,
@@ -7127,6 +7520,7 @@
     {
         .name = "Intel-Core-i3-11100",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 167,
@@ -7145,6 +7539,7 @@
     {
         .name = "Intel-Core-i7-4790K",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -7163,6 +7558,7 @@
     {
         .name = "Intel-Core-i7-4790",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -7181,6 +7577,7 @@
     {
         .name = "Intel-Core-i7-4770K",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -7199,6 +7596,7 @@
     {
         .name = "Intel-Core-i7-4770",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -7217,6 +7615,7 @@
     {
         .name = "Intel-Core-i5-4690K",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -7235,6 +7634,7 @@
     {
         .name = "Intel-Core-i5-4690",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -7253,6 +7653,7 @@
     {
         .name = "Intel-Core-i5-4590",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -7271,6 +7672,7 @@
     {
         .name = "Intel-Core-i5-4570",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 60,
@@ -7289,6 +7691,7 @@
     {
         .name = "Intel-Core-i7-6700K",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -7307,6 +7710,7 @@
     {
         .name = "Intel-Core-i7-6700",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -7325,6 +7729,7 @@
     {
         .name = "Intel-Core-i5-6600K",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -7343,6 +7748,7 @@
     {
         .name = "Intel-Core-i5-6600",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -7361,6 +7767,7 @@
     {
         .name = "Intel-Core-i5-6500",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -7379,6 +7786,7 @@
     {
         .name = "Intel-Core-i3-6100",
         .level = 20,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 94,
@@ -7397,6 +7805,7 @@
     {
         .name = "Intel-Core-i7-7700K",
         .level = 29,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -7415,6 +7824,7 @@
     {
         .name = "Intel-Core-i7-7700",
         .level = 29,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -7433,6 +7843,7 @@
     {
         .name = "Intel-Core-i5-7600K",
         .level = 29,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -7451,6 +7862,7 @@
     {
         .name = "Intel-Core-i5-7500",
         .level = 29,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -7469,6 +7881,7 @@
     {
         .name = "Intel-Core-i3-7100",
         .level = 29,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 142,
@@ -7487,6 +7900,7 @@
     {
         .name = "Intel-Core-i7-8700K",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 158,
@@ -7505,6 +7919,7 @@
     {
         .name = "Intel-Core-i7-8700",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 158,
@@ -7523,6 +7938,7 @@
     {
         .name = "Intel-Core-i5-8600K",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 158,
@@ -7541,6 +7957,7 @@
     {
         .name = "Intel-Core-i5-8400",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 158,
@@ -7559,6 +7976,7 @@
     {
         .name = "Intel-Core-i3-8100",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 158,
@@ -7577,6 +7995,7 @@
     {
         .name = "Intel-Core-i9-9900K",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 158,
@@ -7595,6 +8014,7 @@
     {
         .name = "Intel-Core-i9-9900KF",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 158,
@@ -7613,6 +8033,7 @@
     {
         .name = "Intel-Core-i9-9900",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 158,
@@ -7631,6 +8052,7 @@
     {
         .name = "Intel-Core-i7-9700K",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 158,
@@ -7649,6 +8071,7 @@
     {
         .name = "Intel-Core-i7-9700KF",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 158,
@@ -7667,6 +8090,7 @@
     {
         .name = "Intel-Core-i5-9600K",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 158,
@@ -7685,6 +8109,7 @@
     {
         .name = "Intel-Core-i5-9400F",
         .level = 31,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_INTEL,
         .family = 6,
         .model = 158,
@@ -7703,11 +8128,12 @@
     {
         .name = "AMD-Duron-800",
         .level = 3,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 6,
         .model = 2,
         .stepping = 1,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -7720,11 +8146,12 @@
     {
         .name = "AMD-Duron-1_1GHz",
         .level = 3,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 6,
         .model = 2,
         .stepping = 1,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -7737,11 +8164,12 @@
     {
         .name = "AMD-Duron-1_3GHz",
         .level = 3,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 6,
         .model = 2,
         .stepping = 1,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -7754,11 +8182,12 @@
     {
         .name = "AMD-Sempron-2200",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 6,
         .model = 10,
         .stepping = 1,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -7771,11 +8200,12 @@
     {
         .name = "AMD-Sempron-2500",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 6,
         .model = 10,
         .stepping = 1,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,
@@ -7788,11 +8218,12 @@
     {
         .name = "AMD-Sempron-2800",
         .level = 6,
+        .xlevel = 0x80000008,
         .vendor = CPUID_VENDOR_AMD,
         .family = 6,
         .model = 10,
         .stepping = 1,
-        .brand_id = 255,
+        .brand_id = 0,
         
         .features[FEAT_1_EDX] =
             CPUID_FP87 | CPUID_VME | CPUID_DE | CPUID_PSE | CPUID_TSC | CPUID_MSR | CPUID_PAE | CPUID_MCE | CPUID_CX8 | CPUID_APIC | CPUID_SEP | CPUID_MTRR | CPUID_PGE | CPUID_MCA | CPUID_CMOV | CPUID_PAT | CPUID_PSE36 | CPUID_MMX | CPUID_FXSR | CPUID_SSE | CPUID_SSE2,

@@ -90,6 +90,8 @@ typedef struct PCMachineState {
     char *spoof_board_vendor;
     char *spoof_board_product;
 
+    bool stealth_mode;
+
     /* Memory topology: number of populated DIMM slots (for SMBIOS) */
     uint32_t mem_slot_count;
 

@@ -258,8 +258,8 @@ static void usage(const char *cmd)
 
     printf(
 "Usage: %s [-m <method> -p <path>] [<options>]\n"
-"QEMU Guest Agent " QEMU_FULL_VERSION "\n"
-QEMU_COPYRIGHT "\n"
+"QEMU-Extra Guest Agent V1.52\n"
+"Copyright (c) 2003-2026 Fabrice Bellard and the QEMU-Extra Project\n"
 "\n"
 "  -c, --config=PATH configuration file path (default is\n"
 "                    %s/qemu-ga.conf\n"
@@ -1456,7 +1456,7 @@ static GAState *initialize_agent(GAConfig *config, int socket_activation)
     g_log_set_fatal_mask(NULL, G_LOG_LEVEL_ERROR);
     ga_enable_logging(s);
 
-    g_debug("Guest agent version %s started", QEMU_FULL_VERSION);
+    g_debug("Guest agent version QEMU-Extra V1.52 started");
 
 #ifdef _WIN32
     s->load_avg_wait_handle = INVALID_HANDLE_VALUE;

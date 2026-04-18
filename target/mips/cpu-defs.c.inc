@@ -1017,6 +1017,8 @@ const mips_def_t mips_defs[] =
         .insn_flags = CPU_MIPS64R2 | INSN_OCTEON,
         .mmu_type = MMU_TYPE_R4000,
     },
+ #include "extra-mips-cpus.inc.c"
+ #include "v152-mips-cpus.inc.c"
 
 #endif
 };

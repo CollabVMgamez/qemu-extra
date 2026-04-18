@@ -55,8 +55,8 @@
 #include "qemu/throttle.h"
 #include "block/throttle-groups.h"
 
-#define QEMU_IMG_VERSION "qemu-img version " QEMU_FULL_VERSION \
-                          "\n" QEMU_COPYRIGHT "\n"
+#define QEMU_IMG_VERSION "qemu-img QEMU-Extra V1.52\n" \
+                          "Copyright (c) 2003-2026 Fabrice Bellard and the QEMU-Extra Project\n"
 
 typedef struct img_cmd_t {
     const char *name;

@@ -189,8 +189,8 @@ QEMU_HELP_BOTTOM "\n"
 static void version(const char *name)
 {
     printf(
-"%s " QEMU_FULL_VERSION "\n"
-"Written by Anthony Harivel.\n"
+"%s QEMU-Extra V1.52\n"
+"Copyright (c) 2003-2026 Fabrice Bellard and the QEMU-Extra Project\n"
 "\n"
 QEMU_COPYRIGHT "\n"
 "This is free software; see the source for copying conditions.  There is NO\n"

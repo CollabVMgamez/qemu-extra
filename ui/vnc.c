@@ -2747,7 +2747,7 @@ static int protocol_client_init(VncState *vs, uint8_t *data, size_t len)
             size = sizeof(buf);
         }
     } else {
-        size = snprintf(buf, sizeof(buf), "QEMU");
+        size = snprintf(buf, sizeof(buf), "QEMU-Extra");
     }
 
     vnc_write_u32(vs, size);

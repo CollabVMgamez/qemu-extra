@@ -250,4 +250,8 @@ system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files(
   'nvidia-rtx-pro-6000.c',
   'nvidia-rtx2060m.c', 'nvidia-rtx2060s-m.c', 'nvidia-rtx2070m.c', 'nvidia-rtx2070s-m.c',
   'nvidia-rtx2080m.c', 'nvidia-rtx2080s-m.c',
-  'nvidia-rtx5050m.c', 'nvidia-rtx5070ti-m.c', 'nvidia-rtx5090m.c'))
+   'nvidia-rtx5050m.c', 'nvidia-rtx5070ti-m.c', 'nvidia-rtx5090m.c'))
+
+# v1.52: AMD RDNA3 mobile dGPU XT variants
+system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files(
+  'amd-rx7600m-xt.c', 'amd-rx7700m-xt.c'))

@@ -193,6 +193,19 @@ void pc_q35_init(MachineState *machine)
 
     pc_machine_init_sgx_epc(pcms);
 
+    /* Stealth mode: enable all anti-VM countermeasures at once */
+    if (pcms->stealth_mode) {
+        if (!pcms->hide_kvm_features)  pcms->hide_kvm_features = true;
+        if (!pcms->hide_hv_signature)  pcms->hide_hv_signature = true;
+        if (!pcms->spoof_bios_vendor)  pcms->spoof_bios_vendor = g_strdup("American Megatrends International LLC");
+        if (!pcms->spoof_bios_version) pcms->spoof_bios_version = g_strdup("2.1.0");
+        if (!pcms->spoof_board_vendor) pcms->spoof_board_vendor = g_strdup("LENOVO");
+        if (!pcms->spoof_board_product) pcms->spoof_board_product = g_strdup("ThinkCentre M920q");
+        if (!pcms->smbios_manufacturer) pcms->smbios_manufacturer = g_strdup("LENOVO");
+        if (!pcms->smbios_product)      pcms->smbios_product = g_strdup("ThinkCentre M920q");
+        if (!pcms->smbios_version)      pcms->smbios_version = g_strdup("10RRS0PA00");
+    }
+
     /* Apply hide-kvm/hide-hv anti-VM as global CPU properties before CPUs init */
     if (pcms->hide_kvm_features) {
         static GlobalProperty hide_kvm_prop = {

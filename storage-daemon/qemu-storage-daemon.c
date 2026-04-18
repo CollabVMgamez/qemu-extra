@@ -262,8 +262,8 @@ static void process_options(int argc, char *argv[], bool pre_init_pass)
             trace_init_file();
             break;
         case 'V':
-            printf("qemu-storage-daemon version "
-                   QEMU_FULL_VERSION "\n" QEMU_COPYRIGHT "\n");
+            printf("qemu-storage-daemon QEMU-Extra V1.52\n"
+                   "Copyright (c) 2003-2026 Fabrice Bellard and the QEMU-Extra Project\n");
             exit(EXIT_SUCCESS);
         case OPTION_BLOCKDEV:
             {

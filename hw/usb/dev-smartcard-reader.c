@@ -81,7 +81,7 @@ OBJECT_DECLARE_SIMPLE_TYPE(USBCCIDState, USB_CCID_DEV)
 #define CCID_CONTROL_GET_DATA_RATES         0x3
 
 #define CCID_PRODUCT_DESCRIPTION        "USB CCID Smartcard Reader"
-#define CCID_VENDOR_DESCRIPTION         "QEMU"
+#define CCID_VENDOR_DESCRIPTION         "Generic"
 #define CCID_INTERFACE_NAME             "CCID Interface"
 #define CCID_SERIAL_NUMBER_STRING       "1"
 /*

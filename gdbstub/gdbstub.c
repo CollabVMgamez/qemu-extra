@@ -1607,11 +1607,11 @@ static void handle_query_threads(GArray *params, void *user_ctx)
 static void handle_query_gdb_server_version(GArray *params, void *user_ctx)
 {
 #if defined(CONFIG_USER_ONLY)
-    g_string_printf(gdbserver_state.str_buf, "name:qemu-%s;version:%s;",
-                    target_name(), QEMU_VERSION);
+    g_string_printf(gdbserver_state.str_buf, "name:qemu-extra-%s;version:V1.52;",
+                    target_name());
 #else
-    g_string_printf(gdbserver_state.str_buf, "name:qemu-system-%s;version:%s;",
-                    target_name(), QEMU_VERSION);
+    g_string_printf(gdbserver_state.str_buf, "name:qemu-extra-system-%s;version:V1.52;",
+                    target_name());
 #endif
     gdb_put_strbuf();
 }

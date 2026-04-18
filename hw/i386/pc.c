@@ -1658,6 +1658,18 @@ static void pc_machine_set_auto_applesmc(Object *obj, bool value, Error **errp)
     pcms->auto_applesmc = value;
 }
 
+static bool pc_machine_get_stealth_mode(Object *obj, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    return pcms->stealth_mode;
+}
+
+static void pc_machine_set_stealth_mode(Object *obj, bool value, Error **errp)
+{
+    PCMachineState *pcms = PC_MACHINE(obj);
+    pcms->stealth_mode = value;
+}
+
 static void pc_machine_get_vmport(Object *obj, Visitor *v, const char *name,
                                   void *opaque, Error **errp)
 {
@@ -2065,8 +2077,11 @@ static void pc_machine_class_init(ObjectClass *oc, const void *data)
     object_class_property_set_description(oc, "auto-applesmc",
         "Automatically create Apple SMC ISA device (for Mac machine types)");
 
-
-
+    object_class_property_add_bool(oc, "stealth-mode",
+        pc_machine_get_stealth_mode, pc_machine_set_stealth_mode);
+    object_class_property_set_description(oc, "stealth-mode",
+        "Enable all anti-VM countermeasures at once: hide KVM/Hyper-V CPUID, "
+        "spoof BIOS/board SMBIOS strings, set realistic SMBIOS Type 1 defaults");
 
     object_class_property_add(oc, PC_MACHINE_VMPORT, "OnOffAuto",
         pc_machine_get_vmport, pc_machine_set_vmport,
