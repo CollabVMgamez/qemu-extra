@@ -254,4 +254,5 @@ system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files(
 
 # v1.52: AMD RDNA3 mobile dGPU XT variants
 system_ss.add(when: 'CONFIG_VGA_PCI', if_true: files(
-  'amd-rx7600m-xt.c', 'amd-rx7700m-xt.c'))
+  'amd-rx7600m-xt.c', 'amd-rx7700m-xt.c',
+  'nvidia-gm20b.c'))

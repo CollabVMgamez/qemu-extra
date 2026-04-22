@@ -20,7 +20,8 @@
 #define BAR1_SIZE (64*MiB)
 #define TYPE_AMD_RX8900M "amd-rx8900m"
 OBJECT_DECLARE_SIMPLE_TYPE(AmdRx8900mState, AMD_RX8900M)
-struct AmdRx8900mState { PCIDevice parent_obj; MemoryRegion bar0,bar1; uint32_t clock_mhz; uint64_t clock_last_ns; char *gpu_name; };
+struct AmdRx8900mState { PCIDevice parent_obj; MemoryRegion bar0,bar1; uint32_t clock_mhz; uint64_t clock_last_ns; char *gpu_name;     char *board_partner;
+};
 static uint64_t b0r(void*o,hwaddr a,unsigned s){(void)o;(void)a;(void)s;return 0;}
 static void b0w(void*o,hwaddr a,uint64_t v,unsigned s){(void)o;(void)a;(void)v;(void)s;}
 static const MemoryRegionOps b0={.read=b0r,.write=b0w,.endianness=DEVICE_LITTLE_ENDIAN,.valid={.min_access_size=1,.max_access_size=4}};
@@ -31,6 +32,21 @@ static void realize(PCIDevice*p,Error**e){{
     AmdRx8900mState*s=(AmdRx8900mState*)p; s->clock_mhz=0;s->clock_last_ns=0;
     p->config[PCI_CLASS_PROG]=0;
     pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID,GPU_SS_V);
+    if (s->board_partner) {
+        static const struct { const char *name; uint16_t vid; } amd_partners[] = {
+            {"amd",0x1002},{"asus",0x1043},{"msi",0x1462},{"gigabyte",0x1458},
+            {"sapphire",0x1B0A},{"xfx",0x1682},{"powercolor",0x148C},
+            {"his",0x17AF},{"xfx",0x1682},{"visiontek",0x1545},
+            {"lenovo",0x17AA},{"hp",0x103C},{"dell",0x1028},{NULL,0}
+        };
+        for (int _i = 0; amd_partners[_i].name; _i++) {
+            if (g_ascii_strcasecmp(s->board_partner, amd_partners[_i].name) == 0) {
+                pci_set_word(p->config+PCI_SUBSYSTEM_VENDOR_ID, amd_partners[_i].vid);
+                break;
+            }
+        }
+    }
+
     pci_set_word(p->config+PCI_SUBSYSTEM_ID,GPU_SS_D);
     uint8_t*c=p->config;c[PCI_CAPABILITY_LIST]=0x50;c[PCI_STATUS]|=PCI_STATUS_CAP_LIST;
     c[0x50]=0x10;c[0x51]=0;pci_set_word(c+0x52,0x0002);pci_set_long(c+0x5C,(0x10<<4)|3);
@@ -39,7 +55,8 @@ static void realize(PCIDevice*p,Error**e){{
     memory_region_init_io(&s->bar1,OBJECT(s),&b1,s,"amd-rx8900m-vram",BAR1_SIZE);
     pci_register_bar(p,2,PCI_BASE_ADDRESS_SPACE_MEMORY|PCI_BASE_ADDRESS_MEM_TYPE_64|PCI_BASE_ADDRESS_MEM_PREFETCH,&s->bar1);
 }}
-static const Property props[]={DEFINE_PROP_STRING("gpu-name",AmdRx8900mState,gpu_name),};
+static const Property props[]={DEFINE_PROP_STRING("gpu-name",AmdRx8900mState,gpu_name),    DEFINE_PROP_STRING("board-partner", AmdRx8900mState, board_partner),
+};
 static const VMStateDescription vms={.name="amd-rx8900m",.version_id=1,.minimum_version_id=1,.fields=(const VMStateField[]){VMSTATE_PCI_DEVICE(parent_obj,AmdRx8900mState),VMSTATE_UINT32(clock_mhz,AmdRx8900mState),VMSTATE_UINT64(clock_last_ns,AmdRx8900mState),VMSTATE_END_OF_LIST()}};
 static void ci(ObjectClass*k,const void*d){DeviceClass*dc=DEVICE_CLASS(k);PCIDeviceClass*pc=PCI_DEVICE_CLASS(k);pc->realize=realize;pc->vendor_id=GPU_VID;pc->device_id=GPU_DEV;pc->class_id=GPU_CLASS;pc->revision=0;dc->desc="AMD Radeon RX 8900M (RDNA4, 12GB GDDR7)";dc->vmsd=&vms;dc->hotpluggable=false;device_class_set_props(dc,props);set_bit(DEVICE_CATEGORY_DISPLAY,dc->categories);}
 static const TypeInfo ti={.name=TYPE_AMD_RX8900M,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AmdRx8900mState),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};

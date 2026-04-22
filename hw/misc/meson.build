@@ -207,4 +207,5 @@ system_ss.add(when: 'CONFIG_PCI', if_true: files(
   'samsung-npu-exynos-2400.c', 'samsung-npu-exynos-2500.c',
   'hisilicon-davinci-mini.c', 'hisilicon-davinci-lite.c', 'hisilicon-davinci-max.c',
   'hisilicon-davinci-max2.c', 'hisilicon-davinci-max2b.c', 'hisilicon-davinci-super.c',
-  'hisilicon-ascend-310b.c'))
+  'hisilicon-ascend-310b.c',
+  'nvidia-tegra210.c'))

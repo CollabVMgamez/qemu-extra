@@ -60,6 +60,7 @@ struct NvidiaGtx670mState {
     uint32_t intr_en, pfifo_intr_en, gpu_count;
     uint32_t clock_mhz;
     uint64_t clock_last_ns;
+    char *board_partner;
 };
 
 static uint32_t gpu_get_clock(NvidiaGtx670mState *s)
@@ -185,6 +186,21 @@ static void gpu_realize(PCIDevice *pdev, Error **errp)
     s->clock_mhz = GPU_CLK_BASE; s->clock_last_ns = 0;
     pdev->config[PCI_CLASS_PROG] = 0x00;
     pci_set_word(pdev->config+PCI_SUBSYSTEM_VENDOR_ID, GPU_SUBSYS_VID);
+    if (s->board_partner) {
+        static const struct { const char *name; uint16_t vid; } nv_partners[] = {
+            {"nvidia",0x10DE},{"asus",0x1043},{"msi",0x1462},{"gigabyte",0x1458},{"evga",0x3842},
+            {"zotac",0x19DA},{"palit",0x1569},{"pny",0x196E},{"inno3d",0x1ACC},
+            {"colorful",0x7377},{"gainward",0x1569},{"galax",0x1B4C},
+            {"lenovo",0x17AA},{"hp",0x103C},{"dell",0x1028},{NULL,0}
+        };
+        for (int _i = 0; nv_partners[_i].name; _i++) {
+            if (g_ascii_strcasecmp(s->board_partner, nv_partners[_i].name) == 0) {
+                pci_set_word(pdev->config+PCI_SUBSYSTEM_VENDOR_ID, nv_partners[_i].vid);
+                break;
+            }
+        }
+    }
+
     pci_set_word(pdev->config+PCI_SUBSYSTEM_ID,        GPU_SUBSYS_DID);
     gpu_setup_caps(pdev);
     memory_region_init_io(&s->bar0, OBJECT(s), &bar0_ops,  s, "nvidia-gtx670m-mmio", NV_BAR0_SIZE);

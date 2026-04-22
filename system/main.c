@@ -68,6 +68,17 @@ int (*qemu_main)(void) = os_darwin_cfrunloop_main;
 
 int main(int argc, char **argv)
 {
+#ifdef _WIN32
+    FILE *dbg = fopen("qemu-debug.log", "w");
+    if (dbg) { fprintf(dbg, "CHK0: main entered argc=%d\n", argc); fclose(dbg); }
+    SetConsoleOutputCP(CP_UTF8);
+    if (!GetConsoleWindow()) {
+        AttachConsole(ATTACH_PARENT_PROCESS);
+    }
+    setvbuf(stdout, NULL, _IONBF, 0);
+    setvbuf(stderr, NULL, _IONBF, 0);
+#endif
+
     qemu_init(argc, argv);
 
     /*
