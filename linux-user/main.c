@@ -431,7 +431,7 @@ static void handle_arg_strace(const char *arg)
 
 static void handle_arg_version(const char *arg)
 {
-    printf("qemu-" TARGET_NAME " QEMU-Extra V1.52\n"
+    printf("qemu-" TARGET_NAME " QEMU-Extra V1.53\n"
            "Copyright (c) 2003-2026 Fabrice Bellard and the QEMU-Extra Project\n");
     exit(EXIT_SUCCESS);
 }

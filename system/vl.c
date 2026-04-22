@@ -874,7 +874,7 @@ static MachineClass *find_default_machine(GSList *machines)
 
 static void version(void)
 {
-    printf("QEMU-Extra V1.52\n"
+    printf("QEMU-Extra V1.53\n"
            "Copyright (c) 2003-2026 Fabrice Bellard and the QEMU-Extra Project\n");
 }
 
@@ -2629,19 +2629,13 @@ static void qemu_process_help_options(void)
      * type and the user did not specify one, so that the user doesn't need
      * to say '-cpu help -machine something'.
      */
-    fprintf(stderr, "CHK6: checking cpu_option=%s\n", cpu_option ? cpu_option : "(null)");
 #ifdef _WIN32
-    { FILE *dbg = fopen("qemu-debug.log", "a"); if (dbg) { fprintf(dbg, "CHK6: cpu_option=%s\n", cpu_option ? cpu_option : "(null)"); fclose(dbg); } }
 #endif
     if (cpu_option && is_help_option(cpu_option)) {
-        fprintf(stderr, "CHK7: calling list_cpus\n");
 #ifdef _WIN32
-        { FILE *dbg = fopen("qemu-debug.log", "a"); if (dbg) { fprintf(dbg, "CHK7: calling list_cpus\n"); fclose(dbg); } }
 #endif
         list_cpus();
-        fprintf(stderr, "CHK8: list_cpus done\n");
 #ifdef _WIN32
-        { FILE *dbg = fopen("qemu-debug.log", "a"); if (dbg) { fprintf(dbg, "CHK8: list_cpus done\n"); fclose(dbg); } }
 #endif
         fflush(stdout);
         exit(0);
@@ -2896,7 +2890,6 @@ void qemu_init(int argc, char **argv)
     qemu_add_run_with_opts();
     module_call_init(MODULE_INIT_OPTS);
 
-    fprintf(stderr, "CHK2: opts registered\n");
     error_init(argv[0]);
     qemu_init_exec_dir(argv[0]);
 
@@ -2905,11 +2898,8 @@ void qemu_init(int argc, char **argv)
     module_init_info(qemu_modinfo);
     module_allow_arch(target_name());
 
-    fprintf(stderr, "CHK3: before qemu_init_subsystems\n");
     qemu_init_subsystems();
-    fprintf(stderr, "CHK4: after qemu_init_subsystems\n");
 #ifdef _WIN32
-    { FILE *dbg = fopen("qemu-debug.log", "a"); if (dbg) { fprintf(dbg, "CHK4: subsystems done\n"); fclose(dbg); } }
 #endif
 
     /* first pass of option parsing */
@@ -2954,9 +2944,7 @@ void qemu_init(int argc, char **argv)
             switch(popt->index) {
             case QEMU_OPTION_cpu:
                 cpu_option = optarg;
-                fprintf(stderr, "CHK5: cpu_option=%s\n", optarg);
 #ifdef _WIN32
-                { FILE *dbg = fopen("qemu-debug.log", "a"); if (dbg) { fprintf(dbg, "CHK5: cpu_option=%s\n", optarg); fclose(dbg); } }
 #endif
                 break;
             case QEMU_OPTION_hda:

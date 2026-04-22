@@ -590,7 +590,7 @@ int main(int argc, char **argv)
             trace_opt_parse(optarg);
             break;
         case 'V':
-            printf("%s QEMU-Extra V1.52\n"
+            printf("%s QEMU-Extra V1.53\n"
                    "Copyright (c) 2003-2026 Fabrice Bellard and the QEMU-Extra Project\n", g_get_prgname());
             exit(0);
         case 'h':

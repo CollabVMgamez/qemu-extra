@@ -189,7 +189,7 @@ QEMU_HELP_BOTTOM "\n"
 static void version(const char *name)
 {
     printf(
-"%s QEMU-Extra V1.52\n"
+"%s QEMU-Extra V1.53\n"
 "Copyright (c) 2003-2026 Fabrice Bellard and the QEMU-Extra Project\n"
 "\n"
 QEMU_COPYRIGHT "\n"
