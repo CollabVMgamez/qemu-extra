@@ -59,7 +59,7 @@ config VMWARE_VGA
     depends on PCI
     select VGA
 
-config BOCHS_DISPLAY
+config QEMU_DISPLAY
     bool
     default y if PCI_DEVICES
     depends on PCI

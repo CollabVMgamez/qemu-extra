@@ -931,7 +931,7 @@ bool exec_shl(CPUX86State *env, struct x86_decode *decode)
     {
         uint16_t res = 0;
 
-        /* from bochs */
+        /* from reference implementation */
         if (count <= 16) {
             res = (decode->op[0].val << count);
             cf = (decode->op[0].val >> (16 - count)) & 0x1;

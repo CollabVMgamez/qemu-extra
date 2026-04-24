@@ -386,7 +386,7 @@ static void serial_ioport_write(void *opaque, hwaddr addr, uint64_t val,
              * if LSR.THRE=1, even if it had been masked before by reading IIR.
              * This is not in the datasheet, but Windows relies on it.  It is
              * unclear if THRE has to be resampled every time THRI becomes
-             * 1, or only on the rising edge.  Bochs does the latter, and Windows
+             * 1, or only on the rising edge.  the reference implementation does the latter, and Windows
              * always toggles IER to all zeroes and back to all ones, so do the
              * same.
              *

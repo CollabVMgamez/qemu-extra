@@ -37,7 +37,7 @@ static void lba_to_msf(uint8_t *buf, int lba)
     buf[2] = lba % 75;
 }
 
-/* same toc as bochs. Return -1 if error or the toc length */
+/* same toc as reference implementation. Return -1 if error or the toc length */
 /* XXX: check this */
 int cdrom_read_toc(int nb_sectors, uint8_t *buf, int msf, int start_track)
 {

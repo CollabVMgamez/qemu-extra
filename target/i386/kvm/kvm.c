@@ -3587,7 +3587,7 @@ int kvm_arch_init(MachineState *ms, KVMState *s)
 
     /*
      * Most x86 CPUs in current use have self-snoop, so honoring guest PAT is
-     * preferable.  As well, the bochs video driver bug which motivated making
+     * preferable.  As well, the video driver bug which motivated making
      * this a default-enabled quirk in KVM was fixed long ago.
      */
     if (s->honor_guest_pat != ON_OFF_AUTO_OFF) {

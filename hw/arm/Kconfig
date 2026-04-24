@@ -187,7 +187,7 @@ config SBSA_REF
     select PL061 # GPIO
     select USB_XHCI_SYSBUS
     select WDT_SBSA
-    select BOCHS_DISPLAY
+    select QEMU_DISPLAY
     select IDE_BUS
     select IDE_DEV
 

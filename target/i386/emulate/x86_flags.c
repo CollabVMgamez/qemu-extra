@@ -30,7 +30,7 @@
 
 
 /*
- * The algorithms here are similar to those in Bochs.  After an ALU
+ * The algorithms here are similar to the reference implementation.  After an ALU
  * operation, CC_DST can be used to compute ZF, SF and PF, whereas
  * CC_SRC is used to compute AF, CF and OF.  In reality, SF and PF are the
  * XOR of the value computed from CC_DST and the value found in bits 7 and 2

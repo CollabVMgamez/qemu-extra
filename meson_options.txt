@@ -336,8 +336,8 @@ option('replication', type: 'feature', value: 'auto',
        description: 'replication support')
 option('colo_proxy', type: 'feature', value: 'auto',
        description: 'colo-proxy support')
-option('bochs', type: 'feature', value: 'auto',
-       description: 'bochs image format support')
+option('bochs-img', type: 'feature', value: 'auto',
+       description: 'Bochs-derived image format support')
 option('cloop', type: 'feature', value: 'auto',
        description: 'cloop image format support')
 option('dmg', type: 'feature', value: 'auto',

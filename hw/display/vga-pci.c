@@ -117,7 +117,7 @@ static const MemoryRegionOps pci_vga_ioport_ops = {
     .endianness = DEVICE_LITTLE_ENDIAN,
 };
 
-static uint64_t pci_vga_bochs_read(void *ptr, hwaddr addr,
+static uint64_t pci_vga_qext_read(void *ptr, hwaddr addr,
                                    unsigned size)
 {
     VGACommonState *s = ptr;
@@ -127,7 +127,7 @@ static uint64_t pci_vga_bochs_read(void *ptr, hwaddr addr,
     return vbe_ioport_read_data(s, 0);
 }
 
-static void pci_vga_bochs_write(void *ptr, hwaddr addr,
+static void pci_vga_qext_write(void *ptr, hwaddr addr,
                                 uint64_t val, unsigned size)
 {
     VGACommonState *s = ptr;
@@ -137,9 +137,9 @@ static void pci_vga_bochs_write(void *ptr, hwaddr addr,
     vbe_ioport_write_data(s, 0, val);
 }
 
-static const MemoryRegionOps pci_vga_bochs_ops = {
-    .read = pci_vga_bochs_read,
-    .write = pci_vga_bochs_write,
+static const MemoryRegionOps pci_vga_qext_ops = {
+    .read = pci_vga_qext_read,
+    .write = pci_vga_qext_write,
     .valid.min_access_size = 1,
     .valid.max_access_size = 4,
     .impl.min_access_size = 2,
@@ -214,9 +214,9 @@ void pci_std_vga_mmio_region_init(VGACommonState *s,
     memory_region_add_subregion(parent, PCI_VGA_IOPORT_OFFSET,
                                 &subs[0]);
 
-    memory_region_init_io(&subs[1], owner, &pci_vga_bochs_ops, s,
-                          "bochs dispi interface", PCI_VGA_BOCHS_SIZE);
-    memory_region_add_subregion(parent, PCI_VGA_BOCHS_OFFSET,
+    memory_region_init_io(&subs[1], owner, &pci_vga_qext_ops, s,
+                          "qemu dispi interface", PCI_VGA_QEXT_SIZE);
+    memory_region_add_subregion(parent, PCI_VGA_QEXT_OFFSET,
                                 &subs[1]);
 
     if (qext) {

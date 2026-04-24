@@ -15,7 +15,7 @@
 #include "qapi/error.h"
 #include "hw/core/loader.h"
 #include "hw/display/ramfb.h"
-#include "hw/display/bochs-vbe.h" /* for limits */
+#include "hw/display/qemu-vbe.h" /* for limits */
 #include "ui/console.h"
 #include "system/reset.h"
 #include "exec/cpu-common.h"

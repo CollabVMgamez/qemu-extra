@@ -83,7 +83,7 @@ guest side
 ----------
 
 You need a pretty recent linux guest.  systemd with loginctl.  kernel
-3.14+ with CONFIG_DRM_BOCHS enabled.  Fedora 20 will do.  Must be
+3.14+ with CONFIG_DRM_VIRTIO enabled.  Fedora 20 will do.  Must be
 fully updated for the new kernel though, i.e. the live iso doesn't cut
 it.
 

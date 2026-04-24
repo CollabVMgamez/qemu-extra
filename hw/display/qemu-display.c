@@ -1,5 +1,5 @@
 /*
- * QEMU PCI bochs display adapter.
+ * QEMU PCI display adapter.
  *
  * This work is licensed under the terms of the GNU GPL, version 2 or later.
  * See the COPYING file in the top-level directory.
@@ -11,7 +11,7 @@
 #include "hw/pci/pci_device.h"
 #include "hw/core/qdev-properties.h"
 #include "migration/vmstate.h"
-#include "hw/display/bochs-vbe.h"
+#include "hw/display/qemu-vbe.h"
 #include "hw/display/edid.h"
 
 #include "qapi/error.h"
@@ -20,7 +20,7 @@
 #include "ui/qemu-pixman.h"
 #include "qom/object.h"
 
-typedef struct BochsDisplayMode {
+typedef struct QemuDisplayMode {
     pixman_format_code_t format;
     uint32_t             bytepp;
     uint32_t             width;
@@ -28,9 +28,9 @@ typedef struct BochsDisplayMode {
     uint32_t             stride;
     uint64_t             offset;
     uint64_t             size;
-} BochsDisplayMode;
+} QemuDisplayMode;
 
-struct BochsDisplayState {
+struct QemuDisplayState {
     /* parent */
     PCIDevice        pci;
 
@@ -53,26 +53,26 @@ struct BochsDisplayState {
     bool             big_endian_fb;
 
     /* device state */
-    BochsDisplayMode mode;
+    QemuDisplayMode mode;
 };
 
-#define TYPE_BOCHS_DISPLAY "bochs-display"
-OBJECT_DECLARE_SIMPLE_TYPE(BochsDisplayState, BOCHS_DISPLAY)
+#define TYPE_QEMU_DISPLAY "qemu-display"
+OBJECT_DECLARE_SIMPLE_TYPE(QemuDisplayState, QEMU_DISPLAY)
 
-static const VMStateDescription vmstate_bochs_display = {
-    .name = "bochs-display",
+static const VMStateDescription vmstate_qemu_display = {
+    .name = "qemu-display",
     .fields = (const VMStateField[]) {
-        VMSTATE_PCI_DEVICE(pci, BochsDisplayState),
-        VMSTATE_UINT16_ARRAY(vbe_regs, BochsDisplayState, VBE_DISPI_INDEX_NB),
-        VMSTATE_BOOL(big_endian_fb, BochsDisplayState),
+        VMSTATE_PCI_DEVICE(pci, QemuDisplayState),
+        VMSTATE_UINT16_ARRAY(vbe_regs, QemuDisplayState, VBE_DISPI_INDEX_NB),
+        VMSTATE_BOOL(big_endian_fb, QemuDisplayState),
         VMSTATE_END_OF_LIST()
     }
 };
 
-static uint64_t bochs_display_vbe_read(void *ptr, hwaddr addr,
+static uint64_t qemu_display_vbe_read(void *ptr, hwaddr addr,
                                        unsigned size)
 {
-    BochsDisplayState *s = ptr;
+    QemuDisplayState *s = ptr;
     unsigned int index = addr >> 1;
 
     switch (index) {
@@ -88,10 +88,10 @@ static uint64_t bochs_display_vbe_read(void *ptr, hwaddr addr,
     return s->vbe_regs[index];
 }
 
-static void bochs_display_vbe_write(void *ptr, hwaddr addr,
+static void qemu_display_vbe_write(void *ptr, hwaddr addr,
                                     uint64_t val, unsigned size)
 {
-    BochsDisplayState *s = ptr;
+    QemuDisplayState *s = ptr;
     unsigned int index = addr >> 1;
 
     if (index >= ARRAY_SIZE(s->vbe_regs)) {
@@ -100,9 +100,9 @@ static void bochs_display_vbe_write(void *ptr, hwaddr addr,
     s->vbe_regs[index] = val;
 }
 
-static const MemoryRegionOps bochs_display_vbe_ops = {
-    .read = bochs_display_vbe_read,
-    .write = bochs_display_vbe_write,
+static const MemoryRegionOps qemu_display_vbe_ops = {
+    .read = qemu_display_vbe_read,
+    .write = qemu_display_vbe_write,
     .valid.min_access_size = 1,
     .valid.max_access_size = 4,
     .impl.min_access_size = 2,
@@ -110,10 +110,10 @@ static const MemoryRegionOps bochs_display_vbe_ops = {
     .endianness = DEVICE_LITTLE_ENDIAN,
 };
 
-static uint64_t bochs_display_qext_read(void *ptr, hwaddr addr,
+static uint64_t qemu_display_qext_read(void *ptr, hwaddr addr,
                                         unsigned size)
 {
-    BochsDisplayState *s = ptr;
+    QemuDisplayState *s = ptr;
 
     switch (addr) {
     case PCI_VGA_QEXT_REG_SIZE:
@@ -126,10 +126,10 @@ static uint64_t bochs_display_qext_read(void *ptr, hwaddr addr,
     }
 }
 
-static void bochs_display_qext_write(void *ptr, hwaddr addr,
+static void qemu_display_qext_write(void *ptr, hwaddr addr,
                                      uint64_t val, unsigned size)
 {
-    BochsDisplayState *s = ptr;
+    QemuDisplayState *s = ptr;
 
     switch (addr) {
     case PCI_VGA_QEXT_REG_BYTEORDER:
@@ -143,16 +143,16 @@ static void bochs_display_qext_write(void *ptr, hwaddr addr,
     }
 }
 
-static const MemoryRegionOps bochs_display_qext_ops = {
-    .read = bochs_display_qext_read,
-    .write = bochs_display_qext_write,
+static const MemoryRegionOps qemu_display_qext_ops = {
+    .read = qemu_display_qext_read,
+    .write = qemu_display_qext_write,
     .valid.min_access_size = 4,
     .valid.max_access_size = 4,
     .endianness = DEVICE_LITTLE_ENDIAN,
 };
 
-static int bochs_display_get_mode(BochsDisplayState *s,
-                                   BochsDisplayMode *mode)
+static int qemu_display_get_mode(QemuDisplayState *s,
+                                   QemuDisplayMode *mode)
 {
     uint16_t *vbe = s->vbe_regs;
     uint32_t virt_width;
@@ -198,18 +198,18 @@ static int bochs_display_get_mode(BochsDisplayState *s,
     return 0;
 }
 
-static void bochs_display_update(void *opaque)
+static void qemu_display_update(void *opaque)
 {
-    BochsDisplayState *s = opaque;
+    QemuDisplayState *s = opaque;
     DirtyBitmapSnapshot *snap = NULL;
     bool full_update = false;
-    BochsDisplayMode mode;
+    QemuDisplayMode mode;
     DisplaySurface *ds;
     uint8_t *ptr;
     bool dirty;
     int y, ys, ret;
 
-    ret = bochs_display_get_mode(s, &mode);
+    ret = qemu_display_get_mode(s, &mode);
     if (ret < 0) {
         /* no (valid) video mode */
         return;
@@ -257,38 +257,38 @@ static void bochs_display_update(void *opaque)
     }
 }
 
-static const GraphicHwOps bochs_display_gfx_ops = {
-    .gfx_update = bochs_display_update,
+static const GraphicHwOps qemu_display_gfx_ops = {
+    .gfx_update = qemu_display_update,
 };
 
-static void bochs_display_realize(PCIDevice *dev, Error **errp)
+static void qemu_display_realize(PCIDevice *dev, Error **errp)
 {
-    BochsDisplayState *s = BOCHS_DISPLAY(dev);
+    QemuDisplayState *s = QEMU_DISPLAY(dev);
     Object *obj = OBJECT(dev);
     int ret;
 
     if (s->vgamem < 4 * MiB) {
-        error_setg(errp, "bochs-display: video memory too small");
+        error_setg(errp, "qemu-display: video memory too small");
         return;
     }
     if (s->vgamem > 256 * MiB) {
-        error_setg(errp, "bochs-display: video memory too big");
+        error_setg(errp, "qemu-display: video memory too big");
         return;
     }
     s->vgamem = pow2ceil(s->vgamem);
 
-    s->con = graphic_console_init(DEVICE(dev), 0, &bochs_display_gfx_ops, s);
+    s->con = graphic_console_init(DEVICE(dev), 0, &qemu_display_gfx_ops, s);
 
-    memory_region_init_ram(&s->vram, obj, "bochs-display-vram", s->vgamem,
+    memory_region_init_ram(&s->vram, obj, "qemu-display-vram", s->vgamem,
                            &error_fatal);
-    memory_region_init_io(&s->vbe, obj, &bochs_display_vbe_ops, s,
-                          "bochs dispi interface", PCI_VGA_BOCHS_SIZE);
-    memory_region_init_io(&s->qext, obj, &bochs_display_qext_ops, s,
+    memory_region_init_io(&s->vbe, obj, &qemu_display_vbe_ops, s,
+                          "qemu dispi interface", PCI_VGA_QEXT_SIZE);
+    memory_region_init_io(&s->qext, obj, &qemu_display_qext_ops, s,
                           "qemu extended regs", PCI_VGA_QEXT_SIZE);
 
     memory_region_init_io(&s->mmio, obj, &unassigned_io_ops, NULL,
-                          "bochs-display-mmio", PCI_VGA_MMIO_SIZE);
-    memory_region_add_subregion(&s->mmio, PCI_VGA_BOCHS_OFFSET, &s->vbe);
+                          "qemu-display-mmio", PCI_VGA_MMIO_SIZE);
+    memory_region_add_subregion(&s->mmio, PCI_VGA_QEXT_OFFSET, &s->vbe);
     memory_region_add_subregion(&s->mmio, PCI_VGA_QEXT_OFFSET, &s->qext);
 
     pci_set_byte(&s->pci.config[PCI_REVISION_ID], 2);
@@ -311,47 +311,47 @@ static void bochs_display_realize(PCIDevice *dev, Error **errp)
     memory_region_set_log(&s->vram, true, DIRTY_MEMORY_VGA);
 }
 
-static bool bochs_display_get_big_endian_fb(Object *obj, Error **errp)
+static bool qemu_display_get_big_endian_fb(Object *obj, Error **errp)
 {
-    BochsDisplayState *s = BOCHS_DISPLAY(obj);
+    QemuDisplayState *s = QEMU_DISPLAY(obj);
 
     return s->big_endian_fb;
 }
 
-static void bochs_display_set_big_endian_fb(Object *obj, bool value,
+static void qemu_display_set_big_endian_fb(Object *obj, bool value,
                                             Error **errp)
 {
-    BochsDisplayState *s = BOCHS_DISPLAY(obj);
+    QemuDisplayState *s = QEMU_DISPLAY(obj);
 
     s->big_endian_fb = value;
 }
 
-static void bochs_display_init(Object *obj)
+static void qemu_display_init(Object *obj)
 {
     PCIDevice *dev = PCI_DEVICE(obj);
 
     /* Expose framebuffer byteorder via QOM */
     object_property_add_bool(obj, "big-endian-framebuffer",
-                             bochs_display_get_big_endian_fb,
-                             bochs_display_set_big_endian_fb);
+                             qemu_display_get_big_endian_fb,
+                             qemu_display_set_big_endian_fb);
 
     dev->cap_present |= QEMU_PCI_CAP_EXPRESS;
 }
 
-static void bochs_display_exit(PCIDevice *dev)
+static void qemu_display_exit(PCIDevice *dev)
 {
-    BochsDisplayState *s = BOCHS_DISPLAY(dev);
+    QemuDisplayState *s = QEMU_DISPLAY(dev);
 
     graphic_console_close(s->con);
 }
 
-static const Property bochs_display_properties[] = {
-    DEFINE_PROP_SIZE("vgamem", BochsDisplayState, vgamem, 16 * MiB),
-    DEFINE_PROP_BOOL("edid", BochsDisplayState, enable_edid, true),
-    DEFINE_EDID_PROPERTIES(BochsDisplayState, edid_info),
+static const Property qemu_display_properties[] = {
+    DEFINE_PROP_SIZE("vgamem", QemuDisplayState, vgamem, 16 * MiB),
+    DEFINE_PROP_BOOL("edid", QemuDisplayState, enable_edid, true),
+    DEFINE_EDID_PROPERTIES(QemuDisplayState, edid_info),
 };
 
-static void bochs_display_class_init(ObjectClass *klass, const void *data)
+static void qemu_display_class_init(ObjectClass *klass, const void *data)
 {
     DeviceClass *dc = DEVICE_CLASS(klass);
     PCIDeviceClass *k = PCI_DEVICE_CLASS(klass);
@@ -360,20 +360,20 @@ static void bochs_display_class_init(ObjectClass *klass, const void *data)
     k->vendor_id = 0x8086;  /* Intel */
     k->device_id = 0x1912;  /* Intel HD Graphics 530 (Skylake) */
 
-    k->realize   = bochs_display_realize;
-    k->romfile   = "vgabios-bochs-display.bin";
-    k->exit      = bochs_display_exit;
-    dc->vmsd     = &vmstate_bochs_display;
-    device_class_set_props(dc, bochs_display_properties);
+    k->realize   = qemu_display_realize;
+    k->romfile   = "vgabios-qemu-display.bin";
+    k->exit      = qemu_display_exit;
+    dc->vmsd     = &vmstate_qemu_display;
+    device_class_set_props(dc, qemu_display_properties);
     set_bit(DEVICE_CATEGORY_DISPLAY, dc->categories);
 }
 
-static const TypeInfo bochs_display_type_info = {
-    .name           = TYPE_BOCHS_DISPLAY,
+static const TypeInfo qemu_display_type_info = {
+    .name           = TYPE_QEMU_DISPLAY,
     .parent         = TYPE_PCI_DEVICE,
-    .instance_size  = sizeof(BochsDisplayState),
-    .instance_init  = bochs_display_init,
-    .class_init     = bochs_display_class_init,
+    .instance_size  = sizeof(QemuDisplayState),
+    .instance_init  = qemu_display_init,
+    .class_init     = qemu_display_class_init,
     .interfaces     = (const InterfaceInfo[]) {
         { INTERFACE_PCIE_DEVICE },
         { INTERFACE_CONVENTIONAL_PCI_DEVICE },
@@ -381,9 +381,9 @@ static const TypeInfo bochs_display_type_info = {
     },
 };
 
-static void bochs_display_register_types(void)
+static void qemu_display_register_types(void)
 {
-    type_register_static(&bochs_display_type_info);
+    type_register_static(&qemu_display_type_info);
 }
 
-type_init(bochs_display_register_types)
+type_init(qemu_display_register_types)

@@ -1963,7 +1963,7 @@ static void fdctrl_handle_format_track(FDCtrl *fdctrl, int direction)
 #else
     cur_drv->last_sect = fdctrl->fifo[3];
 #endif
-    /* TODO: implement format using DMA expected by the Bochs BIOS
+    /* TODO: implement format using DMA expected by the legacy BIOS
      * and Linux fdformat (read 3 bytes per sector via DMA and fill
      * the sector with the specified fill byte
      */

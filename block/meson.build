@@ -66,8 +66,8 @@ endif
 if get_option('cloop').allowed()
   block_ss.add(files('cloop.c'))
 endif
-if get_option('bochs').allowed()
-  block_ss.add(files('bochs.c'))
+if get_option('bochs-img').allowed()
+  block_ss.add(files('bochs-img.c'))
 endif
 if get_option('vvfat').allowed()
   block_ss.add(files('vvfat.c'))

@@ -754,7 +754,7 @@ static void build_q35_pci0_int(Aml *table)
         /* PCI IRQ routing table, example from ACPI 2.0a specification,
            section 6.2.8.1 */
         /* Note: we provide the same info as the PCI routing
-           table of the Bochs BIOS */
+           table of the legacy BIOS */
         if_ctx = aml_if(aml_equal(aml_name("PICF"), aml_int(0)));
         aml_append(if_ctx, aml_return(aml_name("PRTP")));
         aml_append(method, if_ctx);

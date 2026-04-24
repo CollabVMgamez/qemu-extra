@@ -100,9 +100,9 @@ const generic_fuzz_config predefined_configs[] = {
         .args = "-machine q35 -nodefaults -device cirrus-vga",
         .objects = "cirrus*",
     },{
-        .name = "bochs-display",
-        .args = "-machine q35 -nodefaults -device bochs-display",
-        .objects = "bochs*",
+        .name = "qemu-display",
+        .args = "-machine q35 -nodefaults -device qemu-display",
+        .objects = "qemu*",
     },{
         .name = "intel-hda",
         .args = "-machine q35 -nodefaults -device intel-hda,id=hda0 "

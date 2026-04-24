@@ -56,7 +56,7 @@ extern bool pci_available;
 /* Marvell (0x11ab) */
 #define PCI_DEVICE_ID_MARVELL_GT6412X    0x4620
 
-/* QEMU/Bochs VGA (0x1234) */
+/* QEMU VGA (0x1234) */
 #define PCI_VENDOR_ID_QEMU               0x1234
 #define PCI_DEVICE_ID_QEMU_VGA           0x1111
 #define PCI_DEVICE_ID_QEMU_IPMI          0x1112

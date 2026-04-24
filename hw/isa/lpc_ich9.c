@@ -114,7 +114,7 @@ static void ich9_cc_init(ICH9LPCState *lpc)
 
     /* the default irq routing is arbitrary as long as it matches with
      * acpi irq routing table.
-     * The one that is incompatible with piix_pci(= bochs) one is
+     * The one that is incompatible with the reference implementation is
      * intentionally chosen to let the users know that the different
      * board is used.
      *

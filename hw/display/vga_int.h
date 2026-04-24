@@ -29,7 +29,7 @@
 #include "system/ioport.h"
 #include "system/memory.h"
 
-#include "hw/display/bochs-vbe.h"
+#include "hw/display/qemu-vbe.h"
 #include "hw/acpi/acpi_aml_interface.h"
 
 #define ST01_V_RETRACE      0x08
@@ -105,7 +105,7 @@ typedef struct VGACommonState {
                         int *pheight);
     PortioList vga_port_list;
     PortioList vbe_port_list;
-    /* bochs vbe state */
+    /* qemu vbe state */
     uint16_t vbe_index;
     uint16_t vbe_regs[VBE_DISPI_INDEX_NB];
     uint32_t vbe_start_addr;

@@ -437,7 +437,7 @@ static void pc_cmos_init_late(PCMachineState *pcms)
 
     pc_cmos_init_floppy(s, pc_find_fdc0());
 
-    /* various important CMOS locations needed by PC/Bochs bios */
+    /* various important CMOS locations needed by PC BIOS */
 
     /* memory size */
     /* base memory (first MiB) */

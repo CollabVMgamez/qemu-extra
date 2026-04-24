@@ -40,7 +40,7 @@ blobs = [
   'vgabios-qxl.bin',
   'vgabios-virtio.bin',
   'vgabios-ramfb.bin',
-  'vgabios-bochs-display.bin',
+  'vgabios-qemu-display.bin',
   'vgabios-ati.bin',
   'openbios-sparc32',
   'openbios-sparc64',

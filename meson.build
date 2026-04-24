@@ -4840,7 +4840,7 @@ if have_block
   summary_info += {'Use block whitelist in tools': get_option('block_drv_whitelist_in_tools')}
   summary_info += {'VirtFS (9P) support':    have_virtfs}
   summary_info += {'replication support': config_host_data.get('CONFIG_REPLICATION')}
-  summary_info += {'bochs support':     get_option('bochs').allowed()}
+  summary_info += {'bochs-img support':     get_option('bochs-img').allowed()}
   summary_info += {'cloop support':     get_option('cloop').allowed()}
   summary_info += {'dmg support':       get_option('dmg').allowed()}
   summary_info += {'qcow v1 support':   get_option('qcow1').allowed()}

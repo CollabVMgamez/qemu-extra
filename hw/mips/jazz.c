@@ -40,7 +40,7 @@
 #include "hw/rtc/mc146818rtc.h"
 #include "hw/timer/i8254.h"
 #include "hw/display/vga.h"
-#include "hw/display/bochs-vbe.h"
+#include "hw/display/qemu-vbe.h"
 #include "hw/audio/pcspk.h"
 #include "hw/input/i8042.h"
 #include "hw/core/sysbus.h"

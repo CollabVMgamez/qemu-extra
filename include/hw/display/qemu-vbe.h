@@ -1,8 +1,8 @@
-#ifndef HW_DISPLAY_BOCHS_VBE_H
-#define HW_DISPLAY_BOCHS_VBE_H
+#ifndef HW_DISPLAY_QEMU_VBE_H
+#define HW_DISPLAY_QEMU_VBE_H
 
 /*
- * bochs vesa bios extension interface
+ * qemu vesa bios extension interface
  */
 
 #define VBE_DISPI_MAX_XRES              16000
@@ -52,9 +52,9 @@
 #define PCI_VGA_IOPORT_OFFSET 0x400
 #define PCI_VGA_IOPORT_SIZE   (0x3e0 - 0x3c0)
 
-/* bochs vbe register region */
-#define PCI_VGA_BOCHS_OFFSET  0x500
-#define PCI_VGA_BOCHS_SIZE    (0x0b * 2)
+/* qemu vbe register region */
+#define PCI_VGA_QEXT_OFFSET  0x500
+#define PCI_VGA_QEXT_SIZE    (0x0b * 2)
 
 /* qemu extension register region */
 #define PCI_VGA_QEXT_OFFSET   0x600
@@ -66,4 +66,4 @@
 #define  PCI_VGA_QEXT_LITTLE_ENDIAN   0x1e1e1e1e
 #define  PCI_VGA_QEXT_BIG_ENDIAN      0xbebebebe
 
-#endif /* HW_DISPLAY_BOCHS_VBE_H */
+#endif /* HW_DISPLAY_QEMU_VBE_H */

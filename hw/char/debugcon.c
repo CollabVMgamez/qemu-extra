@@ -1,5 +1,5 @@
 /*
- * QEMU Bochs-style debug console ("port E9") emulation
+ * QEMU debug console ("port E9") emulation
  *
  * Copyright (c) 2003-2004 Fabrice Bellard
  * Copyright (c) 2008 Citrix Systems, Inc.

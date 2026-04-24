@@ -67,7 +67,7 @@ bool have_vga = true;
  * FreeVGA site:
  * http://www.osdever.net/FreeVGA/home.htm
  *
- * Standard VGA features and Bochs VBE extensions are implemented.
+ * Standard VGA features and QEMU VBE extensions are implemented.
  */
 
 /* force some bits to zero */
@@ -550,7 +550,7 @@ void vga_ioport_write(void *opaque, uint32_t addr, uint32_t val)
 /*
  * Sanity check vbe register writes.
  *
- * As we don't have a way to signal errors to the guest in the bochs
+ * As we don't have a way to signal errors to the guest in the qemu
  * dispi interface we'll go adjust the registers to the closest valid
  * value.
  */

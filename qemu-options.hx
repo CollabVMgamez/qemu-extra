@@ -2523,7 +2523,7 @@ SRST
         the host OS. (This card was the default before QEMU 2.2)
 
     ``std``
-        Standard VGA card with Bochs VBE extensions. If your guest OS
+        Standard VGA card with QEMU VBE extensions. If your guest OS
         supports the VESA 2.0 VBE extensions (e.g. Windows XP) and if
         you want to use high resolution modes (>= 1280x1024x16) then you
         should use this option. (This card is the default since QEMU
