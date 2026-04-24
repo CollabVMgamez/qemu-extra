@@ -987,7 +987,7 @@ type_init(my_register_types)
 
 ## Changelog
 
-### v1.52 (Current)
+### v1.54 (Current)
 
 **Major additions:**
 - Amazon Graviton3E CPU model added to ARM64 target
