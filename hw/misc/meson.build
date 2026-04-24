@@ -206,6 +206,11 @@ system_ss.add(when: 'CONFIG_PCI', if_true: files(
   'samsung-npu-exynos-2100.c', 'samsung-npu-exynos-2200.c',
   'samsung-npu-exynos-2400.c', 'samsung-npu-exynos-2500.c',
   'hisilicon-davinci-mini.c', 'hisilicon-davinci-lite.c', 'hisilicon-davinci-max.c',
-  'hisilicon-davinci-max2.c', 'hisilicon-davinci-max2b.c', 'hisilicon-davinci-super.c',
-  'hisilicon-ascend-310b.c',
-  'nvidia-tegra210.c'))
+   'hisilicon-davinci-max2.c', 'hisilicon-davinci-max2b.c', 'hisilicon-davinci-super.c',
+   'hisilicon-ascend-310b.c',
+   'nvidia-tegra210.c'))
+
+# v1.52: Amazon AI accelerator stubs — Inferentia1/2, Trainium1/2
+system_ss.add(when: 'CONFIG_PCI', if_true: files(
+  'aws-inferentia1.c', 'aws-inferentia2.c',
+  'aws-trainium1.c', 'aws-trainium2.c'))

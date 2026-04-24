@@ -2336,6 +2336,16 @@ static void aarch64_graviton3_initfn(Object *obj)
     object_property_set_uint(obj, "sve-max-vq", 4, &error_abort);
 }
 
+static void aarch64_graviton3e_initfn(Object *obj)
+{
+    ARMCPU *cpu = ARM_CPU(obj);
+    cpu->dtb_compatible = "amazon,graviton3e";
+    cpu->midr = 0xd0c00002;
+    cpu->sve_max_vq = 4;
+    cpu->ctr = 0x8444c004;
+    object_property_set_uint(obj, "sve-max-vq", 4, &error_abort);
+}
+
 static void aarch64_graviton4_initfn(Object *obj)
 {
     ARMCPU *cpu = ARM_CPU(obj);
@@ -2641,6 +2651,7 @@ static const ARMCPUInfo aarch64_cpus[] = {
     { .name = "nvidia-grace",           .initfn = aarch64_nvidia_grace_initfn },
     { .name = "nvidia-grace-hopper",    .initfn = aarch64_nvidia_grace_hopper_initfn },
     { .name = "graviton3",              .initfn = aarch64_graviton3_initfn },
+    { .name = "graviton3e",            .initfn = aarch64_graviton3e_initfn },
     { .name = "graviton4",              .initfn = aarch64_graviton4_initfn },
     { .name = "kunpeng920",             .initfn = aarch64_kunpeng920_initfn },
     { .name = "kunpeng930",             .initfn = aarch64_kunpeng930_initfn },

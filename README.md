@@ -114,6 +114,9 @@ unzip qemu-p4fork-v1.51.zip && cd qemu-p4fork-v1.51
 - StrongARM: SA-1110
 - Other: Samsung S3C, TI OMAP, Cirrus EP93xx, Atmel AT91SAM9, NXP LPC3xxx
 
+**Server/Cloud:**
+- Amazon: Graviton1, Graviton2, Graviton3, Graviton3E, Graviton3C, Graviton4
+
 **Windows CE/Mobile SoCs:**
 - Samsung S3C2410/2440/6410
 - TI OMAP (730/850/2420/3430/3630)
@@ -213,6 +216,11 @@ All device stubs appear as **real PCI devices** in the guest with correct vendor
 
 **NPUs (AI accelerators):**
 - XDNA (Ryzen AI Phoenix, Strix Point, Hawk Point)
+
+### Amazon AI Accelerators (4 stubs)
+
+- **Inferentia:** Inferentia1 (Inf1), Inferentia2 (Inf2)
+- **Trainium:** Trainium1 (Trn1), Trainium2 (Trn2)
 
 ### Google TPUs (10 stubs)
 
@@ -979,7 +987,14 @@ type_init(my_register_types)
 
 ## Changelog
 
-### v1.51 (Current)
+### v1.52 (Current)
+
+**Major additions:**
+- Amazon Graviton3E CPU model added to ARM64 target
+- Amazon AI accelerator stubs: Inferentia1 (Inf1), Inferentia2 (Inf2), Trainium1 (Trn1), Trainium2 (Trn2)
+- Updated README with Amazon hardware sections
+
+### v1.51
 
 **Major additions:**
 - MIPS CPU support: 14 new models (SGI R4400/R4600, NEC VR7701, Ingenic JZ47xx, Cavium Octeon, Loongson 2K1000, Broadcom/Atheros/MediaTek WiSoCs)
