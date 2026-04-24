@@ -52,9 +52,9 @@
 #define PCI_VGA_IOPORT_OFFSET 0x400
 #define PCI_VGA_IOPORT_SIZE   (0x3e0 - 0x3c0)
 
-/* qemu vbe register region */
-#define PCI_VGA_QEXT_OFFSET  0x500
-#define PCI_VGA_QEXT_SIZE    (0x0b * 2)
+/* qemu vbe/dispi register region */
+#define PCI_VGA_DISPI_OFFSET  0x500
+#define PCI_VGA_DISPI_SIZE    (0x0b * 2)
 
 /* qemu extension register region */
 #define PCI_VGA_QEXT_OFFSET   0x600

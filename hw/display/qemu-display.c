@@ -282,13 +282,13 @@ static void qemu_display_realize(PCIDevice *dev, Error **errp)
     memory_region_init_ram(&s->vram, obj, "qemu-display-vram", s->vgamem,
                            &error_fatal);
     memory_region_init_io(&s->vbe, obj, &qemu_display_vbe_ops, s,
-                          "qemu dispi interface", PCI_VGA_QEXT_SIZE);
+                          "qemu dispi interface", PCI_VGA_DISPI_SIZE);
     memory_region_init_io(&s->qext, obj, &qemu_display_qext_ops, s,
                           "qemu extended regs", PCI_VGA_QEXT_SIZE);
 
     memory_region_init_io(&s->mmio, obj, &unassigned_io_ops, NULL,
                           "qemu-display-mmio", PCI_VGA_MMIO_SIZE);
-    memory_region_add_subregion(&s->mmio, PCI_VGA_QEXT_OFFSET, &s->vbe);
+    memory_region_add_subregion(&s->mmio, PCI_VGA_DISPI_OFFSET, &s->vbe);
     memory_region_add_subregion(&s->mmio, PCI_VGA_QEXT_OFFSET, &s->qext);
 
     pci_set_byte(&s->pci.config[PCI_REVISION_ID], 2);
@@ -326,7 +326,7 @@ static void qemu_display_set_big_endian_fb(Object *obj, bool value,
     s->big_endian_fb = value;
 }
 
-static void qemu_display_init(Object *obj)
+static void qemu_display_pci_init(Object *obj)
 {
     PCIDevice *dev = PCI_DEVICE(obj);
 
@@ -372,7 +372,7 @@ static const TypeInfo qemu_display_type_info = {
     .name           = TYPE_QEMU_DISPLAY,
     .parent         = TYPE_PCI_DEVICE,
     .instance_size  = sizeof(QemuDisplayState),
-    .instance_init  = qemu_display_init,
+    .instance_init  = qemu_display_pci_init,
     .class_init     = qemu_display_class_init,
     .interfaces     = (const InterfaceInfo[]) {
         { INTERFACE_PCIE_DEVICE },

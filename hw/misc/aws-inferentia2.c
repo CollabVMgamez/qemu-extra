@@ -48,6 +48,6 @@ static void ci(ObjectClass *k, const void *d) {
     dc->desc="AWS Inferentia2 (Inf2) ML Inference Accelerator"; dc->vmsd=&vms; dc->hotpluggable=false;
     set_bit(DEVICE_CATEGORY_MISC,dc->categories);
 }
-static const TypeInfo ti={.name=TYPE_AWS_INFERENTIA2,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AwsInferentia2State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}};
+static const TypeInfo ti={.name=TYPE_AWS_INFERENTIA2,.parent=TYPE_PCI_DEVICE,.instance_size=sizeof(AwsInferentia2State),.class_init=ci,.interfaces=(InterfaceInfo[]){{INTERFACE_CONVENTIONAL_PCI_DEVICE},{}}};
 static void reg(void){type_register_static(&ti);}
 type_init(reg)
