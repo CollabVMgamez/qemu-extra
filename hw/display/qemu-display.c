@@ -116,11 +116,11 @@ static uint64_t qemu_display_qext_read(void *ptr, hwaddr addr,
     QemuDisplayState *s = ptr;
 
     switch (addr) {
-    case PCI_VGA_QEXT_REG_SIZE:
-        return PCI_VGA_QEXT_SIZE;
-    case PCI_VGA_QEXT_REG_BYTEORDER:
+    case PCI_VGA_QEXT2_REG_SIZE:
+        return PCI_VGA_QEXT2_SIZE;
+    case PCI_VGA_QEXT2_REG_BYTEORDER:
         return s->big_endian_fb ?
-            PCI_VGA_QEXT_BIG_ENDIAN : PCI_VGA_QEXT_LITTLE_ENDIAN;
+            PCI_VGA_QEXT2_BIG_ENDIAN : PCI_VGA_QEXT2_LITTLE_ENDIAN;
     default:
         return 0;
     }
@@ -132,11 +132,11 @@ static void qemu_display_qext_write(void *ptr, hwaddr addr,
     QemuDisplayState *s = ptr;
 
     switch (addr) {
-    case PCI_VGA_QEXT_REG_BYTEORDER:
-        if (val == PCI_VGA_QEXT_BIG_ENDIAN) {
+    case PCI_VGA_QEXT2_REG_BYTEORDER:
+        if (val == PCI_VGA_QEXT2_BIG_ENDIAN) {
             s->big_endian_fb = true;
         }
-        if (val == PCI_VGA_QEXT_LITTLE_ENDIAN) {
+        if (val == PCI_VGA_QEXT2_LITTLE_ENDIAN) {
             s->big_endian_fb = false;
         }
         break;
@@ -284,12 +284,12 @@ static void qemu_display_realize(PCIDevice *dev, Error **errp)
     memory_region_init_io(&s->vbe, obj, &qemu_display_vbe_ops, s,
                           "qemu dispi interface", PCI_VGA_QEXT_SIZE);
     memory_region_init_io(&s->qext, obj, &qemu_display_qext_ops, s,
-                          "qemu extended regs", PCI_VGA_QEXT_SIZE);
+                          "qemu extended regs", PCI_VGA_QEXT2_SIZE);
 
     memory_region_init_io(&s->mmio, obj, &unassigned_io_ops, NULL,
                           "qemu-display-mmio", PCI_VGA_MMIO_SIZE);
     memory_region_add_subregion(&s->mmio, PCI_VGA_QEXT_OFFSET, &s->vbe);
-    memory_region_add_subregion(&s->mmio, PCI_VGA_QEXT_OFFSET, &s->qext);
+    memory_region_add_subregion(&s->mmio, PCI_VGA_QEXT2_OFFSET, &s->qext);
 
     pci_set_byte(&s->pci.config[PCI_REVISION_ID], 2);
     pci_register_bar(&s->pci, 0, PCI_BASE_ADDRESS_MEM_PREFETCH, &s->vram);
