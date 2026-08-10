@@ -42,13 +42,8 @@ jobs:
             --enable-kvm \
             --disable-docs \
             --disable-gtk \
-            --disable-sdl \
-            --disable-opengl \
-            --disable-virglrenderer \
-            --disable-spice \
-            --disable-vnc-sasl \
-            --disable-vnc-jpeg \
-            --disable-vnc-png \
+            --enable-sdl \
+            --disable-vnc \
             --disable-curl \
             --disable-alsa \
             --disable-pa \
