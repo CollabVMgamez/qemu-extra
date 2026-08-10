@@ -24,6 +24,12 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
+#include "qemu/osdep.h"
+#include "qemu/module.h"
+#include "hw/pci/pci_device.h"
+#include "hw/core/qdev-properties.h"
+#include "qom/object.h"
+#include "migration/vmstate.h"
 #include "hw/acpi/acpi_aml_interface.h"
 #include "hw/acpi/aml-build.h"
 
