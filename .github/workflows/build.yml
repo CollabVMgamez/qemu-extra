@@ -1,0 +1,108 @@
+name: Build QEMU x86
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Free up disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/share/boost
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          sudo apt-get clean
+          df -h
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential ninja-build meson python3 python3-pip python3-venv \
+            libglib2.0-dev libslirp-dev libpixman-1-dev flex bison \
+            libfdt-dev libslirp-dev
+
+      - name: Configure
+        run: |
+          mkdir build
+          cd build
+          ../configure \
+            --target-list=x86_64-softmmu,i386-softmmu \
+            --enable-slirp \
+            --enable-kvm \
+            --disable-docs \
+            --disable-gtk \
+            --disable-sdl \
+            --disable-opengl \
+            --disable-virglrenderer \
+            --disable-spice \
+            --disable-vnc-sasl \
+            --disable-vnc-jpeg \
+            --disable-vnc-png \
+            --disable-curl \
+            --disable-alsa \
+            --disable-pa \
+            --disable-sndio \
+            --disable-rdma \
+            --disable-usb-redir \
+            --disable-vde \
+            --disable-netmap \
+            --disable-capstone \
+            --disable-gio \
+            --disable-vte \
+            --disable-keyring \
+            --disable-libusb \
+            --disable-xkbcommon \
+            --disable-libpmem \
+            --disable-libdaxctl \
+            --disable-libdw \
+            --disable-bpf \
+            --disable-lzo \
+            --disable-snappy \
+            --disable-bzip2 \
+            --disable-lzfse \
+            --disable-zstd \
+            --disable-qpl \
+            --disable-seccomp \
+            --disable-linux-aio \
+            --disable-linux-io-uring \
+            --disable-libiscsi \
+            --disable-libnfs \
+            --disable-smartcard \
+            --disable-libssh \
+            --disable-numa \
+            --disable-glusterfs \
+            --disable-tpm \
+            --disable-fuse \
+            --disable-rutabaga \
+            --disable-whpx \
+            --disable-hvf \
+            --disable-xen \
+            --disable-werror
+
+      - name: Build
+        run: ninja -C build -j$(nproc)
+
+      - name: Strip and package binaries
+        run: |
+          cd build
+          strip qemu-system-x86_64 qemu-system-i386 || true
+          tar czf ../qemu-x86-binaries.tar.gz qemu-system-x86_64 qemu-system-i386
+          ls -lh ../qemu-x86-binaries.tar.gz
+
+      - name: Upload binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: qemu-x86-binaries
+          path: qemu-x86-binaries.tar.gz
+          retention-days: 7

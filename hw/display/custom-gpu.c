@@ -24,12 +24,8 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-#include "qemu/osdep.h"
-#include "qemu/module.h"
-#include "hw/pci/pci_device.h"
-#include "hw/core/qdev-properties.h"
-#include "qom/object.h"
-#include "migration/vmstate.h"
+#include "hw/acpi/acpi_aml_interface.h"
+#include "hw/acpi/aml-build.h"
 
 #define TYPE_CUSTOM_GPU "custom-gpu"
 OBJECT_DECLARE_SIMPLE_TYPE(CustomGpuState, CUSTOM_GPU)
@@ -91,6 +87,24 @@ static void custom_gpu_realize(PCIDevice *pdev, Error **errp)
                          PCI_BASE_ADDRESS_MEM_PREFETCH, &s->vram);
 }
 
+static void custom_gpu_build_aml(AcpiDevAmlIf *adev, Aml *scope)
+{
+    CustomGpuState *s = CUSTOM_GPU(adev);
+    Aml *method;
+
+    method = aml_method("_S1D", 0, AML_NOTSERIALIZED);
+    aml_append(method, aml_return(aml_int(0)));
+    aml_append(scope, method);
+
+    method = aml_method("_S2D", 0, AML_NOTSERIALIZED);
+    aml_append(method, aml_return(aml_int(0)));
+    aml_append(scope, method);
+
+    method = aml_method("_S3D", 0, AML_NOTSERIALIZED);
+    aml_append(method, aml_return(aml_int(2)));
+    aml_append(scope, method);
+}
+
 static const Property custom_gpu_props[] = {
     DEFINE_PROP_UINT32("vendor-id", CustomGpuState, vendor_id, 0x1234),
     DEFINE_PROP_UINT32("device-id", CustomGpuState, device_id, 0xBEEF),
@@ -126,12 +140,13 @@ static void custom_gpu_class_init(ObjectClass *klass, const void *data)
 }
 
 static const TypeInfo custom_gpu_info = {
-    .name = TYPE_CUSTOM_GPU,
-    .parent = TYPE_PCI_DEVICE,
+    .name          = TYPE_CUSTOM_GPU,
+    .parent        = TYPE_PCI_DEVICE,
     .instance_size = sizeof(CustomGpuState),
-    .class_init = custom_gpu_class_init,
-    .interfaces = (InterfaceInfo[]) {
+    .class_init    = custom_gpu_class_init,
+    .interfaces    = (InterfaceInfo[]) {
         { INTERFACE_CONVENTIONAL_PCI_DEVICE },
+        { TYPE_ACPI_DEV_AML_IF },
         { },
     },
 };

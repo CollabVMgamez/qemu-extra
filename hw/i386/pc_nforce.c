@@ -47,6 +47,12 @@
 #include "system/numa.h"
 #include "hw/firmware/smbios.h"
 
+/* PCI slot-to-PIRQ mapping shared with the standard i440FX path. */
+static int pc_pci_slot_get_pirq(PCIDevice *pci_dev, int pci_intx)
+{
+    int slot_addend = PCI_SLOT(pci_dev->devfn) - 1;
+    return (pci_intx + slot_addend) & 3;
+}
 
 /* ---------------------------------------------------------------------------
  * Parse the ram_type property and generate matching SPD EEPROM data.
@@ -178,8 +184,10 @@ static void pc_nforce_init(MachineState *machine)
     pcms->pcibus = PCI_BUS(qdev_get_child_bus(DEVICE(phb), "pci.0"));
 
     hole64_size = object_property_get_uint(phb,
-                                           PCI_HOST_PROP_PCI_HOLE64_SIZE,
-                                            &error_abort);
+                                            PCI_HOST_PROP_PCI_HOLE64_SIZE,
+                                             &error_abort);
+
+    pci_bus_map_irqs(pcms->pcibus, pc_pci_slot_get_pirq);
 
     /* Propagate RAM details to SMBIOS BEFORE pc_memory_init builds tables */
     if (pcms->ram_type) {
