@@ -326,7 +326,7 @@ static void qemu_display_set_big_endian_fb(Object *obj, bool value,
     s->big_endian_fb = value;
 }
 
-static void qemu_display_init(Object *obj)
+static void qemu_display_instance_init(Object *obj)
 {
     PCIDevice *dev = PCI_DEVICE(obj);
 
@@ -372,7 +372,7 @@ static const TypeInfo qemu_display_type_info = {
     .name           = TYPE_QEMU_DISPLAY,
     .parent         = TYPE_PCI_DEVICE,
     .instance_size  = sizeof(QemuDisplayState),
-    .instance_init  = qemu_display_init,
+    .instance_init  = qemu_display_instance_init,
     .class_init     = qemu_display_class_init,
     .interfaces     = (const InterfaceInfo[]) {
         { INTERFACE_PCIE_DEVICE },

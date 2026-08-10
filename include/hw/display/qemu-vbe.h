@@ -57,13 +57,13 @@
 #define PCI_VGA_QEXT_SIZE    (0x0b * 2)
 
 /* qemu extension register region */
-#define PCI_VGA_QEXT_OFFSET   0x600
-#define PCI_VGA_QEXT_SIZE     (2 * 4)
+#define PCI_VGA_QEXT2_OFFSET   0x600
+#define PCI_VGA_QEXT2_SIZE     (2 * 4)
 
 /* qemu extension registers */
-#define PCI_VGA_QEXT_REG_SIZE         (0 * 4)
-#define PCI_VGA_QEXT_REG_BYTEORDER    (1 * 4)
-#define  PCI_VGA_QEXT_LITTLE_ENDIAN   0x1e1e1e1e
-#define  PCI_VGA_QEXT_BIG_ENDIAN      0xbebebebe
+#define PCI_VGA_QEXT2_REG_SIZE         (0 * 4)
+#define PCI_VGA_QEXT2_REG_BYTEORDER    (1 * 4)
+#define  PCI_VGA_QEXT2_LITTLE_ENDIAN   0x1e1e1e1e
+#define  PCI_VGA_QEXT2_BIG_ENDIAN      0xbebebebe
 
 #endif /* HW_DISPLAY_QEMU_VBE_H */

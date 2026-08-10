@@ -147,32 +147,32 @@ static const MemoryRegionOps pci_vga_qext_ops = {
     .endianness = DEVICE_LITTLE_ENDIAN,
 };
 
-static uint64_t pci_vga_qext_read(void *ptr, hwaddr addr, unsigned size)
+static uint64_t pci_vga_qext2_read(void *ptr, hwaddr addr, unsigned size)
 {
     VGACommonState *s = ptr;
 
     switch (addr) {
-    case PCI_VGA_QEXT_REG_SIZE:
-        return PCI_VGA_QEXT_SIZE;
-    case PCI_VGA_QEXT_REG_BYTEORDER:
+    case PCI_VGA_QEXT2_REG_SIZE:
+        return PCI_VGA_QEXT2_SIZE;
+    case PCI_VGA_QEXT2_REG_BYTEORDER:
         return s->big_endian_fb ?
-            PCI_VGA_QEXT_BIG_ENDIAN : PCI_VGA_QEXT_LITTLE_ENDIAN;
+            PCI_VGA_QEXT2_BIG_ENDIAN : PCI_VGA_QEXT2_LITTLE_ENDIAN;
     default:
         return 0;
     }
 }
 
-static void pci_vga_qext_write(void *ptr, hwaddr addr,
+static void pci_vga_qext2_write(void *ptr, hwaddr addr,
                                uint64_t val, unsigned size)
 {
     VGACommonState *s = ptr;
 
     switch (addr) {
-    case PCI_VGA_QEXT_REG_BYTEORDER:
-        if (val == PCI_VGA_QEXT_BIG_ENDIAN) {
+    case PCI_VGA_QEXT2_REG_BYTEORDER:
+        if (val == PCI_VGA_QEXT2_BIG_ENDIAN) {
             s->big_endian_fb = true;
         }
-        if (val == PCI_VGA_QEXT_LITTLE_ENDIAN) {
+        if (val == PCI_VGA_QEXT2_LITTLE_ENDIAN) {
             s->big_endian_fb = false;
         }
         break;
@@ -193,9 +193,9 @@ static void vga_set_big_endian_fb(Object *obj, bool value, Error **errp)
     d->vga.big_endian_fb = value;
 }
 
-static const MemoryRegionOps pci_vga_qext_ops = {
-    .read = pci_vga_qext_read,
-    .write = pci_vga_qext_write,
+static const MemoryRegionOps pci_vga_qext2_ops = {
+    .read = pci_vga_qext2_read,
+    .write = pci_vga_qext2_write,
     .valid.min_access_size = 4,
     .valid.max_access_size = 4,
     .endianness = DEVICE_LITTLE_ENDIAN,
@@ -220,9 +220,9 @@ void pci_std_vga_mmio_region_init(VGACommonState *s,
                                 &subs[1]);
 
     if (qext) {
-        memory_region_init_io(&subs[2], owner, &pci_vga_qext_ops, s,
-                              "qemu extended regs", PCI_VGA_QEXT_SIZE);
-        memory_region_add_subregion(parent, PCI_VGA_QEXT_OFFSET,
+        memory_region_init_io(&subs[2], owner, &pci_vga_qext2_ops, s,
+                              "qemu extended regs", PCI_VGA_QEXT2_SIZE);
+        memory_region_add_subregion(parent, PCI_VGA_QEXT2_OFFSET,
                                     &subs[2]);
     }
 
